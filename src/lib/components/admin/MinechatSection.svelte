@@ -125,6 +125,31 @@
 	let hToken = $state('');
 	let hServerId = $state('');
 	let hPrefix = $state('<%1> ');
+	let hookTestState = $state<'idle' | 'loading' | 'ok' | 'error'>('idle');
+	let hookTestError = $state('');
+
+	async function testHook() {
+		if (!hWebhookId || !hToken) return;
+		hookTestState = 'loading';
+		hookTestError = '';
+		try {
+			const res = await fetch(`https://discord.com/api/webhooks/${hWebhookId}/${hToken}`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ content: 'Test message from RizinOS admin' })
+			});
+			if (res.ok || res.status === 204) {
+				hookTestState = 'ok';
+			} else {
+				const body = await res.json().catch(() => ({}));
+				hookTestState = 'error';
+				hookTestError = body.message ?? `HTTP ${res.status}`;
+			}
+		} catch {
+			hookTestState = 'error';
+			hookTestError = 'Network error';
+		}
+	}
 
 	function openHookCreate() {
 		hookModalMode = 'create';
@@ -134,6 +159,8 @@
 		hServerId = servers[0]?.serverId ?? '';
 		hPrefix = '<%1> ';
 		formError = '';
+		hookTestState = 'idle';
+		hookTestError = '';
 		hookModalOpen = true;
 	}
 
@@ -145,6 +172,8 @@
 		hServerId = h.minecraftServerId;
 		hPrefix = h.prefix;
 		formError = '';
+		hookTestState = 'idle';
+		hookTestError = '';
 		hookModalOpen = true;
 	}
 
@@ -459,7 +488,23 @@
 		</div>
 		<div>
 			<label for="h-tok" class="text-muted-foreground mb-1 block text-xs font-medium">Token</label>
-			<Input.Root id="h-tok" name="token" bind:value={hToken} required />
+			<div class="flex gap-2">
+				<Input.Root id="h-tok" name="token" bind:value={hToken} required class="flex-1" />
+				<Button.Root
+					type="button"
+					size="sm"
+					variant="outline"
+					disabled={!hWebhookId || !hToken || hookTestState === 'loading'}
+					onclick={testHook}
+				>
+					{hookTestState === 'loading' ? '...' : 'Test'}
+				</Button.Root>
+			</div>
+			{#if hookTestState === 'ok'}
+				<p class="mt-1 text-xs text-green-600 dark:text-green-400">Test message sent successfully.</p>
+			{:else if hookTestState === 'error'}
+				<p class="text-destructive mt-1 text-xs">Failed: {hookTestError}</p>
+			{/if}
 		</div>
 		<div>
 			<label for="h-srv" class="text-muted-foreground mb-1 block text-xs font-medium">Server</label>
