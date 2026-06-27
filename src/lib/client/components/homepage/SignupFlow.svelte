@@ -21,6 +21,7 @@
 	let birthdateError = $state('');
 	let emailError = $state('');
 	let passwordError = $state('');
+	let serverError = $state('');
 
 	const providers: Record<string, { label: string; url: string }> = {
 		'gmail.com': { label: 'Open Gmail', url: 'https://mail.google.com' },
@@ -104,6 +105,7 @@
 	async function nextFromFinish() {
 		emailError = '';
 		passwordError = '';
+		serverError = '';
 		let ok = true;
 		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 			emailError = m.signup_email_invalid();
@@ -115,10 +117,23 @@
 		}
 		if (!ok) return;
 		submitting = true;
-		// TODO: wire to signup API
-		await new Promise((r) => setTimeout(r, 700));
+		const res = await fetch('/api/auth/signup', {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ username, birthdate, email, password })
+		});
 		submitting = false;
-		step = 'confirm';
+		if (res.ok) {
+			step = 'confirm';
+			return;
+		}
+		const data = (await res.json().catch(() => ({}))) as { errorId?: string };
+		const errorMap: Record<string, () => string> = {
+			signup_server_error: m.signup_server_error,
+			signup_username_taken: m.signup_username_taken,
+			signup_email_taken: m.signup_email_taken
+		};
+		serverError = (errorMap[data.errorId ?? ''] ?? m.signup_server_error)();
 	}
 
 	const dockColors = [
@@ -329,13 +344,16 @@
 								{/if}
 							</div>
 						</div>
-						<button
-							onclick={nextFromFinish}
-							disabled={submitting}
-							class="bg-primary text-primary-foreground hover:bg-primary/90 mt-5 w-full rounded-lg py-3 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-						>
-							{submitting ? m.signup_creating() : m.signup_create_account()}
-						</button>
+					{#if serverError}
+						<p class="text-destructive mt-3 text-sm">{serverError}</p>
+					{/if}
+					<button
+						onclick={nextFromFinish}
+						disabled={submitting}
+						class="bg-primary text-primary-foreground hover:bg-primary/90 mt-5 w-full rounded-lg py-3 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+					>
+						{submitting ? m.signup_creating() : m.signup_create_account()}
+					</button>
 					{:else if step === 'confirm'}
 						<div class="text-center">
 							<p class="mb-3 text-4xl">🎉</p>
