@@ -148,6 +148,13 @@
 	// --- Create User ---
 	let createUserOpen = $state(false);
 
+	// --- Delete User Confirmation ---
+	let confirmDeleteUser = $state(false);
+
+	$effect(() => {
+		if (!userModalOpen) confirmDeleteUser = false;
+	});
+
 	// --- Apps ---
 	let appModalOpen = $state(false);
 	let appModalMode = $state<'create' | 'edit'>('create');
@@ -156,6 +163,19 @@
 	let appTitle = $state('');
 	let appAuthorId = $state('');
 	let appRestrict = $state<string[]>([]);
+
+	// --- Delete App Confirmation ---
+	let deleteConfirmApp = $state<AppEntry | null>(null);
+	let deleteConfirmAppOpen = $state(false);
+
+	function openAppDeleteConfirm(app: AppEntry) {
+		deleteConfirmApp = app;
+		deleteConfirmAppOpen = true;
+	}
+
+	$effect(() => {
+		if (!deleteConfirmAppOpen) deleteConfirmApp = null;
+	});
 
 	function openAppCreate() {
 		appModalMode = 'create';
@@ -381,7 +401,7 @@
 									<Pencil size={13} />
 								</button>
 								<button
-									onclick={() => remove('appDelete', { appId: app.id })}
+									onclick={() => openAppDeleteConfirm(app)}
 									class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
 									title="Delete"
 								>
@@ -515,13 +535,43 @@
 
 			<!-- Delete -->
 			<div class="border-t pt-4">
-				<form onsubmit={(e) => submitForm(e, 'userDelete', () => (userModalOpen = false))}>
-					<input type="hidden" name="userId" value={editingUser.id} />
-					<Button.Root type="submit" variant="destructive" size="sm" class="w-full">
+				{#if confirmDeleteUser}
+					<p class="text-destructive mb-2 text-xs font-medium">
+						Really delete <span class="font-semibold">{editingUser.username}</span>? This cannot be
+						undone.
+					</p>
+					<div class="flex gap-2">
+						<form
+							onsubmit={(e) => submitForm(e, 'userDelete', () => (userModalOpen = false))}
+							class="flex-1"
+						>
+							<input type="hidden" name="userId" value={editingUser.id} />
+							<Button.Root type="submit" variant="destructive" size="sm" class="w-full">
+								<Trash2 size={14} />
+								Yes, delete
+							</Button.Root>
+						</form>
+						<Button.Root
+							type="button"
+							variant="outline"
+							size="sm"
+							onclick={() => (confirmDeleteUser = false)}
+						>
+							Cancel
+						</Button.Root>
+					</div>
+				{:else}
+					<Button.Root
+						type="button"
+						variant="destructive"
+						size="sm"
+						class="w-full"
+						onclick={() => (confirmDeleteUser = true)}
+					>
 						<Trash2 size={14} />
 						Delete User
 					</Button.Root>
-				</form>
+				{/if}
 			</div>
 		</div>
 	</Modal>
@@ -624,6 +674,32 @@
 			>
 		</div>
 	</form>
+</Modal>
+
+<!-- DELETE APP CONFIRMATION MODAL -->
+<Modal bind:open={deleteConfirmAppOpen} title="Delete App">
+	<p class="mb-4 text-sm">
+		Really delete app <span class="font-mono font-semibold">{deleteConfirmApp?.name}</span>? This
+		cannot be undone.
+	</p>
+	<div class="flex justify-end gap-2">
+		<Button.Root variant="outline" size="sm" onclick={() => (deleteConfirmAppOpen = false)}
+			>Cancel</Button.Root
+		>
+		<Button.Root
+			variant="destructive"
+			size="sm"
+			onclick={async () => {
+				if (!deleteConfirmApp) return;
+				const app = deleteConfirmApp;
+				deleteConfirmAppOpen = false;
+				await remove('appDelete', { appId: app.id });
+			}}
+		>
+			<Trash2 size={14} />
+			Delete
+		</Button.Root>
+	</div>
 </Modal>
 
 <!-- CREATE USER MODAL -->
