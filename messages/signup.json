@@ -1,0 +1,241 @@
+{
+	"signup_open_rizinos": [
+		"RizinOS in Ihrem Browser öffnen",
+		"Open RizinOS in your browser",
+		"在您的浏览器中打开 RizinOS",
+		"Открыть RizinOS в браузере"
+	],
+	"signup_open_your_os": ["Ihr OS öffnen", "Open your OS", "打开您的操作系统", "Открыть вашу ОС"],
+	"signup_free_note": [
+		"Für immer kostenlos - Keine Kreditkarte erforderlich - DSGVO-konform",
+		"Free forever - No credit card required - GDPR compliant",
+		"永久免费 - 无需信用卡 - 符合 GDPR",
+		"Бесплатно навсегда - Без кредитной карты - Соответствует GDPR"
+	],
+	"signup_username_placeholder": [
+		"Benutzernamen wählen",
+		"choose a username",
+		"选择用户名",
+		"выберите имя пользователя"
+	],
+	"signup_tos_prefix": [
+		"Ich habe die",
+		"I have read and agree to RizinOS'",
+		"我已阅读并同意 RizinOS 的",
+		"Я прочитал и соглашаюсь с"
+	],
+	"signup_tos_and": ["und die", "and", "和", "и"],
+	"signup_tos_suffix": ["von RizinOS gelesen und stimme zu.", ".", "。", "RizinOS."],
+	"signup_welcome": [
+		"Willkommen, {username}!",
+		"Welcome, {username}!",
+		"欢迎，{username}！",
+		"Добро пожаловать, {username}!"
+	],
+	"signup_birthdate_prompt": [
+		"Wann wurden Sie geboren?",
+		"When were you born?",
+		"您的出生日期是？",
+		"Когда вы родились?"
+	],
+	"signup_continue": ["Weiter", "Continue", "继续", "Продолжить"],
+	"signup_birthdate_required": [
+		"Bitte gib dein Geburtsdatum ein.",
+		"Please enter your date of birth.",
+		"请输入您的出生日期。",
+		"Пожалуйста, укажите дату рождения."
+	],
+	"signup_age_requirement": [
+		"Du musst mindestens 12 Jahre alt sein.",
+		"You must be at least 12 years old.",
+		"您必须年满 12 岁。",
+		"Вам должно быть не менее 12 лет."
+	],
+	"signup_finish_title": [
+		"Registrierung abschließen",
+		"Finish signing up",
+		"完成注册",
+		"Завершить регистрацию"
+	],
+	"signup_finish_desc": [
+		"Sichern Sie Ihr Konto mit einer E-Mail-Adresse und einem Passwort.",
+		"Claim your account by entering an email and password.",
+		"输入电子邮件和密码来创建您的账户。",
+		"Защитите аккаунт, указав электронную почту и пароль."
+	],
+	"signup_email_placeholder": ["E-Mail", "Email", "电子邮件", "Электронная почта"],
+	"signup_password_placeholder": ["Passwort", "Password", "密码", "Пароль"],
+	"signup_creating": [
+		"Konto wird erstellt...",
+		"Creating account...",
+		"正在创建账户...",
+		"Создание аккаунта..."
+	],
+	"signup_create_account": ["Konto erstellen", "Create account", "创建账户", "Создать аккаунт"],
+	"signup_thanks_title": ["Danke!", "Thanks!", "谢谢！", "Спасибо!"],
+	"signup_confirm_sent": [
+		"Wir haben einen Bestätigungslink gesendet an:",
+		"We've sent a confirmation link to:",
+		"我们已向以下地址发送确认链接：",
+		"Мы отправили ссылку для подтверждения на:"
+	],
+	"signup_check_spam": [
+		"Überprüfen Sie Ihren Spam-Ordner, falls Sie ihn nicht sehen.",
+		"Check your spam folder if you don't see it.",
+		"如果您没有看到它，请检查垃圾邮件文件夹。",
+		"Проверьте папку спама, если не видите письма."
+	],
+	"signup_email_invalid": [
+		"Gib eine gültige E-Mail-Adresse ein.",
+		"Enter a valid email address.",
+		"请输入有效的电子邮件地址。",
+		"Введите корректный адрес электронной почты."
+	],
+	"signup_password_too_short": [
+		"Muss mindestens 10 Zeichen lang sein.",
+		"Must be at least 10 characters.",
+		"必须至少 10 个字符。",
+		"Должен содержать не менее 10 символов."
+	],
+	"signup_show_password": ["Passwort anzeigen", "Show password", "显示密码", "Показать пароль"],
+	"signup_hide_password": ["Passwort verbergen", "Hide password", "隐藏密码", "Скрыть пароль"],
+	"signup_username_required": [
+		"Bitte wähle einen Benutzernamen.",
+		"Please choose a username.",
+		"请选择一个用户名。",
+		"Пожалуйста, выберите имя пользователя."
+	],
+	"signup_username_too_short": [
+		"Der Benutzername muss mindestens 5 Zeichen lang sein.",
+		"Username must be at least 5 characters.",
+		"用户名至少需要 5 个字符。",
+		"Имя пользователя должно содержать не менее 5 символов."
+	],
+	"signup_username_too_long": [
+		"Der Benutzername darf höchstens 20 Zeichen lang sein.",
+		"Username must be at most 20 characters.",
+		"用户名最多 20 个字符。",
+		"Имя пользователя не должно превышать 20 символов."
+	],
+	"signup_username_invalid_chars": [
+		"Nur Buchstaben, Zahlen, Unterstriche und Bindestriche sind erlaubt.",
+		"Only letters, numbers, underscores, and hyphens are allowed.",
+		"只允许使用字母、数字、下划线和连字符。",
+		"Допускаются только буквы, цифры, знаки подчёркивания и дефисы."
+	],
+	"signup_birthdate_invalid": [
+		"Bitte gib ein gültiges Datum ein.",
+		"Please enter a valid date.",
+		"请输入有效的日期。",
+		"Пожалуйста, введите корректную дату."
+	],
+	"signup_birthdate_future": [
+		"Das Geburtsdatum darf nicht in der Zukunft liegen.",
+		"Date of birth cannot be in the future.",
+		"出生日期不能是未来的日期。",
+		"Дата рождения не может быть в будущем."
+	],
+
+	"signup_first_name_required": [
+		"Bitte gib deinen Vornamen ein.",
+		"Please enter your first name.",
+		"请输入您的名字。",
+		"Пожалуйста, введите имя."
+	],
+	"signup_last_name_required": [
+		"Bitte gib deinen Nachnamen ein.",
+		"Please enter your last name.",
+		"请输入您的姓氏。",
+		"Пожалуйста, введите фамилию."
+	],
+	"signup_name_invalid": [
+		"Enthält ungültige Zeichen.",
+		"Contains invalid characters.",
+		"包含无效字符。",
+		"Содержит недопустимые символы."
+	],
+	"signup_username_format": [
+		"Muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben und Zahlen enthalten.",
+		"Must start with a letter and contain only lowercase letters and numbers.",
+		"必须以小写字母开头，且只能包含小写字母和数字。",
+		"Должно начинаться со строчной буквы и содержать только строчные буквы и цифры."
+	],
+	"signup_password_uppercase": [
+		"Muss mindestens einen Großbuchstaben enthalten.",
+		"Must contain at least one uppercase letter.",
+		"必须包含至少一个大写字母。",
+		"Должен содержать хотя бы одну заглавную букву."
+	],
+	"signup_password_lowercase": [
+		"Muss mindestens einen Kleinbuchstaben enthalten.",
+		"Must contain at least one lowercase letter.",
+		"必须包含至少一个小写字母。",
+		"Должен содержать хотя бы одну строчную букву."
+	],
+	"signup_password_number": [
+		"Muss mindestens eine Zahl enthalten.",
+		"Must contain at least one number.",
+		"必须包含至少一个数字。",
+		"Должен содержать хотя бы одну цифру."
+	],
+	"signup_password_special": [
+		"Muss mindestens ein Sonderzeichen enthalten.",
+		"Must contain at least one special character.",
+		"必须包含至少一个特殊字符。",
+		"Должен содержать хотя бы один специальный символ."
+	],
+	"signup_passwords_mismatch": [
+		"Die Passwörter stimmen nicht überein.",
+		"Passwords do not match.",
+		"两次输入的密码不一致。",
+		"Пароли не совпадают."
+	],
+	"signup_username_taken": [
+		"Dieser Benutzername ist bereits vergeben.",
+		"This username is already taken.",
+		"该用户名已被使用。",
+		"Это имя пользователя уже занято."
+	],
+	"signup_email_taken": [
+		"Diese E-Mail-Adresse ist bereits registriert.",
+		"This email address is already registered.",
+		"该电子邮件地址已被注册。",
+		"Этот адрес электронной почты уже зарегистрирован."
+	],
+	"signup_server_error": [
+		"Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+		"Something went wrong. Please try again.",
+		"出现了错误，请重试。",
+		"Что-то пошло не так. Пожалуйста, попробуйте ещё раз."
+	],
+
+	"signup_step": ["Schritt {step}", "Step {step}", "步骤 {step}", "Шаг {step}"],
+	"signup_first_name": ["Vorname", "First Name", "名字", "Имя"],
+	"signup_last_name": ["Nachname", "Last Name", "姓氏", "Фамилия"],
+	"signup_birthdate_label": ["Geburtsdatum", "Birthdate", "出生日期", "Дата рождения"],
+	"signup_gender_male": ["Männlich", "Male", "男", "Мужской"],
+	"signup_gender_female": ["Weiblich", "Female", "女", "Женский"],
+	"signup_email_label": ["E-Mail", "Email", "电子邮件", "Электронная почта"],
+	"signup_username_label": ["Benutzername", "Username", "用户名", "Имя пользователя"],
+	"signup_password_label": ["Passwort", "Password", "密码", "Пароль"],
+	"signup_confirm_password": [
+		"Passwort bestätigen",
+		"Confirm Password",
+		"确认密码",
+		"Подтвердите пароль"
+	],
+	"signup_back": ["Zurück", "Back", "返回", "Назад"],
+	"signup_next": ["Weiter", "Next", "下一步", "Далее"],
+	"signup_submit": ["Absenden", "Submit", "提交", "Отправить"],
+	"signup_success": ["Erfolg!", "Success!", "成功！", "Успешно!"],
+	"signup_name_title": ["Ihr Name", "Your name", "您的姓名", "Ваше имя"],
+	"signup_birth_title": ["Geburt & Geschlecht", "Birth & gender", "生日与性别", "Рождение и пол"],
+	"signup_account_title": ["Konto-Details", "Account details", "账户详情", "Данные аккаунта"],
+	"signup_have_account": [
+		"Schon ein Konto?",
+		"Already have an account?",
+		"已有账户？",
+		"Уже есть аккаунт?"
+	],
+	"signup_log_in": ["Anmelden", "Log in", "登录", "Войти"]
+}

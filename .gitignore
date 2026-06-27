@@ -1,0 +1,13 @@
+.*
+!.gitignore
+!.prettierrc
+!.env.template
+
+/node_modules
+/build
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+/src/lib/messages.svelte.ts

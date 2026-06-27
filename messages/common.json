@@ -1,0 +1,51 @@
+{
+	"title": [
+		"RizinOS - Das erste Online-Betriebssystem",
+		"RizinOS - The First Online Operating System",
+		"RizinOS - 第一个在线操作系统",
+		"RizinOS - Первая онлайн-операционная система"
+	],
+	"description": [
+		"Das moderne webbasierte Betriebssystem, das Ihre Arbeit revolutioniert. Überall verfügbar, immer synchronisiert.",
+		"The modern web-based operating system that revolutionizes your work. Available everywhere, always synchronized.",
+		"现代的基于网络的操作系统，彻底改变您的工作方式。随时随地可用，始终保持同步。",
+		"Современная веб-операционная система, которая революционизирует вашу работу. Доступна везде, всегда синхронизирована."
+	],
+	"copyright": [
+		"Alle Rechte vorbehalten.",
+		"All rights reserved.",
+		"版权所有。",
+		"Все права защищены."
+	],
+
+	"features": ["Funktionen", "Features", "功能", "Функции"],
+	"overview": ["Überblick", "Overview", "概览", "Обзор"],
+	"performance": ["Leistung", "Performance", "性能", "Производительность"],
+	"security": ["Sicherheit", "Security", "安全性", "Безопасность"],
+	"integration": ["Integration", "Integration", "集成", "Интеграция"],
+	"documentation": ["Dokumentation", "Documentation", "文档", "Документация"],
+	"getting_started": ["Erste Schritte", "Getting Started", "快速开始", "Начало работы"],
+	"api_reference": ["API-Referenz", "API Reference", "API 参考", "API справочник"],
+	"tutorials": ["Tutorials", "Tutorials", "教程", "Руководства"],
+	"pricing": ["Preise", "Pricing", "价格", "Цены"],
+	"enterprise": ["Enterprise", "Enterprise", "企业版", "Корпоративным клиентам"],
+	"privacy_policy": ["Datenschutz", "Privacy Policy", "隐私政策", "Политика конфиденциальности"],
+	"terms_of_service": ["AGB", "Terms of Service", "服务条款", "Условия использования"],
+	"cookies": ["Cookies", "Cookies", "Cookies", "Cookies"],
+	"imprint": ["Impressum", "Imprint", "法律信息", "Юридическая информация"],
+	"product": ["Produkt", "Product", "产品", "Продукт"],
+	"resources": ["Ressourcen", "Resources", "资源", "Ресурсы"],
+	"status": ["Status", "Status", "状态", "Статус"],
+	"blog": ["Blog", "Blog", "博客", "Блог"],
+	"company": ["Unternehmen", "Company", "公司", "Компания"],
+	"about_us": ["Über uns", "About Us", "关于我们", "О нас"],
+	"careers": ["Karriere", "Careers", "招聘", "Карьера"],
+	"contact": ["Kontakt", "Contact", "联系方式", "Контакты"],
+	"legal": ["Rechtliches", "Legal", "法律信息", "Правовая информация"],
+
+	"open_your_os": ["Ihr OS öffnen", "Open your OS", "打开您的操作系统", "Открыть вашу ОС"],
+	"log_in": ["Anmelden", "Log in", "登录", "Войти"],
+	"language": ["Sprache", "Language", "语言", "Язык"],
+	"select_language": ["Sprache auswählen", "Select language", "选择语言", "Выбрать язык"],
+	"toggle_menu": ["Menü umschalten", "Toggle menu", "切换菜单", "Переключить меню"]
+}

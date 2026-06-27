@@ -1,0 +1,15 @@
+{
+	"error_404": [
+		"Die gesuchte Seite existiert nicht.",
+		"The page you are looking for does not exist.",
+		"您要查找的页面不存在。",
+		"Запрашиваемая страница не существует."
+	],
+	"error_generic": [
+		"Ein Fehler ist aufgetreten.",
+		"An error occurred.",
+		"发生了错误。",
+		"Произошла ошибка."
+	],
+	"go_back_home": ["Zurück zur Startseite", "Go back home", "返回首页", "Вернуться на главную"]
+}

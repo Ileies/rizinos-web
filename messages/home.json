@@ -1,0 +1,276 @@
+{
+	"hero_title": [
+		"Das Betriebssystem, das in Ihrem Browser läuft",
+		"The operating system that runs in your browser",
+		"在您的浏览器中运行的操作系统",
+		"Операционная система, которая работает в вашем браузере"
+	],
+	"hero_subtitle": [
+		"Aufgebaut auf Rust WASM-Modulen und einer NixOS-inspirierten Architektur. Keine Hardware. Keine Treiber. Keine OS-Fehler. By design. Passt sich Ihrem Gerät an: auf Smartphones, Tablets und Desktops gleichermaßen zuhause.",
+		"Built on Rust WASM modules and a NixOS-inspired architecture. No hardware. No drivers. No OS errors. By design. Adapts to your device: feels at home on phones, tablets, and desktops alike.",
+		"基于 Rust WASM 模块和受 NixOS 启发的架构构建。无需硬件。无需驱动程序。没有系统错误。源于设计。适应您的设备：在手机、平板电脑和桌面上都如鱼得水。",
+		"Построена на модулях Rust WASM и архитектуре, вдохновлённой NixOS. Никакого железа. Никаких драйверов. Никаких ошибок ОС. По задумке. Адаптируется к вашему устройству: одинаково удобна на смартфонах, планшетах и десктопах."
+	],
+
+	"core_promise_label": ["Das Kernversprechen", "The core promise", "核心承诺", "Главное обещание"],
+	"zero_errors_title": [
+		"Das erste OS, das nicht versagen kann.",
+		"The first OS that cannot fail.",
+		"第一个不会崩溃的操作系统。",
+		"Первая ОС, которая не может сломаться."
+	],
+	"zero_errors_desc": [
+		"Traditionelle Betriebssysteme versagen, weil sie von Hardware, Treibern und veränderbarem Zustand abhängen. RizinOS eliminiert alle drei. Der Betrieb im Browser bedeutet keine Hardwareabstraktionen, die brechen können, keine Treiberkonflikte und keinen Systemzustand, der korrumpiert werden kann.",
+		"Traditional operating systems fail because they depend on hardware, drivers, and mutable state. RizinOS eliminates all three. Running in the browser means no hardware abstractions to break, no drivers to conflict, and no system state to corrupt.",
+		"传统操作系统会崩溃，因为它们依赖于硬件、驱动程序和可变状态。RizinOS 消除了这三者。在浏览器中运行意味着没有可能损坏的硬件抽象层，没有驱动冲突，也没有可能损坏的系统状态。",
+		"Традиционные операционные системы дают сбои, потому что зависят от железа, драйверов и изменяемого состояния. RizinOS устраняет все три. Работа в браузере означает отсутствие аппаратных абстракций, которые могут сломаться, конфликтов драйверов и системного состояния, которое может быть нарушено."
+	],
+	"hardware_independent_title": [
+		"Hardwareunabhängig",
+		"Hardware-independent",
+		"硬件独立",
+		"Независимость от железа"
+	],
+	"hardware_independent_desc": [
+		"Keine Gerätetreiber. Keine Hardwarekonflikte. Der Browser ist die Hardwareschicht, und Browser sind darin ausgezeichnet.",
+		"No device drivers. No hardware conflicts. The browser is the hardware layer, and browsers are extremely good at that job.",
+		"无需设备驱动程序。无硬件冲突。浏览器就是硬件层，而浏览器非常擅长这项工作。",
+		"Никаких драйверов устройств. Никаких аппаратных конфликтов. Браузер — это аппаратный слой, и браузеры справляются с этой задачей отлично."
+	],
+	"declarative_config_title": [
+		"Deklarative Konfiguration",
+		"Declarative configuration",
+		"声明式配置",
+		"Декларативная конфигурация"
+	],
+	"declarative_config_desc": [
+		"Jede Systemeinstellung ist versioniert und reproduzierbar. Keine Konfigurationsabweichungen zwischen Umgebungen, niemals.",
+		"Every system setting is version-controlled and reproducible. No configuration drift between environments, ever.",
+		"每个系统设置都经过版本控制且可重现。环境之间永远不会出现配置漂移。",
+		"Каждая настройка системы версионирована и воспроизводима. Никаких расхождений конфигурации между средами — никогда."
+	],
+	"atomic_updates_title": ["Atomare Updates", "Atomic updates", "原子更新", "Атомарные обновления"],
+	"atomic_updates_desc": [
+		"Systemupdates werden atomar angewendet oder gar nicht. Fehlgeschlagene Updates werden automatisch zurückgerollt. Sie können jede Änderung jederzeit rückgängig machen.",
+		"System updates apply atomically or not at all. Failed updates roll back automatically. You can undo any change, any time.",
+		"系统更新要么完整应用，要么根本不应用。失败的更新会自动回滚。您可以随时撤销任何更改。",
+		"Обновления системы применяются атомарно или не применяются вовсе. Неудачные обновления откатываются автоматически. Вы можете отменить любое изменение в любое время."
+	],
+
+	"capabilities_label": ["Funktionen", "Capabilities", "功能特性", "Возможности"],
+	"features_era_title": [
+		"Gebaut für die nächste Ära des Computings.",
+		"Built for the next era of computing.",
+		"为计算的下一个时代而生。",
+		"Создана для новой эры вычислений."
+	],
+	"feature_rust_wasm_title": [
+		"Rust WASM Engine",
+		"Rust WASM Engine",
+		"Rust WASM 引擎",
+		"Движок Rust WASM"
+	],
+	"feature_rust_wasm_desc": [
+		"Kern-OS-Module in Rust geschrieben, zu WebAssembly kompiliert. Nahezu native Leistung, vollständig im Browser.",
+		"Core OS modules written in Rust, compiled to WebAssembly. Near-native performance, entirely in the browser.",
+		"核心操作系统模块用 Rust 编写，编译为 WebAssembly。近乎原生的性能，完全在浏览器中运行。",
+		"Основные модули ОС написаны на Rust и скомпилированы в WebAssembly. Производительность, близкая к нативной, полностью в браузере."
+	],
+	"feature_nixos_title": [
+		"NixOS-ähnliche Architektur",
+		"NixOS-like Architecture",
+		"类 NixOS 架构",
+		"Архитектура в стиле NixOS"
+	],
+	"feature_nixos_desc": [
+		"Deklarative, versionierte Systemkonfiguration. Jede Änderung jederzeit zurückrollen.",
+		"Declarative, version-controlled system configuration. Roll back any change at any time.",
+		"声明式、版本控制的系统配置。随时回滚任何更改。",
+		"Декларативная, версионированная конфигурация системы. Откат любого изменения в любое время."
+	],
+	"feature_encryption_title": [
+		"Clientseitige Verschlüsselung",
+		"Client-Side Encryption",
+		"客户端加密",
+		"Шифрование на стороне клиента"
+	],
+	"feature_encryption_desc": [
+		"Alle Daten werden verschlüsselt, bevor sie Ihr Gerät verlassen. Der Server sieht niemals Ihren Klartext.",
+		"All storage is encrypted before it leaves your device. The server never sees your plaintext.",
+		"所有存储在离开您的设备之前都经过加密。服务器永远看不到您的明文。",
+		"Все данные шифруются до того, как покидают ваше устройство. Сервер никогда не видит открытый текст."
+	],
+	"feature_instant_title": ["Sofortstart", "Instant Start", "即时启动", "Мгновенный старт"],
+	"feature_instant_desc": [
+		"Kein POST. Keine Treiber. Keine Ladezeiten. Öffnen Sie einen Tab - Ihr OS ist da, genau wie Sie es verlassen haben.",
+		"No POST. No drivers. No loading. Open a tab and your OS is there, exactly as you left it.",
+		"无 POST。无驱动程序。无加载。打开标签页，您的操作系统就在那里，与您离开时完全相同。",
+		"Никаких POST-запросов. Никаких драйверов. Никакой загрузки. Откройте вкладку - и ваша ОС уже там, точно так, как вы её оставили."
+	],
+	"feature_bgapp_title": ["Hintergrund-App", "Background App", "后台应用", "Фоновое приложение"],
+	"feature_bgapp_desc": [
+		"Optionaler nativer Begleiter für Dateisynchronisation, Peripheriezugriff und Push-Benachrichtigungen von Ihrem Gerät.",
+		"Optional native companion for file sync, peripheral access, and push notifications from your device.",
+		"可选的本地伴侣应用，用于文件同步、外设访问和来自设备的推送通知。",
+		"Опциональный нативный компаньон для синхронизации файлов, доступа к периферии и push-уведомлений с вашего устройства."
+	],
+	"feature_collab_title": [
+		"Echtzeit-Zusammenarbeit",
+		"Real-Time Collaboration",
+		"实时协作",
+		"Совместная работа в реальном времени"
+	],
+	"feature_collab_desc": [
+		"Gemeinsame Sitzungen auf Dateien und Apps, auf OS-Ebene eingebaut. Nicht nachträglich pro App hinzugefügt.",
+		"Shared sessions on files and apps, built at the OS level. Not bolted on per-app.",
+		"在操作系统层面构建的文件和应用程序共享会话，而非每个应用程序单独附加的功能。",
+		"Совместные сессии на файлах и приложениях, встроенные на уровне ОС. Не надстройка поверх каждого приложения."
+	],
+
+	"bg_app_label": ["Hintergrund-App", "Background App", "后台应用", "Фоновое приложение"],
+	"bg_app_title": [
+		"Erweitert sich auf Ihr Gerät.",
+		"Extends into your device.",
+		"延伸到您的设备。",
+		"Расширяется на ваше устройство."
+	],
+	"bg_app_desc": [
+		"Installieren Sie die optionale Hintergrund-App, um RizinOS mit Ihrem Gerät zu verbinden. Dateisynchronisation, Peripheriezugriff und native Benachrichtigungen, ohne die Browser-First-Architektur aufzugeben.",
+		"Install the optional Background App to bridge RizinOS with your device. File sync, peripheral access, and native notifications, without giving up the browser-first architecture.",
+		"安装可选的后台应用，将 RizinOS 与您的设备连接起来。文件同步、外设访问和本地通知，同时保持浏览器优先架构。",
+		"Установите опциональное фоновое приложение для связи RizinOS с вашим устройством. Синхронизация файлов, доступ к периферии и нативные уведомления - без отказа от браузерной архитектуры."
+	],
+	"sync_bidirectional": [
+		"Bidirektionale Dateisynchronisation zwischen Gerät und Cloud-VFS",
+		"Bidirectional file sync between device and cloud VFS",
+		"设备与云端 VFS 之间的双向文件同步",
+		"Двунаправленная синхронизация файлов между устройством и облачным VFS"
+	],
+	"sync_native_dnd": [
+		"Native Drag-and-Drop-Uploads von Ihrem Desktop",
+		"Native drag-and-drop uploads from your desktop",
+		"从桌面原生拖放上传",
+		"Нативная загрузка перетаскиванием с рабочего стола"
+	],
+	"sync_backups": [
+		"Kontinuierliche versionierte Backups mit konfigurierbarer Aufbewahrungsdauer",
+		"Continuous versioned backups with configurable retention",
+		"具有可配置保留期的持续版本化备份",
+		"Непрерывные версионированные резервные копии с настраиваемым сроком хранения"
+	],
+	"sync_push_notif": [
+		"Push-Benachrichtigungen auch wenn der Browser-Tab geschlossen ist",
+		"Push notifications even when the browser tab is closed",
+		"即使关闭浏览器标签页也能收到推送通知",
+		"Push-уведомления даже при закрытой вкладке браузера"
+	],
+	"sync_peripherals": [
+		"Peripherie-Brücke: Kameras, Mikrofone, USB, Seriell",
+		"Peripheral bridging: cameras, microphones, USB, serial",
+		"外设桥接：摄像头、麦克风、USB、串行",
+		"Связь с периферией: камеры, микрофоны, USB, последовательный порт"
+	],
+	"sync_offline": [
+		"Offline-Modus mit automatischer Synchronisation bei Wiederverbindung",
+		"Offline mode with automatic sync on reconnect",
+		"离线模式，重新连接时自动同步",
+		"Офлайн-режим с автоматической синхронизацией при восстановлении соединения"
+	],
+	"download_for": [
+		"Herunterladen für {platform}",
+		"Download for {platform}",
+		"下载 {platform} 版本",
+		"Скачать для {platform}"
+	],
+
+	"arch_label": ["Architektur", "Architecture", "架构", "Архитектура"],
+	"arch_title": [
+		"Saubere Schichten, keine Abkürzungen.",
+		"Clean layers, no shortcuts.",
+		"清晰的层次，没有捷径。",
+		"Чистые слои, никаких компромиссов."
+	],
+	"arch_desc": [
+		"Rust-Module werden zu WASM kompiliert und als Kernel-Schicht ausgeführt. SvelteKit steuert die System-Shell. Jede App ist ein isolierter WASM-Prozess mit eigenem Speicherbereich und typisiertem IPC zum OS. Nichts wird implizit geteilt.",
+		"Rust modules compile to WASM and run as the kernel layer. SvelteKit drives the system shell. Each app is an isolated WASM process with its own memory space and typed IPC to the OS. Nothing is shared implicitly.",
+		"Rust 模块编译为 WASM 并作为内核层运行。SvelteKit 驱动系统外壳。每个应用程序都是一个独立的 WASM 进程，具有自己的内存空间和到操作系统的类型化 IPC。没有任何内容是隐式共享的。",
+		"Модули Rust компилируются в WASM и выполняются как уровень ядра. SvelteKit управляет системной оболочкой. Каждое приложение — изолированный WASM-процесс с собственным пространством памяти и типизированным IPC к ОС. Ничего не передаётся неявно."
+	],
+	"arch_ipc_note": [
+		"Alle Schichten kommunizieren über typisierte IPC-Schnittstellen",
+		"All layers communicate through typed IPC interfaces",
+		"所有层通过类型化 IPC 接口进行通信",
+		"Все слои общаются через типизированные интерфейсы IPC"
+	],
+
+	"applications_label": ["Anwendungen", "Applications", "应用程序", "Приложения"],
+	"apps_title": [
+		"Eine vollständige Suite. Eingebaut.",
+		"A full suite. Built in.",
+		"完整套件，内置集成。",
+		"Полный набор. Встроенный."
+	],
+	"apps_desc": [
+		"Jede App teilt ein einheitliches Berechtigungsmodell, Dateiprotokoll und Design-System. Sie sind OS-Bürger, keine Plugins.",
+		"Every app shares a unified permission model, file protocol, and design system. They are OS citizens, not plugins.",
+		"每个应用程序共享统一的权限模型、文件协议和设计系统。它们是操作系统的一等公民，而非插件。",
+		"Каждое приложение использует единую модель разрешений, файловый протокол и дизайн-систему. Они — граждане ОС, а не плагины."
+	],
+	"apps_roadmap": [
+		"+ Minecraft-Integration, KI-Assistent, Stripe-Zahlungen, Videoanrufe in der Roadmap",
+		"+ Minecraft integration, AI assistant, Stripe payments, video calling in the roadmap",
+		"+ Minecraft 集成、AI 助手、Stripe 支付、视频通话已在路线图中",
+		"+ Интеграция с Minecraft, ИИ-ассистент, платежи Stripe, видеозвонки в roadmap"
+	],
+
+	"cta_title": [
+		"Ihr OS wartet. Öffnen Sie einen Tab.",
+		"Your OS is waiting. Open a tab.",
+		"您的操作系统在等待。打开一个标签页。",
+		"Ваша ОС ждёт. Откройте вкладку."
+	],
+	"cta_desc": [
+		"Keine Downloads. Kein Setup. Funktioniert auf jedem Gerät, jeder Bildschirmgröße, jedem Browser.",
+		"No downloads. No setup. Works on any device, any screen size, any browser.",
+		"无需下载。无需设置。适用于任何设备、任何屏幕尺寸、任何浏览器。",
+		"Без загрузок. Без настройки. Работает на любом устройстве, любом размере экрана, в любом браузере."
+	],
+	"cta_button": ["Konto erstellen", "Create your account", "创建您的账户", "Создать аккаунт"],
+	"cta_note": [
+		"Dauerhaft kostenlos - Keine Kreditkarte - 10 GB Cloud-Speicher inklusive",
+		"Free tier forever - No credit card - 10 GB cloud storage included",
+		"永久免费 - 无需信用卡 - 包含 10 GB 云存储",
+		"Бесплатно навсегда - Без кредитной карты - 10 ГБ облачного хранилища включено"
+	],
+
+	"mock_sync_complete": [
+		"Synchronisation abgeschlossen - 3 Dateien aktualisiert",
+		"Sync complete - 3 files updated",
+		"同步完成 - 已更新 3 个文件",
+		"Синхронизация завершена - обновлено 3 файла"
+	],
+	"bridge_browser": [
+		"RizinOS im Browser",
+		"RizinOS in browser",
+		"浏览器中的 RizinOS",
+		"RizinOS в браузере"
+	],
+	"bridge_encrypted": [
+		"Verschlüsselte Brücke",
+		"Encrypted bridge",
+		"加密桥接",
+		"Зашифрованный мост"
+	],
+	"bridge_running_device": [
+		"Läuft auf Ihrem Gerät",
+		"Running on your device",
+		"在您的设备上运行",
+		"Работает на вашем устройстве"
+	],
+	"cap_file_sync": ["Dateisynchronisation", "File Sync", "文件同步", "Синхронизация файлов"],
+	"cap_cloud_backup": ["Cloud-Backup", "Cloud Backup", "云备份", "Облачное резервное копирование"],
+	"cap_notifications": ["Benachrichtigungen", "Notifications", "通知", "Уведомления"],
+	"cap_offline_mode": ["Offline-Modus", "Offline Mode", "离线模式", "Офлайн-режим"],
+	"cap_peripherals": ["Peripheriegeräte", "Peripherals", "外设", "Периферия"],
+	"cap_usb_access": ["USB-Zugriff", "USB Access", "USB 访问", "Доступ к USB"]
+}

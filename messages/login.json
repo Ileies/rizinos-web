@@ -1,0 +1,51 @@
+{
+	"login_welcome_label": ["Willkommen zurück", "Welcome back", "欢迎回来", "С возвращением"],
+	"login_tagline": [
+		"Ihr OS wartet auf Sie.",
+		"Your OS is waiting for you.",
+		"您的操作系统在等待您。",
+		"Ваша ОС ждёт вас."
+	],
+	"login_tagline_desc": [
+		"Melden Sie sich an, um von jedem Gerät, überall auf Ihren Cloud-Desktop zuzugreifen.",
+		"Sign in to access your cloud desktop from any device, anywhere.",
+		"登录以从任何设备、任何地方访问您的云桌面。",
+		"Войдите, чтобы получить доступ к облачному рабочему столу с любого устройства, где угодно."
+	],
+	"login_highlight_encrypted": [
+		"Ende-zu-Ende-verschlüsselter Speicher",
+		"End-to-end encrypted storage",
+		"端到端加密存储",
+		"Хранилище со сквозным шифрованием"
+	],
+	"login_highlight_any_device": [
+		"Zugriff von jedem Gerät, in jedem Browser",
+		"Access from any device, any browser",
+		"从任何设备、任何浏览器访问",
+		"Доступ с любого устройства, в любом браузере"
+	],
+	"login_highlight_instant": [
+		"Sofort - kein Setup, keine Downloads",
+		"Instant - no setup, no downloads",
+		"即时 - 无需设置，无需下载",
+		"Мгновенно - никакой настройки, никаких загрузок"
+	],
+	"login_sign_in_title": ["Anmelden", "Sign in", "登录", "Войти"],
+	"login_sign_in_desc": [
+		"Geben Sie Ihre Anmeldedaten ein, um fortzufahren.",
+		"Enter your credentials to continue.",
+		"输入您的凭据以继续。",
+		"Введите ваши учётные данные для продолжения."
+	],
+	"login_email_label": ["E-Mail", "Email", "电子邮件", "Электронная почта"],
+	"login_password_label": ["Passwort", "Password", "密码", "Пароль"],
+	"login_forgot_password": [
+		"Passwort vergessen?",
+		"Forgot password?",
+		"忘记密码？",
+		"Забыли пароль?"
+	],
+	"login_sign_in_button": ["Anmelden", "Sign in", "登录", "Войти"],
+	"login_no_account": ["Noch kein Konto?", "Don't have an account?", "没有账户？", "Нет аккаунта?"],
+	"login_create_one": ["Eines erstellen", "Create one", "创建一个", "Создать"]
+}

@@ -1,0 +1,38 @@
+{
+	"confirm_email_title": [
+		"Bestätigen Sie Ihre E-Mail",
+		"Confirm your email",
+		"确认您的电子邮件",
+		"Подтвердите ваш email"
+	],
+	"confirm_email_verified": [
+		"Ihre E-Mail wurde erfolgreich bestätigt!",
+		"Your email was successfully verified!",
+		"您的电子邮件已成功验证！",
+		"Ваш email успешно подтверждён!"
+	],
+	"confirm_email_pending": [
+		"Bitte bestätigen Sie Ihre E-Mail über den Link, den wir an Ihr Postfach gesendet haben.",
+		"Please verify your email by visiting the link sent to your inbox.",
+		"请通过访问发送到您收件箱的链接来验证您的电子邮件。",
+		"Пожалуйста, подтвердите ваш email, перейдя по ссылке, отправленной в ваш почтовый ящик."
+	],
+	"confirm_email_token_invalid": [
+		"Token ungültig oder abgelaufen.",
+		"Token invalid or expired.",
+		"令牌无效或已过期。",
+		"Токен недействителен или истёк."
+	],
+	"confirm_email_user_exists": [
+		"Ein Benutzer mit demselben Benutzernamen oder derselben E-Mail existiert bereits.",
+		"A user with the same username or email already exists.",
+		"已存在使用相同用户名或电子邮件的用户。",
+		"Пользователь с таким именем или email уже существует."
+	],
+	"confirm_email_return_home": [
+		"Zurück zur Startseite",
+		"Return to Homepage",
+		"返回首页",
+		"Вернуться на главную"
+	]
+}
