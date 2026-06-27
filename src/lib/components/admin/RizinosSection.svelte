@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Role, type UserData } from '$lib/types';
-	import { Users, ScrollText, LayoutGrid, Trash2, Plus } from '@lucide/svelte';
+	import { Users, ScrollText, LayoutGrid, Trash2, Plus, Search, X } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
@@ -97,9 +97,32 @@
 		female: { symbol: '♀', cls: 'text-pink-500' }
 	};
 
+	// --- Search / filter ---
+	let userSearch = $state('');
+	let logLevel = $state('all');
+
+	let filteredUsers = $derived(
+		userSearch.trim()
+			? users.filter((u) => {
+					const q = userSearch.toLowerCase();
+					return (
+						u.username.toLowerCase().includes(q) ||
+						u.email.toLowerCase().includes(q) ||
+						u.firstName.toLowerCase().includes(q) ||
+						u.lastName.toLowerCase().includes(q) ||
+						u.roles.some((r) => r.toLowerCase().includes(q))
+					);
+				})
+			: users
+	);
+
+	let filteredLogs = $derived(
+		logLevel === 'all' ? logs : logs.filter((l) => l.type === logLevel)
+	);
+
 	const innerTabs = $derived<AdminTab[]>([
-		{ id: 'users', label: 'Users', icon: Users, count: users.length },
-		{ id: 'logs', label: 'Logs', icon: ScrollText, count: logs.length },
+		{ id: 'users', label: 'Users', icon: Users, count: filteredUsers.length },
+		{ id: 'logs', label: 'Logs', icon: ScrollText, count: filteredLogs.length },
 		{ id: 'apps', label: 'Apps', icon: LayoutGrid, count: apps.length }
 	]);
 
@@ -200,10 +223,41 @@
 <AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
 	{#snippet toolbar()}
 		{#if currentTab === 'users'}
-			<Button.Root size="sm" onclick={() => (createUserOpen = true)}>
-				<Plus size={14} />
-				New User
-			</Button.Root>
+			<div class="flex items-center gap-2">
+				<div class="relative flex-1 max-w-xs">
+					<Search size={13} class="text-muted-foreground absolute top-2.5 left-2.5" />
+					<Input.Root
+						placeholder="Search users..."
+						bind:value={userSearch}
+						class="h-8 pl-7 text-xs"
+					/>
+					{#if userSearch}
+						<button
+							onclick={() => (userSearch = '')}
+							class="text-muted-foreground hover:text-foreground absolute top-2 right-2"
+						>
+							<X size={13} />
+						</button>
+					{/if}
+				</div>
+				<Button.Root size="sm" onclick={() => (createUserOpen = true)}>
+					<Plus size={14} />
+					New User
+				</Button.Root>
+			</div>
+		{:else if currentTab === 'logs'}
+			<div class="flex gap-1">
+				{#each ['all', 'info', 'warning', 'error', 'debug'] as level (level)}
+					<button
+						onclick={() => (logLevel = level)}
+						class="rounded px-2.5 py-1 text-xs font-medium transition-colors {logLevel === level
+							? 'bg-primary text-primary-foreground'
+							: 'text-muted-foreground hover:bg-muted hover:text-foreground'}"
+					>
+						{level}
+					</button>
+				{/each}
+			</div>
 		{:else if currentTab === 'apps'}
 			<Button.Root size="sm" onclick={openAppCreate}>
 				<Plus size={14} />
@@ -227,7 +281,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each users as user (user.id)}
+				{#each filteredUsers as user (user.id)}
 					<Table.Row class="hover:bg-muted/40 group">
 						<Table.Cell class="py-1.5">
 							<div class="font-medium">{user.username}</div>
@@ -282,7 +336,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each logs as log (log.id)}
+				{#each filteredLogs as log (log.id)}
 					<Table.Row class="hover:bg-muted/40 cursor-pointer" onclick={() => openLog(log)}>
 						<Table.Cell class="py-1.5">
 							<span
