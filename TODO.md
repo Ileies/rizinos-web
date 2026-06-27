@@ -7,16 +7,16 @@
 ## Admin Dashboard
 
 - **No pagination** - The users table (`/admin`) loads all users at once. Needs pagination or virtual scrolling for large user counts.
-- **No search/filter on users** - The users table has no search input. Filtering by username/email/role would help usability.
-- **Log viewer is basic** - Logs are displayed as raw text with no filtering, date range, or severity level selection.
+- ~~**No search/filter on users** - The users table has no search input. Filtering by username/email/role would help usability.~~ Done: live search by username/email/name/role in toolbar.
+- ~~**Log viewer is basic** - Logs are displayed as raw text with no filtering, date range, or severity level selection.~~ Done: severity level filter (all/info/warning/error/debug) added to toolbar.
 - **Apps tab** - The apps management tab exists but there is no documentation of what "apps" are or what fields are required. Clarify the data model and add inline help.
-- **Error display** - Most admin API calls surface errors only as console errors or silently fail. Show inline error messages in the UI.
+- ~~**Error display** - Most admin API calls surface errors only as console errors or silently fail. Show inline error messages in the UI.~~ Done: all admin pages show `loadError` and `formError` inline.
 
 ## Minecraft Admin
 
-- **Warp editor** - `RestrictEditor` and `LocationEditor` are used, but there is no way to create a new warp from the UI (only edit existing ones if the API returns them).
+- ~~**Warp editor** - `RestrictEditor` and `LocationEditor` are used, but there is no way to create a new warp from the UI (only edit existing ones if the API returns them).~~ Done: "New Warp" button and create modal added.
 - **Player action feedback** - Ban/mute/kick actions have no success or failure toast/notification. User is left guessing if the action worked.
-- **Minechat webhook testing** - No "send test message" button to verify a Discord webhook URL is valid before saving.
+- ~~**Minechat webhook testing** - No "send test message" button to verify a Discord webhook URL is valid before saving.~~ Done: "Test" button in hook modal sends a message directly to the Discord webhook URL.
 - **Pagination for player/warp/ban lists** - Same issue as user list: no pagination for large datasets.
 
 ## Code Quality
