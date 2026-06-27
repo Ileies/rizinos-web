@@ -53,7 +53,7 @@
 	let innerWidth = $state(0);
 	let activeDropdown: string | null = $state(null);
 	let isLanguageDropdownOpen = $state(false);
-	let isMobile = $derived(innerWidth <= 768);
+	let isMobile = $derived(innerWidth < 1024);
 
 	if (browser) {
 		const handleScroll = () => (isScrolled = window.scrollY > 20);
