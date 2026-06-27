@@ -2,19 +2,19 @@
 
 ## Bugs / Broken
 
-- **Homepage SignupFlow is non-functional** - `src/lib/client/components/homepage/SignupFlow.svelte` has a TODO comment and does not actually call `/api/auth/signup`. Wire it to the API the same way `/signup/+page.svelte` does.
-- **Missing i18n keys referenced in Header** - `src/lib/client/components/homepage/Header.svelte` calls `m.pricing()`, `m.enterprise()`, `m.api_reference()`, `m.tutorials()` but these keys are not defined in any `messages/*.json` file. Either add the keys or remove the nav items.
+- ~~**Homepage SignupFlow is non-functional**~~ - Fixed: `nextFromFinish()` calls `POST /api/auth/signup`, maps `errorId` responses to i18n messages, shows inline error banner.
+- ~~**Missing i18n keys referenced in Header**~~ - Already present in `messages/common.json` (`pricing`, `enterprise`, `api_reference`, `tutorials`).
 
 ## Incomplete Pages
 
-- **About page** (`/about`) - `src/routes/about/+page.svelte` is a Lorem ipsum placeholder. Write actual content about the project/team.
+- ~~**About page** (`/about`)~~ - Fixed: Rewritten with real content (hero, why/what cards, tech pillars, early-access banner, creator section).
 
 ## Auth & Account Flows
 
 - **Password reset** - No forgot-password page or flow exists. Needs a `/forgot-password` route and backend endpoint.
 - **Account settings page** - Users have no way to change their own email, password, username, or profile info after signup.
 - **Logout** - No visible logout button in the header/nav for logged-in users. Session ends only by clearing cookies.
-- **Session expiry handling** - If the session cookie expires mid-session, the admin UI just starts returning 401s with no redirect to `/login`.
+- **Session expiry handling** - If the session cookie expires mid-session, the admin UI just starts returning 401s with no redirect to `/login`. (`session.error` now signals fetch failures; consuming components still need a redirect.)
 
 ## Admin Dashboard
 
@@ -36,8 +36,8 @@
 
 - **Unhandled promise rejections** - Several `fetch()`/`adminPost()` calls in admin pages are not wrapped in try/catch and have no `.catch()`. Add error handling or use a shared error boundary.
 - **Loose types in adminApi** - `adminGet` and `adminPost` in `src/lib/adminApi.ts` return `any`. Add generics so call sites get typed responses.
-- **Client-only admin auth gate** - `/admin/+layout.svelte` checks `Role.Admin` on the client. This is fine only because the backend also enforces it. Add a comment explaining this to prevent confusion later.
-- **`session.svelte.ts` has no error state** - If `/api/auth/session` returns a non-200, the session is silently left as null. Expose a loading/error state so components can distinguish "not loaded yet" from "not logged in".
+- ~~**Client-only admin auth gate**~~ - Comment was already present in `/admin/+layout.svelte`.
+- ~~**`session.svelte.ts` has no error state**~~ - Fixed: `session.error` is now exposed; set on non-ok responses and network errors, reset by `refreshSession()`.
 
 ## i18n
 
@@ -47,9 +47,9 @@
 
 ## SEO & Meta
 
-- **No `<meta>` tags on inner pages** - Only the root layout sets a title. `/login`, `/signup`, `/about` etc. have no page-specific `<title>` or Open Graph tags.
+- **No `<meta>` tags on inner pages** - `/login`, `/signup`, `/about` now have `<svelte:head>` with page-specific `<title>` and `<meta name="description">`. Other routes (legal, confirm-email, etc.) still missing.
 - **No sitemap** - Static sitemap is easy to generate and helps indexing. Add a `sitemap.xml` to `/static` or generate it at build time.
-- **No robots.txt** - Missing from `/static`. At minimum block `/admin` from crawlers.
+- ~~**No robots.txt**~~ - Fixed: `static/robots.txt` created; blocks `/admin/` and `/api/`, references sitemap URL.
 
 ## Performance
 
