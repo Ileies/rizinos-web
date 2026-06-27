@@ -11,5 +11,6 @@
 		"发生了错误。",
 		"Произошла ошибка."
 	],
-	"go_back_home": ["Zurück zur Startseite", "Go back home", "返回首页", "Вернуться на главную"]
+	"go_back_home": ["Zurück zur Startseite", "Go back home", "返回首页", "Вернуться на главную"],
+	"error_go_back": ["Zurück", "Go back", "返回", "Назад"]
 }
