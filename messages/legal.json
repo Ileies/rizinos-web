@@ -78,10 +78,10 @@
 		"Контакт по вопросам ответственности"
 	],
 	"legal_liability_contact_text": [
-		"Für Fragen zur Haftung oder Hinweise auf Rechtsverletzungen erreichen Sie uns unter:",
+		"Für Fragen zur Haftung oder Hinweise auf Rechtsverletzungen erreichst du uns unter:",
 		"For questions about liability or notices of legal violations, you can reach us at:",
 		"如有关于责任的问题或法律违规通知，请联系我们：",
-		"По вопросам ответственности или уведомлениям о правонарушениях вы можете связаться с нами по адресу:"
+		"По вопросам ответственности или уведомлениям о правонарушениях ты можешь связаться с нами по адресу:"
 	],
 
 	"terms_title": ["Nutzungsbedingungen", "Terms of Service", "服务条款", "Условия использования"],
@@ -98,10 +98,10 @@
 		"1. Область применения и принятие условий"
 	],
 	"terms_acceptance_text": [
-		"Diese Nutzungsbedingungen regeln den Zugang zu und die Nutzung von RizinOS, einem webbasierten Betriebssystem, das von {operator} (nachfolgend „Anbieter“) betrieben wird. Mit der Registrierung eines Kontos oder der Nutzung des Dienstes erklären Sie sich mit diesen Bedingungen einverstanden. Wenn Sie den Bedingungen nicht zustimmen, dürfen Sie den Dienst nicht nutzen. Für die Nutzung des Dienstes ist ein Mindestalter von 16 Jahren erforderlich.",
+		"Diese Nutzungsbedingungen regeln den Zugang zu und die Nutzung von RizinOS, einem webbasierten Betriebssystem, das von {operator} (nachfolgend „Anbieter“) betrieben wird. Mit der Registrierung eines Kontos oder der Nutzung des Dienstes erklärst du dich mit diesen Bedingungen einverstanden. Wenn du den Bedingungen nicht zustimmst, darfst du den Dienst nicht nutzen. Für die Nutzung des Dienstes ist ein Mindestalter von 16 Jahren erforderlich.",
 		"These Terms of Service govern access to and use of RizinOS, a web-based operating system operated by {operator} (hereinafter \"Provider\"). By registering an account or using the service, you agree to these terms. If you do not agree, you may not use the service. Use of the service requires a minimum age of 16 years.",
-		"本服务条款规定了访问和使用 RizinOS（由 {operator}（以下简称\"提供商\"）运营的基于网络的操作系统）的条件。通过注册帐户或使用本服务，您同意这些条款。如果您不同意，则不得使用本服务。使用本服务需要年满16岁。",
-		"Настоящие Условия использования регулируют доступ к RizinOS и его использование — веб-операционной системы, управляемой {operator} (далее «Поставщик»). Регистрируя учетную запись или используя сервис, вы соглашаетесь с этими условиями. Если вы не согласны, вы не вправе использовать сервис. Для использования сервиса требуется возраст не менее 16 лет."
+		"本服务条款规定了访问和使用 RizinOS（由 {operator}（以下简称\"提供商\"）运营的基于网络的操作系统）的条件。通过注册帐户或使用本服务，你同意这些条款。如果你不同意，则不得使用本服务。使用本服务需要年满16岁。",
+		"Настоящие Условия использования регулируют доступ к RizinOS и его использование — веб-операционной системы, управляемой {operator} (далее «Поставщик»). Регистрируя учетную запись или используя сервис, ты соглашаешься с этими условиями. Если ты не согласен, ты не вправе использовать сервис. Для использования сервиса требуется возраст не менее 16 лет."
 	],
 	"terms_service_title": [
 		"2. Leistungsumfang",
@@ -122,10 +122,10 @@
 		"3. Учетная запись пользователя"
 	],
 	"terms_account_text": [
-		"Für die Nutzung der meisten Funktionen ist die Erstellung eines Benutzerkontos erforderlich. Sie sind verpflichtet, wahrheitsgemäße und vollständige Angaben bei der Registrierung zu machen und diese aktuell zu halten. Die Zugangsdaten sind vertraulich zu behandeln und dürfen nicht an Dritte weitergegeben werden. Sie sind für alle Aktivitäten verantwortlich, die unter Ihrem Konto stattfinden. Bei einem Verdacht auf unbefugten Zugang sind Sie verpflichtet, den Anbieter unverzüglich zu benachrichtigen. Pro Person ist ein Konto erlaubt; Mehrfachkonten können ohne vorherige Ankündigung gesperrt werden.",
+		"Für die Nutzung der meisten Funktionen ist die Erstellung eines Benutzerkontos erforderlich. Du bist verpflichtet, wahrheitsgemäße und vollständige Angaben bei der Registrierung zu machen und diese aktuell zu halten. Die Zugangsdaten sind vertraulich zu behandeln und dürfen nicht an Dritte weitergegeben werden. Du bist für alle Aktivitäten verantwortlich, die unter deinem Konto stattfinden. Bei einem Verdacht auf unbefugten Zugang bist du verpflichtet, den Anbieter unverzüglich zu benachrichtigen. Pro Person ist ein Konto erlaubt; Mehrfachkonten können ohne vorherige Ankündigung gesperrt werden.",
 		"Creating a user account is required to access most features. You are obligated to provide truthful and complete information during registration and keep it up to date. Access credentials must be kept confidential and must not be shared with third parties. You are responsible for all activities that occur under your account. In the event of suspected unauthorized access, you are obligated to notify the Provider immediately. One account per person is permitted; multiple accounts may be suspended without prior notice.",
-		"访问大多数功能需要创建用户账户。您有义务在注册时提供真实完整的信息并保持更新。访问凭据必须保密，不得与第三方共享。您对在您账户下发生的所有活动负责。如果怀疑存在未经授权的访问，您有义务立即通知提供商。每人只允许一个账户；多个账户可能会在不事先通知的情况下被暂停。",
-		"Для доступа к большинству функций требуется создание учетной записи. Вы обязаны предоставить достоверную и полную информацию при регистрации и поддерживать ее в актуальном состоянии. Учетные данные должны храниться конфиденциально и не могут передаваться третьим лицам. Вы несете ответственность за все действия, совершаемые под вашей учетной записью. При подозрении на несанкционированный доступ вы обязаны немедленно уведомить Поставщика. Разрешена одна учетная запись на человека; множественные учетные записи могут быть приостановлены без предварительного уведомления."
+		"访问大多数功能需要创建用户账户。你有义务在注册时提供真实完整的信息并保持更新。访问凭据必须保密，不得与第三方共享。你对在你账户下发生的所有活动负责。如果怀疑存在未经授权的访问，你有义务立即通知提供商。每人只允许一个账户；多个账户可能会在不事先通知的情况下被暂停。",
+		"Для доступа к большинству функций требуется создание учетной записи. Ты обязан предоставить достоверную и полную информацию при регистрации и поддерживать ее в актуальном состоянии. Учетные данные должны храниться конфиденциально и не могут передаваться третьим лицам. Ты несешь ответственность за все действия, совершаемые под твоей учетной записью. При подозрении на несанкционированный доступ ты обязан немедленно уведомить Поставщика. Разрешена одна учетная запись на человека; множественные учетные записи могут быть приостановлены без предварительного уведомления."
 	],
 	"terms_acceptable_use_title": [
 		"4. Zulässige Nutzung",
@@ -134,10 +134,10 @@
 		"4. Допустимое использование"
 	],
 	"terms_acceptable_use_text": [
-		"Sie dürfen den Dienst ausschließlich für rechtmäßige Zwecke nutzen. Folgende Handlungen sind untersagt: das Hochladen, Verbreiten oder Speichern von rechtswidrigen Inhalten; der Versuch, unbefugten Zugang zu Systemen oder Daten anderer Nutzer zu erlangen; die Überlastung der Infrastruktur durch automatisierte Anfragen oder Angriffe; die Nutzung des Dienstes zur Verbreitung von Malware, Spam oder Phishing-Inhalten; das Umgehen von Zugangskontrollen oder Sicherheitsmaßnahmen sowie jede Nutzung, die gegen geltendes deutsches oder europäisches Recht verstößt. Bei Verstößen behält sich der Anbieter das Recht vor, das Konto ohne vorherige Ankündigung zu sperren.",
+		"Du darfst den Dienst ausschließlich für rechtmäßige Zwecke nutzen. Folgende Handlungen sind untersagt: das Hochladen, Verbreiten oder Speichern von rechtswidrigen Inhalten; der Versuch, unbefugten Zugang zu Systemen oder Daten anderer Nutzer zu erlangen; die Überlastung der Infrastruktur durch automatisierte Anfragen oder Angriffe; die Nutzung des Dienstes zur Verbreitung von Malware, Spam oder Phishing-Inhalten; das Umgehen von Zugangskontrollen oder Sicherheitsmaßnahmen sowie jede Nutzung, die gegen geltendes deutsches oder europäisches Recht verstößt. Bei Verstößen behält sich der Anbieter das Recht vor, das Konto ohne vorherige Ankündigung zu sperren.",
 		"You may only use the service for lawful purposes. The following actions are prohibited: uploading, distributing, or storing unlawful content; attempting to gain unauthorized access to the systems or data of other users; overloading the infrastructure through automated requests or attacks; using the service to distribute malware, spam, or phishing content; circumventing access controls or security measures; and any use that violates applicable German or European law. In the event of violations, the Provider reserves the right to suspend the account without prior notice.",
-		"您只能将本服务用于合法目的。以下行为被禁止：上传、传播或存储违法内容；试图未经授权访问其他用户的系统或数据；通过自动请求或攻击使基础设施过载；使用本服务传播恶意软件、垃圾邮件或网络钓鱼内容；绕过访问控制或安全措施；以及任何违反适用德国或欧洲法律的使用行为。如发生违规，提供商保留不事先通知即暂停账户的权利。",
-		"Вы можете использовать сервис только в законных целях. Следующие действия запрещены: загрузка, распространение или хранение незаконного контента; попытки несанкционированного доступа к системам или данным других пользователей; перегрузка инфраструктуры автоматическими запросами или атаками; использование сервиса для распространения вредоносного ПО, спама или фишинговых материалов; обход средств контроля доступа или мер безопасности; любое использование, нарушающее применимое немецкое или европейское законодательство. В случае нарушений Поставщик оставляет за собой право приостановить учетную запись без предварительного уведомления."
+		"你只能将本服务用于合法目的。以下行为被禁止：上传、传播或存储违法内容；试图未经授权访问其他用户的系统或数据；通过自动请求或攻击使基础设施过载；使用本服务传播恶意软件、垃圾邮件或网络钓鱼内容；绕过访问控制或安全措施；以及任何违反适用德国或欧洲法律的使用行为。如发生违规，提供商保留不事先通知即暂停账户的权利。",
+		"Ты можешь использовать сервис только в законных целях. Следующие действия запрещены: загрузка, распространение или хранение незаконного контента; попытки несанкционированного доступа к системам или данным других пользователей; перегрузка инфраструктуры автоматическими запросами или атаками; использование сервиса для распространения вредоносного ПО, спама или фишинговых материалов; обход средств контроля доступа или мер безопасности; любое использование, нарушающее применимое немецкое или европейское законодательство. В случае нарушений Поставщик оставляет за собой право приостановить учетную запись без предварительного уведомления."
 	],
 	"terms_ip_title": [
 		"5. Geistiges Eigentum",
@@ -146,10 +146,10 @@
 		"5. Интеллектуальная собственность"
 	],
 	"terms_ip_text": [
-		"Alle Rechte an der Plattform, dem Quellcode, dem Design und den Inhalten von RizinOS, die vom Anbieter erstellt wurden, verbleiben beim Anbieter. Die Nutzung des Dienstes gewährt keine Lizenz zur Vervielfältigung, Verbreitung oder Erstellung abgeleiteter Werke. Inhalte, die Sie selbst hochladen oder erstellen, bleiben Ihr Eigentum. Sie räumen dem Anbieter jedoch eine beschränkte, nicht-exklusive Lizenz ein, diese Inhalte im Rahmen der Erbringung des Dienstes zu speichern und zu verarbeiten.",
+		"Alle Rechte an der Plattform, dem Quellcode, dem Design und den Inhalten von RizinOS, die vom Anbieter erstellt wurden, verbleiben beim Anbieter. Die Nutzung des Dienstes gewährt keine Lizenz zur Vervielfältigung, Verbreitung oder Erstellung abgeleiteter Werke. Inhalte, die du selbst hochlädst oder erstellst, bleiben dein Eigentum. Du räumst dem Anbieter jedoch eine beschränkte, nicht-exklusive Lizenz ein, diese Inhalte im Rahmen der Erbringung des Dienstes zu speichern und zu verarbeiten.",
 		"All rights in the platform, source code, design, and content of RizinOS created by the Provider remain with the Provider. Use of the service does not grant a license to reproduce, distribute, or create derivative works. Content you upload or create yourself remains your property. However, you grant the Provider a limited, non-exclusive license to store and process such content for the purpose of providing the service.",
-		"由提供商创建的 RizinOS 平台、源代码、设计和内容的所有权利归提供商所有。使用本服务不授予复制、分发或创建衍生作品的许可。您自己上传或创建的内容仍属于您的财产。但是，您授予提供商有限的非独家许可，以便在提供服务的范围内存储和处理此类内容。",
-		"Все права на платформу, исходный код, дизайн и контент RizinOS, созданные Поставщиком, остаются за Поставщиком. Использование сервиса не предоставляет лицензии на воспроизведение, распространение или создание производных работ. Контент, который вы загружаете или создаете самостоятельно, остается вашей собственностью. Однако вы предоставляете Поставщику ограниченную, неисключительную лицензию на хранение и обработку такого контента в целях оказания услуги."
+		"由提供商创建的 RizinOS 平台、源代码、设计和内容的所有权利归提供商所有。使用本服务不授予复制、分发或创建衍生作品的许可。你自己上传或创建的内容仍属于你的财产。但是，你授予提供商有限的非独家许可，以便在提供服务的范围内存储和处理此类内容。",
+		"Все права на платформу, исходный код, дизайн и контент RizinOS, созданные Поставщиком, остаются за Поставщиком. Использование сервиса не предоставляет лицензии на воспроизведение, распространение или создание производных работ. Контент, который ты загружаешь или создаешь самостоятельно, остается твоей собственностью. Однако ты предоставляешь Поставщику ограниченную, неисключительную лицензию на хранение и обработку такого контента в целях оказания услуги."
 	],
 	"terms_disclaimer_title": [
 		"6. Haftungsausschluss",
@@ -182,10 +182,10 @@
 		"8. Прекращение и приостановление учетной записи"
 	],
 	"terms_termination_text": [
-		"Sie können Ihr Konto jederzeit ohne Angabe von Gründen kündigen. Der Anbieter ist berechtigt, Konten bei schwerwiegenden oder wiederholten Verstößen gegen diese Nutzungsbedingungen fristlos zu sperren oder zu löschen. Im Falle einer Kontolöschung werden personenbezogene Daten gemäß der Datenschutzerklärung und den gesetzlichen Aufbewahrungsfristen verarbeitet.",
+		"Du kannst dein Konto jederzeit ohne Angabe von Gründen kündigen. Der Anbieter ist berechtigt, Konten bei schwerwiegenden oder wiederholten Verstößen gegen diese Nutzungsbedingungen fristlos zu sperren oder zu löschen. Im Falle einer Kontolöschung werden personenbezogene Daten gemäß der Datenschutzerklärung und den gesetzlichen Aufbewahrungsfristen verarbeitet.",
 		"You may terminate your account at any time without giving reasons. The Provider is entitled to suspend or delete accounts without notice in the event of serious or repeated violations of these Terms of Service. In the event of account deletion, personal data will be processed in accordance with the Privacy Policy and statutory retention periods.",
-		"您可以随时无需说明原因终止您的账户。如发生严重或多次违反这些服务条款的情况，提供商有权立即暂停或删除账户，无需提前通知。如果账户被删除，个人数据将根据隐私政策和法定保留期限进行处理。",
-		"Вы можете в любое время удалить свою учетную запись без объяснения причин. Поставщик вправе немедленно приостановить или удалить учетные записи в случае серьезных или повторных нарушений настоящих Условий использования. В случае удаления учетной записи персональные данные будут обрабатываться в соответствии с Политикой конфиденциальности и установленными законом сроками хранения."
+		"你可以随时无需说明原因终止你的账户。如发生严重或多次违反这些服务条款的情况，提供商有权立即暂停或删除账户，无需提前通知。如果账户被删除，个人数据将根据隐私政策和法定保留期限进行处理。",
+		"Ты можешь в любое время удалить свою учетную запись без объяснения причин. Поставщик вправе немедленно приостановить или удалить учетные записи в случае серьезных или повторных нарушений настоящих Условий использования. В случае удаления учетной записи персональные данные будут обрабатываться в соответствии с Политикой конфиденциальности и установленными законом сроками хранения."
 	],
 	"terms_changes_title": [
 		"9. Änderungen der Nutzungsbedingungen",
@@ -213,10 +213,10 @@
 	],
 	"terms_contact_title": ["11. Kontakt", "11. Contact", "11. 联系方式", "11. Контакты"],
 	"terms_contact_text": [
-		"Bei Fragen zu diesen Nutzungsbedingungen wenden Sie sich bitte an uns. Die Kontaktdaten finden Sie im Impressum.",
+		"Bei Fragen zu diesen Nutzungsbedingungen wende dich bitte an uns. Die Kontaktdaten findest du im Impressum.",
 		"For questions about these Terms of Service, please contact us. Contact details can be found in the Imprint.",
 		"如有关于这些服务条款的问题，请联系我们。联系方式请参见法律信息页面。",
-		"По вопросам настоящих Условий использования обращайтесь к нам. Контактные данные указаны в разделе «Юридическая информация»."
+		"По вопросам настоящих Условий использования обращайся к нам. Контактные данные указаны в разделе «Юридическая информация»."
 	],
 
 	"privacy_title": [
@@ -233,10 +233,10 @@
 	],
 	"privacy_intro_title": ["1. Einleitung", "1. Introduction", "1. 简介", "1. Введение"],
 	"privacy_intro_text": [
-		"Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen. Diese Datenschutzerklärung informiert Sie darüber, welche personenbezogenen Daten wir erheben, zu welchen Zwecken wir diese verarbeiten und welche Rechte Sie haben. Die Verarbeitung erfolgt im Einklang mit der Datenschutz-Grundverordnung (DSGVO), dem Bundesdatenschutzgesetz (BDSG) sowie dem Digitale-Dienste-Gesetz (DDG).",
+		"Der Schutz deiner personenbezogenen Daten ist uns ein wichtiges Anliegen. Diese Datenschutzerklärung informiert dich darüber, welche personenbezogenen Daten wir erheben, zu welchen Zwecken wir diese verarbeiten und welche Rechte du hast. Die Verarbeitung erfolgt im Einklang mit der Datenschutz-Grundverordnung (DSGVO), dem Bundesdatenschutzgesetz (BDSG) sowie dem Digitale-Dienste-Gesetz (DDG).",
 		"Protecting your personal data is important to us. This Privacy Policy informs you about what personal data we collect, for what purposes we process it, and what rights you have. Processing is carried out in accordance with the General Data Protection Regulation (GDPR), the Federal Data Protection Act (BDSG), and the Digital Services Act Implementation Act (DDG).",
-		"保护您的个人数据对我们非常重要。本隐私政策告知您我们收集哪些个人数据、出于何种目的处理这些数据以及您享有哪些权利。数据处理符合《通用数据保护条例》(GDPR)、《联邦数据保护法》(BDSG) 和《数字服务法》(DDG) 的规定。",
-		"Защита ваших персональных данных важна для нас. Настоящая Политика конфиденциальности информирует вас о том, какие персональные данные мы собираем, в каких целях мы их обрабатываем и какие права у вас есть. Обработка осуществляется в соответствии с Общим регламентом о защите данных (GDPR), Федеральным законом о защите данных (BDSG) и Законом о реализации Закона о цифровых услугах (DDG)."
+		"保护你的个人数据对我们非常重要。本隐私政策告知你我们收集哪些个人数据、出于何种目的处理这些数据以及你享有哪些权利。数据处理符合《通用数据保护条例》(GDPR)、《联邦数据保护法》(BDSG) 和《数字服务法》(DDG) 的规定。",
+		"Защита твоих персональных данных важна для нас. Настоящая Политика конфиденциальности информирует тебя о том, какие персональные данные мы собираем, в каких целях мы их обрабатываем и какие права у тебя есть. Обработка осуществляется в соответствии с Общим регламентом о защите данных (GDPR), Федеральным законом о защите данных (BDSG) и Законом о реализации Закона о цифровых услугах (DDG)."
 	],
 	"privacy_controller_title": [
 		"2. Verantwortlicher",
@@ -245,10 +245,10 @@
 		"2. Контролер данных"
 	],
 	"privacy_controller_text": [
-		"Verantwortlicher im Sinne der DSGVO ist Ileies Blitz. Die vollständigen Kontaktdaten finden Sie im Impressum. Für datenschutzrechtliche Anfragen erreichen Sie uns unter der im Impressum angegebenen E-Mail-Adresse.",
+		"Verantwortlicher im Sinne der DSGVO ist Ileies Blitz. Die vollständigen Kontaktdaten findest du im Impressum. Für datenschutzrechtliche Anfragen erreichst du uns unter der im Impressum angegebenen E-Mail-Adresse.",
 		"The controller within the meaning of the GDPR is Ileies Blitz. Full contact details can be found in the Imprint. For data protection inquiries, please contact us at the email address provided in the Imprint.",
 		"根据 GDPR，数据控制者为 Ileies Blitz。完整联系方式请参见法律信息页面。如有数据保护方面的询问，请通过法律信息中提供的电子邮件地址联系我们。",
-		"Контролером в смысле GDPR является Ileies Blitz. Полные контактные данные указаны в разделе «Юридическая информация». По вопросам защиты данных обращайтесь по адресу электронной почты, указанному в разделе «Юридическая информация»."
+		"Контролером в смысле GDPR является Ileies Blitz. Полные контактные данные указаны в разделе «Юридическая информация». По вопросам защиты данных обращайся по адресу электронной почты, указанному в разделе «Юридическая информация»."
 	],
 	"privacy_collected_title": [
 		"3. Erhobene Daten",
@@ -263,10 +263,10 @@
 		"Данные учетной записи"
 	],
 	"privacy_collected_account_text": [
-		"Bei der Registrierung erheben wir E-Mail-Adresse, Benutzername und ein gehashtes Passwort. Diese Daten sind zur Erfüllung des Vertrags erforderlich (Art. 6 Abs. 1 lit. b DSGVO). E-Mail-Adressen werden außerdem zur Bestätigung Ihres Kontos und – sofern Sie eingewilligt haben – zur Benachrichtigung über wesentliche Änderungen verwendet.",
+		"Bei der Registrierung erheben wir E-Mail-Adresse, Benutzername und ein gehashtes Passwort. Diese Daten sind zur Erfüllung des Vertrags erforderlich (Art. 6 Abs. 1 lit. b DSGVO). E-Mail-Adressen werden außerdem zur Bestätigung deines Kontos und – sofern du eingewilligt hast – zur Benachrichtigung über wesentliche Änderungen verwendet.",
 		"When you register, we collect your email address, username, and a hashed password. This data is necessary for the performance of the contract (Art. 6 para. 1 lit. b GDPR). Email addresses are also used to verify your account and – if you have consented – to notify you of material changes.",
-		"注册时，我们收集您的电子邮件地址、用户名和经过哈希处理的密码。这些数据对于合同的履行是必要的（GDPR 第6条第1款第b项）。电子邮件地址还用于验证您的账户，以及在您同意的情况下通知您重大变更。",
-		"При регистрации мы собираем ваш адрес электронной почты, имя пользователя и хэшированный пароль. Эти данные необходимы для исполнения договора (ст. 6 абз. 1 лит. b GDPR). Адреса электронной почты также используются для подтверждения вашей учетной записи и — при наличии вашего согласия — для уведомления о существенных изменениях."
+		"注册时，我们收集你的电子邮件地址、用户名和经过哈希处理的密码。这些数据对于合同的履行是必要的（GDPR 第6条第1款第b项）。电子邮件地址还用于验证你的账户，以及在你同意的情况下通知你重大变更。",
+		"При регистрации мы собираем твой адрес электронной почты, имя пользователя и хэшированный пароль. Эти данные необходимы для исполнения договора (ст. 6 абз. 1 лит. b GDPR). Адреса электронной почты также используются для подтверждения твоей учетной записи и — при наличии твоего согласия — для уведомления о существенных изменениях."
 	],
 	"privacy_collected_usage_title": [
 		"Nutzungsdaten",
@@ -294,10 +294,10 @@
 		"4. Google Analytics"
 	],
 	"privacy_analytics_text": [
-		"Wir nutzen Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) zur Analyse der Websitenutzung. Google Analytics verwendet Cookies und erhebt Nutzungsdaten, die auf Servern von Google verarbeitet werden, gegebenenfalls auch in den USA. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Für Datenübermittlungen in die USA stützen wir uns auf die Standardvertragsklauseln der EU-Kommission gemäß Art. 46 Abs. 2 lit. c DSGVO. Sie können der Verarbeitung durch Google Analytics widersprechen, indem Sie das Browser-Add-on zur Deaktivierung von Google Analytics installieren.",
+		"Wir nutzen Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) zur Analyse der Websitenutzung. Google Analytics verwendet Cookies und erhebt Nutzungsdaten, die auf Servern von Google verarbeitet werden, gegebenenfalls auch in den USA. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Für Datenübermittlungen in die USA stützen wir uns auf die Standardvertragsklauseln der EU-Kommission gemäß Art. 46 Abs. 2 lit. c DSGVO. Du kannst der Verarbeitung durch Google Analytics widersprechen, indem du das Browser-Add-on zur Deaktivierung von Google Analytics installierst.",
 		"We use Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland) to analyze website usage. Google Analytics uses cookies and collects usage data processed on Google's servers, potentially including in the USA. The legal basis is your consent (Art. 6 para. 1 lit. a GDPR). For data transfers to the USA, we rely on the EU Commission's Standard Contractual Clauses pursuant to Art. 46 para. 2 lit. c GDPR. You can object to processing by Google Analytics by installing the Google Analytics opt-out browser add-on.",
-		"我们使用 Google Analytics 4（Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, 爱尔兰）来分析网站使用情况。Google Analytics 使用 Cookie 并收集在 Google 服务器上处理的使用数据，可能包括在美国的服务器。法律依据是您的同意（GDPR 第6条第1款第a项）。对于向美国的数据传输，我们依赖欧盟委员会根据 GDPR 第46条第2款第c项制定的标准合同条款。您可以通过安装 Google Analytics 停用浏览器插件来反对 Google Analytics 的数据处理。",
-		"Мы используем Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ирландия) для анализа использования сайта. Google Analytics использует файлы cookie и собирает данные об использовании, обрабатываемые на серверах Google, в том числе потенциально в США. Правовая основа — ваше согласие (ст. 6 абз. 1 лит. a GDPR). Для передачи данных в США мы опираемся на Стандартные договорные условия Европейской комиссии согласно ст. 46 абз. 2 лит. c GDPR. Вы можете возразить против обработки данных Google Analytics, установив браузерное расширение для отключения Google Analytics."
+		"我们使用 Google Analytics 4（Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, 爱尔兰）来分析网站使用情况。Google Analytics 使用 Cookie 并收集在 Google 服务器上处理的使用数据，可能包括在美国的服务器。法律依据是你的同意（GDPR 第6条第1款第a项）。对于向美国的数据传输，我们依赖欧盟委员会根据 GDPR 第46条第2款第c项制定的标准合同条款。你可以通过安装 Google Analytics 停用浏览器插件来反对 Google Analytics 的数据处理。",
+		"Мы используем Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ирландия) для анализа использования сайта. Google Analytics использует файлы cookie и собирает данные об использовании, обрабатываемые на серверах Google, в том числе потенциально в США. Правовая основа — твоё согласие (ст. 6 абз. 1 лит. a GDPR). Для передачи данных в США мы опираемся на Стандартные договорные условия Европейской комиссии согласно ст. 46 абз. 2 лит. c GDPR. Ты можешь возразить против обработки данных Google Analytics, установив браузерное расширение для отключения Google Analytics."
 	],
 	"privacy_oauth_title": [
 		"5. Google-Anmeldung (optional)",
@@ -306,10 +306,10 @@
 		"5. Вход через Google (опционально)"
 	],
 	"privacy_oauth_text": [
-		"Sie können sich optional über Ihr Google-Konto anmelden. In diesem Fall erhalten wir von Google eine eindeutige Benutzer-ID sowie Ihre E-Mail-Adresse; weitere Profilangaben werden nicht übermittelt. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).",
+		"Du kannst dich optional über dein Google-Konto anmelden. In diesem Fall erhalten wir von Google eine eindeutige Benutzer-ID sowie deine E-Mail-Adresse; weitere Profilangaben werden nicht übermittelt. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).",
 		"You may optionally sign in using your Google account. In this case, we receive a unique user ID and your email address from Google; no further profile data is transmitted. The legal basis is your consent (Art. 6 para. 1 lit. a GDPR).",
-		"您可以选择使用您的 Google 账户登录。在这种情况下，我们从 Google 获取一个唯一的用户ID和您的电子邮件地址；不会传输其他个人资料数据。法律依据是您的同意（GDPR 第6条第1款第a项）。",
-		"Вы можете дополнительно войти с помощью учетной записи Google. В этом случае мы получаем от Google уникальный идентификатор пользователя и ваш адрес электронной почты; никакие другие данные профиля не передаются. Правовая основа — ваше согласие (ст. 6 абз. 1 лит. a GDPR)."
+		"你可以选择使用你的 Google 账户登录。在这种情况下，我们从 Google 获取一个唯一的用户ID和你的电子邮件地址；不会传输其他个人资料数据。法律依据是你的同意（GDPR 第6条第1款第a项）。",
+		"Ты можешь дополнительно войти с помощью учетной записи Google. В этом случае мы получаем от Google уникальный идентификатор пользователя и твой адрес электронной почты; никакие другие данные профиля не передаются. Правовая основа — твоё согласие (ст. 6 абз. 1 лит. a GDPR)."
 	],
 	"privacy_retention_title": [
 		"6. Speicherfristen",
@@ -323,12 +323,12 @@
 		"账户数据在合同关系期间保存，账户删除后30天内删除，除非存在法定保留义务。技术日志数据最多90天后删除。根据《税务法》(AO) § 147，会计记录可保留最多10年。",
 		"Данные учетной записи хранятся в течение срока действия договорных отношений и удаляются в течение 30 дней после удаления учетной записи, если только не применяются установленные законом обязательства по хранению. Технические данные журналов удаляются не позднее чем через 90 дней. Бухгалтерские записи могут храниться до 10 лет в соответствии с § 147 Налогового кодекса (AO)."
 	],
-	"privacy_rights_title": ["7. Ihre Rechte", "7. Your Rights", "7. 您的权利", "7. Ваши права"],
+	"privacy_rights_title": ["7. Deine Rechte", "7. Your Rights", "7. 你的权利", "7. Твои права"],
 	"privacy_rights_intro": [
-		"Sie haben gegenüber dem Verantwortlichen folgende Rechte bezüglich Ihrer personenbezogenen Daten:",
+		"Du hast gegenüber dem Verantwortlichen folgende Rechte bezüglich deiner personenbezogenen Daten:",
 		"You have the following rights regarding your personal data against the controller:",
-		"您对数据控制者享有以下与您个人数据相关的权利：",
-		"Вы имеете следующие права в отношении ваших персональных данных перед контролером:"
+		"你对数据控制者享有以下与你个人数据相关的权利：",
+		"Ты имеешь следующие права в отношении твоих персональных данных перед контролером:"
 	],
 	"privacy_right_access": [
 		"Auskunft (Art. 15 DSGVO)",
@@ -379,10 +379,10 @@
 		"8. Право на подачу жалобы в надзорный орган"
 	],
 	"privacy_supervisory_text": [
-		"Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt. Zuständige Aufsichtsbehörde ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf.",
+		"Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn du der Ansicht bist, dass die Verarbeitung deiner Daten gegen die DSGVO verstößt. Zuständige Aufsichtsbehörde ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf.",
 		"You have the right to lodge a complaint with a data protection supervisory authority if you believe that the processing of your data violates the GDPR. The competent supervisory authority is the State Commissioner for Data Protection and Freedom of Information of North Rhine-Westphalia (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf.",
-		"如果您认为您数据的处理违反了 GDPR，您有权向数据保护监管机构投诉。主管监管机构是北莱茵-威斯特法伦州数据保护和信息自由专员（LDI NRW），地址：Kavalleriestraße 2–4, 40213 Düsseldorf。",
-		"Вы имеете право подать жалобу в орган надзора за защитой данных, если считаете, что обработка ваших данных нарушает GDPR. Компетентным надзорным органом является Уполномоченный по защите данных и свободе информации земли Северный Рейн-Вестфалия (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf."
+		"如果你认为你数据的处理违反了 GDPR，你有权向数据保护监管机构投诉。主管监管机构是北莱茵-威斯特法伦州数据保护和信息自由专员（LDI NRW），地址：Kavalleriestraße 2–4, 40213 Düsseldorf。",
+		"Ты имеешь право подать жалобу в орган надзора за защитой данных, если считаешь, что обработка твоих данных нарушает GDPR. Компетентным надзорным органом является Уполномоченный по защите данных и свободе информации земли Северный Рейн-Вестфалия (LDI NRW), Kavalleriestraße 2–4, 40213 Düsseldorf."
 	],
 	"privacy_security_title": [
 		"9. Datensicherheit",
@@ -391,10 +391,10 @@
 		"9. Безопасность данных"
 	],
 	"privacy_security_text": [
-		"Wir setzen technische und organisatorische Maßnahmen ein, um Ihre Daten gegen unbefugten Zugriff, Verlust oder Zerstörung zu schützen. Die Datenübertragung erfolgt verschlüsselt über TLS. Passwörter werden ausschließlich in gehashter Form gespeichert und sind für uns nicht im Klartext einsehbar. Dennoch ist keine Übertragung über das Internet vollständig sicher; ein absoluter Schutz kann nicht garantiert werden.",
+		"Wir setzen technische und organisatorische Maßnahmen ein, um deine Daten gegen unbefugten Zugriff, Verlust oder Zerstörung zu schützen. Die Datenübertragung erfolgt verschlüsselt über TLS. Passwörter werden ausschließlich in gehashter Form gespeichert und sind für uns nicht im Klartext einsehbar. Dennoch ist keine Übertragung über das Internet vollständig sicher; ein absoluter Schutz kann nicht garantiert werden.",
 		"We implement technical and organizational measures to protect your data against unauthorized access, loss, or destruction. Data is transmitted encrypted via TLS. Passwords are stored exclusively in hashed form and cannot be read by us in plain text. Nevertheless, no transmission over the internet is completely secure; absolute protection cannot be guaranteed.",
-		"我们采取技术和组织措施，保护您的数据免遭未经授权的访问、丢失或破坏。数据通过 TLS 加密传输。密码仅以哈希形式存储，我们无法以明文形式读取。尽管如此，通过互联网的传输并非完全安全；无法保证绝对安全。",
-		"Мы применяем технические и организационные меры для защиты ваших данных от несанкционированного доступа, потери или уничтожения. Данные передаются в зашифрованном виде через TLS. Пароли хранятся исключительно в хэшированном виде и не могут быть прочитаны нами в открытом виде. Тем не менее, ни одна передача через интернет не является полностью безопасной; абсолютная защита не может быть гарантирована."
+		"我们采取技术和组织措施，保护你的数据免遭未经授权的访问、丢失或破坏。数据通过 TLS 加密传输。密码仅以哈希形式存储，我们无法以明文形式读取。尽管如此，通过互联网的传输并非完全安全；无法保证绝对安全。",
+		"Мы применяем технические и организационные меры для защиты твоих данных от несанкционированного доступа, потери или уничтожения. Данные передаются в зашифрованном виде через TLS. Пароли хранятся исключительно в хэшированном виде и не могут быть прочитаны нами в открытом виде. Тем не менее, ни одна передача через интернет не является полностью безопасной; абсолютная защита не может быть гарантирована."
 	],
 	"privacy_cookies_section_title": [
 		"10. Cookies",
@@ -409,10 +409,10 @@
 		"Технически необходимые файлы cookie"
 	],
 	"privacy_cookies_essential_text": [
-		"Wir setzen Cookies ein, die für den Betrieb des Dienstes technisch erforderlich sind. Dazu gehören Sitzungscookies zur Authentifizierung sowie ein Cookie zur Speicherung Ihrer Sprachpräferenz. Diese Cookies können nicht deaktiviert werden, da der Dienst ohne sie nicht funktioniert. Sie erfordern keine Einwilligung nach Art. 6 Abs. 1 lit. b und f DSGVO.",
+		"Wir setzen Cookies ein, die für den Betrieb des Dienstes technisch erforderlich sind. Dazu gehören Sitzungscookies zur Authentifizierung sowie ein Cookie zur Speicherung deiner Sprachpräferenz. Diese Cookies können nicht deaktiviert werden, da der Dienst ohne sie nicht funktioniert. Sie erfordern keine Einwilligung nach Art. 6 Abs. 1 lit. b und f DSGVO.",
 		"We use cookies that are technically required for the operation of the service. These include session cookies for authentication and a cookie to store your language preference. These cookies cannot be disabled as the service does not function without them. They do not require consent pursuant to Art. 6 para. 1 lit. b and f GDPR.",
-		"我们使用服务运行所技术上必需的 Cookie，包括用于身份验证的会话 Cookie 和存储您语言偏好的 Cookie。这些 Cookie 无法禁用，因为没有它们服务将无法正常运行。根据 GDPR 第6条第1款第b和f项，它们不需要同意。",
-		"Мы используем файлы cookie, которые технически необходимы для работы сервиса. К ним относятся сеансовые файлы cookie для аутентификации и файл cookie для хранения ваших языковых предпочтений. Эти файлы cookie не могут быть отключены, поскольку без них сервис не функционирует. Они не требуют согласия в соответствии со ст. 6 абз. 1 лит. b и f GDPR."
+		"我们使用服务运行所技术上必需的 Cookie，包括用于身份验证的会话 Cookie 和存储你语言偏好的 Cookie。这些 Cookie 无法禁用，因为没有它们服务将无法正常运行。根据 GDPR 第6条第1款第b和f项，它们不需要同意。",
+		"Мы используем файлы cookie, которые технически необходимы для работы сервиса. К ним относятся сеансовые файлы cookie для аутентификации и файл cookie для хранения твоих языковых предпочтений. Эти файлы cookie не могут быть отключены, поскольку без них сервис не функционирует. Они не требуют согласия в соответствии со ст. 6 абз. 1 лит. b и f GDPR."
 	],
 	"privacy_cookies_analytics_title": [
 		"Analyse-Cookies",
@@ -421,10 +421,10 @@
 		"Аналитические файлы cookie"
 	],
 	"privacy_cookies_analytics_text": [
-		"Für Google Analytics setzen wir Analyse-Cookies ein, die Ihr Nutzungsverhalten auswerten, um den Dienst zu verbessern. Diese Cookies werden nur mit Ihrer ausdrücklichen Einwilligung gesetzt (Art. 6 Abs. 1 lit. a DSGVO). Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.",
+		"Für Google Analytics setzen wir Analyse-Cookies ein, die dein Nutzungsverhalten auswerten, um den Dienst zu verbessern. Diese Cookies werden nur mit deiner ausdrücklichen Einwilligung gesetzt (Art. 6 Abs. 1 lit. a DSGVO). Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.",
 		"For Google Analytics, we use analytics cookies that evaluate your usage behavior to improve the service. These cookies are only set with your explicit consent (Art. 6 para. 1 lit. a GDPR). You may withdraw your consent at any time with effect for the future.",
-		"对于 Google Analytics，我们使用分析 Cookie 来评估您的使用行为以改善服务。这些 Cookie 仅在您明确同意的情况下才会设置（GDPR 第6条第1款第a项）。您可以随时撤回您的同意，对未来产生效力。",
-		"Для Google Analytics мы используем аналитические файлы cookie, которые анализируют ваше поведение при использовании сервиса для его улучшения. Эти файлы cookie устанавливаются только с вашего явного согласия (ст. 6 абз. 1 лит. a GDPR). Вы можете отозвать свое согласие в любое время с действием на будущее."
+		"对于 Google Analytics，我们使用分析 Cookie 来评估你的使用行为以改善服务。这些 Cookie 仅在你明确同意的情况下才会设置（GDPR 第6条第1款第a项）。你可以随时撤回你的同意，对未来产生效力。",
+		"Для Google Analytics мы используем аналитические файлы cookie, которые анализируют твоё поведение при использовании сервиса для его улучшения. Эти файлы cookie устанавливаются только с твоего явного согласия (ст. 6 абз. 1 лит. a GDPR). Ты можешь отозвать свое согласие в любое время с действием на будущее."
 	],
 	"privacy_contact_title": [
 		"11. Kontakt für Datenschutzanfragen",
@@ -433,9 +433,9 @@
 		"11. Контакт по вопросам защиты данных"
 	],
 	"privacy_contact_text": [
-		"Für alle Anfragen zum Datenschutz sowie zur Geltendmachung Ihrer Rechte wenden Sie sich bitte an die im Impressum angegebene E-Mail-Adresse.",
+		"Für alle Anfragen zum Datenschutz sowie zur Geltendmachung deiner Rechte wende dich bitte an die im Impressum angegebene E-Mail-Adresse.",
 		"For all data protection inquiries and to exercise your rights, please contact us at the email address provided in the Imprint.",
-		"如有任何数据保护方面的询问以及行使您的权利，请通过法律信息中提供的电子邮件地址联系我们。",
-		"По всем вопросам защиты данных, а также для осуществления ваших прав обращайтесь по адресу электронной почты, указанному в разделе «Юридическая информация»."
+		"如有任何数据保护方面的询问以及行使你的权利，请通过法律信息中提供的电子邮件地址联系我们。",
+		"По всем вопросам защиты данных, а также для осуществления твоих прав обращайся по адресу электронной почты, указанному в разделе «Юридическая информация»."
 	]
 }

@@ -1,15 +1,15 @@
 {
 	"hero_title": [
-		"Das Betriebssystem, das in Ihrem Browser läuft",
+		"Das Betriebssystem, das in deinem Browser läuft",
 		"The operating system that runs in your browser",
-		"在您的浏览器中运行的操作系统",
-		"Операционная система, которая работает в вашем браузере"
+		"在你的浏览器中运行的操作系统",
+		"Операционная система, которая работает в твоём браузере"
 	],
 	"hero_subtitle": [
-		"Aufgebaut auf Rust WASM-Modulen und einer NixOS-inspirierten Architektur. Keine Hardware. Keine Treiber. Keine OS-Fehler. By design. Passt sich Ihrem Gerät an: auf Smartphones, Tablets und Desktops gleichermaßen zuhause.",
+		"Aufgebaut auf Rust WASM-Modulen und einer NixOS-inspirierten Architektur. Keine Hardware. Keine Treiber. Keine OS-Fehler. By design. Passt sich deinem Gerät an: auf Smartphones, Tablets und Desktops gleichermaßen zuhause.",
 		"Built on Rust WASM modules and a NixOS-inspired architecture. No hardware. No drivers. No OS errors. By design. Adapts to your device: feels at home on phones, tablets, and desktops alike.",
-		"基于 Rust WASM 模块和受 NixOS 启发的架构构建。无需硬件。无需驱动程序。没有系统错误。源于设计。适应您的设备：在手机、平板电脑和桌面上都如鱼得水。",
-		"Построена на модулях Rust WASM и архитектуре, вдохновлённой NixOS. Никакого железа. Никаких драйверов. Никаких ошибок ОС. По задумке. Адаптируется к вашему устройству: одинаково удобна на смартфонах, планшетах и десктопах."
+		"基于 Rust WASM 模块和受 NixOS 启发的架构构建。无需硬件。无需驱动程序。没有系统错误。源于设计。适应你的设备：在手机、平板电脑和桌面上都如鱼得水。",
+		"Построена на модулях Rust WASM и архитектуре, вдохновлённой NixOS. Никакого железа. Никаких драйверов. Никаких ошибок ОС. По задумке. Адаптируется к твоему устройству: одинаково удобна на смартфонах, планшетах и десктопах."
 	],
 
 	"core_promise_label": ["Das Kernversprechen", "The core promise", "核心承诺", "Главное обещание"],
@@ -51,10 +51,10 @@
 	],
 	"atomic_updates_title": ["Atomare Updates", "Atomic updates", "原子更新", "Атомарные обновления"],
 	"atomic_updates_desc": [
-		"Systemupdates werden atomar angewendet oder gar nicht. Fehlgeschlagene Updates werden automatisch zurückgerollt. Sie können jede Änderung jederzeit rückgängig machen.",
+		"Systemupdates werden atomar angewendet oder gar nicht. Fehlgeschlagene Updates werden automatisch zurückgerollt. Du kannst jede Änderung jederzeit rückgängig machen.",
 		"System updates apply atomically or not at all. Failed updates roll back automatically. You can undo any change, any time.",
-		"系统更新要么完整应用，要么根本不应用。失败的更新会自动回滚。您可以随时撤销任何更改。",
-		"Обновления системы применяются атомарно или не применяются вовсе. Неудачные обновления откатываются автоматически. Вы можете отменить любое изменение в любое время."
+		"系统更新要么完整应用，要么根本不应用。失败的更新会自动回滚。你可以随时撤销任何更改。",
+		"Обновления системы применяются атомарно или не применяются вовсе. Неудачные обновления откатываются автоматически. Ты можешь отменить любое изменение в любое время."
 	],
 
 	"capabilities_label": ["Funktionen", "Capabilities", "功能特性", "Возможности"],
@@ -95,24 +95,24 @@
 		"Шифрование на стороне клиента"
 	],
 	"feature_encryption_desc": [
-		"Alle Daten werden verschlüsselt, bevor sie Ihr Gerät verlassen. Der Server sieht niemals Ihren Klartext.",
+		"Alle Daten werden verschlüsselt, bevor sie dein Gerät verlassen. Der Server sieht niemals deinen Klartext.",
 		"All storage is encrypted before it leaves your device. The server never sees your plaintext.",
-		"所有存储在离开您的设备之前都经过加密。服务器永远看不到您的明文。",
-		"Все данные шифруются до того, как покидают ваше устройство. Сервер никогда не видит открытый текст."
+		"所有存储在离开你的设备之前都经过加密。服务器永远看不到你的明文。",
+		"Все данные шифруются до того, как покидают твоё устройство. Сервер никогда не видит открытый текст."
 	],
 	"feature_instant_title": ["Sofortstart", "Instant Start", "即时启动", "Мгновенный старт"],
 	"feature_instant_desc": [
-		"Kein POST. Keine Treiber. Keine Ladezeiten. Öffnen Sie einen Tab - Ihr OS ist da, genau wie Sie es verlassen haben.",
+		"Kein POST. Keine Treiber. Keine Ladezeiten. Öffne einen Tab - dein OS ist da, genau wie du es verlassen hast.",
 		"No POST. No drivers. No loading. Open a tab and your OS is there, exactly as you left it.",
-		"无 POST。无驱动程序。无加载。打开标签页，您的操作系统就在那里，与您离开时完全相同。",
-		"Никаких POST-запросов. Никаких драйверов. Никакой загрузки. Откройте вкладку - и ваша ОС уже там, точно так, как вы её оставили."
+		"无 POST。无驱动程序。无加载。打开标签页，你的操作系统就在那里，与你离开时完全相同。",
+		"Никаких POST-запросов. Никаких драйверов. Никакой загрузки. Открой вкладку - и твоя ОС уже там, точно так, как ты её оставил."
 	],
 	"feature_bgapp_title": ["Hintergrund-App", "Background App", "后台应用", "Фоновое приложение"],
 	"feature_bgapp_desc": [
-		"Optionaler nativer Begleiter für Dateisynchronisation, Peripheriezugriff und Push-Benachrichtigungen von Ihrem Gerät.",
+		"Optionaler nativer Begleiter für Dateisynchronisation, Peripheriezugriff und Push-Benachrichtigungen von deinem Gerät.",
 		"Optional native companion for file sync, peripheral access, and push notifications from your device.",
 		"可选的本地伴侣应用，用于文件同步、外设访问和来自设备的推送通知。",
-		"Опциональный нативный компаньон для синхронизации файлов, доступа к периферии и push-уведомлений с вашего устройства."
+		"Опциональный нативный компаньон для синхронизации файлов, доступа к периферии и push-уведомлений с твоего устройства."
 	],
 	"feature_collab_title": [
 		"Echtzeit-Zusammenarbeit",
@@ -129,16 +129,16 @@
 
 	"bg_app_label": ["Hintergrund-App", "Background App", "后台应用", "Фоновое приложение"],
 	"bg_app_title": [
-		"Erweitert sich auf Ihr Gerät.",
+		"Erweitert sich auf dein Gerät.",
 		"Extends into your device.",
-		"延伸到您的设备。",
-		"Расширяется на ваше устройство."
+		"延伸到你的设备。",
+		"Расширяется на твоё устройство."
 	],
 	"bg_app_desc": [
-		"Installieren Sie die optionale Hintergrund-App, um RizinOS mit Ihrem Gerät zu verbinden. Dateisynchronisation, Peripheriezugriff und native Benachrichtigungen, ohne die Browser-First-Architektur aufzugeben.",
+		"Installiere die optionale Hintergrund-App, um RizinOS mit deinem Gerät zu verbinden. Dateisynchronisation, Peripheriezugriff und native Benachrichtigungen, ohne die Browser-First-Architektur aufzugeben.",
 		"Install the optional Background App to bridge RizinOS with your device. File sync, peripheral access, and native notifications, without giving up the browser-first architecture.",
-		"安装可选的后台应用，将 RizinOS 与您的设备连接起来。文件同步、外设访问和本地通知，同时保持浏览器优先架构。",
-		"Установите опциональное фоновое приложение для связи RizinOS с вашим устройством. Синхронизация файлов, доступ к периферии и нативные уведомления - без отказа от браузерной архитектуры."
+		"安装可选的后台应用，将 RizinOS 与你的设备连接起来。文件同步、外设访问和本地通知，同时保持浏览器优先架构。",
+		"Установи опциональное фоновое приложение для связи RizinOS с твоим устройством. Синхронизация файлов, доступ к периферии и нативные уведомления - без отказа от браузерной архитектуры."
 	],
 	"sync_bidirectional": [
 		"Bidirektionale Dateisynchronisation zwischen Gerät und Cloud-VFS",
@@ -147,7 +147,7 @@
 		"Двунаправленная синхронизация файлов между устройством и облачным VFS"
 	],
 	"sync_native_dnd": [
-		"Native Drag-and-Drop-Uploads von Ihrem Desktop",
+		"Native Drag-and-Drop-Uploads von deinem Desktop",
 		"Native drag-and-drop uploads from your desktop",
 		"从桌面原生拖放上传",
 		"Нативная загрузка перетаскиванием с рабочего стола"
@@ -224,10 +224,10 @@
 	],
 
 	"cta_title": [
-		"Ihr OS wartet. Öffnen Sie einen Tab.",
+		"Dein OS wartet. Öffne einen Tab.",
 		"Your OS is waiting. Open a tab.",
-		"您的操作系统在等待。打开一个标签页。",
-		"Ваша ОС ждёт. Откройте вкладку."
+		"你的操作系统在等待。打开一个标签页。",
+		"Твоя ОС ждёт. Открой вкладку."
 	],
 	"cta_desc": [
 		"Keine Downloads. Kein Setup. Funktioniert auf jedem Gerät, jeder Bildschirmgröße, jedem Browser.",
@@ -235,7 +235,7 @@
 		"无需下载。无需设置。适用于任何设备、任何屏幕尺寸、任何浏览器。",
 		"Без загрузок. Без настройки. Работает на любом устройстве, любом размере экрана, в любом браузере."
 	],
-	"cta_button": ["Konto erstellen", "Create your account", "创建您的账户", "Создать аккаунт"],
+	"cta_button": ["Konto erstellen", "Create your account", "创建你的账户", "Создать аккаунт"],
 	"cta_note": [
 		"Dauerhaft kostenlos - Keine Kreditkarte - 10 GB Cloud-Speicher inklusive",
 		"Free tier forever - No credit card - 10 GB cloud storage included",
@@ -262,10 +262,10 @@
 		"Зашифрованный мост"
 	],
 	"bridge_running_device": [
-		"Läuft auf Ihrem Gerät",
+		"Läuft auf deinem Gerät",
 		"Running on your device",
-		"在您的设备上运行",
-		"Работает на вашем устройстве"
+		"在你的设备上运行",
+		"Работает на твоём устройстве"
 	],
 	"cap_file_sync": ["Dateisynchronisation", "File Sync", "文件同步", "Синхронизация файлов"],
 	"cap_cloud_backup": ["Cloud-Backup", "Cloud Backup", "云备份", "Облачное резервное копирование"],

@@ -1,11 +1,11 @@
 {
 	"signup_open_rizinos": [
-		"RizinOS in Ihrem Browser öffnen",
+		"RizinOS in deinem Browser öffnen",
 		"Open RizinOS in your browser",
-		"在您的浏览器中打开 RizinOS",
+		"在你的浏览器中打开 RizinOS",
 		"Открыть RizinOS в браузере"
 	],
-	"signup_open_your_os": ["Ihr OS öffnen", "Open your OS", "打开您的操作系统", "Открыть вашу ОС"],
+	"signup_open_your_os": ["Dein OS öffnen", "Open your OS", "打开你的操作系统", "Открыть твою ОС"],
 	"signup_free_note": [
 		"Für immer kostenlos - Keine Kreditkarte erforderlich - DSGVO-konform",
 		"Free forever - No credit card required - GDPR compliant",
@@ -16,7 +16,7 @@
 		"Benutzernamen wählen",
 		"choose a username",
 		"选择用户名",
-		"выберите имя пользователя"
+		"выбери имя пользователя"
 	],
 	"signup_tos_prefix": [
 		"Ich habe die",
@@ -33,23 +33,23 @@
 		"Добро пожаловать, {username}!"
 	],
 	"signup_birthdate_prompt": [
-		"Wann wurden Sie geboren?",
+		"Wann wurdest du geboren?",
 		"When were you born?",
-		"您的出生日期是？",
-		"Когда вы родились?"
+		"你的出生日期是？",
+		"Когда ты родился?"
 	],
 	"signup_continue": ["Weiter", "Continue", "继续", "Продолжить"],
 	"signup_birthdate_required": [
 		"Bitte gib dein Geburtsdatum ein.",
 		"Please enter your date of birth.",
-		"请输入您的出生日期。",
-		"Пожалуйста, укажите дату рождения."
+		"请输入你的出生日期。",
+		"Пожалуйста, укажи дату рождения."
 	],
 	"signup_age_requirement": [
 		"Du musst mindestens 12 Jahre alt sein.",
 		"You must be at least 12 years old.",
-		"您必须年满 12 岁。",
-		"Вам должно быть не менее 12 лет."
+		"你必须年满 12 岁。",
+		"Тебе должно быть не менее 12 лет."
 	],
 	"signup_finish_title": [
 		"Registrierung abschließen",
@@ -58,10 +58,10 @@
 		"Завершить регистрацию"
 	],
 	"signup_finish_desc": [
-		"Sichern Sie Ihr Konto mit einer E-Mail-Adresse und einem Passwort.",
+		"Sichere dein Konto mit einer E-Mail-Adresse und einem Passwort.",
 		"Claim your account by entering an email and password.",
-		"输入电子邮件和密码来创建您的账户。",
-		"Защитите аккаунт, указав электронную почту и пароль."
+		"输入电子邮件和密码来创建你的账户。",
+		"Защити аккаунт, указав электронную почту и пароль."
 	],
 	"signup_email_placeholder": ["E-Mail", "Email", "电子邮件", "Электронная почта"],
 	"signup_password_placeholder": ["Passwort", "Password", "密码", "Пароль"],
@@ -80,16 +80,16 @@
 		"Мы отправили ссылку для подтверждения на:"
 	],
 	"signup_check_spam": [
-		"Überprüfen Sie Ihren Spam-Ordner, falls Sie ihn nicht sehen.",
+		"Überprüfe deinen Spam-Ordner, falls du ihn nicht siehst.",
 		"Check your spam folder if you don't see it.",
-		"如果您没有看到它，请检查垃圾邮件文件夹。",
-		"Проверьте папку спама, если не видите письма."
+		"如果你没有看到它，请检查垃圾邮件文件夹。",
+		"Проверь папку спама, если не видишь письма."
 	],
 	"signup_email_invalid": [
 		"Gib eine gültige E-Mail-Adresse ein.",
 		"Enter a valid email address.",
 		"请输入有效的电子邮件地址。",
-		"Введите корректный адрес электронной почты."
+		"Введи корректный адрес электронной почты."
 	],
 	"signup_password_too_short": [
 		"Muss mindestens 10 Zeichen lang sein.",
@@ -103,7 +103,7 @@
 		"Bitte wähle einen Benutzernamen.",
 		"Please choose a username.",
 		"请选择一个用户名。",
-		"Пожалуйста, выберите имя пользователя."
+		"Пожалуйста, выбери имя пользователя."
 	],
 	"signup_username_too_short": [
 		"Der Benutzername muss mindestens 5 Zeichen lang sein.",
@@ -127,7 +127,7 @@
 		"Bitte gib ein gültiges Datum ein.",
 		"Please enter a valid date.",
 		"请输入有效的日期。",
-		"Пожалуйста, введите корректную дату."
+		"Пожалуйста, введи корректную дату."
 	],
 	"signup_birthdate_future": [
 		"Das Geburtsdatum darf nicht in der Zukunft liegen.",
@@ -139,14 +139,14 @@
 	"signup_first_name_required": [
 		"Bitte gib deinen Vornamen ein.",
 		"Please enter your first name.",
-		"请输入您的名字。",
-		"Пожалуйста, введите имя."
+		"请输入你的名字。",
+		"Пожалуйста, введи имя."
 	],
 	"signup_last_name_required": [
 		"Bitte gib deinen Nachnamen ein.",
 		"Please enter your last name.",
-		"请输入您的姓氏。",
-		"Пожалуйста, введите фамилию."
+		"请输入你的姓氏。",
+		"Пожалуйста, введи фамилию."
 	],
 	"signup_name_invalid": [
 		"Enthält ungültige Zeichen.",
@@ -206,7 +206,7 @@
 		"Etwas ist schiefgelaufen. Bitte versuche es erneut.",
 		"Something went wrong. Please try again.",
 		"出现了错误，请重试。",
-		"Что-то пошло не так. Пожалуйста, попробуйте ещё раз."
+		"Что-то пошло не так. Пожалуйста, попробуй ещё раз."
 	],
 
 	"signup_step": ["Schritt {step}", "Step {step}", "步骤 {step}", "Шаг {step}"],
@@ -222,13 +222,13 @@
 		"Passwort bestätigen",
 		"Confirm Password",
 		"确认密码",
-		"Подтвердите пароль"
+		"Подтверди пароль"
 	],
 	"signup_back": ["Zurück", "Back", "返回", "Назад"],
 	"signup_next": ["Weiter", "Next", "下一步", "Далее"],
 	"signup_submit": ["Absenden", "Submit", "提交", "Отправить"],
 	"signup_success": ["Erfolg!", "Success!", "成功！", "Успешно!"],
-	"signup_name_title": ["Ihr Name", "Your name", "您的姓名", "Ваше имя"],
+	"signup_name_title": ["Dein Name", "Your name", "你的姓名", "Твоё имя"],
 	"signup_birth_title": ["Geburt & Geschlecht", "Birth & gender", "生日与性别", "Рождение и пол"],
 	"signup_account_title": ["Konto-Details", "Account details", "账户详情", "Данные аккаунта"],
 	"signup_have_account": [

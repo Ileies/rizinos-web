@@ -6,10 +6,10 @@
 		"RizinOS - Первая онлайн-операционная система"
 	],
 	"description": [
-		"Das moderne webbasierte Betriebssystem, das Ihre Arbeit revolutioniert. Überall verfügbar, immer synchronisiert.",
-		"The modern web-based operating system that revolutionizes your work. Available everywhere, always synchronized.",
-		"现代的基于网络的操作系统，彻底改变您的工作方式。随时随地可用，始终保持同步。",
-		"Современная веб-операционная система, которая революционизирует вашу работу. Доступна везде, всегда синхронизирована."
+		"Das webbasierte Betriebssystem, das deine Arbeit revolutioniert. Überall verfügbar, immer synchronisiert.",
+		"The web-based operating system that revolutionizes your work. Available everywhere, always synchronized.",
+		"基于网络的操作系统，彻底改变你的工作方式。随时随地可用，始终保持同步。",
+		"Веб-операционная система, которая революционизирует твою работу. Доступна везде, всегда синхронизирована."
 	],
 	"copyright": [
 		"Alle Rechte vorbehalten.",
@@ -43,7 +43,7 @@
 	"contact": ["Kontakt", "Contact", "联系方式", "Контакты"],
 	"legal": ["Rechtliches", "Legal", "法律信息", "Правовая информация"],
 
-	"open_your_os": ["Ihr OS öffnen", "Open your OS", "打开您的操作系统", "Открыть вашу ОС"],
+	"open_your_os": ["Dein OS öffnen", "Open your OS", "打开你的操作系统", "Открыть твою ОС"],
 	"log_in": ["Anmelden", "Log in", "登录", "Войти"],
 	"language": ["Sprache", "Language", "语言", "Язык"],
 	"select_language": ["Sprache auswählen", "Select language", "选择语言", "Выбрать язык"],

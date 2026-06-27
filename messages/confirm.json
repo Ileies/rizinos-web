@@ -1,21 +1,21 @@
 {
 	"confirm_email_title": [
-		"Bestätigen Sie Ihre E-Mail",
+		"Bestätige deine E-Mail",
 		"Confirm your email",
-		"确认您的电子邮件",
-		"Подтвердите ваш email"
+		"确认你的电子邮件",
+		"Подтверди свой email"
 	],
 	"confirm_email_verified": [
-		"Ihre E-Mail wurde erfolgreich bestätigt!",
+		"Deine E-Mail wurde erfolgreich bestätigt!",
 		"Your email was successfully verified!",
-		"您的电子邮件已成功验证！",
-		"Ваш email успешно подтверждён!"
+		"你的电子邮件已成功验证！",
+		"Твой email успешно подтверждён!"
 	],
 	"confirm_email_pending": [
-		"Bitte bestätigen Sie Ihre E-Mail über den Link, den wir an Ihr Postfach gesendet haben.",
+		"Bitte bestätige deine E-Mail über den Link, den wir an dein Postfach gesendet haben.",
 		"Please verify your email by visiting the link sent to your inbox.",
-		"请通过访问发送到您收件箱的链接来验证您的电子邮件。",
-		"Пожалуйста, подтвердите ваш email, перейдя по ссылке, отправленной в ваш почтовый ящик."
+		"请通过访问发送到你收件箱的链接来验证你的电子邮件。",
+		"Пожалуйста, подтверди свой email, перейдя по ссылке, отправленной в твой почтовый ящик."
 	],
 	"confirm_email_token_invalid": [
 		"Token ungültig oder abgelaufen.",
