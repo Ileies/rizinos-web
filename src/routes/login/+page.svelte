@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Log in - RizinOS</title>
+	<meta name="description" content="Sign in to your RizinOS account and open your browser-native OS." />
+</svelte:head>
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';

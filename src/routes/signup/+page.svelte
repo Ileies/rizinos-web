@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Create account - RizinOS</title>
+	<meta name="description" content="Create your free RizinOS account. No credit card required. Get 10 GB cloud storage included." />
+</svelte:head>
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
