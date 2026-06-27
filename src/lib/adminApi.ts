@@ -24,28 +24,32 @@ export async function adminPost<T = never>(
 	path: string,
 	body: Record<string, unknown>
 ): Promise<AdminResult & { data?: T }> {
-	const res = await fetch(`/api/admin${path}`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(body)
-	});
-	if (res.status === 401) {
-		await refreshSession();
-	}
-	if (res.ok) {
-		try {
-			const data = (await res.json()) as T;
-			return { ok: true, data };
-		} catch {
-			return { ok: true };
-		}
-	}
-	let error = `Request failed (${res.status})`;
 	try {
-		const data = await res.json();
-		error = data.message ?? data.error ?? error;
+		const res = await fetch(`/api/admin${path}`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body)
+		});
+		if (res.status === 401) {
+			await refreshSession();
+		}
+		if (res.ok) {
+			try {
+				const data = (await res.json()) as T;
+				return { ok: true, data };
+			} catch {
+				return { ok: true };
+			}
+		}
+		let error = `Request failed (${res.status})`;
+		try {
+			const data = await res.json();
+			error = data.message ?? data.error ?? error;
+		} catch {
+			/* response had no JSON body */
+		}
+		return { ok: false, error };
 	} catch {
-		/* response had no JSON body */
+		return { ok: false, error: 'Network error' };
 	}
-	return { ok: false, error };
 }
