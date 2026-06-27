@@ -26,7 +26,7 @@
 </script>
 
 <div class="flex min-h-screen flex-col">
-	<Header loggedIn={session.loggedIn} sessionLoaded={session.loaded} />
+	<Header loggedIn={session.loggedIn} sessionLoaded={session.loaded} isAdmin={session.isAdmin} />
 	<main class="flex flex-grow">
 		{@render children()}
 	</main>
