@@ -2,6 +2,7 @@
 	"name": "rizinos-web",
 	"private": true,
 	"version": "1.0.0",
+	"homepage": "https://rizinos.com",
 	"type": "module",
 	"scripts": {
 		"dev": "bun --bun vite dev --port 3003",
