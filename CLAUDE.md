@@ -123,6 +123,7 @@ static/                       # robots.txt, favicon, public assets
 - **No server-only code** - this is a static site; never import anything from a `server` module or `$lib/server/` (that lives in `rizinos`)
 - **All admin API calls via `adminApi.ts`** - never write raw `fetch('/api/admin/...')` inline in components
 - **Auth enforcement is the backend's job** - the static site only reacts to 401/403 responses; never trust client-side role checks as the sole gate
+- **Admin UI is English-only by design** - the admin dashboard uses hardcoded English strings and is not part of the i18n system
 
 ---
 
