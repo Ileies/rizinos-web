@@ -47,5 +47,6 @@
 	"log_in": ["Anmelden", "Log in", "登录", "Войти"],
 	"language": ["Sprache", "Language", "语言", "Язык"],
 	"select_language": ["Sprache auswählen", "Select language", "选择语言", "Выбрать язык"],
-	"toggle_menu": ["Menü umschalten", "Toggle menu", "切换菜单", "Переключить меню"]
+	"toggle_menu": ["Menü umschalten", "Toggle menu", "切换菜单", "Переключить меню"],
+	"log_out": ["Abmelden", "Log out", "退出登录", "Выйти"]
 }

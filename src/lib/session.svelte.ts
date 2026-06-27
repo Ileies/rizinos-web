@@ -63,3 +63,16 @@ export function refreshSession(): Promise<void> {
 	_error = false;
 	return loadSession();
 }
+
+/** Call POST /api/auth/logout, then clear the local session state. */
+export async function logout(): Promise<void> {
+	try {
+		await fetch('/api/auth/logout', { method: 'POST' });
+	} catch {
+		// ignore network errors - clear local state regardless
+	}
+	_promise = null;
+	_user = null;
+	_loaded = true;
+	_error = false;
+}

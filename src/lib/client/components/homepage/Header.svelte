@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 	import { ChevronDown, ExternalLink, Menu, X, Globe } from '@lucide/svelte';
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
@@ -7,6 +8,7 @@
 	import { github } from '$lib/config';
 	import { setLocale } from '$lib/messages.svelte';
 	import * as m from '$lib/messages.svelte';
+	import { logout } from '$lib/session.svelte';
 
 	const languages = [
 		{ code: 'en', name: 'English', flag: '🇬🇧' },
@@ -82,6 +84,11 @@
 	function selectLanguage(code: string) {
 		setLocale(code);
 		isLanguageDropdownOpen = false;
+	}
+
+	async function handleLogout() {
+		await logout();
+		goto('/');
 	}
 </script>
 
@@ -201,6 +208,12 @@
 							>
 								{m.open_your_os()}
 							</a>
+							<button
+								onclick={handleLogout}
+								class="text-foreground/60 hover:text-foreground text-sm font-medium transition-colors"
+							>
+								{m.log_out()}
+							</button>
 						{:else}
 							<a
 								href="/login"
@@ -317,6 +330,12 @@
 						>
 							{m.open_your_os()}
 						</a>
+						<button
+							onclick={handleLogout}
+							class="text-foreground/60 hover:text-foreground mt-3 w-full py-2 text-center text-sm font-medium transition-colors"
+						>
+							{m.log_out()}
+						</button>
 					{:else}
 						<a
 							href="/login"
