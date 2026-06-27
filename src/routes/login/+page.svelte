@@ -1,8 +1,3 @@
-<svelte:head>
-	<title>Log in - RizinOS</title>
-	<meta name="description" content="Sign in to your RizinOS account and open your browser-native OS." />
-</svelte:head>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
@@ -50,6 +45,14 @@
 		submitting = false;
 	}
 </script>
+
+<svelte:head>
+	<title>Log in - RizinOS</title>
+	<meta
+		name="description"
+		content="Sign in to your RizinOS account and open your browser-native OS."
+	/>
+</svelte:head>
 
 <div class="bg-background relative flex flex-grow flex-col items-center justify-center px-4 py-16">
 	<!-- Subtle grid -->

@@ -1,8 +1,3 @@
-<svelte:head>
-	<title>Create account - RizinOS</title>
-	<meta name="description" content="Create your free RizinOS account. No credit card required. Get 10 GB cloud storage included." />
-</svelte:head>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
@@ -203,6 +198,14 @@
 			: `${inputBase} border-input focus:border-ring focus:ring-ring/20`;
 	}
 </script>
+
+<svelte:head>
+	<title>Create account - RizinOS</title>
+	<meta
+		name="description"
+		content="Create your free RizinOS account. No credit card required. Get 10 GB cloud storage included."
+	/>
+</svelte:head>
 
 {#if success}
 	<div class="bg-background flex flex-grow flex-col items-center justify-center px-4 py-16">

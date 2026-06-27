@@ -3,7 +3,11 @@
 </script>
 
 <svelte:head>
-	<title>{m.privacy_title()}</title>
+	<title>Privacy Policy - RizinOS</title>
+	<meta
+		name="description"
+		content="Learn how RizinOS collects, processes, and protects your personal data in accordance with GDPR."
+	/>
 </svelte:head>
 
 <div>

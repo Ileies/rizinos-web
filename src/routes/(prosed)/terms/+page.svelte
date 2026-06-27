@@ -3,7 +3,11 @@
 </script>
 
 <svelte:head>
-	<title>{m.terms_title()}</title>
+	<title>Terms of Service - RizinOS</title>
+	<meta
+		name="description"
+		content="Read the Terms of Service for RizinOS, the web-based operating system."
+	/>
 </svelte:head>
 
 <div>

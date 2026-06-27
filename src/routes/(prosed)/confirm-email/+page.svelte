@@ -29,6 +29,12 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Confirm your email - RizinOS</title>
+	<meta name="description" content="Verify your RizinOS account email address." />
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <div class="w-full max-w-7xl">
 	<div class="mb-6">
 		<h1 class="mb-4 text-2xl font-bold">{m.confirm_email_title()}</h1>
