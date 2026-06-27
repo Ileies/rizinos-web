@@ -7,6 +7,7 @@ import { Role } from '$lib/types';
 
 let _user = $state<App.SessionUser | null>(null);
 let _loaded = $state(false);
+let _error = $state(false);
 
 export const session = {
 	get user() {
@@ -20,6 +21,10 @@ export const session = {
 	},
 	get loaded() {
 		return _loaded;
+	},
+	/** true if the session fetch failed (network error or non-ok response) */
+	get error() {
+		return _error;
 	}
 };
 
@@ -30,12 +35,19 @@ export function loadSession(): Promise<void> {
 	if (!browser) return Promise.resolve();
 	if (_promise) return _promise;
 	_promise = fetch('/api/auth/session')
-		.then((r) => (r.ok ? r.json() : { user: null }))
+		.then((r) => {
+			if (!r.ok) {
+				_error = true;
+				return { user: null };
+			}
+			return r.json();
+		})
 		.then((d) => {
 			_user = d.user ?? null;
 		})
 		.catch(() => {
 			_user = null;
+			_error = true;
 		})
 		.finally(() => {
 			_loaded = true;
@@ -48,5 +60,6 @@ export function refreshSession(): Promise<void> {
 	_promise = null;
 	_user = null;
 	_loaded = false;
+	_error = false;
 	return loadSession();
 }
