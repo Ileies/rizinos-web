@@ -14,6 +14,7 @@
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { Pickaxe, Wand2, Compass, Eye, Users, MapPin, Globe, Layers } from '@lucide/svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
+	import Pagination from '$lib/components/Pagination.svelte';
 
 	interface Warp {
 		name: string;
@@ -285,6 +286,16 @@
 		groupModalOpen = true;
 	}
 
+	// --- Pagination ---
+	const MC_PAGE_SIZE = 25;
+	let playersPage = $state(1);
+	let warpsPage = $state(1);
+
+	let pagedMcUsers = $derived(
+		mcUsers.slice((playersPage - 1) * MC_PAGE_SIZE, playersPage * MC_PAGE_SIZE)
+	);
+	let pagedWarps = $derived(warps.slice((warpsPage - 1) * MC_PAGE_SIZE, warpsPage * MC_PAGE_SIZE));
+
 	// --- User view ---
 	let viewUserOpen = $state(false);
 	let viewingUser = $state<UserData | null>(null);
@@ -375,7 +386,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each mcUsers as mc (mc.uuid)}
+				{#each pagedMcUsers as mc (mc.uuid)}
 					<Table.Row class="hover:bg-muted/40 group">
 						<Table.Cell class="py-1.5 font-medium">{mc.name}</Table.Cell>
 						<Table.Cell class="py-1.5 text-xs">
@@ -432,6 +443,12 @@
 				{/each}
 			</Table.Body>
 		</Table.Root>
+		<Pagination
+			page={playersPage}
+			total={mcUsers.length}
+			pageSize={MC_PAGE_SIZE}
+			onPageChange={(p) => (playersPage = p)}
+		/>
 	{/if}
 
 	<!-- WARPS -->
@@ -446,7 +463,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each warps as warp (warp.name)}
+				{#each pagedWarps as warp (warp.name)}
 					<Table.Row class="hover:bg-muted/40 group">
 						<Table.Cell class="py-1.5 font-medium">{warp.name}</Table.Cell>
 						<Table.Cell class="py-1.5" title={warp.location ?? ''}>
@@ -482,6 +499,12 @@
 				{/each}
 			</Table.Body>
 		</Table.Root>
+		<Pagination
+			page={warpsPage}
+			total={warps.length}
+			pageSize={MC_PAGE_SIZE}
+			onPageChange={(p) => (warpsPage = p)}
+		/>
 	{/if}
 
 	<!-- WORLDS -->

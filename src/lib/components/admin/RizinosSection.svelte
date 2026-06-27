@@ -12,6 +12,7 @@
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
 	import { adminGet, adminPost } from '$lib/adminApi';
+	import Pagination from '$lib/components/Pagination.svelte';
 
 	interface LogEntry {
 		id: string;
@@ -104,6 +105,9 @@
 	let userSearch = $state('');
 	let logLevel = $state('all');
 
+	const USER_PAGE_SIZE = 25;
+	let usersPage = $state(1);
+
 	let filteredUsers = $derived(
 		userSearch.trim()
 			? users.filter((u) => {
@@ -117,6 +121,16 @@
 					);
 				})
 			: users
+	);
+
+	// Reset to page 1 when search changes
+	$effect(() => {
+		userSearch;
+		usersPage = 1;
+	});
+
+	let pagedUsers = $derived(
+		filteredUsers.slice((usersPage - 1) * USER_PAGE_SIZE, usersPage * USER_PAGE_SIZE)
 	);
 
 	let filteredLogs = $derived(
@@ -284,7 +298,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each filteredUsers as user (user.id)}
+				{#each pagedUsers as user (user.id)}
 					<Table.Row class="hover:bg-muted/40 group">
 						<Table.Cell class="py-1.5">
 							<div class="font-medium">{user.username}</div>
@@ -325,6 +339,12 @@
 				{/each}
 			</Table.Body>
 		</Table.Root>
+		<Pagination
+			page={usersPage}
+			total={filteredUsers.length}
+			pageSize={USER_PAGE_SIZE}
+			onPageChange={(p) => (usersPage = p)}
+		/>
 	{/if}
 
 	<!-- LOGS -->
