@@ -25,7 +25,7 @@
 
 ## i18n
 
-- **Admin UI is not translated** - The entire admin dashboard uses hardcoded English strings. Either declare it English-only by design or add i18n coverage.
+- **Admin UI is not translated** - The entire admin dashboard uses hardcoded English strings. Declare it English-only by design.
 - **Confirm-email page messages** - Check that all success/error variants in `/confirm-email` have translations in all four locales.
 
 ## Performance
