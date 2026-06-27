@@ -51,20 +51,27 @@ src/
       legal/                  # Imprint (Impressum)
       privacy/                # Privacy policy (DSGVO)
       terms/                  # Terms of service
-    admin/                    # Admin SPA (fully client-side)
+    admin/                    # Admin SPA (single route, fully client-side)
       +layout.svelte          # Client-side role guard (redirects to /login if not admin)
-      +page.svelte            # Users table
-      discord/                # Discord integration
-      minecraft/              # Minecraft server controls
-      minechat/               # Minechat bridge settings
+      +page.svelte            # Area switcher: AdminNav + the active *Section component
   lib/
     adminApi.ts               # adminGet<T> / adminPost wrappers for /api/admin/*
+    adminConstants.ts         # Shared admin visuals (ROLE_CHIP, CHIP_FALLBACK)
     client/
       components/
         homepage/             # Hero, Header, Footer, SignupFlow, CopyText, Container
     components/
       ui/                     # shadcn-svelte primitives (auto-managed via CLI, don't hand-edit)
-      AdminNav.svelte
+      admin/                  # One section component per area, all using AdminPanel
+        RizinosSection.svelte # Users / Logs / Apps
+        MinecraftSection.svelte # Players / Warps / Worlds / Groups
+        MinechatSection.svelte  # Users / Hooks / Servers
+        DiscordSection.svelte   # Users
+      AdminNav.svelte         # Top-level area tabs (bind:active), used by /admin
+      AdminPanel.svelte       # Shared section shell: wrapper + error + sub-tabs + toolbar
+      AdminTabs.svelte        # Shared sub-tab bar (icon + count)
+      RowActions.svelte       # Shared hover edit/delete row buttons
+      UserViewModal.svelte    # Shared read-only user detail modal
       InlineEdit.svelte
       LocationEditor.svelte
       LocationInput.svelte
@@ -199,7 +206,7 @@ bun run build      # static build to build/
 bun run deploy     # rsync build/ → ros:/var/www/rizinos-web
 ```
 
-`scripts/deploy.ts` SSHes into the server via the SSH alias `ros` and rsyncs `build/` to `/var/www/rizinos-web`. nginx serves these files with a `200.html` SPA fallback for client-routed paths (e.g. `/admin/minecraft`).
+`scripts/deploy.ts` SSHes into the server via the SSH alias `ros` and rsyncs `build/` to `/var/www/rizinos-web`. nginx serves these files with a `200.html` SPA fallback for client-routed paths (e.g. `/admin`).
 
 The backend (`rizinos`) is deployed separately. See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md).
 

@@ -100,19 +100,23 @@ src/
       legal/
       privacy/
       terms/
-    admin/                       # Admin dashboard SPA
+    admin/                       # Admin dashboard SPA (single route)
       +layout.svelte             # Client-side role guard
-      discord/                   # Discord integration management
-      minecraft/                 # Minecraft server controls
-      minechat/                  # Minechat bridge settings
+      +page.svelte               # Area switcher: AdminNav + active *Section
   lib/
     adminApi.ts                  # Typed fetch wrappers for /api/admin/*
+    adminConstants.ts            # Shared admin visuals (ROLE_CHIP)
     client/
       components/
         homepage/                # Hero, Header, Footer, SignupFlow, CopyText
     components/
       ui/                        # shadcn-svelte primitives (auto-managed)
-      AdminNav.svelte
+      admin/                     # One *Section per area (Rizinos/Minecraft/Minechat/Discord)
+      AdminNav.svelte            # Top-level area tabs
+      AdminPanel.svelte          # Shared section shell (wrapper + sub-tabs + toolbar)
+      AdminTabs.svelte           # Shared sub-tab bar (icon + count)
+      RowActions.svelte          # Shared hover edit/delete buttons
+      UserViewModal.svelte       # Shared read-only user modal
       InlineEdit.svelte
       LocationEditor.svelte
       LocationInput.svelte
@@ -188,7 +192,7 @@ bun run build      # build static site to build/
 bun run deploy     # rsync build/ → ros:/var/www/rizinos-web
 ```
 
-`scripts/deploy.ts` SSHes into the server alias `ros` and rsyncs `build/` to `/var/www/rizinos-web`. nginx serves these files statically with a `200.html` fallback for client-routed paths such as `/admin/*`.
+`scripts/deploy.ts` SSHes into the server alias `ros` and rsyncs `build/` to `/var/www/rizinos-web`. nginx serves these files statically with a `200.html` fallback for client-routed paths such as `/admin`.
 
 The backend (`rizinos`) is deployed independently with PM2 on port 3001. See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md) for backend deployment.
 
