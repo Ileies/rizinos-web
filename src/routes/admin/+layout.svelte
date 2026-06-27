@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { Role } from '$lib/types';
-	import AdminNav from '$lib/components/AdminNav.svelte';
 	import { session, loadSession } from '$lib/session.svelte';
 
 	let { children } = $props();
@@ -34,7 +33,6 @@
 
 {#if allowed}
 	<div class="w-full">
-		<AdminNav />
 		{@render children()}
 	</div>
 {/if}

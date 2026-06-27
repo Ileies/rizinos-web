@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Users, Webhook, Server, Pencil, Trash2, Plus } from '@lucide/svelte';
+	import { Users, Webhook, Server, Plus } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
+	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import RowActions from '$lib/components/RowActions.svelte';
+	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
 
 	interface McUser {
@@ -51,11 +54,11 @@
 
 	let currentTab = $state('users');
 
-	const innerTabs = [
-		{ id: 'users', label: 'Users', icon: Users, count: () => users.length },
-		{ id: 'hooks', label: 'Hooks', icon: Webhook, count: () => hooks.length },
-		{ id: 'servers', label: 'Servers', icon: Server, count: () => servers.length }
-	];
+	const innerTabs = $derived<AdminTab[]>([
+		{ id: 'users', label: 'Users', icon: Users, count: users.length },
+		{ id: 'hooks', label: 'Hooks', icon: Webhook, count: hooks.length },
+		{ id: 'servers', label: 'Servers', icon: Server, count: servers.length }
+	]);
 
 	/** POST an action, close the given modal + reload on success. */
 	async function run(action: string, body: Record<string, unknown>, close: () => void) {
@@ -192,38 +195,28 @@
 	}
 </script>
 
-<div class="mx-auto max-w-7xl px-6 py-4">
-	{#if loadError}
-		<div class="bg-destructive/10 text-destructive mb-3 rounded px-3 py-2 text-sm">{loadError}</div>
-	{/if}
-	<div class="mb-4 flex gap-1 border-b">
-		{#each innerTabs as tab (tab.id)}
-			{@const Icon = tab.icon}
-			<button
-				class="flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors {currentTab ===
-				tab.id
-					? 'border-primary text-primary border-b-2'
-					: 'text-muted-foreground hover:text-foreground'}"
-				onclick={() => (currentTab = tab.id)}
-			>
-				<Icon class="h-3.5 w-3.5" />
-				{tab.label}
-				<span
-					class="text-xs {currentTab === tab.id ? 'text-primary/70' : 'text-muted-foreground/60'}"
-					>({tab.count()})</span
-				>
-			</button>
-		{/each}
-	</div>
-
-	<!-- USERS -->
-	{#if currentTab === 'users'}
-		<div class="mb-3">
+<AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
+	{#snippet toolbar()}
+		{#if currentTab === 'users'}
 			<Button.Root size="sm" onclick={openUserCreate}>
 				<Plus size={14} />
 				Add User
 			</Button.Root>
-		</div>
+		{:else if currentTab === 'hooks'}
+			<Button.Root size="sm" onclick={openHookCreate}>
+				<Plus size={14} />
+				Add Hook
+			</Button.Root>
+		{:else if currentTab === 'servers'}
+			<Button.Root size="sm" onclick={openServerCreate}>
+				<Plus size={14} />
+				Add Server
+			</Button.Root>
+		{/if}
+	{/snippet}
+
+	<!-- USERS -->
+	{#if currentTab === 'users'}
 		<Table.Root>
 			<Table.Header>
 				<Table.Row>
@@ -260,22 +253,10 @@
 							{/if}
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							<div class="flex items-center gap-1 opacity-0 transition-all group-hover:opacity-100">
-								<button
-									onclick={() => openUserEdit(user)}
-									class="text-muted-foreground hover:bg-muted hover:text-foreground rounded p-1.5"
-									title="Edit"
-								>
-									<Pencil size={13} />
-								</button>
-								<button
-									onclick={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
-									class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
-									title="Delete"
-								>
-									<Trash2 size={13} />
-								</button>
-							</div>
+							<RowActions
+								onEdit={() => openUserEdit(user)}
+								onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -292,12 +273,6 @@
 
 	<!-- HOOKS -->
 	{#if currentTab === 'hooks'}
-		<div class="mb-3">
-			<Button.Root size="sm" onclick={openHookCreate}>
-				<Plus size={14} />
-				Add Hook
-			</Button.Root>
-		</div>
 		<Table.Root>
 			<Table.Header>
 				<Table.Row>
@@ -326,22 +301,10 @@
 							<span class="block max-w-[80px] truncate" title={hook.token}>{hook.token}</span>
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							<div class="flex items-center gap-1 opacity-0 transition-all group-hover:opacity-100">
-								<button
-									onclick={() => openHookEdit(hook)}
-									class="text-muted-foreground hover:bg-muted hover:text-foreground rounded p-1.5"
-									title="Edit"
-								>
-									<Pencil size={13} />
-								</button>
-								<button
-									onclick={() => remove('hookDelete', { webhookId: hook.webhookId })}
-									class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
-									title="Delete"
-								>
-									<Trash2 size={13} />
-								</button>
-							</div>
+							<RowActions
+								onEdit={() => openHookEdit(hook)}
+								onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -358,12 +321,6 @@
 
 	<!-- SERVERS -->
 	{#if currentTab === 'servers'}
-		<div class="mb-3">
-			<Button.Root size="sm" onclick={openServerCreate}>
-				<Plus size={14} />
-				Add Server
-			</Button.Root>
-		</div>
 		<Table.Root>
 			<Table.Header>
 				<Table.Row>
@@ -389,22 +346,10 @@
 							{/if}
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							<div class="flex items-center gap-1 opacity-0 transition-all group-hover:opacity-100">
-								<button
-									onclick={() => openServerEdit(server)}
-									class="text-muted-foreground hover:bg-muted hover:text-foreground rounded p-1.5"
-									title="Edit"
-								>
-									<Pencil size={13} />
-								</button>
-								<button
-									onclick={() => remove('serverDelete', { serverId: server.serverId })}
-									class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
-									title="Delete"
-								>
-									<Trash2 size={13} />
-								</button>
-							</div>
+							<RowActions
+								onEdit={() => openServerEdit(server)}
+								onDelete={() => remove('serverDelete', { serverId: server.serverId })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -418,7 +363,7 @@
 			</Table.Body>
 		</Table.Root>
 	{/if}
-</div>
+</AdminPanel>
 
 <!-- USER MODAL -->
 <Modal

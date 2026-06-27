@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Bot, Pencil, Trash2, Plus } from '@lucide/svelte';
+	import { Bot, Plus } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
+	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import RowActions from '$lib/components/RowActions.svelte';
+	import UserViewModal from '$lib/components/UserViewModal.svelte';
+	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
 	import type { UserData } from '$lib/types';
 
@@ -34,16 +38,10 @@
 
 	onMount(load);
 
-	const ROLE_CHIP: Record<string, string> = {
-		admin: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-		moderator: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-		developer: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
-		supporter: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-		betatester: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-		trusted: 'bg-yellow-100 text-yellow-700 dark:bg-gray-800 dark:text-gray-400',
-		user: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
-		bot: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500'
-	};
+	let currentTab = $state('users');
+	const innerTabs = $derived<AdminTab[]>([
+		{ id: 'users', label: 'Users', icon: Bot, count: dcUsers.length }
+	]);
 
 	let modalOpen = $state(false);
 	let modalMode = $state<'create' | 'edit'>('create');
@@ -105,21 +103,13 @@
 	}
 </script>
 
-<div class="mx-auto max-w-7xl px-6 py-4">
-	{#if loadError}
-		<div class="bg-destructive/10 text-destructive mb-3 rounded px-3 py-2 text-sm">{loadError}</div>
-	{/if}
-	<div class="mb-3 flex items-center gap-3">
+<AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
+	{#snippet toolbar()}
 		<Button.Root size="sm" onclick={openCreate}>
 			<Plus size={14} />
 			Add User
 		</Button.Root>
-		<div class="text-muted-foreground flex items-center gap-2 text-sm">
-			<Bot class="h-4 w-4" />
-			<span>Discord Users</span>
-			<span class="text-xs">({dcUsers.length})</span>
-		</div>
-	</div>
+	{/snippet}
 
 	<Table.Root>
 		<Table.Header>
@@ -151,22 +141,7 @@
 						{/if}
 					</Table.Cell>
 					<Table.Cell class="py-1.5">
-						<div class="flex items-center gap-1 opacity-0 transition-all group-hover:opacity-100">
-							<button
-								onclick={() => openEdit(dc)}
-								class="text-muted-foreground hover:bg-muted hover:text-foreground rounded p-1.5"
-								title="Edit"
-							>
-								<Pencil size={13} />
-							</button>
-							<button
-								onclick={() => remove(dc.discordUserId)}
-								class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
-								title="Delete"
-							>
-								<Trash2 size={13} />
-							</button>
-						</div>
+						<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
 					</Table.Cell>
 				</Table.Row>
 			{/each}
@@ -179,7 +154,7 @@
 			{/if}
 		</Table.Body>
 	</Table.Root>
-</div>
+</AdminPanel>
 
 <!-- DC USER MODAL -->
 <Modal
@@ -244,33 +219,5 @@
 
 <!-- USER VIEW MODAL -->
 {#if viewingUser}
-	<Modal bind:open={viewUserOpen} title={viewingUser.username}>
-		<div class="space-y-3">
-			<div class="flex flex-wrap gap-1">
-				{#each viewingUser.roles as role (role)}
-					<span
-						class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
-							'bg-gray-100 text-gray-600'}">{role}</span
-					>
-				{/each}
-			</div>
-			<div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-				<span class="text-muted-foreground">Email</span><span>{viewingUser.email}</span>
-				<span class="text-muted-foreground">Credit</span><span class="tabular-nums"
-					>{viewingUser.credit}</span
-				>
-				<span class="text-muted-foreground">Last online</span>
-				<span
-					>{new Date(viewingUser.lastOnline).toLocaleDateString('en', {
-						month: 'short',
-						day: 'numeric',
-						year: '2-digit'
-					})}</span
-				>
-			</div>
-			<div class="text-muted-foreground pt-1 text-xs">
-				ID: <span class="font-mono">{viewingUser.id}</span>
-			</div>
-		</div>
-	</Modal>
+	<UserViewModal bind:open={viewUserOpen} user={viewingUser} />
 {/if}

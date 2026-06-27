@@ -1,14 +1,18 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { UserData } from '$lib/types';
-	import { Plus, Pencil, Trash2, CheckCircle2, XCircle, Loader2 } from '@lucide/svelte';
+	import { Plus, CheckCircle2, XCircle, Loader2 } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
 	import RestrictEditor from '$lib/components/RestrictEditor.svelte';
 	import LocationEditor from '$lib/components/LocationEditor.svelte';
-	import { Pickaxe, Wand2, Compass, Eye } from '@lucide/svelte';
+	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import RowActions from '$lib/components/RowActions.svelte';
+	import UserViewModal from '$lib/components/UserViewModal.svelte';
+	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
+	import { Pickaxe, Wand2, Compass, Eye, Users, MapPin, Globe, Layers } from '@lucide/svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
 
 	interface Warp {
@@ -98,6 +102,13 @@
 
 	let currentTab = $state('players');
 	let worldNames = $derived(worlds.map((w) => w.name));
+
+	const mcTabs = $derived<AdminTab[]>([
+		{ id: 'players', label: 'Players', icon: Users, count: mcUsers.length },
+		{ id: 'warps', label: 'Warps', icon: MapPin, count: warps.length },
+		{ id: 'worlds', label: 'Worlds', icon: Globe, count: worlds.length },
+		{ id: 'groups', label: 'Groups', icon: Layers, count: groups.length }
+	]);
 
 	// --- Create Player validation ---
 	type VState = 'idle' | 'loading' | 'valid' | 'invalid';
@@ -280,17 +291,6 @@
 		viewUserOpen = true;
 	}
 
-	const ROLE_CHIP: Record<string, string> = {
-		admin: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-		moderator: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-		developer: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
-		supporter: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-		betatester: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-		trusted: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-		user: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
-		bot: 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500'
-	};
-
 	// --- Helpers ---
 	function fmtLoc(loc: string | null) {
 		if (!loc) return '-';
@@ -316,25 +316,6 @@
 	}
 </script>
 
-{#snippet rowActions(onEdit: () => void, onDelete: () => void)}
-	<div class="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-		<button
-			onclick={onEdit}
-			class="text-muted-foreground hover:bg-muted hover:text-foreground rounded p-1.5"
-			title="Edit"
-		>
-			<Pencil size={13} />
-		</button>
-		<button
-			onclick={onDelete}
-			class="text-muted-foreground hover:bg-destructive/10 hover:text-destructive rounded p-1.5"
-			title="Delete"
-		>
-			<Trash2 size={13} />
-		</button>
-	</div>
-{/snippet}
-
 {#snippet gameModePicker(current: number, set: (v: number) => void, inputName: string)}
 	<input type="hidden" name={inputName} value={current} />
 	<div class="flex overflow-hidden rounded-md border">
@@ -356,30 +337,29 @@
 	</div>
 {/snippet}
 
-<div class="mx-auto max-w-7xl px-6 py-4">
-	{#if loadError}
-		<div class="bg-destructive/10 text-destructive mb-3 rounded px-3 py-2 text-sm">{loadError}</div>
-	{/if}
-	<div class="mb-4 flex gap-1 border-b">
-		{#each ['players', 'warps', 'worlds', 'groups'] as tab (tab)}
-			<button
-				class="px-4 py-2 text-sm font-medium transition-colors {currentTab === tab
-					? 'border-primary text-primary border-b-2'
-					: 'text-muted-foreground hover:text-foreground'}"
-				onclick={() => (currentTab = tab)}
-			>
-				{tab.charAt(0).toUpperCase() + tab.slice(1)}
-			</button>
-		{/each}
-	</div>
-
-	<!-- PLAYERS -->
-	{#if currentTab === 'players'}
-		<div class="mb-3">
+<AdminPanel error={loadError} tabs={mcTabs} bind:active={currentTab}>
+	{#snippet toolbar()}
+		{#if currentTab === 'players'}
 			<Button.Root onclick={() => (createPlayerOpen = true)} size="sm" class="gap-1.5">
 				<Plus size={14} /> New Player
 			</Button.Root>
-		</div>
+		{:else if currentTab === 'warps'}
+			<Button.Root onclick={() => (createWarpOpen = true)} size="sm" class="gap-1.5">
+				<Plus size={14} /> New Warp
+			</Button.Root>
+		{:else if currentTab === 'worlds'}
+			<Button.Root onclick={() => (createWorldOpen = true)} size="sm" class="gap-1.5">
+				<Plus size={14} /> New World
+			</Button.Root>
+		{:else if currentTab === 'groups'}
+			<Button.Root onclick={() => (createGroupOpen = true)} size="sm" class="gap-1.5">
+				<Plus size={14} /> New Group
+			</Button.Root>
+		{/if}
+	{/snippet}
+
+	<!-- PLAYERS -->
+	{#if currentTab === 'players'}
 		<Table.Root>
 			<Table.Header>
 				<Table.Row>
@@ -440,10 +420,10 @@
 							</div>
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							{@render rowActions(
-								() => openPlayerEdit(mc.uuid),
-								() => remove('mcUserDelete', { uuid: mc.uuid })
-							)}
+							<RowActions
+								onEdit={() => openPlayerEdit(mc.uuid)}
+								onDelete={() => remove('mcUserDelete', { uuid: mc.uuid })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -453,11 +433,6 @@
 
 	<!-- WARPS -->
 	{#if currentTab === 'warps'}
-		<div class="mb-3">
-			<Button.Root onclick={() => (createWarpOpen = true)} size="sm" class="gap-1.5">
-				<Plus size={14} /> New Warp
-			</Button.Root>
-		</div>
 		<Table.Root class="w-full table-fixed">
 			<Table.Header>
 				<Table.Row>
@@ -491,14 +466,14 @@
 							<RestrictEditor value={warp.restrict ?? []} readonly {users} />
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							{@render rowActions(
-								() => {
+							<RowActions
+								onEdit={() => {
 									editingWarpName = warp.name;
 									formError = '';
 									warpModalOpen = true;
-								},
-								() => remove('warpDelete', { name: warp.name })
-							)}
+								}}
+								onDelete={() => remove('warpDelete', { name: warp.name })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -508,11 +483,6 @@
 
 	<!-- WORLDS -->
 	{#if currentTab === 'worlds'}
-		<div class="mb-3">
-			<Button.Root onclick={() => (createWorldOpen = true)} size="sm" class="gap-1.5">
-				<Plus size={14} /> New World
-			</Button.Root>
-		</div>
 		<Table.Root class="w-full table-fixed">
 			<Table.Header>
 				<Table.Row>
@@ -538,14 +508,14 @@
 							<RestrictEditor value={world.restrict ?? []} readonly {users} />
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							{@render rowActions(
-								() => {
+							<RowActions
+								onEdit={() => {
 									editingWorldName = world.name;
 									formError = '';
 									worldModalOpen = true;
-								},
-								() => remove('worldDelete', { name: world.name })
-							)}
+								}}
+								onDelete={() => remove('worldDelete', { name: world.name })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
@@ -555,11 +525,6 @@
 
 	<!-- GROUPS -->
 	{#if currentTab === 'groups'}
-		<div class="mb-3">
-			<Button.Root onclick={() => (createGroupOpen = true)} size="sm" class="gap-1.5">
-				<Plus size={14} /> New Group
-			</Button.Root>
-		</div>
 		<Table.Root class="w-full table-fixed">
 			<Table.Header>
 				<Table.Row>
@@ -584,17 +549,17 @@
 							<RestrictEditor value={group.restrict ?? []} readonly {users} />
 						</Table.Cell>
 						<Table.Cell class="py-1.5">
-							{@render rowActions(
-								() => openGroupEdit(group.name),
-								() => remove('groupDelete', { name: group.name })
-							)}
+							<RowActions
+								onEdit={() => openGroupEdit(group.name)}
+								onDelete={() => remove('groupDelete', { name: group.name })}
+							/>
 						</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>
 		</Table.Root>
 	{/if}
-</div>
+</AdminPanel>
 
 <!-- Player Edit Modal -->
 {#if editingPlayer}
@@ -1026,35 +991,7 @@
 
 <!-- User View Modal -->
 {#if viewingUser}
-	<Modal bind:open={viewUserOpen} title={viewingUser.username}>
-		<div class="space-y-3">
-			<div class="flex flex-wrap gap-1">
-				{#each viewingUser.roles as role (role)}
-					<span
-						class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
-							'bg-gray-100 text-gray-600'}">{role}</span
-					>
-				{/each}
-			</div>
-			<div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-				<span class="text-muted-foreground">Email</span><span>{viewingUser.email}</span>
-				<span class="text-muted-foreground">Credit</span><span class="tabular-nums"
-					>{viewingUser.credit}</span
-				>
-				<span class="text-muted-foreground">Last online</span>
-				<span
-					>{new Date(viewingUser.lastOnline).toLocaleDateString('en', {
-						month: 'short',
-						day: 'numeric',
-						year: '2-digit'
-					})}</span
-				>
-			</div>
-			<div class="text-muted-foreground pt-1 text-xs">
-				ID: <span class="font-mono">{viewingUser.id}</span>
-			</div>
-		</div>
-	</Modal>
+	<UserViewModal bind:open={viewUserOpen} user={viewingUser} />
 {/if}
 
 <!-- Create Group Modal -->
