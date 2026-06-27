@@ -668,12 +668,16 @@
 				>Name (slug)</label
 			>
 			<Input.Root id="app-name" name="name" bind:value={appName} placeholder="my-app" required />
+			<p class="text-muted-foreground mt-1 text-xs">
+				Unique identifier used by the OS to load this app. URL-safe, lowercase, no spaces.
+			</p>
 		</div>
 		<div>
 			<label for="app-title" class="text-muted-foreground mb-1 block text-xs font-medium"
 				>Title</label
 			>
 			<Input.Root id="app-title" name="title" bind:value={appTitle} placeholder="My App" required />
+			<p class="text-muted-foreground mt-1 text-xs">Display name shown to users in the desktop.</p>
 		</div>
 		<div>
 			<label for="app-author" class="text-muted-foreground mb-1 block text-xs font-medium"
@@ -690,12 +694,18 @@
 					<option value={u.id}>{u.username}</option>
 				{/each}
 			</select>
+			<p class="text-muted-foreground mt-1 text-xs">
+				The user who owns this app. Deleted when the author is deleted.
+			</p>
 		</div>
 		<div>
 			<p class="text-muted-foreground mb-1 text-xs font-medium">Restrictions</p>
 			{#key editingApp?.id ?? 'create'}
 				<RestrictEditor name="restrict" value={appRestrict} {users} />
 			{/key}
+			<p class="text-muted-foreground mt-1 text-xs">
+				Limit access to specific users or roles. Leave empty to allow all authenticated users.
+			</p>
 		</div>
 		<div class="flex justify-end gap-2 pt-2">
 			<Button.Root type="button" variant="outline" size="sm" onclick={() => (appModalOpen = false)}
