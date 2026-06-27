@@ -22,6 +22,14 @@
 			allowed = true;
 		}
 	});
+
+	// Redirect to login when the session expires mid-session (e.g. after a 401
+	// response from an admin API call triggers refreshSession()).
+	$effect(() => {
+		if (session.loaded && session.error) {
+			goto('/login?redirect=/admin');
+		}
+	});
 </script>
 
 {#if allowed}
