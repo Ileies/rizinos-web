@@ -1,20 +1,8 @@
 # TODO
 
-## Bugs / Broken
-
-- ~~**Homepage SignupFlow is non-functional**~~ - Fixed: `nextFromFinish()` calls `POST /api/auth/signup`, maps `errorId` responses to i18n messages, shows inline error banner.
-- ~~**Missing i18n keys referenced in Header**~~ - Already present in `messages/common.json` (`pricing`, `enterprise`, `api_reference`, `tutorials`).
-
-## Incomplete Pages
-
-- ~~**About page** (`/about`)~~ - Fixed: Rewritten with real content (hero, why/what cards, tech pillars, early-access banner, creator section).
-
 ## Auth & Account Flows
 
 - **Password reset** - No forgot-password page or flow exists. Needs a `/forgot-password` route and backend endpoint.
-- **Account settings page** - Users have no way to change their own email, password, username, or profile info after signup.
-- **Logout** - No visible logout button in the header/nav for logged-in users. Session ends only by clearing cookies.
-- **Session expiry handling** - If the session cookie expires mid-session, the admin UI just starts returning 401s with no redirect to `/login`. (`session.error` now signals fetch failures; consuming components still need a redirect.)
 
 ## Admin Dashboard
 
@@ -22,7 +10,6 @@
 - **No search/filter on users** - The users table has no search input. Filtering by username/email/role would help usability.
 - **Log viewer is basic** - Logs are displayed as raw text with no filtering, date range, or severity level selection.
 - **Apps tab** - The apps management tab exists but there is no documentation of what "apps" are or what fields are required. Clarify the data model and add inline help.
-- **Confirmation dialogs for destructive actions** - Deleting users or apps should require an explicit confirmation step (the Modal component exists and is ready to use).
 - **Error display** - Most admin API calls surface errors only as console errors or silently fail. Show inline error messages in the UI.
 
 ## Minecraft Admin
@@ -35,26 +22,15 @@
 ## Code Quality
 
 - **Unhandled promise rejections** - Several `fetch()`/`adminPost()` calls in admin pages are not wrapped in try/catch and have no `.catch()`. Add error handling or use a shared error boundary.
-- **Loose types in adminApi** - `adminGet` and `adminPost` in `src/lib/adminApi.ts` return `any`. Add generics so call sites get typed responses.
-- ~~**Client-only admin auth gate**~~ - Comment was already present in `/admin/+layout.svelte`.
-- ~~**`session.svelte.ts` has no error state**~~ - Fixed: `session.error` is now exposed; set on non-ok responses and network errors, reset by `refreshSession()`.
 
 ## i18n
 
-- **Missing translation strings** - Add keys for navigation items currently referenced but undefined: `pricing`, `enterprise`, `api_reference`, `tutorials` (or remove those nav items if they are not planned).
 - **Admin UI is not translated** - The entire admin dashboard uses hardcoded English strings. Either declare it English-only by design or add i18n coverage.
 - **Confirm-email page messages** - Check that all success/error variants in `/confirm-email` have translations in all four locales.
-
-## SEO & Meta
-
-- **No `<meta>` tags on inner pages** - `/login`, `/signup`, `/about` now have `<svelte:head>` with page-specific `<title>` and `<meta name="description">`. Other routes (legal, confirm-email, etc.) still missing.
-- ~~**No sitemap**~~ - Fixed: `static/sitemap.xml` covers all public marketing routes.
-- ~~**No robots.txt**~~ - Fixed: `static/robots.txt` created; blocks `/admin/` and `/api/`, references sitemap URL.
 
 ## Performance
 
 - **No image optimization** - The hero section and other marketing assets (if added) should use SvelteKit's `enhanced:img` or a similar pipeline rather than raw `<img>` tags.
-- **Google Analytics loaded unconditionally** - Analytics fires even when `PUBLIC_GOOGLE_ANALYTICS_ID` is empty/unset. Guard the script tag to only inject when the ID is present.
 
 ## DevEx / Tooling
 
@@ -64,9 +40,5 @@
 
 ## Future Features
 
-- **User-facing dashboard** - Logged-in non-admin users see the same marketing homepage. A `/dashboard` route for regular users would be the natural next step.
-- **PostHog analytics** - `PUBLIC_POSTHOG_KEY` is in `.env.template` but commented out. Decide if PostHog is being used and either remove it or wire it up.
-- **WebSocket integration** - The Vite proxy forwards `/ws` to the backend but no client code consumes WebSocket events yet. Real-time features (live log streaming, online status) will need this.
 - **OAuth login** - No third-party auth providers. Discord OAuth would pair naturally with the existing Discord integration.
-- **Dark mode toggle** - Tailwind dark mode classes are present throughout but there is no UI toggle. The theme follows the OS setting only.
 - **Pricing page** - The hero CTA and nav reference pricing but no `/pricing` route exists.

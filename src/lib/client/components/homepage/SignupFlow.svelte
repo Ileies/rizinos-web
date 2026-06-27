@@ -344,16 +344,16 @@
 								{/if}
 							</div>
 						</div>
-					{#if serverError}
-						<p class="text-destructive mt-3 text-sm">{serverError}</p>
-					{/if}
-					<button
-						onclick={nextFromFinish}
-						disabled={submitting}
-						class="bg-primary text-primary-foreground hover:bg-primary/90 mt-5 w-full rounded-lg py-3 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-					>
-						{submitting ? m.signup_creating() : m.signup_create_account()}
-					</button>
+						{#if serverError}
+							<p class="text-destructive mt-3 text-sm">{serverError}</p>
+						{/if}
+						<button
+							onclick={nextFromFinish}
+							disabled={submitting}
+							class="bg-primary text-primary-foreground hover:bg-primary/90 mt-5 w-full rounded-lg py-3 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+						>
+							{submitting ? m.signup_creating() : m.signup_create_account()}
+						</button>
 					{:else if step === 'confirm'}
 						<div class="text-center">
 							<p class="mb-3 text-4xl">🎉</p>

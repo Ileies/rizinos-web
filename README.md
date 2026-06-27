@@ -10,10 +10,10 @@ This repo is the marketing site, authentication forms, and admin dashboard, buil
 
 In production, nginx routes traffic on one origin:
 
-| Path prefix | Served by |
-|---|---|
+| Path prefix                                               | Served by                       |
+| --------------------------------------------------------- | ------------------------------- |
 | `/`, `/about`, `/login`, `/signup`, `/admin`, legal pages | this static build (rizinos-web) |
-| `/app`, `/api/*`, `/storage/*`, `/ws` | rizinos (Bun server, port 3001) |
+| `/app`, `/api/*`, `/storage/*`, `/ws`                     | rizinos (Bun server, port 3001) |
 
 Same origin means cookies work without CORS or `SameSite=None`.
 
@@ -21,30 +21,30 @@ Same origin means cookies work without CORS or `SameSite=None`.
 
 ## What lives here
 
-| Route | Description |
-|---|---|
-| `/` | Marketing homepage with inline signup flow |
-| `/login` | Login page (email + password, Google OAuth) |
-| `/signup` | Multi-step signup form |
-| `/confirm-email` | Email verification handler |
-| `/about` | About page |
-| `/legal`, `/privacy`, `/terms` | Legal / privacy / terms pages |
-| `/admin` | Admin SPA (users, Minecraft server management, Discord/Minechat) |
+| Route                          | Description                                                      |
+| ------------------------------ | ---------------------------------------------------------------- |
+| `/`                            | Marketing homepage with inline signup flow                       |
+| `/login`                       | Login page (email + password, Google OAuth)                      |
+| `/signup`                      | Multi-step signup form                                           |
+| `/confirm-email`               | Email verification handler                                       |
+| `/about`                       | About page                                                       |
+| `/legal`, `/privacy`, `/terms` | Legal / privacy / terms pages                                    |
+| `/admin`                       | Admin SPA (users, Minecraft server management, Discord/Minechat) |
 
 ---
 
 ## Tech stack
 
-| Layer | Technology |
-|---|---|
-| Framework | SvelteKit 2 + Svelte 5 (runes only) |
-| Adapter | `adapter-static` - fully prerendered, CDN-deployable |
-| Styling | Tailwind CSS v4 + shadcn-svelte + bits-ui |
-| Icons | `@lucide/svelte` |
-| Build / runtime | Bun |
-| i18n | Custom Vite plugin, 4 locales: de / en / cn / ru |
-| 3D / animation | Three.js + Threlte (hero section) |
-| Validation | Zod |
+| Layer           | Technology                                           |
+| --------------- | ---------------------------------------------------- |
+| Framework       | SvelteKit 2 + Svelte 5 (runes only)                  |
+| Adapter         | `adapter-static` - fully prerendered, CDN-deployable |
+| Styling         | Tailwind CSS v4 + shadcn-svelte + bits-ui            |
+| Icons           | `@lucide/svelte`                                     |
+| Build / runtime | Bun                                                  |
+| i18n            | Custom Vite plugin, 4 locales: de / en / cn / ru     |
+| 3D / animation  | Three.js + Threlte (hero section)                    |
+| Validation      | Zod                                                  |
 
 ---
 
@@ -133,11 +133,11 @@ static/                          # robots.txt, favicon, public assets
 
 ### Path aliases
 
-| Alias | Points to |
-|---|---|
-| `$lib` | `src/lib` |
-| `$ui` | `src/lib/client/components` |
-| `$shadcn` | `src/lib/components/ui` |
+| Alias     | Points to                   |
+| --------- | --------------------------- |
+| `$lib`    | `src/lib`                   |
+| `$ui`     | `src/lib/client/components` |
+| `$shadcn` | `src/lib/components/ui`     |
 
 ---
 
@@ -147,12 +147,12 @@ Translation strings live in `messages/*.json`. Each key maps to an array `[de, e
 
 ```json
 {
-  "hero_title": [
-    "Das Betriebssystem, das in Ihrem Browser läuft",
-    "The operating system that runs in your browser",
-    "在您的浏览器中运行的操作系统",
-    "Операционная система, которая работает в вашем браузере"
-  ]
+	"hero_title": [
+		"Das Betriebssystem, das in Ihrem Browser läuft",
+		"The operating system that runs in your browser",
+		"在您的浏览器中运行的操作系统",
+		"Операционная система, которая работает в вашем браузере"
+	]
 }
 ```
 

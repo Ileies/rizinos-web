@@ -27,7 +27,9 @@
 		<!-- Why section -->
 		<div class="mb-16 grid gap-8 sm:grid-cols-2">
 			<div class="bg-card border-border rounded-2xl border p-8">
-				<div class="bg-primary/10 text-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold">
+				<div
+					class="bg-primary/10 text-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold"
+				>
 					?
 				</div>
 				<h2 class="text-foreground mb-3 text-xl font-bold">Why does this exist?</h2>
@@ -38,7 +40,9 @@
 				</p>
 			</div>
 			<div class="bg-card border-border rounded-2xl border p-8">
-				<div class="bg-primary/10 text-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold">
+				<div
+					class="bg-primary/10 text-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold"
+				>
 					~
 				</div>
 				<h2 class="text-foreground mb-3 text-xl font-bold">What can you do with it?</h2>
@@ -73,9 +77,9 @@
 					<div>
 						<h3 class="text-foreground mb-1 font-semibold">Declarative configuration</h3>
 						<p class="text-muted-foreground text-sm leading-relaxed">
-							Inspired by NixOS, your entire environment is described as configuration. Install apps,
-							set preferences, define your desktop layout - all reproducible and version-controlled.
-							No more "it works on my machine".
+							Inspired by NixOS, your entire environment is described as configuration. Install
+							apps, set preferences, define your desktop layout - all reproducible and
+							version-controlled. No more "it works on my machine".
 						</p>
 					</div>
 				</div>
@@ -103,7 +107,7 @@
 					Early Access
 				</span>
 			</div>
-			<h2 class="text-foreground mb-3 mt-4 text-xl font-bold">Currently in development</h2>
+			<h2 class="text-foreground mt-4 mb-3 text-xl font-bold">Currently in development</h2>
 			<p class="text-muted-foreground leading-relaxed">
 				RizinOS is early-stage software. The core desktop shell is functional, but many features are
 				still being built. Expect rough edges and frequent updates. Early adopters get to shape what
@@ -120,9 +124,9 @@
 					<p class="text-primary mb-4 text-sm font-medium">Solo developer</p>
 					<p class="text-muted-foreground leading-relaxed">
 						RizinOS is a solo project. I'm a developer who got frustrated with the friction of
-						traditional operating systems and decided to explore whether the browser could be a better
-						foundation. Everything you see here - the OS shell, the backend, the infrastructure - is
-						built and maintained by one person.
+						traditional operating systems and decided to explore whether the browser could be a
+						better foundation. Everything you see here - the OS shell, the backend, the
+						infrastructure - is built and maintained by one person.
 					</p>
 					<p class="text-muted-foreground mt-4 leading-relaxed">
 						The project is open to early users and I genuinely read every piece of feedback. If

@@ -5,6 +5,7 @@ Static frontend for RizinOS. Built with SvelteKit + `adapter-static` + Bun. Full
 ## Sibling project: `rizinos` (backend)
 
 [`../rizinos`](../rizinos) is the dynamic backend. It owns:
+
 - `/app` - the OS desktop shell (SSR, SvelteKit Node adapter)
 - `/api/*` - all REST endpoints (auth, admin, Minecraft, OS-level)
 - `/ws` - custom Bun WebSocket server
@@ -14,6 +15,7 @@ Static frontend for RizinOS. Built with SvelteKit + `adapter-static` + Bun. Full
 See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md) for backend conventions, DB schema, API contracts, and deployment details.
 
 In **production**, nginx routes traffic on one origin:
+
 - Everything not under `/app|/api|/storage|/ws` → this static build (rizinos-web)
 - `/app`, `/api`, `/storage`, `/ws` → `rizinos` on port 3001
 
@@ -83,11 +85,11 @@ static/                       # robots.txt, favicon, public assets
 
 ### Path aliases
 
-| Alias | Points to |
-|---|---|
-| `$lib` | `src/lib` |
-| `$ui` | `src/lib/client/components` |
-| `$shadcn` | `src/lib/components/ui` |
+| Alias     | Points to                   |
+| --------- | --------------------------- |
+| `$lib`    | `src/lib`                   |
+| `$ui`     | `src/lib/client/components` |
+| `$shadcn` | `src/lib/components/ui`     |
 
 ---
 
@@ -123,12 +125,12 @@ Source files live in `messages/*.json`. Each key maps to an array `[de, en, cn, 
 
 ```json
 {
-  "hero_title": [
-    "Das Betriebssystem, das in Ihrem Browser läuft",
-    "The operating system that runs in your browser",
-    "在您的浏览器中运行的操作系统",
-    "Операционная система, которая работает в вашем браузере"
-  ]
+	"hero_title": [
+		"Das Betriebssystem, das in Ihrem Browser läuft",
+		"The operating system that runs in your browser",
+		"在您的浏览器中运行的操作系统",
+		"Операционная система, которая работает в вашем браузере"
+	]
 }
 ```
 
@@ -145,6 +147,7 @@ import { hero_title, login_sign_in_button } from '$lib/messages.svelte';
 ```
 
 **Rules:**
+
 - Adding a key: add it to the correct topic JSON file, then restart dev (the file will be regenerated)
 - `messages.svelte.ts` is a Svelte 5 runes module - locale switching is reactive (`$state`)
 - Locale is read from the `LOCALE` cookie client-side; default is `en` in the static site
@@ -166,7 +169,7 @@ const users = await adminGet<User[]>('/');
 // POST with structured result
 const result = await adminPost('/minecraft', { action: 'start', worldId: 1 });
 if (!result.ok) {
-  console.error(result.error); // string error message from backend
+	console.error(result.error); // string error message from backend
 }
 ```
 
