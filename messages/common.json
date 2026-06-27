@@ -48,5 +48,15 @@
 	"language": ["Sprache", "Language", "语言", "Язык"],
 	"select_language": ["Sprache auswählen", "Select language", "选择语言", "Выбрать язык"],
 	"toggle_menu": ["Menü umschalten", "Toggle menu", "切换菜单", "Переключить меню"],
-	"log_out": ["Abmelden", "Log out", "退出登录", "Выйти"]
+	"log_out": ["Abmelden", "Log out", "退出登录", "Выйти"],
+
+	"cookie_banner_text": [
+		"Wir nutzen Google Analytics, um unsere Website zu verbessern.",
+		"We use Google Analytics to improve our website.",
+		"我们使用 Google Analytics 来改善我们的网站。",
+		"Мы используем Google Analytics для улучшения нашего сайта."
+	],
+	"cookie_accept": ["Zustimmen", "Accept", "接受", "Принять"],
+	"cookie_decline": ["Ablehnen", "Decline", "拒绝", "Отклонить"],
+	"cookie_privacy_link": ["Datenschutz", "Privacy Policy", "隐私政策", "Политика конфиденциальности"]
 }
