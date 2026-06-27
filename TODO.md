@@ -48,7 +48,7 @@
 ## SEO & Meta
 
 - **No `<meta>` tags on inner pages** - `/login`, `/signup`, `/about` now have `<svelte:head>` with page-specific `<title>` and `<meta name="description">`. Other routes (legal, confirm-email, etc.) still missing.
-- **No sitemap** - Static sitemap is easy to generate and helps indexing. Add a `sitemap.xml` to `/static` or generate it at build time.
+- ~~**No sitemap**~~ - Fixed: `static/sitemap.xml` covers all public marketing routes.
 - ~~**No robots.txt**~~ - Fixed: `static/robots.txt` created; blocks `/admin/` and `/api/`, references sitemap URL.
 
 ## Performance
