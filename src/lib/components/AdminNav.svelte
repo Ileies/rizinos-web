@@ -21,10 +21,7 @@
 	<div class="mx-auto max-w-7xl px-6">
 		<div class="flex items-end justify-between pt-5 pb-0">
 			<div class="pb-3">
-				<p class="text-muted-foreground mb-0.5 text-xs font-medium tracking-widest uppercase">Admin</p>
-				<h1 class="text-xl font-semibold leading-none">
-					{tabs.find((t) => isActive(t.href))?.label ?? 'Dashboard'}
-				</h1>
+				<h1 class="text-xl font-semibold leading-none">Datenbank-Verwaltung</h1>
 			</div>
 		</div>
 		<div class="flex">
