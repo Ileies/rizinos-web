@@ -29,7 +29,8 @@ Items already done are NOT listed here. This is the remaining backlog.
 ## Strukturierte Daten (JSON-LD)
 
 - [x] **Organization** - JSON-LD im globalen `+layout.svelte` via `{@html}` eingebettet
-- [x] **WebSite** - JSON-LD im globalen `+layout.svelte` gemeinsam mit Organization im `@graph`; SearchAction noch offen (keine interne Suche)
+- [x] **WebSite** - JSON-LD im globalen `+layout.svelte` gemeinsam mit Organization im `@graph`
+- [ ] **SearchAction im WebSite-Schema** - `potentialAction` mit `SearchAction` ergänzen sobald eine interne Suche existiert (z.B. Docs- oder Blog-Suche); aktiviert die Sitelinks Searchbox in Google
 - [x] **SoftwareApplication** - JSON-LD in Homepage `+page.ts` via `jsonLd`-Feld; WebApplication, kostenlos, Offers-Schema
 - [x] **BreadcrumbList** - Im globalen `+layout.svelte` automatisch aus `page.url.pathname` abgeleitet; kein Code in den Seiten nötig
 - [ ] **FAQPage** - FAQ-Sektionen auf Features- und Pricing-Seite mit strukturierten Daten auszeichnen
