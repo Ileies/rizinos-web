@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 	import { ArrowRight, CheckCircle } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
 
@@ -9,7 +10,7 @@
 	let success = $state(false);
 	let error = $state('');
 
-	const token = $derived(page.url.searchParams.get('token') ?? '');
+	const token = $derived(browser ? (page.url.searchParams.get('token') ?? '') : '');
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();

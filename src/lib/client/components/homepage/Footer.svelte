@@ -29,8 +29,8 @@
 				{
 					title: m.product(),
 					items: {
-						'/#features': m.features(),
-						'/#security': m.security(),
+						'/features': m.features(),
+						'/security': m.security(),
 						'/enterprise': m.enterprise(),
 						'/pricing': m.pricing()
 					}

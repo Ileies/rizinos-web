@@ -34,9 +34,9 @@
 					label: m.documentation(),
 					href: '/docs',
 					dropdown: [
-						{ label: m.getting_started(), href: '/docs/getting-started' },
-						{ label: m.api_reference(), href: '/docs/api' },
-						{ label: m.tutorials(), href: '/docs/tutorials' }
+						{ label: m.getting_started(), href: '/docs#getting-started' },
+						{ label: m.api_reference(), href: '/docs#api' },
+						{ label: m.tutorials(), href: '/docs#tutorials' }
 					]
 				},
 				{ label: m.pricing(), href: '/pricing' },
