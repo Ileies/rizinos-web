@@ -1,0 +1,79 @@
+{
+	"forgot_title": [
+		"Passwort vergessen",
+		"Forgot password",
+		"忘记密码",
+		"Забыли пароль"
+	],
+	"forgot_desc": [
+		"Gib deine E-Mail-Adresse ein. Wenn ein Konto existiert, senden wir dir einen Reset-Link.",
+		"Enter your email address. If an account exists, we'll send you a reset link.",
+		"输入你的电子邮件地址。如果账户存在，我们将发送重置链接。",
+		"Введи свой адрес электронной почты. Если аккаунт существует, мы отправим ссылку для сброса."
+	],
+	"forgot_email_label": ["E-Mail", "Email", "电子邮件", "Электронная почта"],
+	"forgot_submit_button": [
+		"Reset-Link senden",
+		"Send reset link",
+		"发送重置链接",
+		"Отправить ссылку для сброса"
+	],
+	"forgot_success_title": [
+		"E-Mail gesendet",
+		"Email sent",
+		"邮件已发送",
+		"Письмо отправлено"
+	],
+	"forgot_success_desc": [
+		"Falls ein Konto mit dieser E-Mail existiert, haben wir einen Reset-Link gesendet. Bitte prüfe auch deinen Spam-Ordner.",
+		"If an account with this email exists, we've sent a reset link. Please also check your spam folder.",
+		"如果该电子邮件存在账户，我们已发送重置链接。请同时检查垃圾邮件文件夹。",
+		"Если аккаунт с этим адресом существует, мы отправили ссылку для сброса. Проверь папку со спамом."
+	],
+	"forgot_back_to_login": ["Zurück zum Login", "Back to login", "返回登录", "Назад к входу"],
+	"reset_title": ["Neues Passwort", "New password", "新密码", "Новый пароль"],
+	"reset_desc": [
+		"Wähle ein neues Passwort für dein Konto.",
+		"Choose a new password for your account.",
+		"为你的账户选择一个新密码。",
+		"Выбери новый пароль для своего аккаунта."
+	],
+	"reset_password_label": ["Neues Passwort", "New password", "新密码", "Новый пароль"],
+	"reset_confirm_label": [
+		"Passwort bestätigen",
+		"Confirm password",
+		"确认密码",
+		"Подтвердить пароль"
+	],
+	"reset_submit_button": [
+		"Passwort zurücksetzen",
+		"Reset password",
+		"重置密码",
+		"Сбросить пароль"
+	],
+	"reset_success_title": [
+		"Passwort geändert",
+		"Password changed",
+		"密码已更改",
+		"Пароль изменён"
+	],
+	"reset_success_desc": [
+		"Dein Passwort wurde erfolgreich zurückgesetzt. Du kannst dich jetzt anmelden.",
+		"Your password has been successfully reset. You can now sign in.",
+		"你的密码已成功重置。你现在可以登录了。",
+		"Твой пароль успешно сброшен. Теперь ты можешь войти."
+	],
+	"reset_token_invalid": [
+		"Dieser Reset-Link ist ungültig oder abgelaufen. Bitte fordere einen neuen an.",
+		"This reset link is invalid or expired. Please request a new one.",
+		"此重置链接无效或已过期。请申请新链接。",
+		"Эта ссылка для сброса недействительна или истекла. Запроси новую."
+	],
+	"reset_passwords_no_match": [
+		"Die Passwörter stimmen nicht überein.",
+		"Passwords do not match.",
+		"密码不匹配。",
+		"Пароли не совпадают."
+	],
+	"reset_sign_in_button": ["Jetzt anmelden", "Sign in now", "立即登录", "Войти сейчас"]
+}
