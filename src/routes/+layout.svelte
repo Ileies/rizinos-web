@@ -6,7 +6,18 @@
 	import Footer from '$ui/homepage/Footer.svelte';
 	import CookieBanner from '$lib/components/CookieBanner.svelte';
 	import { session, loadSession } from '$lib/session.svelte';
+	import { getLocale } from '$lib/messages.svelte';
 	import { PUBLIC_GOOGLE_ANALYTICS_ID, PUBLIC_ORIGIN } from '$env/static/public';
+
+	const LANG_TAG: Record<string, string> = { de: 'de', en: 'en', cn: 'zh-CN', ru: 'ru' };
+	const OG_LOCALE: Record<string, string> = { de: 'de_DE', en: 'en_US', cn: 'zh_CN', ru: 'ru_RU' };
+
+	const htmlLang = $derived(LANG_TAG[getLocale()] ?? 'en');
+	const ogLocale = $derived(OG_LOCALE[getLocale()] ?? 'en_US');
+
+	$effect(() => {
+		document.documentElement.lang = htmlLang;
+	});
 
 	const SEO_DEFAULTS = {
 		robots: 'index, follow',
@@ -113,6 +124,7 @@
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="RizinOS" />
+	<meta property="og:locale" content={ogLocale} />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@rizinos" />
 	<meta name="twitter:title" content={seo.title} />
