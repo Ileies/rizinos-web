@@ -1,5 +1,6 @@
 import { browser } from '$app/environment';
 import { Role } from '$lib/types';
+import { apiFetch } from '$lib/api';
 
 // Client-side session state for the static frontend. There is no server load
 // here, so login status comes from the backend's `GET /api/auth/session`
@@ -34,7 +35,7 @@ let _promise: Promise<void> | null = null;
 export function loadSession(): Promise<void> {
 	if (!browser) return Promise.resolve();
 	if (_promise) return _promise;
-	_promise = fetch('/api/auth/session')
+	_promise = apiFetch('/auth/session')
 		.then((r) => {
 			if (!r.ok) {
 				_error = true;
@@ -67,7 +68,7 @@ export function refreshSession(): Promise<void> {
 /** Call POST /api/auth/logout, then clear the local session state. */
 export async function logout(): Promise<void> {
 	try {
-		await fetch('/api/auth/logout', { method: 'POST' });
+		await apiFetch('/auth/logout', { method: 'POST' });
 	} catch {
 		// ignore network errors - clear local state regardless
 	}

@@ -3,6 +3,7 @@
 	import { browser } from '$app/environment';
 	import { ArrowRight, CheckCircle } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
+	import { apiPost } from '$lib/api';
 
 	let password = $state('');
 	let confirmPassword = $state('');
@@ -24,18 +25,14 @@
 		submitting = true;
 		error = '';
 
-		const res = await fetch('/api/auth/reset-password', {
-			method: 'POST',
-			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({ token, password })
-		});
+		const result = await apiPost('/auth/reset-password', { token, password });
 
-		if (res.ok) {
+		if (result.ok) {
 			success = true;
 			return;
 		}
 
-		error = (await res.json().catch(() => ({})))?.error ?? m.reset_token_invalid();
+		error = result.error ?? m.reset_token_invalid();
 		submitting = false;
 	}
 </script>

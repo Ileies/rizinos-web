@@ -6,6 +6,7 @@
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
+	import { apiFetch } from '$lib/api';
 	import RestrictEditor from '$lib/components/RestrictEditor.svelte';
 	import LocationEditor from '$lib/components/LocationEditor.svelte';
 	import AdminPanel from '$lib/components/AdminPanel.svelte';
@@ -139,8 +140,8 @@
 		cpUuidState = 'idle';
 		cpValidateError = '';
 		try {
-			const res = await fetch(
-				`/api/admin/minecraft/validate?type=username&value=${encodeURIComponent(name)}`
+			const res = await apiFetch(
+				`/admin/minecraft/validate?type=username&value=${encodeURIComponent(name)}`
 			);
 			const body = await res.json();
 			if (res.ok) {
@@ -165,8 +166,8 @@
 		cpNameState = 'idle';
 		cpValidateError = '';
 		try {
-			const res = await fetch(
-				`/api/admin/minecraft/validate?type=uuid&value=${encodeURIComponent(uuid)}`
+			const res = await apiFetch(
+				`/admin/minecraft/validate?type=uuid&value=${encodeURIComponent(uuid)}`
 			);
 			const body = await res.json();
 			if (res.ok) {

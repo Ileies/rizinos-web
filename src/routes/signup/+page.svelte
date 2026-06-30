@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
+	import { apiPost } from '$lib/api';
 
 	let step = $state(1);
 	const TOTAL_STEPS = 4;
@@ -173,20 +174,15 @@
 		submitting = true;
 		serverError = '';
 
-		const res = await fetch('/api/auth/signup', {
-			method: 'POST',
-			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify(formData)
-		});
+		const result = await apiPost<{ errorId?: string }>('/auth/signup', formData);
 		submitting = false;
 
-		if (res.ok) {
+		if (result.ok) {
 			success = true;
 			return;
 		}
 
-		const data = (await res.json().catch(() => ({}))) as { errorId?: string };
-		serverError = resolveErrorId(data.errorId ?? 'signup_server_error');
+		serverError = resolveErrorId(result.data?.errorId ?? 'signup_server_error');
 	}
 
 	const inputBase =

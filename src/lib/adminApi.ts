@@ -1,38 +1,29 @@
-// Thin client for the backend `/api/admin/*` endpoints. The admin dashboard is a
-// static SPA, so what used to be SvelteKit form actions + server `load` now go
-// over fetch (same origin via the reverse proxy, cookies included automatically).
-
 import { refreshSession } from '$lib/session.svelte';
+import { apiFetch } from '$lib/api';
 
-export async function adminGet<T>(path: string): Promise<T> {
-	const res = await fetch(`/api/admin${path}`);
-	if (res.status === 401) {
-		// Session expired mid-session: invalidate local state so the admin layout
-		// can redirect to /login via its $effect watcher.
-		await refreshSession();
-	}
-	if (!res.ok) throw new Error(`GET /api/admin${path} failed (${res.status})`);
-	return res.json() as Promise<T>;
-}
-
-export interface AdminResult {
+export interface AdminResult<T = never> {
 	ok: boolean;
 	error?: string;
+	data?: T;
+}
+
+export async function adminGet<T>(path: string): Promise<T> {
+	const res = await apiFetch(`/admin${path}`);
+	if (res.status === 401) await refreshSession();
+	if (!res.ok) throw new Error(`GET /admin${path} failed (${res.status})`);
+	return res.json() as Promise<T>;
 }
 
 export async function adminPost<T = never>(
 	path: string,
 	body: Record<string, unknown>
-): Promise<AdminResult & { data?: T }> {
+): Promise<AdminResult<T>> {
 	try {
-		const res = await fetch(`/api/admin${path}`, {
+		const res = await apiFetch(`/admin${path}`, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(body)
 		});
-		if (res.status === 401) {
-			await refreshSession();
-		}
+		if (res.status === 401) await refreshSession();
 		if (res.ok) {
 			try {
 				const data = (await res.json()) as T;
@@ -43,10 +34,10 @@ export async function adminPost<T = never>(
 		}
 		let error = `Request failed (${res.status})`;
 		try {
-			const data = await res.json();
-			error = data.message ?? data.error ?? error;
+			const d = await res.json();
+			error = d.message ?? d.error ?? error;
 		} catch {
-			/* response had no JSON body */
+			/* no body */
 		}
 		return { ok: false, error };
 	} catch {

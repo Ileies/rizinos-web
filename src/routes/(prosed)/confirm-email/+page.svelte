@@ -4,6 +4,7 @@
 	import { page } from '$app/state';
 	import * as Button from '$shadcn/button';
 	import * as m from '$lib/messages.svelte';
+	import { apiFetch } from '$lib/api';
 
 	let status = $state<number | null>(null);
 
@@ -21,7 +22,7 @@
 	onMount(async () => {
 		const token = page.url.searchParams.get('token');
 		try {
-			const res = await fetch(`/api/auth/confirm-email?token=${encodeURIComponent(token ?? '')}`);
+			const res = await apiFetch(`/auth/confirm-email?token=${encodeURIComponent(token ?? '')}`);
 			status = (await res.json()).status;
 		} catch {
 			status = 2; // treat network failure as invalid token

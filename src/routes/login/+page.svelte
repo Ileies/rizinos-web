@@ -5,6 +5,7 @@
 	import { ArrowRight } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
 	import { session, loadSession, refreshSession } from '$lib/session.svelte';
+	import { apiPost } from '$lib/api';
 
 	let emailElement: HTMLInputElement;
 	let error = $state('');
@@ -25,23 +26,19 @@
 		error = '';
 
 		const data = new FormData(e.currentTarget as HTMLFormElement);
-		const res = await fetch('/api/auth/login', {
-			method: 'POST',
-			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({
-				email: data.get('email'),
-				password: data.get('password'),
-				keep: data.get('keep') === 'on'
-			})
+		const result = await apiPost('/auth/login', {
+			email: data.get('email'),
+			password: data.get('password'),
+			keep: data.get('keep') === 'on'
 		});
 
-		if (res.ok) {
+		if (result.ok) {
 			await refreshSession();
 			goto(redirectTo());
 			return;
 		}
 
-		error = (await res.json().catch(() => ({})))?.error ?? 'Login failed.';
+		error = result.error ?? 'Login failed.';
 		submitting = false;
 	}
 </script>

@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
 	import * as m from '$lib/messages.svelte';
+	import { apiPost } from '$lib/api';
 
 	let { loggedIn = false }: { loggedIn?: boolean } = $props();
 
@@ -117,23 +118,18 @@
 		}
 		if (!ok) return;
 		submitting = true;
-		const res = await fetch('/api/auth/signup', {
-			method: 'POST',
-			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({ username, birthdate, email, password })
-		});
+		const result = await apiPost<{ errorId?: string }>('/auth/signup', { username, birthdate, email, password });
 		submitting = false;
-		if (res.ok) {
+		if (result.ok) {
 			step = 'confirm';
 			return;
 		}
-		const data = (await res.json().catch(() => ({}))) as { errorId?: string };
 		const errorMap: Record<string, () => string> = {
 			signup_server_error: m.signup_server_error,
 			signup_username_taken: m.signup_username_taken,
 			signup_email_taken: m.signup_email_taken
 		};
-		serverError = (errorMap[data.errorId ?? ''] ?? m.signup_server_error)();
+		serverError = (errorMap[result.data?.errorId ?? ''] ?? m.signup_server_error)();
 	}
 
 	const dockColors = [
