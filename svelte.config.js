@@ -11,7 +11,16 @@ const config = {
 		}),
 		prerender: {
 			handleHttpError: 'warn',
-			handleMissingId: 'warn'
+			handleMissingId: 'warn',
+			entries: [
+				'*',
+				'/support/',
+				'/contact/',
+				'/security/',
+				'/about/',
+				'/blog/',
+				'/careers/'
+			]
 		},
 		alias: {
 			$ui: './src/lib/client/components',
