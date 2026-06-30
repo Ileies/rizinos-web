@@ -1,6 +1,6 @@
 # rizinos-web - Developer Guide
 
-Static frontend for RizinOS. Built with SvelteKit + `adapter-static` + Bun. Fully prerendered; no server-side rendering at runtime. Talks to the backend exclusively via `fetch('/api/...')` with same-origin cookies.
+Static frontend for RizinOS. Built with SvelteKit + `adapter-static` + Bun. Fully prerendered; no server-side rendering at runtime. Talks to the backend at `https://api.rizinos.com` via cross-origin fetch with `credentials: 'include'`.
 
 ## Sibling project: `rizinos` (backend)
 
@@ -14,12 +14,12 @@ Static frontend for RizinOS. Built with SvelteKit + `adapter-static` + Bun. Full
 
 See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md) for backend conventions, DB schema, API contracts, and deployment details.
 
-In **production**, nginx routes traffic on one origin:
+In **production**, the two services run on separate origins:
 
-- Everything not under `/app|/api|/storage|/ws` → this static build (rizinos-web)
-- `/app`, `/api`, `/storage`, `/ws` → `rizinos` on port 3001
+- `https://rizinos.com` - this static build (rizinos-web), served by nginx
+- `https://api.rizinos.com` - the `rizinos` backend (port 3001); must set `Access-Control-Allow-Origin: https://rizinos.com` and `Access-Control-Allow-Credentials: true`
 
-In **dev**, `vite.config.ts` proxies `/api` and `/ws` to `localhost:${BACKEND_PORT}` (default 3001), emulating the same-origin setup.
+In **dev**, `vite.config.ts` proxies `/api` and `/ws` to `localhost:${BACKEND_PORT}` (default 3001). The dev proxy rewrites `/api/...` so dev still works with relative paths - but production uses the absolute `API_BASE` from `config.ts`.
 
 ---
 
@@ -77,11 +77,11 @@ src/
       LocationInput.svelte
       Modal.svelte
       RestrictEditor.svelte
-    config.ts                 # Social links + operator info for legal pages
+    config.ts                 # API_BASE (https://api.rizinos.com), social links + operator info for legal pages
     formValidation.ts         # Zod validators (username, email, password, birthdate)
     i18n-plugin.ts            # Vite plugin: messages/*.json → messages.svelte.ts
     messages.svelte.ts        # AUTO-GENERATED - never edit by hand
-    session.svelte.ts         # $state session (fetches GET /api/auth/session on mount)
+    session.svelte.ts         # $state session (fetches GET /auth/session via apiFetch on mount)
     types.ts                  # Shared TypeScript types
     utils.ts                  # cn() and other utilities
 messages/                     # i18n source files (one JSON per topic)
@@ -121,7 +121,7 @@ static/                       # robots.txt, favicon, public assets
 - **Homepage components** imported as `$ui/<component>` (tsconfig alias)
 - **No em dashes** - use a regular dash, colon, or newline instead
 - **No server-only code** - this is a static site; never import anything from a `server` module or `$lib/server/` (that lives in `rizinos`)
-- **All admin API calls via `adminApi.ts`** - never write raw `fetch('/api/admin/...')` inline in components
+- **All admin API calls via `adminApi.ts`** - never write raw fetch calls to admin endpoints inline in components
 - **Auth enforcement is the backend's job** - the static site only reacts to 401/403 responses; never trust client-side role checks as the sole gate
 - **Admin UI is English-only by design** - the admin dashboard uses hardcoded English strings and is not part of the i18n system
 
@@ -166,7 +166,7 @@ import { hero_title, login_sign_in_button } from '$lib/messages.svelte';
 
 ## Admin API (`src/lib/adminApi.ts`)
 
-The admin dashboard is a pure client-side SPA. Server logic lives entirely in the `rizinos` backend at `/api/admin/*`. Use the typed wrappers - never write raw fetch calls to admin endpoints:
+The admin dashboard is a pure client-side SPA. Server logic lives entirely in the `rizinos` backend at `https://api.rizinos.com/admin/*`. Use the typed wrappers - never write raw fetch calls to admin endpoints:
 
 ```ts
 import { adminGet, adminPost } from '$lib/adminApi';
@@ -187,7 +187,7 @@ if (!result.ok) {
 
 ## Session (`src/lib/session.svelte.ts`)
 
-A `$state` object populated by `GET /api/auth/session` on mount. Use it to read the current user:
+A `$state` object populated by `GET https://api.rizinos.com/auth/session` on mount. Use it to read the current user:
 
 ```ts
 import { session } from '$lib/session.svelte';
@@ -196,7 +196,7 @@ import { session } from '$lib/session.svelte';
 if (session.user?.role === 'admin') { ... }
 ```
 
-The admin layout checks role client-side for UX purposes. This is safe because `rizinos` enforces authorization on every `/api/admin/*` request server-side, independently of what the static site does.
+The admin layout checks role client-side for UX purposes. This is safe because `rizinos` enforces authorization on every `/admin/*` request server-side, independently of what the static site does.
 
 ---
 
