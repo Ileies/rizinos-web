@@ -2,6 +2,7 @@
 !.gitignore
 !.prettierrc
 !.env.template
+!.well-known
 
 /node_modules
 /build

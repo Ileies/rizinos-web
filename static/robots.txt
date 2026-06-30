@@ -3,4 +3,30 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /app/
 
+# Allow AI crawlers for LLM/search indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Block AI training crawlers
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://rizinos.com/sitemap.xml

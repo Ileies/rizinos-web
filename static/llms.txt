@@ -1,0 +1,47 @@
+# RizinOS
+
+> RizinOS is a browser-native operating system - a full desktop environment that runs entirely in the browser. No installation, no drivers, no hardware requirements. Just open a tab.
+
+## What it is
+
+RizinOS is a web-based OS shell providing a complete desktop experience: file manager, terminal, app launcher, window management, user accounts, and cloud storage. The environment synchronizes across all devices automatically.
+
+- Category: Web Application / Browser OS / Online Desktop Environment
+- Status: Early Access
+- Developer: Ileies Blitz (solo)
+- License: Proprietary
+
+## Technology
+
+- Frontend: SvelteKit + Bun + WebAssembly (planned for core OS services)
+- Backend: Bun runtime + PostgreSQL + WebSockets
+- Architecture: Declarative configuration inspired by NixOS
+- Auth: Cookie-based sessions + Google OAuth
+
+## Key features
+
+- Full desktop shell in the browser (no install)
+- File system with cloud storage (10 GB free)
+- Terminal emulator
+- App launcher with sandboxed apps
+- Cross-device sync
+- Works on any device with a modern browser
+
+## Pricing
+
+- Free tier: available at signup
+- Details: https://rizinos.com/pricing/
+
+## Get started
+
+- Sign up: https://rizinos.com/signup/
+- Log in: https://rizinos.com/login/
+- About: https://rizinos.com/about/
+- Features: https://rizinos.com/features/
+- Documentation: https://rizinos.com/documentation/
+
+## Contact
+
+- Website: https://rizinos.com/
+- Support: https://rizinos.com/support/
+- Contact: https://rizinos.com/contact/
