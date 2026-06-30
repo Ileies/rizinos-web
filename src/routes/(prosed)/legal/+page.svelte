@@ -7,14 +7,6 @@
 	const liabilityEmail = `liability@${PUBLIC_ORIGIN}`;
 </script>
 
-<svelte:head>
-	<title>Imprint - RizinOS</title>
-	<meta
-		name="description"
-		content="Legal notice and imprint for RizinOS, including operator contact details."
-	/>
-	<meta name="robots" content="noindex" />
-</svelte:head>
 
 <div class="mx-auto my-8">
 	<h1>{m.legal_imprint_title()}</h1>

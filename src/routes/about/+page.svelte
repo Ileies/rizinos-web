@@ -2,14 +2,6 @@
 	import Container from '$ui/homepage/Container.svelte';
 </script>
 
-<svelte:head>
-	<title>About - RizinOS</title>
-	<meta
-		name="description"
-		content="Learn about RizinOS, the browser-native operating system built on Rust WASM and a NixOS-inspired architecture."
-	/>
-</svelte:head>
-
 <Container>
 	<div class="py-24 sm:py-32">
 		<!-- Hero -->

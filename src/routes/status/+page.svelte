@@ -2,11 +2,6 @@
 	import Container from '$ui/homepage/Container.svelte';
 </script>
 
-<svelte:head>
-	<title>Status - RizinOS</title>
-	<meta name="description" content="RizinOS system status." />
-</svelte:head>
-
 <Container>
 	<div class="py-24 sm:py-32">
 		<p class="text-primary mb-4 text-sm font-semibold tracking-widest uppercase">Status</p>

@@ -2,13 +2,6 @@
 	import * as m from '$lib/messages.svelte';
 </script>
 
-<svelte:head>
-	<title>Privacy Policy - RizinOS</title>
-	<meta
-		name="description"
-		content="Learn how RizinOS collects, processes, and protects your personal data in accordance with GDPR."
-	/>
-</svelte:head>
 
 <div>
 	<h1>{m.privacy_title()}</h1>

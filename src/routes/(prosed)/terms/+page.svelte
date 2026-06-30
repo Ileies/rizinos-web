@@ -2,13 +2,6 @@
 	import * as m from '$lib/messages.svelte';
 </script>
 
-<svelte:head>
-	<title>Terms of Service - RizinOS</title>
-	<meta
-		name="description"
-		content="Read the Terms of Service for RizinOS, the web-based operating system."
-	/>
-</svelte:head>
 
 <div>
 	<h1>{m.terms_title()}</h1>
