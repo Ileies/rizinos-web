@@ -47,8 +47,8 @@ Items already done are NOT listed here. This is the remaining backlog.
 - [ ] **Explizite `width`/`height` auf allen `<img>`** - Verhindert CLS (Cumulative Layout Shift)
 - [ ] **WebP/AVIF für Bilder** - Alle Bilder im modernen Format ausliefern, `srcset` + `sizes` für responsive Images
 - [x] **`<link rel="preconnect">`** - Für Google Tag Manager + `dns-prefetch` für Google Analytics in `app.html`
-- [ ] **Brotli-Kompression auf nginx aktivieren** - In `/etc/nixos/hosts/pronix/default.nix` konfigurieren
-- [ ] **Immutable Cache-Header** - Für gehashte Assets: `Cache-Control: max-age=31536000, immutable` in nginx
+- [x] **Brotli-Kompression auf nginx aktivieren** - `recommendedBrotliSettings = true` in `/etc/nixos/hosts/pronix/default.nix`
+- [x] **Immutable Cache-Header** - `Cache-Control: public, max-age=31536000, immutable` für `/_app/immutable/` in nginx
 - [ ] **Schriften lokal hosten** - Falls Google Fonts genutzt werden: DSGVO + Performance; lokal ausliefern
 
 ---
@@ -128,7 +128,7 @@ Items already done are NOT listed here. This is the remaining backlog.
 ## `.well-known/` Endpunkte
 
 - [x] **`/.well-known/change-password`** - HTML-Meta-Redirect auf `/app` in `static/.well-known/change-password`
-- [ ] **`/.well-known/humans.txt`** - Optionales Developer-Easter-Egg
+- [x] **`/.well-known/humans.txt`** - Developer-Info in `static/.well-known/humans.txt`; in `app.html` via `<link rel="author">` verlinkt
 - [ ] **`/.well-known/webfinger`** - Falls Fediverse/ActivityPub-Integration geplant
 
 ---

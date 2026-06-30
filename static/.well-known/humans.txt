@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Elias Klassen
+Contact: elias [at] offlimits-it.com
+Location: Germany
+
+/* SITE */
+Last update: 2026-06-30
+Standards: HTML5, CSS3, WebAssembly
+Components: SvelteKit, Bun, Tailwind CSS, PostgreSQL
+Software: NixOS, nginx
