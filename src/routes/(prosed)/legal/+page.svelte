@@ -7,7 +7,6 @@
 	const liabilityEmail = `liability@${PUBLIC_ORIGIN}`;
 </script>
 
-
 <div class="mx-auto my-8">
 	<h1>{m.legal_imprint_title()}</h1>
 

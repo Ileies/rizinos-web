@@ -118,7 +118,12 @@
 		}
 		if (!ok) return;
 		submitting = true;
-		const result = await apiPost<{ errorId?: string }>('/auth/signup', { username, birthdate, email, password });
+		const result = await apiPost<{ errorId?: string }>('/auth/signup', {
+			username,
+			birthdate,
+			email,
+			password
+		});
 		submitting = false;
 		if (result.ok) {
 			step = 'confirm';

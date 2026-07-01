@@ -30,7 +30,6 @@
 	});
 </script>
 
-
 <div class="w-full max-w-7xl">
 	<div class="mb-6">
 		<h1 class="mb-4 text-2xl font-bold">{m.confirm_email_title()}</h1>

@@ -501,7 +501,9 @@
 				</Button.Root>
 			</div>
 			{#if hookTestState === 'ok'}
-				<p class="mt-1 text-xs text-green-600 dark:text-green-400">Test message sent successfully.</p>
+				<p class="mt-1 text-xs text-green-600 dark:text-green-400">
+					Test message sent successfully.
+				</p>
 			{:else if hookTestState === 'error'}
 				<p class="text-destructive mt-1 text-xs">Failed: {hookTestError}</p>
 			{/if}

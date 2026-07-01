@@ -2,7 +2,6 @@
 	import * as m from '$lib/messages.svelte';
 </script>
 
-
 <div>
 	<h1>{m.terms_title()}</h1>
 	<p><em>{m.terms_last_updated()}</em></p>

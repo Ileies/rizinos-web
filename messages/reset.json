@@ -1,10 +1,5 @@
 {
-	"forgot_title": [
-		"Passwort vergessen",
-		"Forgot password",
-		"忘记密码",
-		"Забыли пароль"
-	],
+	"forgot_title": ["Passwort vergessen", "Forgot password", "忘记密码", "Забыли пароль"],
 	"forgot_desc": [
 		"Gib deine E-Mail-Adresse ein. Wenn ein Konto existiert, senden wir dir einen Reset-Link.",
 		"Enter your email address. If an account exists, we'll send you a reset link.",
@@ -18,12 +13,7 @@
 		"发送重置链接",
 		"Отправить ссылку для сброса"
 	],
-	"forgot_success_title": [
-		"E-Mail gesendet",
-		"Email sent",
-		"邮件已发送",
-		"Письмо отправлено"
-	],
+	"forgot_success_title": ["E-Mail gesendet", "Email sent", "邮件已发送", "Письмо отправлено"],
 	"forgot_success_desc": [
 		"Falls ein Konto mit dieser E-Mail existiert, haben wir einen Reset-Link gesendet. Bitte prüfe auch deinen Spam-Ordner.",
 		"If an account with this email exists, we've sent a reset link. Please also check your spam folder.",
@@ -45,18 +35,8 @@
 		"确认密码",
 		"Подтвердить пароль"
 	],
-	"reset_submit_button": [
-		"Passwort zurücksetzen",
-		"Reset password",
-		"重置密码",
-		"Сбросить пароль"
-	],
-	"reset_success_title": [
-		"Passwort geändert",
-		"Password changed",
-		"密码已更改",
-		"Пароль изменён"
-	],
+	"reset_submit_button": ["Passwort zurücksetzen", "Reset password", "重置密码", "Сбросить пароль"],
+	"reset_success_title": ["Passwort geändert", "Password changed", "密码已更改", "Пароль изменён"],
 	"reset_success_desc": [
 		"Dein Passwort wurde erfolgreich zurückgesetzt. Du kannst dich jetzt anmelden.",
 		"Your password has been successfully reset. You can now sign in.",

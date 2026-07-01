@@ -593,7 +593,11 @@
 	<Modal bind:open={playerModalOpen} title="Edit Player: {editingPlayer.name}" wide>
 		<div class="space-y-5">
 			{#if formSuccess}
-				<div class="rounded bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400">{formSuccess}</div>
+				<div
+					class="rounded bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400"
+				>
+					{formSuccess}
+				</div>
 			{/if}
 			{#if formError}
 				<div class="bg-destructive/10 text-destructive rounded px-3 py-2 text-sm">{formError}</div>

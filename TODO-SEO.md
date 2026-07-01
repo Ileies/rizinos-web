@@ -6,7 +6,7 @@ Items already done are NOT listed here. This is the remaining backlog.
 
 ## Kritisch / High Impact
 
-- [X] **OG-Image erstellen** - `socialcard.jpeg` (1200x630px) fehlt im static-Verzeichnis; wird in og:image bereits referenziert aber nicht ausgeliefert
+- [x] **OG-Image erstellen** - `socialcard.jpeg` (1200x630px) fehlt im static-Verzeichnis; wird in og:image bereits referenziert aber nicht ausgeliefert
 - [x] **Canonical-URL-Tags** - Im globalen `+layout.svelte` via `page.url.pathname` + `PUBLIC_ORIGIN`, deckt alle Seiten ab
 - [x] **OG-Tags auf allen Seiten ergänzen** - `/about`, `/features`, `/pricing`, `/blog`, `/contact`, `/enterprise`, `/careers`, `/security`, `/status`, `/support` haben jetzt vollständige og:* und twitter:* Tags
 - [x] **Zentrales SEO-System in rizinos-web** - `seo.ts` mit `PageSeo` + `makeSeo()`, globaler `+layout.ts` liefert Fallback-SEO, `+layout.svelte` rendert alle Tags zentral; jede Seite hat nur noch 5-Zeilen-`+page.ts`

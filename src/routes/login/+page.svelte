@@ -43,7 +43,6 @@
 	}
 </script>
 
-
 <div class="bg-background relative flex flex-grow flex-col items-center justify-center px-4 py-16">
 	<!-- Subtle grid -->
 	<div

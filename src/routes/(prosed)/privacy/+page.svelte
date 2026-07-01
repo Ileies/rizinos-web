@@ -2,7 +2,6 @@
 	import * as m from '$lib/messages.svelte';
 </script>
 
-
 <div>
 	<h1>{m.privacy_title()}</h1>
 	<p><em>{m.privacy_last_updated()}</em></p>

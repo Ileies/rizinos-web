@@ -25,7 +25,6 @@
 	}
 </script>
 
-
 <div class="bg-background relative flex flex-grow flex-col items-center justify-center px-4 py-16">
 	<div
 		class="pointer-events-none absolute inset-0 opacity-40"

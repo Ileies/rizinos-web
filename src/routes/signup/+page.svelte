@@ -195,7 +195,6 @@
 	}
 </script>
 
-
 {#if success}
 	<div class="bg-background flex flex-grow flex-col items-center justify-center px-4 py-16">
 		<div

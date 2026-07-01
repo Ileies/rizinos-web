@@ -58,5 +58,10 @@
 	],
 	"cookie_accept": ["Zustimmen", "Accept", "接受", "Принять"],
 	"cookie_decline": ["Ablehnen", "Decline", "拒绝", "Отклонить"],
-	"cookie_privacy_link": ["Datenschutz", "Privacy Policy", "隐私政策", "Политика конфиденциальности"]
+	"cookie_privacy_link": [
+		"Datenschutz",
+		"Privacy Policy",
+		"隐私政策",
+		"Политика конфиденциальности"
+	]
 }

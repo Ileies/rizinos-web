@@ -1,7 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
-	import { ChevronDown, ExternalLink, Menu, X, Globe, LogOut, LayoutDashboard } from '@lucide/svelte';
+	import {
+		ChevronDown,
+		ExternalLink,
+		Menu,
+		X,
+		Globe,
+		LogOut,
+		LayoutDashboard
+	} from '@lucide/svelte';
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import { browser } from '$app/environment';
@@ -45,8 +53,11 @@
 		})()
 	);
 
-	let { loggedIn = false, sessionLoaded = false, isAdmin = false }: { loggedIn?: boolean; sessionLoaded?: boolean; isAdmin?: boolean } =
-		$props();
+	let {
+		loggedIn = false,
+		sessionLoaded = false,
+		isAdmin = false
+	}: { loggedIn?: boolean; sessionLoaded?: boolean; isAdmin?: boolean } = $props();
 
 	let isMenuOpen = $state(false);
 	let isScrolled = $state(false);
@@ -202,28 +213,28 @@
 
 					{#if sessionLoaded}
 						{#if loggedIn}
-						<a
-							href={APP_URL}
-							class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2 text-sm font-semibold transition-colors"
-						>
-							{m.open_your_os()}
-						</a>
-						{#if isAdmin}
 							<a
-								href="/admin"
-								class="text-muted-foreground hover:text-foreground p-2 transition-colors"
-								aria-label="Admin"
+								href={APP_URL}
+								class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2 text-sm font-semibold transition-colors"
 							>
-								<LayoutDashboard size={18} />
+								{m.open_your_os()}
 							</a>
-						{/if}
-						<button
-							onclick={handleLogout}
-							class="text-muted-foreground hover:text-foreground p-2 transition-colors"
-							aria-label={m.log_out()}
-						>
-							<LogOut size={18} />
-						</button>
+							{#if isAdmin}
+								<a
+									href="/admin"
+									class="text-muted-foreground hover:text-foreground p-2 transition-colors"
+									aria-label="Admin"
+								>
+									<LayoutDashboard size={18} />
+								</a>
+							{/if}
+							<button
+								onclick={handleLogout}
+								class="text-muted-foreground hover:text-foreground p-2 transition-colors"
+								aria-label={m.log_out()}
+							>
+								<LogOut size={18} />
+							</button>
 						{:else}
 							<a
 								href="/login"
@@ -334,28 +345,28 @@
 
 				{#if sessionLoaded}
 					{#if loggedIn}
-					<a
-						href={APP_URL}
-						class="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-colors"
-					>
-						{m.open_your_os()}
-					</a>
-					{#if isAdmin}
 						<a
-							href="/admin"
-							class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
-							aria-label="Admin"
+							href={APP_URL}
+							class="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-colors"
 						>
-							<LayoutDashboard size={20} />
+							{m.open_your_os()}
 						</a>
-					{/if}
-					<button
-						onclick={handleLogout}
-						class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
-						aria-label={m.log_out()}
-					>
-						<LogOut size={20} />
-					</button>
+						{#if isAdmin}
+							<a
+								href="/admin"
+								class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
+								aria-label="Admin"
+							>
+								<LayoutDashboard size={20} />
+							</a>
+						{/if}
+						<button
+							onclick={handleLogout}
+							class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
+							aria-label={m.log_out()}
+						>
+							<LogOut size={20} />
+						</button>
 					{:else}
 						<a
 							href="/login"
