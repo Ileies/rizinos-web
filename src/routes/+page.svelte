@@ -1,6 +1,14 @@
 <script lang="ts">
-	import Hero from '$ui/homepage/Hero.svelte';
-	import { session } from '$lib/session.svelte';
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import { getLocale } from '$lib/messages.svelte';
+
+	if (browser) {
+		goto(`/${getLocale()}/`, { replaceState: true });
+	}
 </script>
 
-<Hero loggedIn={session.loggedIn} />
+<svelte:head>
+	<meta http-equiv="refresh" content="0; url=/en/" />
+	<link rel="canonical" href="/en/" />
+</svelte:head>

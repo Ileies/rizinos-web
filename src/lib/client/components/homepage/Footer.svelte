@@ -3,16 +3,17 @@
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import * as m from '$lib/messages.svelte';
 	import { discord, github, x } from '$lib/config';
+	import { localePath } from '$lib/i18n.svelte';
 
 	type LinkList = Record<string, string>;
 
 	let legal: LinkList = $derived(
 		(() => {
 			return {
-				'/privacy': m.privacy_policy(),
-				'/terms': m.terms_of_service(),
-				'/privacy/#cookies': m.cookies(),
-				'/legal': m.imprint()
+				[localePath('/privacy')]: m.privacy_policy(),
+				[localePath('/terms')]: m.terms_of_service(),
+				[localePath('/privacy') + '#cookies']: m.cookies(),
+				[localePath('/legal')]: m.imprint()
 			};
 		})()
 	);
@@ -20,36 +21,36 @@
 	let links: { title: string; items: LinkList }[] = $derived(
 		(() => {
 			const legalLinks: LinkList = {
-				'/privacy': m.privacy_policy(),
-				'/terms': m.terms_of_service(),
-				'/privacy/#cookies': m.cookies(),
-				'/legal': m.imprint()
+				[localePath('/privacy')]: m.privacy_policy(),
+				[localePath('/terms')]: m.terms_of_service(),
+				[localePath('/privacy') + '#cookies']: m.cookies(),
+				[localePath('/legal')]: m.imprint()
 			};
 			const sections: { title: string; items: LinkList }[] = [
 				{
 					title: m.product(),
 					items: {
-						'/features': m.features(),
-						'/security': m.security(),
-						'/enterprise': m.enterprise(),
-						'/pricing': m.pricing()
+						[localePath('/features')]: m.features(),
+						[localePath('/security')]: m.security(),
+						[localePath('/enterprise')]: m.enterprise(),
+						[localePath('/pricing')]: m.pricing()
 					}
 				},
 				{
 					title: m.resources(),
 					items: {
-						'/docs': m.documentation(),
-						'/docs#api': m.api_reference(),
-						'/status': m.status(),
-						'/blog': m.blog()
+						[localePath('/docs')]: m.documentation(),
+						[localePath('/docs') + '#api']: m.api_reference(),
+						[localePath('/status')]: m.status(),
+						[localePath('/blog')]: m.blog()
 					}
 				},
 				{
 					title: m.company(),
 					items: {
-						'/about': m.about_us(),
-						'/careers': m.careers(),
-						'/about#contact': m.contact()
+						[localePath('/about')]: m.about_us(),
+						[localePath('/careers')]: m.careers(),
+						[localePath('/about') + '#contact']: m.contact()
 					}
 				},
 				{
@@ -69,7 +70,7 @@
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-6">
 			<!-- Brand Section -->
 			<div class="lg:col-span-2">
-				<a class="flex items-center gap-2" href="/">
+				<a class="flex items-center gap-2" href={localePath('/')}>
 					<img src="/favicon.png" alt={PUBLIC_APP_NAME} class="h-8 w-8" width="32" height="32" />
 					<span class="text-primary text-2xl font-bold">{PUBLIC_APP_NAME}</span>
 				</a>
@@ -80,7 +81,8 @@
 					<a
 						class="text-foreground/50 hover:text-foreground transition-colors duration-200"
 						href={discord}
-						rel="external"
+						target="_blank"
+						rel="external noopener noreferrer"
 						aria-label="Discord"
 					>
 						<svg
@@ -99,7 +101,8 @@
 					<a
 						class="text-foreground/50 hover:text-foreground transition-colors duration-200"
 						href={x}
-						rel="external"
+						target="_blank"
+						rel="external noopener noreferrer"
 					>
 						<SiX size={24} />
 					</a>
@@ -107,7 +110,8 @@
 					<a
 						class="text-foreground/50 hover:text-foreground transition-colors duration-200"
 						href={github}
-						rel="external"
+						target="_blank"
+						rel="external noopener noreferrer"
 					>
 						<SiGithub size={24} />
 					</a>

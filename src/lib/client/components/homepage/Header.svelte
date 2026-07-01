@@ -16,6 +16,7 @@
 	import { github, APP_URL } from '$lib/config';
 	import { setLocale } from '$lib/messages.svelte';
 	import * as m from '$lib/messages.svelte';
+	import { localePath, switchLocalePath } from '$lib/i18n.svelte';
 	import { logout } from '$lib/session.svelte';
 
 	const languages = [
@@ -30,25 +31,25 @@
 			return [
 				{
 					label: m.features(),
-					href: '/features',
+					href: localePath('/features'),
 					dropdown: [
-						{ label: m.overview(), href: '/features' },
-						{ label: m.performance(), href: '/features/performance' },
-						{ label: m.security(), href: '/features/security' },
-						{ label: m.integration(), href: '/features/integration' }
+						{ label: m.overview(), href: localePath('/features') },
+						{ label: m.performance(), href: localePath('/features/performance') },
+						{ label: m.security(), href: localePath('/features/security') },
+						{ label: m.integration(), href: localePath('/features/integration') }
 					]
 				},
 				{
 					label: m.documentation(),
-					href: '/docs',
+					href: localePath('/docs'),
 					dropdown: [
-						{ label: m.getting_started(), href: '/docs#getting-started' },
-						{ label: m.api_reference(), href: '/docs#api' },
-						{ label: m.tutorials(), href: '/docs#tutorials' }
+						{ label: m.getting_started(), href: localePath('/docs') + '#getting-started' },
+						{ label: m.api_reference(), href: localePath('/docs') + '#api' },
+						{ label: m.tutorials(), href: localePath('/docs') + '#tutorials' }
 					]
 				},
-				{ label: m.pricing(), href: '/pricing' },
-				{ label: m.enterprise(), href: '/enterprise' }
+				{ label: m.pricing(), href: localePath('/pricing') },
+				{ label: m.enterprise(), href: localePath('/enterprise') }
 			];
 		})()
 	);
@@ -93,7 +94,9 @@
 	}
 
 	function selectLanguage(code: string) {
+		const targetPath = switchLocalePath(code, page.url.pathname);
 		setLocale(code);
+		goto(targetPath);
 		isLanguageDropdownOpen = false;
 	}
 
@@ -114,7 +117,7 @@
 	<div class="container mx-auto px-4">
 		<nav class="flex h-20 items-center justify-between">
 			<!-- Logo -->
-			<a class="flex items-center gap-2" href="/">
+			<a class="flex items-center gap-2" href={localePath('/')}>
 				<img src="/favicon.png" alt={PUBLIC_APP_NAME} class="h-8 w-8" width="32" height="32" />
 				<span class="text-foreground text-xl font-black tracking-tight">{PUBLIC_APP_NAME}</span>
 			</a>
@@ -237,7 +240,7 @@
 							</button>
 						{:else}
 							<a
-								href="/login"
+								href={localePath('/login')}
 								class="border-border text-foreground/70 hover:border-border hover:bg-muted rounded-lg border px-5 py-2 text-sm font-semibold transition-colors"
 							>
 								{m.log_in()}
@@ -369,7 +372,7 @@
 						</button>
 					{:else}
 						<a
-							href="/login"
+							href={localePath('/login')}
 							class="border-border text-foreground/70 hover:bg-muted mt-4 block w-full rounded-lg border px-6 py-3 text-center text-sm font-semibold transition-colors"
 						>
 							{m.log_in()}

@@ -6,11 +6,12 @@
 	import Footer from '$ui/homepage/Footer.svelte';
 	import CookieBanner from '$lib/components/CookieBanner.svelte';
 	import { session, loadSession } from '$lib/session.svelte';
-	import { getLocale } from '$lib/messages.svelte';
+	import { getLocale, locales } from '$lib/messages.svelte';
 	import { PUBLIC_GOOGLE_ANALYTICS_ID, PUBLIC_ORIGIN } from '$env/static/public';
 
 	const LANG_TAG: Record<string, string> = { de: 'de', en: 'en', cn: 'zh-CN', ru: 'ru' };
 	const OG_LOCALE: Record<string, string> = { de: 'de_DE', en: 'en_US', cn: 'zh_CN', ru: 'ru_RU' };
+	const HREFLANG: Record<string, string> = { de: 'de', en: 'en', cn: 'zh-CN', ru: 'ru' };
 
 	const htmlLang = $derived(LANG_TAG[getLocale()] ?? 'en');
 	const ogLocale = $derived(OG_LOCALE[getLocale()] ?? 'en_US');
@@ -19,6 +20,18 @@
 			.filter(([lang]) => lang !== getLocale())
 			.map(([, locale]) => locale)
 	);
+
+	const hreflangLinks = $derived.by(() => {
+		const segments = page.url.pathname.split('/').filter(Boolean);
+		const firstIsLocale =
+			segments.length > 0 && (locales as readonly string[]).includes(segments[0]);
+		const rest = firstIsLocale ? segments.slice(1) : segments;
+		const path = rest.length > 0 ? `/${rest.join('/')}/` : '/';
+		return (locales as readonly string[]).map((locale) => ({
+			hreflang: HREFLANG[locale],
+			href: `https://${PUBLIC_ORIGIN}/${locale}${path}`
+		}));
+	});
 
 	$effect(() => {
 		document.documentElement.lang = htmlLang;
@@ -98,10 +111,14 @@
 	});
 
 	const breadcrumbSchema = $derived.by(() => {
-		const segments = page.url.pathname.split('/').filter(Boolean);
+		const allSegments = page.url.pathname.split('/').filter(Boolean);
+		const firstIsLocale =
+			allSegments.length > 0 && (locales as readonly string[]).includes(allSegments[0]);
+		const segments = firstIsLocale ? allSegments.slice(1) : allSegments;
+		const localePrefix = firstIsLocale ? `/${allSegments[0]}` : '';
 		if (segments.length === 0) return null;
-		const items = [{ name: 'Home', item: `https://${PUBLIC_ORIGIN}/` }];
-		let path = '';
+		const items = [{ name: 'Home', item: `https://${PUBLIC_ORIGIN}${localePrefix}/` }];
+		let path = localePrefix;
 		for (const seg of segments) {
 			path += `/${seg}`;
 			const name = seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
@@ -134,9 +151,13 @@
 	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="RizinOS" />
 	<meta property="og:locale" content={ogLocale} />
-	{#each ogLocaleAlternates as alt}
+	{#each ogLocaleAlternates as alt (alt)}
 		<meta property="og:locale:alternate" content={alt} />
 	{/each}
+	{#each hreflangLinks as link (link.hreflang)}
+		<link rel="alternate" hreflang={link.hreflang} href={link.href} />
+	{/each}
+	<link rel="alternate" hreflang="x-default" href="https://{PUBLIC_ORIGIN}/en/" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@rizinos" />
 	<meta name="twitter:title" content={seo.title} />

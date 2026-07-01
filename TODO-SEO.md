@@ -16,11 +16,11 @@ Items already done are NOT listed here. This is the remaining backlog.
 
 ## Internationale SEO
 
-- [ ] **URL-basiertes i18n** - Cookie-basiertes Locale-Switching zu Pfad-Prefixen wechseln (`/en/`, `/de/`, `/cn/`, `/ru/`); Cookie-basiert ist für SEO blind, Suchmaschinen crawlen nur eine Version
-- [ ] **hreflang-Tags** - `<link rel="alternate" hreflang="de" href="https://rizinos.com/de/">` etc. auf jeder Seite; braucht URL-basiertes i18n als Voraussetzung
-- [ ] **`x-default` hreflang** - Fallback-Sprache definieren
+- [x] **URL-basiertes i18n** - Alle öffentlichen Routen unter `[locale]/` (`/en/`, `/de/`, `/cn/`, `/ru/`); hooks.server.ts nutzt `runWithLocale` für korrekte Prerendering-Locale; Root `/` leitet client-seitig zur Locale weiter
+- [x] **hreflang-Tags** - `<link rel="alternate" hreflang="...">` für alle 4 Sprachen auf jeder Seite im globalen +layout.svelte; Pfad wird ohne Locale-Präfix berechnet
+- [x] **`x-default` hreflang** - `hreflang="x-default"` zeigt auf `/en/`
 - [x] **og:locale dynamisch** - Aus aktiver Locale setzen statt hardcoded; og:locale:alternate für alle anderen Sprachen ergänzen
-- [ ] **Sitemap mit Sprach-Alternates** - `xhtml:link`-Erweiterung in sitemap.xml sobald URL-basiertes i18n live ist
+- [x] **Sitemap mit Sprach-Alternates** - `xhtml:link`-Erweiterung in sitemap.xml; jede Route hat Einträge für alle 4 Lokalen mit gegenseitigen Alternates und `x-default`
 - [ ] **Baidu Webmaster Tools** - `baidu-site-verification` Meta-Tag ergänzen (für chinesischen Traffic)
 - [ ] **Yandex Webmaster Tools** - `yandex-verification` Meta-Tag ergänzen (für russischen Traffic)
 

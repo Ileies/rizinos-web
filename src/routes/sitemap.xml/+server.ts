@@ -3,6 +3,9 @@ import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
+const LOCALES = ['de', 'en', 'cn', 'ru'] as const;
+const HREFLANG: Record<string, string> = { de: 'de', en: 'en', cn: 'zh-CN', ru: 'ru' };
+
 interface RouteEntry {
 	path: string;
 	priority: string;
@@ -29,18 +32,28 @@ function buildSitemap(origin: string, routes: RouteEntry[]): string {
 	const base = `https://${origin}`;
 
 	const urlEntries = routes
-		.map(
-			({ path, priority, changefreq }) => `  <url>
-    <loc>${base}${path}</loc>
+		.flatMap(({ path, priority, changefreq }) =>
+			LOCALES.map((locale) => {
+				const loc = `${base}/${locale}${path}`;
+				const alternates = LOCALES.map(
+					(alt) =>
+						`    <xhtml:link rel="alternate" hreflang="${HREFLANG[alt]}" href="${base}/${alt}${path}"/>`
+				).join('\n');
+				return `  <url>
+    <loc>${loc}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
-  </url>`
+${alternates}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${base}/en${path}"/>
+  </url>`;
+			})
 		)
 		.join('\n');
 
 	return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urlEntries}
 </urlset>`;
 }

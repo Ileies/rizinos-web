@@ -12,7 +12,31 @@ const config = {
 		prerender: {
 			handleHttpError: 'warn',
 			handleMissingId: 'warn',
-			entries: ['*', '/support/', '/contact/', '/security/', '/about/', '/blog/', '/careers/']
+			entries: [
+				'*',
+				...['de', 'en', 'cn', 'ru'].flatMap((l) => [
+					`/${l}/`,
+					`/${l}/about/`,
+					`/${l}/blog/`,
+					`/${l}/careers/`,
+					`/${l}/contact/`,
+					`/${l}/docs/`,
+					`/${l}/enterprise/`,
+					`/${l}/features/`,
+					`/${l}/forgot-password/`,
+					`/${l}/legal/`,
+					`/${l}/login/`,
+					`/${l}/pricing/`,
+					`/${l}/privacy/`,
+					`/${l}/reset-password/`,
+					`/${l}/security/`,
+					`/${l}/signup/`,
+					`/${l}/status/`,
+					`/${l}/support/`,
+					`/${l}/terms/`,
+					`/${l}/confirm-email/`
+				])
+			]
 		},
 		alias: {
 			$ui: './src/lib/client/components',
