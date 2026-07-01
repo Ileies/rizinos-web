@@ -4,6 +4,7 @@
 	import { browser } from '$app/environment';
 	import * as m from '$lib/messages.svelte';
 	import { apiPost } from '$lib/api';
+	import { APP_URL } from '$lib/config';
 
 	let { loggedIn = false }: { loggedIn?: boolean } = $props();
 
@@ -156,7 +157,7 @@
 	{#if step === 'idle'}
 		{#if loggedIn}
 			<a
-				href="/app"
+				href={APP_URL}
 				class="group bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-semibold transition-colors"
 			>
 				{m.signup_open_your_os()}
