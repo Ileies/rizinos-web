@@ -125,7 +125,7 @@
 
 	// Reset to page 1 when search changes
 	$effect(() => {
-		userSearch;
+		void userSearch;
 		usersPage = 1;
 	});
 
@@ -133,9 +133,7 @@
 		filteredUsers.slice((usersPage - 1) * USER_PAGE_SIZE, usersPage * USER_PAGE_SIZE)
 	);
 
-	let filteredLogs = $derived(
-		logLevel === 'all' ? logs : logs.filter((l) => l.type === logLevel)
-	);
+	let filteredLogs = $derived(logLevel === 'all' ? logs : logs.filter((l) => l.type === logLevel));
 
 	const innerTabs = $derived<AdminTab[]>([
 		{ id: 'users', label: 'Users', icon: Users, count: filteredUsers.length },
@@ -457,7 +455,11 @@
 	<Modal bind:open={userModalOpen} title="Edit: {editingUser.username}" wide>
 		<div class="space-y-5">
 			{#if formSuccess}
-				<div class="rounded bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400">{formSuccess}</div>
+				<div
+					class="rounded bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400"
+				>
+					{formSuccess}
+				</div>
 			{/if}
 			{#if formError}
 				<div class="bg-destructive/10 text-destructive rounded px-3 py-2 text-sm">{formError}</div>

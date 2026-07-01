@@ -27,6 +27,10 @@
 
 	const seo = $derived({ ...SEO_DEFAULTS, ...page.data.seo });
 
+	function jsonLdTag(data: string) {
+		return '<script type="application/ld+json">' + data + '</' + 'script>';
+	}
+
 	const ldSchema = JSON.stringify({
 		'@context': 'https://schema.org',
 		'@graph': [
@@ -130,12 +134,15 @@
 	<meta name="twitter:title" content={seo.title} />
 	<meta name="twitter:description" content={seo.description} />
 	<meta name="twitter:image" content="https://{PUBLIC_ORIGIN}{seo.ogImage}" />
-	{@html `<script type="application/ld+json">${ldSchema}</script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html jsonLdTag(ldSchema)}
 	{#if breadcrumbSchema}
-		{@html `<script type="application/ld+json">${breadcrumbSchema}</script>`}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html jsonLdTag(breadcrumbSchema)}
 	{/if}
 	{#if seo.jsonLd}
-		{@html `<script type="application/ld+json">${JSON.stringify(seo.jsonLd)}</script>`}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html jsonLdTag(JSON.stringify(seo.jsonLd))}
 	{/if}
 </svelte:head>
 
