@@ -19,7 +19,7 @@ Items already done are NOT listed here. This is the remaining backlog.
 - [ ] **URL-basiertes i18n** - Cookie-basiertes Locale-Switching zu Pfad-Prefixen wechseln (`/en/`, `/de/`, `/cn/`, `/ru/`); Cookie-basiert ist für SEO blind, Suchmaschinen crawlen nur eine Version
 - [ ] **hreflang-Tags** - `<link rel="alternate" hreflang="de" href="https://rizinos.com/de/">` etc. auf jeder Seite; braucht URL-basiertes i18n als Voraussetzung
 - [ ] **`x-default` hreflang** - Fallback-Sprache definieren
-- [ ] **og:locale dynamisch** - Aus aktiver Locale setzen statt hardcoded; og:locale:alternate für alle anderen Sprachen ergänzen
+- [x] **og:locale dynamisch** - Aus aktiver Locale setzen statt hardcoded; og:locale:alternate für alle anderen Sprachen ergänzen
 - [ ] **Sitemap mit Sprach-Alternates** - `xhtml:link`-Erweiterung in sitemap.xml sobald URL-basiertes i18n live ist
 - [ ] **Baidu Webmaster Tools** - `baidu-site-verification` Meta-Tag ergänzen (für chinesischen Traffic)
 - [ ] **Yandex Webmaster Tools** - `yandex-verification` Meta-Tag ergänzen (für russischen Traffic)
@@ -44,7 +44,7 @@ Items already done are NOT listed here. This is the remaining backlog.
 ## Performance / Core Web Vitals
 
 - [ ] **LCP-Element `fetchpriority="high"`** - Hero-Image oder größtes sichtbares Element mit `fetchpriority="high"` und `<link rel="preload">` versehen
-- [ ] **Explizite `width`/`height` auf allen `<img>`** - Verhindert CLS (Cumulative Layout Shift)
+- [x] **Explizite `width`/`height` auf allen `<img>`** - Verhindert CLS (Cumulative Layout Shift)
 - [ ] **WebP/AVIF für Bilder** - Alle Bilder im modernen Format ausliefern, `srcset` + `sizes` für responsive Images
 - [x] **`<link rel="preconnect">`** - Für Google Tag Manager + `dns-prefetch` für Google Analytics in `app.html`
 - [x] **Brotli-Kompression auf nginx aktivieren** - `recommendedBrotliSettings = true` in `/etc/nixos/hosts/pronix/default.nix`

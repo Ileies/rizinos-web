@@ -14,6 +14,11 @@
 
 	const htmlLang = $derived(LANG_TAG[getLocale()] ?? 'en');
 	const ogLocale = $derived(OG_LOCALE[getLocale()] ?? 'en_US');
+	const ogLocaleAlternates = $derived(
+		Object.entries(OG_LOCALE)
+			.filter(([lang]) => lang !== getLocale())
+			.map(([, locale]) => locale)
+	);
 
 	$effect(() => {
 		document.documentElement.lang = htmlLang;
@@ -129,6 +134,9 @@
 	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="RizinOS" />
 	<meta property="og:locale" content={ogLocale} />
+	{#each ogLocaleAlternates as alt}
+		<meta property="og:locale:alternate" content={alt} />
+	{/each}
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@rizinos" />
 	<meta name="twitter:title" content={seo.title} />

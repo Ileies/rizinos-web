@@ -70,7 +70,7 @@
 			<!-- Brand Section -->
 			<div class="lg:col-span-2">
 				<a class="flex items-center gap-2" href="/">
-					<img src="/favicon.png" alt={PUBLIC_APP_NAME} class="h-8 w-8" />
+					<img src="/favicon.png" alt={PUBLIC_APP_NAME} class="h-8 w-8" width="32" height="32" />
 					<span class="text-primary text-2xl font-bold">{PUBLIC_APP_NAME}</span>
 				</a>
 				<p class="text-foreground/70 mt-4 leading-relaxed">
