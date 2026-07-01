@@ -14,7 +14,29 @@ const config = {
 			handleMissingId: 'warn',
 			entries: [
 				'*',
-				...['de', 'en', 'cn', 'ru'].flatMap((l) => [
+				// English at root (no locale prefix)
+				'/',
+				'/about/',
+				'/blog/',
+				'/careers/',
+				'/contact/',
+				'/docs/',
+				'/enterprise/',
+				'/features/',
+				'/forgot-password/',
+				'/legal/',
+				'/login/',
+				'/pricing/',
+				'/privacy/',
+				'/reset-password/',
+				'/security/',
+				'/signup/',
+				'/status/',
+				'/support/',
+				'/terms/',
+				'/confirm-email/',
+				// Other locales with prefix
+				...['de', 'cn', 'ru'].flatMap((l) => [
 					`/${l}/`,
 					`/${l}/about/`,
 					`/${l}/blog/`,
