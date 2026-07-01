@@ -65,10 +65,10 @@ export function refreshSession(): Promise<void> {
 	return loadSession();
 }
 
-/** Call POST /api/auth/logout, then clear the local session state. */
+/** Call GET /auth/logout, then clear the local session state. */
 export async function logout(): Promise<void> {
 	try {
-		await apiFetch('/auth/logout', { method: 'POST' });
+		await apiFetch('/auth/logout');
 	} catch {
 		// ignore network errors - clear local state regardless
 	}
