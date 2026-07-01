@@ -1,4 +1,5 @@
 export const API_BASE = 'https://api.rizinos.com';
+export const APP_URL = 'https://app.rizinos.com';
 
 export const discord = 'https://discord.gg/p4fMb3y2R5';
 export const github = 'https://github.com/Ileies/rizinos';

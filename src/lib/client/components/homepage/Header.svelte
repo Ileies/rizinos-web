@@ -5,7 +5,7 @@
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import { browser } from '$app/environment';
-	import { github } from '$lib/config';
+	import { github, APP_URL } from '$lib/config';
 	import { setLocale } from '$lib/messages.svelte';
 	import * as m from '$lib/messages.svelte';
 	import { logout } from '$lib/session.svelte';
@@ -203,7 +203,7 @@
 					{#if sessionLoaded}
 						{#if loggedIn}
 						<a
-							href="/app"
+							href={APP_URL}
 							class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2 text-sm font-semibold transition-colors"
 						>
 							{m.open_your_os()}
@@ -335,7 +335,7 @@
 				{#if sessionLoaded}
 					{#if loggedIn}
 					<a
-						href="/app"
+						href={APP_URL}
 						class="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-colors"
 					>
 						{m.open_your_os()}
