@@ -24,28 +24,24 @@ export interface ApiResult<T = never> {
 	error?: string;
 }
 
-export async function apiPost<T = never>(path: string, body?: unknown): Promise<ApiResult<T>> {
+export async function apiPost<T = never>(path: string, payload?: unknown): Promise<ApiResult<T>> {
 	try {
 		const res = await apiFetch(path, {
 			method: 'POST',
-			body: body !== undefined ? JSON.stringify(body) : undefined
+			body: payload !== undefined ? JSON.stringify(payload) : undefined
 		});
-		if (res.ok) {
-			try {
-				const data = (await res.json()) as T;
-				return { ok: true, status: res.status, data };
-			} catch {
-				return { ok: true, status: res.status };
-			}
-		}
-		let error = `Request failed (${res.status})`;
+		let responseData: T | undefined;
 		try {
-			const d = await res.json();
-			error = d.message ?? d.error ?? error;
+			responseData = (await res.json()) as T;
 		} catch {
 			/* no body */
 		}
-		return { ok: false, status: res.status, error };
+		if (res.ok) {
+			return { ok: true, status: res.status, data: responseData };
+		}
+		const d = responseData as Record<string, unknown> | undefined;
+		const error = (d?.message ?? d?.error ?? `Request failed (${res.status})`) as string;
+		return { ok: false, status: res.status, data: responseData, error };
 	} catch {
 		return { ok: false, status: 0, error: 'Network error' };
 	}
