@@ -1,0 +1,62 @@
+{
+	"unsubscribe_title": [
+		"E-Mail-Benachrichtigungen abmelden",
+		"Unsubscribe from emails",
+		"取消订阅邮件",
+		"Отписаться от писем"
+	],
+	"unsubscribe_intro": [
+		"Du möchtest keine E-Mails mehr von RizinOS erhalten? Klicke auf den Button, um dich abzumelden.",
+		"You want to stop receiving emails from RizinOS? Click the button below to unsubscribe.",
+		"你想停止接收来自 RizinOS 的邮件？点击下面的按钮取消订阅。",
+		"Хочешь перестать получать письма от RizinOS? Нажми кнопку ниже, чтобы отписаться."
+	],
+	"unsubscribe_button": [
+		"Abmelden bestätigen",
+		"Confirm unsubscribe",
+		"确认取消订阅",
+		"Подтвердить отписку"
+	],
+	"unsubscribe_success_title": [
+		"Erfolgreich abgemeldet",
+		"Successfully unsubscribed",
+		"成功取消订阅",
+		"Успешно отписан"
+	],
+	"unsubscribe_success_body": [
+		"Du wirst keine E-Mails mehr von uns erhalten. Du kannst dich jederzeit in deinen Kontoeinstellungen wieder anmelden.",
+		"You will no longer receive emails from us. You can re-subscribe at any time in your account settings.",
+		"你将不再收到我们的邮件。你可以随时在账户设置中重新订阅。",
+		"Ты больше не будешь получать письма от нас. Ты можешь повторно подписаться в настройках аккаунта."
+	],
+	"unsubscribe_error_invalid": [
+		"Der Link ist ungültig oder abgelaufen. Bitte verwende den Link aus deiner E-Mail.",
+		"The link is invalid or has expired. Please use the link from your email.",
+		"该链接无效或已过期。请使用你邮件中的链接。",
+		"Ссылка недействительна или истекла. Пожалуйста, используй ссылку из письма."
+	],
+	"unsubscribe_error_generic": [
+		"Ein Fehler ist aufgetreten. Bitte versuche es später erneut.",
+		"An error occurred. Please try again later.",
+		"发生了错误。请稍后重试。",
+		"Произошла ошибка. Пожалуйста, попробуй позже."
+	],
+	"unsubscribe_no_token": [
+		"Kein gültiger Abmeldelink gefunden. Bitte klicke auf den Link in deiner E-Mail.",
+		"No valid unsubscribe link found. Please click the link in your email.",
+		"未找到有效的取消订阅链接。请点击邮件中的链接。",
+		"Действительная ссылка для отписки не найдена. Пожалуйста, перейди по ссылке из письма."
+	],
+	"unsubscribe_return_home": [
+		"Zurück zur Startseite",
+		"Return to Homepage",
+		"返回首页",
+		"Вернуться на главную"
+	],
+	"unsubscribe_account_settings": [
+		"Zu den Kontoeinstellungen",
+		"Go to account settings",
+		"前往账户设置",
+		"Перейти в настройки аккаунта"
+	]
+}
