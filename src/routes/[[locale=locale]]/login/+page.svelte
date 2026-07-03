@@ -6,12 +6,13 @@
 	import * as m from '$lib/messages.svelte';
 	import { session, loadSession, refreshSession } from '$lib/session.svelte';
 	import { apiPost } from '$lib/api';
+	import { APP_URL } from '$lib/config';
 
 	let emailElement: HTMLInputElement;
 	let error = $state('');
 	let submitting = $state(false);
 
-	const redirectTo = () => page.url.searchParams.get('redirect') || '/app';
+	const redirectTo = () => page.url.searchParams.get('redirect') || APP_URL;
 
 	onMount(async () => {
 		emailElement.focus();
