@@ -30,10 +30,19 @@ export const cookieMaxAge = 34560000;
 
 let _storage: import('node:async_hooks').AsyncLocalStorage<{ locale: string }> | null | undefined = undefined;
 
+function _detectBrowserLocale(): string {
+  const lang = navigator.language || '';
+  const tag = lang.split('-')[0].toLowerCase();
+  if (tag === 'de') return 'de';
+  if (tag === 'zh') return 'cn';
+  if (tag === 'ru') return 'ru';
+  return 'en';
+}
+
 function _readCookie(): string {
   if (typeof document === 'undefined') return 'en';
   const m = document.cookie.match(/(?:^|;\\s*)LOCALE=([^;]+)/);
-  return (m && (locales as readonly string[]).includes(m[1])) ? m[1] : 'en';
+  return (m && (locales as readonly string[]).includes(m[1])) ? m[1] : _detectBrowserLocale();
 }
 
 let _currentLocale = $state(_readCookie());
