@@ -55,16 +55,11 @@ Items already done are NOT listed here. This is the remaining backlog.
 
 ## PWA & App-Store
 
-- [x] **`manifest.webmanifest` für rizinos-web erstellen** - `static/manifest.webmanifest` mit Icons, Name, Theme-Color, Start-URL, Categories; in `app.html` verlinkt
-- [ ] **Manifest `screenshots`-Array** - Für Play Store / App Store Listings (PWABuilder)
-- [x] **Manifest `categories`-Array** - `["productivity", "utilities"]` bereits im `manifest.webmanifest`
 - [ ] **Apple Splash Screens** - `apple-touch-startup-image` in verschiedenen iOS-Gerätegrößen
 - [ ] **Weitere Apple-Icon-Größen** - 57, 72, 76, 114, 120, 144, 152, 180px Varianten in `app.html`
-- [ ] **Microsoft `browserconfig.xml`** - `msapplication-TileColor`, `msapplication-config`
+- [x] **Microsoft `browserconfig.xml`** - `msapplication-TileColor`, `msapplication-config`
 - [ ] **In Google Play Store listen** - Via TWA (Trusted Web Activity) wenn PWA vollständig
 - [ ] **In Microsoft Store listen** - Via PWABuilder
-- [ ] **`manifest.webmanifest` `start_url` prüfen** - Im rizinos-Backend zeigt `start_url` auf `/app` (authenticated); besser `/` oder nach Login-Status dynamisch
-- [ ] **`manifest.webmanifest` `lang` dynamisch** - Aktuell hardcoded `"de"`
 
 ---
 
