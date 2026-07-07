@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '$lib/messages.svelte';
+	import * as config from '$lib/config';
 </script>
 
 <div>
@@ -7,7 +8,7 @@
 	<p><em>{m.terms_last_updated()}</em></p>
 
 	<h2>{m.terms_acceptance_title()}</h2>
-	<p>{m.terms_acceptance_text()}</p>
+	<p>{m.terms_acceptance_text({ operator: config.operatorName })}</p>
 
 	<h2>{m.terms_service_title()}</h2>
 	<p>{m.terms_service_text()}</p>
