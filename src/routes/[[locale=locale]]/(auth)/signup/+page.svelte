@@ -3,6 +3,7 @@
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
 	import { apiPost } from '$lib/api';
+	import AuthCard from '$lib/components/AuthCard.svelte';
 
 	let step = $state(1);
 	const TOTAL_STEPS = 4;
@@ -196,264 +197,249 @@
 </script>
 
 {#if success}
-	<div class="bg-background flex flex-grow flex-col items-center justify-center px-4 py-16">
-		<div
-			class="border-border bg-card relative w-full max-w-sm rounded-2xl border p-8 text-center shadow-sm"
-		>
-			<h2 class="text-card-foreground text-xl font-bold tracking-tight">
-				{m.signup_thanks_title()}
-			</h2>
-			<p class="text-muted-foreground mt-2 text-sm">{m.signup_confirm_sent()}</p>
-			<p class="text-foreground mt-1 text-sm font-medium">{formData.email}</p>
-			<p class="text-muted-foreground mt-3 text-xs">{m.signup_check_spam()}</p>
-		</div>
-	</div>
+	<AuthCard center>
+		<h2 class="text-card-foreground text-xl font-bold tracking-tight">
+			{m.signup_thanks_title()}
+		</h2>
+		<p class="text-muted-foreground mt-2 text-sm">{m.signup_confirm_sent()}</p>
+		<p class="text-foreground mt-1 text-sm font-medium">{formData.email}</p>
+		<p class="text-muted-foreground mt-3 text-xs">{m.signup_check_spam()}</p>
+	</AuthCard>
 {:else}
-	<div
-		class="bg-background relative flex flex-grow flex-col items-center justify-center px-4 py-16"
-	>
-		<!-- Subtle grid -->
-		<div
-			class="pointer-events-none absolute inset-0 opacity-40"
-			style="background-image: linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px); background-size: 40px 40px;"
-		></div>
+	<AuthCard>
+		<!-- Progress bar -->
+		<div class="mb-5 flex gap-1.5">
+			{#each Array.from({ length: TOTAL_STEPS }, (_, idx) => idx) as i (i)}
+				<div
+					class="h-1 flex-1 rounded-full transition-colors {i < step ? 'bg-primary' : 'bg-muted'}"
+				></div>
+			{/each}
+		</div>
 
-		<!-- Card -->
-		<div class="border-border bg-card relative w-full max-w-sm rounded-2xl border p-8 shadow-sm">
-			<!-- Progress bar -->
-			<div class="mb-5 flex gap-1.5">
-				{#each Array.from({ length: TOTAL_STEPS }, (_, idx) => idx) as i (i)}
-					<div
-						class="h-1 flex-1 rounded-full transition-colors {i < step ? 'bg-primary' : 'bg-muted'}"
-					></div>
-				{/each}
+		<p class="text-muted-foreground text-xs font-medium">
+			{m.signup_step({ step })} / {TOTAL_STEPS}
+		</p>
+		<h2 class="text-card-foreground mt-1 text-xl font-bold tracking-tight">{stepTitle}</h2>
+
+		{#if serverError}
+			<div
+				class="border-destructive/30 bg-destructive/10 text-destructive mt-4 rounded-lg border px-4 py-3 text-sm"
+			>
+				{serverError}
+			</div>
+		{/if}
+
+		<form class="mt-6" onsubmit={submitForm}>
+			<div class="space-y-4">
+				<!-- Step 1: Name -->
+				<div class:hidden={step !== 1} class="space-y-4">
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="firstName">
+							{m.signup_first_name()}
+						</label>
+						<input
+							bind:this={firstInput}
+							bind:value={formData.firstName}
+							autocomplete="given-name"
+							class={ic(!!errors.firstName)}
+							id="firstName"
+							maxlength={50}
+							name="firstName"
+							placeholder={m.signup_first_name()}
+							type="text"
+						/>
+						{#if errors.firstName}
+							<p class="text-destructive mt-1 text-xs">{errors.firstName}</p>
+						{/if}
+					</div>
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="lastName">
+							{m.signup_last_name()}
+						</label>
+						<input
+							bind:value={formData.lastName}
+							autocomplete="family-name"
+							class={ic(!!errors.lastName)}
+							id="lastName"
+							maxlength={50}
+							name="lastName"
+							placeholder={m.signup_last_name()}
+							type="text"
+						/>
+						{#if errors.lastName}
+							<p class="text-destructive mt-1 text-xs">{errors.lastName}</p>
+						{/if}
+					</div>
+				</div>
+
+				<!-- Step 2: Birthdate & Gender -->
+				<div class:hidden={step !== 2} class="space-y-4">
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="birthdate">
+							{m.signup_birthdate_label()}
+						</label>
+						<input
+							bind:value={formData.birthdate}
+							autocomplete="bday"
+							class={ic(!!errors.birthdate)}
+							id="birthdate"
+							max={maxBirthdate}
+							min={minBirthdate}
+							name="birthdate"
+							type="date"
+						/>
+						{#if errors.birthdate}
+							<p class="text-destructive mt-1 text-xs">{errors.birthdate}</p>
+						{/if}
+					</div>
+					<div>
+						<p class="text-foreground mb-2 text-sm font-medium">
+							{m.signup_gender_male()} / {m.signup_gender_female()}
+						</p>
+						<div class="flex gap-4">
+							<label class="text-foreground flex cursor-pointer items-center gap-2 text-sm">
+								<input
+									bind:group={formData.gender}
+									class="accent-primary"
+									name="gender"
+									type="radio"
+									value="male"
+								/>
+								{m.signup_gender_male()}
+							</label>
+							<label class="text-foreground flex cursor-pointer items-center gap-2 text-sm">
+								<input
+									bind:group={formData.gender}
+									class="accent-primary"
+									name="gender"
+									type="radio"
+									value="female"
+								/>
+								{m.signup_gender_female()}
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Step 3: Account Details -->
+				<div class:hidden={step !== 3} class="space-y-4">
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="email">
+							{m.signup_email_label()}
+						</label>
+						<input
+							bind:value={formData.email}
+							autocomplete="email"
+							class={ic(!!errors.email)}
+							id="email"
+							maxlength={320}
+							name="email"
+							placeholder={m.signup_email_placeholder()}
+							type="email"
+						/>
+						{#if errors.email}
+							<p class="text-destructive mt-1 text-xs">{errors.email}</p>
+						{/if}
+					</div>
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="username">
+							{m.signup_username_label()}
+						</label>
+						<input
+							bind:value={formData.username}
+							class={ic(!!errors.username)}
+							id="username"
+							maxlength={20}
+							name="username"
+							placeholder={m.signup_username_placeholder()}
+							type="text"
+						/>
+						{#if errors.username}
+							<p class="text-destructive mt-1 text-xs">{errors.username}</p>
+						{/if}
+					</div>
+				</div>
+
+				<!-- Step 4: Password -->
+				<div class:hidden={step !== 4} class="space-y-4">
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="password">
+							{m.signup_password_label()}
+						</label>
+						<input
+							bind:value={formData.password}
+							autocomplete="new-password"
+							class={ic(!!errors.password)}
+							id="password"
+							maxlength={71}
+							name="password"
+							placeholder={m.signup_password_placeholder()}
+							type="password"
+						/>
+						{#if errors.password}
+							<p class="text-destructive mt-1 text-xs">{errors.password}</p>
+						{/if}
+					</div>
+					<div>
+						<label class="text-foreground mb-1.5 block text-sm font-medium" for="confirmPassword">
+							{m.signup_confirm_password()}
+						</label>
+						<input
+							bind:value={confirmPassword}
+							autocomplete="new-password"
+							class={ic(!!errors.confirmPassword)}
+							id="confirmPassword"
+							maxlength={71}
+							placeholder={m.signup_confirm_password()}
+							type="password"
+						/>
+						{#if errors.confirmPassword}
+							<p class="text-destructive mt-1 text-xs">{errors.confirmPassword}</p>
+						{/if}
+					</div>
+				</div>
 			</div>
 
-			<p class="text-muted-foreground text-xs font-medium">
-				{m.signup_step({ step })} / {TOTAL_STEPS}
-			</p>
-			<h2 class="text-card-foreground mt-1 text-xl font-bold tracking-tight">{stepTitle}</h2>
+			<!-- Navigation -->
+			<div class="mt-6 flex items-center {step > 1 ? 'justify-between' : 'justify-end'}">
+				{#if step > 1}
+					<button
+						class="border-input text-foreground hover:bg-muted flex items-center gap-1.5 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors"
+						onclick={() => step--}
+						type="button"
+					>
+						<ArrowLeft class="h-4 w-4" />
+						{m.signup_back()}
+					</button>
+				{/if}
 
-			{#if serverError}
-				<div
-					class="border-destructive/30 bg-destructive/10 text-destructive mt-4 rounded-lg border px-4 py-3 text-sm"
-				>
-					{serverError}
-				</div>
-			{/if}
+				{#if step < TOTAL_STEPS}
+					<button
+						class="group bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors"
+						onclick={tryNextStep}
+						type="button"
+					>
+						{m.signup_next()}
+						<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+					</button>
+				{:else}
+					<button
+						class="group bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-60"
+						disabled={submitting}
+						type="submit"
+					>
+						{m.signup_create_account()}
+						<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+					</button>
+				{/if}
+			</div>
+		</form>
+	</AuthCard>
 
-			<form class="mt-6" onsubmit={submitForm}>
-				<div class="space-y-4">
-					<!-- Step 1: Name -->
-					<div class:hidden={step !== 1} class="space-y-4">
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="firstName">
-								{m.signup_first_name()}
-							</label>
-							<input
-								bind:this={firstInput}
-								bind:value={formData.firstName}
-								autocomplete="given-name"
-								class={ic(!!errors.firstName)}
-								id="firstName"
-								maxlength={50}
-								name="firstName"
-								placeholder={m.signup_first_name()}
-								type="text"
-							/>
-							{#if errors.firstName}
-								<p class="text-destructive mt-1 text-xs">{errors.firstName}</p>
-							{/if}
-						</div>
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="lastName">
-								{m.signup_last_name()}
-							</label>
-							<input
-								bind:value={formData.lastName}
-								autocomplete="family-name"
-								class={ic(!!errors.lastName)}
-								id="lastName"
-								maxlength={50}
-								name="lastName"
-								placeholder={m.signup_last_name()}
-								type="text"
-							/>
-							{#if errors.lastName}
-								<p class="text-destructive mt-1 text-xs">{errors.lastName}</p>
-							{/if}
-						</div>
-					</div>
-
-					<!-- Step 2: Birthdate & Gender -->
-					<div class:hidden={step !== 2} class="space-y-4">
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="birthdate">
-								{m.signup_birthdate_label()}
-							</label>
-							<input
-								bind:value={formData.birthdate}
-								autocomplete="bday"
-								class={ic(!!errors.birthdate)}
-								id="birthdate"
-								max={maxBirthdate}
-								min={minBirthdate}
-								name="birthdate"
-								type="date"
-							/>
-							{#if errors.birthdate}
-								<p class="text-destructive mt-1 text-xs">{errors.birthdate}</p>
-							{/if}
-						</div>
-						<div>
-							<p class="text-foreground mb-2 text-sm font-medium">
-								{m.signup_gender_male()} / {m.signup_gender_female()}
-							</p>
-							<div class="flex gap-4">
-								<label class="text-foreground flex cursor-pointer items-center gap-2 text-sm">
-									<input
-										bind:group={formData.gender}
-										class="accent-primary"
-										name="gender"
-										type="radio"
-										value="male"
-									/>
-									{m.signup_gender_male()}
-								</label>
-								<label class="text-foreground flex cursor-pointer items-center gap-2 text-sm">
-									<input
-										bind:group={formData.gender}
-										class="accent-primary"
-										name="gender"
-										type="radio"
-										value="female"
-									/>
-									{m.signup_gender_female()}
-								</label>
-							</div>
-						</div>
-					</div>
-
-					<!-- Step 3: Account Details -->
-					<div class:hidden={step !== 3} class="space-y-4">
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="email">
-								{m.signup_email_label()}
-							</label>
-							<input
-								bind:value={formData.email}
-								autocomplete="email"
-								class={ic(!!errors.email)}
-								id="email"
-								maxlength={320}
-								name="email"
-								placeholder={m.signup_email_placeholder()}
-								type="email"
-							/>
-							{#if errors.email}
-								<p class="text-destructive mt-1 text-xs">{errors.email}</p>
-							{/if}
-						</div>
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="username">
-								{m.signup_username_label()}
-							</label>
-							<input
-								bind:value={formData.username}
-								class={ic(!!errors.username)}
-								id="username"
-								maxlength={20}
-								name="username"
-								placeholder={m.signup_username_placeholder()}
-								type="text"
-							/>
-							{#if errors.username}
-								<p class="text-destructive mt-1 text-xs">{errors.username}</p>
-							{/if}
-						</div>
-					</div>
-
-					<!-- Step 4: Password -->
-					<div class:hidden={step !== 4} class="space-y-4">
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="password">
-								{m.signup_password_label()}
-							</label>
-							<input
-								bind:value={formData.password}
-								autocomplete="new-password"
-								class={ic(!!errors.password)}
-								id="password"
-								maxlength={71}
-								name="password"
-								placeholder={m.signup_password_placeholder()}
-								type="password"
-							/>
-							{#if errors.password}
-								<p class="text-destructive mt-1 text-xs">{errors.password}</p>
-							{/if}
-						</div>
-						<div>
-							<label class="text-foreground mb-1.5 block text-sm font-medium" for="confirmPassword">
-								{m.signup_confirm_password()}
-							</label>
-							<input
-								bind:value={confirmPassword}
-								autocomplete="new-password"
-								class={ic(!!errors.confirmPassword)}
-								id="confirmPassword"
-								maxlength={71}
-								placeholder={m.signup_confirm_password()}
-								type="password"
-							/>
-							{#if errors.confirmPassword}
-								<p class="text-destructive mt-1 text-xs">{errors.confirmPassword}</p>
-							{/if}
-						</div>
-					</div>
-				</div>
-
-				<!-- Navigation -->
-				<div class="mt-6 flex items-center {step > 1 ? 'justify-between' : 'justify-end'}">
-					{#if step > 1}
-						<button
-							class="border-input text-foreground hover:bg-muted flex items-center gap-1.5 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors"
-							onclick={() => step--}
-							type="button"
-						>
-							<ArrowLeft class="h-4 w-4" />
-							{m.signup_back()}
-						</button>
-					{/if}
-
-					{#if step < TOTAL_STEPS}
-						<button
-							class="group bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors"
-							onclick={tryNextStep}
-							type="button"
-						>
-							{m.signup_next()}
-							<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-						</button>
-					{:else}
-						<button
-							class="group bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-60"
-							disabled={submitting}
-							type="submit"
-						>
-							{m.signup_create_account()}
-							<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-						</button>
-					{/if}
-				</div>
-			</form>
-		</div>
-
-		<p class="text-muted-foreground relative mt-5 text-sm">
-			{m.signup_have_account()}
-			<a class="text-primary hover:text-primary/80 font-medium transition-colors" href="/login">
-				{m.signup_log_in()}
-			</a>
-		</p>
-	</div>
+	<p class="text-muted-foreground relative mt-5 text-sm">
+		{m.signup_have_account()}
+		<a class="text-primary hover:text-primary/80 font-medium transition-colors" href="/login">
+			{m.signup_log_in()}
+		</a>
+	</p>
 {/if}
