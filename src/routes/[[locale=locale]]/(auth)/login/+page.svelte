@@ -10,6 +10,7 @@
 	import AuthCard from '$lib/components/AuthCard.svelte';
 
 	let emailElement: HTMLInputElement;
+	let email = $state('');
 	let error = $state('');
 	let submitting = $state(false);
 
@@ -74,6 +75,7 @@
 			<input
 				autocomplete="email"
 				bind:this={emailElement}
+				bind:value={email}
 				class="border-input bg-muted text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-background focus:ring-ring/20 w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors outline-none focus:ring-2"
 				id="email"
 				name="email"
@@ -98,7 +100,7 @@
 			/>
 			<a
 				class="text-primary hover:text-primary/80 mt-1.5 block text-xs transition-colors"
-				href="/forgot-password"
+				href={email ? `/forgot-password?email=${encodeURIComponent(email)}` : '/forgot-password'}
 				tabindex="-1"
 			>
 				{m.login_forgot_password()}

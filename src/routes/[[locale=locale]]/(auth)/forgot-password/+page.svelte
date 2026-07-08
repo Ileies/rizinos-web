@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { ArrowRight, ArrowLeft, MailCheck } from '@lucide/svelte';
+	import { page } from '$app/state';
 	import * as m from '$lib/messages.svelte';
 	import AuthCard from '$lib/components/AuthCard.svelte';
+	import { apiFetch } from '$lib/api';
 
-	let email = $state('');
+	let email = $state(page.url.searchParams.get('email') ?? '');
 	let submitting = $state(false);
 	let submitted = $state(false);
 	let error = $state('');
@@ -14,9 +16,8 @@
 		submitting = true;
 		error = '';
 
-		await fetch('/api/auth/forgot-password', {
+		await apiFetch('/auth/forgot-password', {
 			method: 'POST',
-			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify({ email })
 		});
 
