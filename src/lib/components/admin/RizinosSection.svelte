@@ -8,6 +8,7 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import RestrictEditor from '$lib/components/RestrictEditor.svelte';
 	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import AdminCard from '$lib/components/AdminCard.svelte';
 	import RowActions from '$lib/components/RowActions.svelte';
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
@@ -283,68 +284,117 @@
 
 	<!-- USERS -->
 	{#if currentTab === 'users'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head class="w-36">Username</Table.Head>
-					<Table.Head>Email</Table.Head>
-					<Table.Head>Roles</Table.Head>
-					<Table.Head class="w-8 text-center" title="Gender">G</Table.Head>
-					<Table.Head class="w-20 text-right">Credit</Table.Head>
-					<Table.Head class="w-28">Last Online</Table.Head>
-					<Table.Head class="w-10"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each pagedUsers as user (user.id)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="py-1.5">
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
+					<Table.Row>
+						<Table.Head class="w-36">Username</Table.Head>
+						<Table.Head>Email</Table.Head>
+						<Table.Head>Roles</Table.Head>
+						<Table.Head class="w-8 text-center" title="Gender">G</Table.Head>
+						<Table.Head class="w-20 text-right">Credit</Table.Head>
+						<Table.Head class="w-28">Last Online</Table.Head>
+						<Table.Head class="w-10"></Table.Head>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{#each pagedUsers as user (user.id)}
+						<Table.Row class="hover:bg-muted/40 group">
+							<Table.Cell class="py-1.5">
+								<div class="flex items-center gap-1.5 font-medium">
+									{user.username}
+									{#if user.bannedUntil}
+										<span
+											class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+											>banned</span
+										>
+									{/if}
+								</div>
+								<div class="text-muted-foreground text-xs">{user.firstName} {user.lastName}</div>
+							</Table.Cell>
+							<Table.Cell class="text-muted-foreground py-1.5 text-xs">{user.email}</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<div class="flex flex-wrap gap-1">
+									{#each user.roles as role (role)}
+										<span
+											class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
+												CHIP_FALLBACK}">{role}</span
+										>
+									{/each}
+								</div>
+							</Table.Cell>
+							<Table.Cell class="py-1.5 text-center">
+								{#if user.gender && GENDER_ICON[user.gender]}
+									<span class="text-sm font-bold {GENDER_ICON[user.gender].cls}"
+										>{GENDER_ICON[user.gender].symbol}</span
+									>
+								{:else}
+									<span class="text-muted-foreground">-</span>
+								{/if}
+							</Table.Cell>
+							<Table.Cell class="py-1.5 text-right text-sm tabular-nums">{user.credit}</Table.Cell>
+							<Table.Cell class="text-muted-foreground py-1.5 text-xs">
+								{new Date(user.lastOnline).toLocaleDateString('en', {
+									month: 'short',
+									day: 'numeric',
+									year: '2-digit'
+								})}
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<RowActions onEdit={() => openUserEdit(user.id)} />
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each pagedUsers as user (user.id)}
+				<AdminCard>
+					<div class="flex items-start justify-between gap-2">
+						<div class="min-w-0">
 							<div class="flex items-center gap-1.5 font-medium">
-								{user.username}
+								<span class="truncate">{user.username}</span>
 								{#if user.bannedUntil}
 									<span
-										class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+										class="shrink-0 rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
 										>banned</span
 									>
 								{/if}
 							</div>
-							<div class="text-muted-foreground text-xs">{user.firstName} {user.lastName}</div>
-						</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 text-xs">{user.email}</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<div class="flex flex-wrap gap-1">
-								{#each user.roles as role (role)}
-									<span
-										class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
-											CHIP_FALLBACK}">{role}</span
-									>
-								{/each}
+							<div class="text-muted-foreground truncate text-xs">
+								{user.firstName}
+								{user.lastName} · {user.email}
 							</div>
-						</Table.Cell>
-						<Table.Cell class="py-1.5 text-center">
-							{#if user.gender && GENDER_ICON[user.gender]}
-								<span class="text-sm font-bold {GENDER_ICON[user.gender].cls}"
-									>{GENDER_ICON[user.gender].symbol}</span
-								>
-							{:else}
-								<span class="text-muted-foreground">-</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="py-1.5 text-right text-sm tabular-nums">{user.credit}</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 text-xs">
-							{new Date(user.lastOnline).toLocaleDateString('en', {
+						</div>
+						<RowActions onEdit={() => openUserEdit(user.id)} alwaysVisible />
+					</div>
+					<div class="flex flex-wrap gap-1">
+						{#each user.roles as role (role)}
+							<span
+								class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ?? CHIP_FALLBACK}"
+								>{role}</span
+							>
+						{/each}
+					</div>
+					<div class="text-muted-foreground flex items-center gap-3 text-xs">
+						{#if user.gender && GENDER_ICON[user.gender]}
+							<span class="font-bold {GENDER_ICON[user.gender].cls}"
+								>{GENDER_ICON[user.gender].symbol}</span
+							>
+						{/if}
+						<span class="tabular-nums">{user.credit} credit</span>
+						<span
+							>{new Date(user.lastOnline).toLocaleDateString('en', {
 								month: 'short',
 								day: 'numeric',
 								year: '2-digit'
-							})}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions onEdit={() => openUserEdit(user.id)} />
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-			</Table.Body>
-		</Table.Root>
+							})}</span
+						>
+					</div>
+				</AdminCard>
+			{/each}
+		</div>
 		<Pagination
 			page={usersPage}
 			total={filteredUsers.length}
@@ -355,47 +405,75 @@
 
 	<!-- LOGS -->
 	{#if currentTab === 'logs'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head class="w-20">Level</Table.Head>
-					<Table.Head class="w-80">Message</Table.Head>
-					<Table.Head class="w-36">Timestamp</Table.Head>
-					<Table.Head>Data</Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each filteredLogs as log (log.id)}
-					<Table.Row class="hover:bg-muted/40 cursor-pointer" onclick={() => openLog(log)}>
-						<Table.Cell class="py-1.5">
-							<span
-								class="rounded px-1.5 py-0.5 text-xs font-medium {LOG_CHIP[log.type] ??
-									CHIP_FALLBACK}">{log.type}</span
-							>
-						</Table.Cell>
-						<Table.Cell class="max-w-[20rem] truncate py-1.5 text-sm">{log.message}</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 text-xs tabular-nums">
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
+					<Table.Row>
+						<Table.Head class="w-20">Level</Table.Head>
+						<Table.Head class="w-80">Message</Table.Head>
+						<Table.Head class="w-36">Timestamp</Table.Head>
+						<Table.Head>Data</Table.Head>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{#each filteredLogs as log (log.id)}
+						<Table.Row class="hover:bg-muted/40 cursor-pointer" onclick={() => openLog(log)}>
+							<Table.Cell class="py-1.5">
+								<span
+									class="rounded px-1.5 py-0.5 text-xs font-medium {LOG_CHIP[log.type] ??
+										CHIP_FALLBACK}">{log.type}</span
+								>
+							</Table.Cell>
+							<Table.Cell class="max-w-[20rem] truncate py-1.5 text-sm">{log.message}</Table.Cell>
+							<Table.Cell class="text-muted-foreground py-1.5 text-xs tabular-nums">
+								{new Date(log.createdAt).toLocaleString('en', {
+									month: 'short',
+									day: 'numeric',
+									hour: '2-digit',
+									minute: '2-digit',
+									second: '2-digit'
+								})}
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								{#if log.data}
+									<span class="text-muted-foreground block truncate font-mono text-xs">
+										{JSON.stringify(log.data)}
+									</span>
+								{:else}
+									<span class="text-muted-foreground/40 text-xs">-</span>
+								{/if}
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each filteredLogs as log (log.id)}
+				<AdminCard onclick={() => openLog(log)}>
+					<div class="flex items-center justify-between gap-2">
+						<span
+							class="rounded px-1.5 py-0.5 text-xs font-medium {LOG_CHIP[log.type] ??
+								CHIP_FALLBACK}">{log.type}</span
+						>
+						<span class="text-muted-foreground shrink-0 text-xs tabular-nums">
 							{new Date(log.createdAt).toLocaleString('en', {
 								month: 'short',
 								day: 'numeric',
 								hour: '2-digit',
-								minute: '2-digit',
-								second: '2-digit'
+								minute: '2-digit'
 							})}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							{#if log.data}
-								<span class="text-muted-foreground block truncate font-mono text-xs">
-									{JSON.stringify(log.data)}
-								</span>
-							{:else}
-								<span class="text-muted-foreground/40 text-xs">-</span>
-							{/if}
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-			</Table.Body>
-		</Table.Root>
+						</span>
+					</div>
+					<p class="truncate text-sm">{log.message}</p>
+					{#if log.data}
+						<p class="text-muted-foreground truncate font-mono text-xs">
+							{JSON.stringify(log.data)}
+						</p>
+					{/if}
+				</AdminCard>
+			{/each}
+		</div>
 		{#if logs.length === 500}
 			<p class="text-muted-foreground mt-2 text-xs">Showing 500 most recent entries.</p>
 		{/if}
@@ -403,58 +481,96 @@
 
 	<!-- APPS -->
 	{#if currentTab === 'apps'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head class="w-48">Name</Table.Head>
-					<Table.Head>Title</Table.Head>
-					<Table.Head class="w-28">Author</Table.Head>
-					<Table.Head>Restrictions</Table.Head>
-					<Table.Head class="w-16"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each apps as app (app.id)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="py-1.5 font-mono text-sm">{app.name}</Table.Cell>
-						<Table.Cell class="py-1.5 font-medium">{app.title}</Table.Cell>
-						<Table.Cell class="py-1.5">
-							{#if app.user}
-								<button
-									onclick={() => openUserEdit(app.authorId)}
-									class="text-muted-foreground hover:text-foreground text-sm hover:underline"
-								>
-									{app.user.username}
-								</button>
-							{:else}
-								<span class="text-muted-foreground text-sm">-</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="overflow-hidden py-1.5">
-							<RestrictEditor
-								value={app.restrict ?? []}
-								readonly
-								{users}
-								onUserClick={(id) => openUserEdit(id)}
-							/>
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions
-								onEdit={() => openAppEdit(app)}
-								onDelete={() => openAppDeleteConfirm(app)}
-							/>
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-				{#if apps.length === 0}
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
 					<Table.Row>
-						<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-							>No apps</Table.Cell
-						>
+						<Table.Head class="w-48">Name</Table.Head>
+						<Table.Head>Title</Table.Head>
+						<Table.Head class="w-28">Author</Table.Head>
+						<Table.Head>Restrictions</Table.Head>
+						<Table.Head class="w-16"></Table.Head>
 					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
+				</Table.Header>
+				<Table.Body>
+					{#each apps as app (app.id)}
+						<Table.Row class="hover:bg-muted/40 group">
+							<Table.Cell class="py-1.5 font-mono text-sm">{app.name}</Table.Cell>
+							<Table.Cell class="py-1.5 font-medium">{app.title}</Table.Cell>
+							<Table.Cell class="py-1.5">
+								{#if app.user}
+									<button
+										onclick={() => openUserEdit(app.authorId)}
+										class="text-muted-foreground hover:text-foreground text-sm hover:underline"
+									>
+										{app.user.username}
+									</button>
+								{:else}
+									<span class="text-muted-foreground text-sm">-</span>
+								{/if}
+							</Table.Cell>
+							<Table.Cell class="overflow-hidden py-1.5">
+								<RestrictEditor
+									value={app.restrict ?? []}
+									readonly
+									{users}
+									onUserClick={(id) => openUserEdit(id)}
+								/>
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<RowActions
+									onEdit={() => openAppEdit(app)}
+									onDelete={() => openAppDeleteConfirm(app)}
+								/>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+					{#if apps.length === 0}
+						<Table.Row>
+							<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
+								>No apps</Table.Cell
+							>
+						</Table.Row>
+					{/if}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each apps as app (app.id)}
+				<AdminCard>
+					<div class="flex items-start justify-between gap-2">
+						<div class="min-w-0">
+							<div class="truncate font-medium">{app.title}</div>
+							<div class="text-muted-foreground truncate font-mono text-xs">{app.name}</div>
+						</div>
+						<RowActions
+							onEdit={() => openAppEdit(app)}
+							onDelete={() => openAppDeleteConfirm(app)}
+							alwaysVisible
+						/>
+					</div>
+					{#if app.user}
+						<button
+							onclick={() => openUserEdit(app.authorId)}
+							class="text-muted-foreground hover:text-foreground text-xs hover:underline"
+						>
+							{app.user.username}
+						</button>
+					{:else}
+						<span class="text-muted-foreground text-xs">-</span>
+					{/if}
+					<RestrictEditor
+						value={app.restrict ?? []}
+						readonly
+						{users}
+						onUserClick={(id) => openUserEdit(id)}
+					/>
+				</AdminCard>
+			{/each}
+			{#if apps.length === 0}
+				<p class="text-muted-foreground py-8 text-center text-sm">No apps</p>
+			{/if}
+		</div>
 	{/if}
 </AdminPanel>
 
@@ -578,7 +694,9 @@
 					>
 						<div>
 							<span class="font-medium text-red-700 dark:text-red-400">Until:</span>
-							<span class="ml-1 text-red-600">{new Date(editingUser.bannedUntil).toLocaleString()}</span>
+							<span class="ml-1 text-red-600"
+								>{new Date(editingUser.bannedUntil).toLocaleString()}</span
+							>
 							{#if editingUser.bannedReason}
 								<span class="ml-1 text-red-500">- {editingUser.bannedReason}</span>
 							{/if}
@@ -601,14 +719,20 @@
 				<form onsubmit={(e) => submitForm(e, 'userBan')} class="flex items-end gap-2">
 					<input type="hidden" name="userId" value={editingUser.id} />
 					<div class="flex-1">
-						<label for="user-ban-until" class="text-muted-foreground mb-1 block text-xs">Until</label>
+						<label for="user-ban-until" class="text-muted-foreground mb-1 block text-xs"
+							>Until</label
+						>
 						<Input.Root id="user-ban-until" type="datetime-local" name="until" required />
 					</div>
 					<div class="flex-1">
-						<label for="user-ban-reason" class="text-muted-foreground mb-1 block text-xs">Reason</label>
+						<label for="user-ban-reason" class="text-muted-foreground mb-1 block text-xs"
+							>Reason</label
+						>
 						<Input.Root id="user-ban-reason" name="reason" placeholder="Optional" />
 					</div>
-					<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0">Ban</Button.Root>
+					<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0"
+						>Ban</Button.Root
+					>
 				</form>
 			</div>
 

@@ -36,7 +36,10 @@
 	onMount(load);
 
 	async function resolve(id: number, approve: boolean) {
-		const res = await adminPost('/unban-requests', { action: approve ? 'approve' : 'deny', id: String(id) });
+		const res = await adminPost('/unban-requests', {
+			action: approve ? 'approve' : 'deny',
+			id: String(id)
+		});
 		if (res.ok) await load();
 		else loadError = res.error ?? 'Failed to resolve request';
 	}
@@ -49,53 +52,95 @@
 
 	<h2 class="mb-3 text-lg font-semibold">Unban Requests</h2>
 
-	<Table.Root class="w-full table-fixed">
-		<Table.Header>
-			<Table.Row>
-				<Table.Head class="w-28">System</Table.Head>
-				<Table.Head class="w-32">Subject</Table.Head>
-				<Table.Head>Message</Table.Head>
-				<Table.Head class="w-40">Submitted</Table.Head>
-				<Table.Head class="w-40"></Table.Head>
-			</Table.Row>
-		</Table.Header>
-		<Table.Body>
-			{#each unbanRequests as req (req.id)}
-				<Table.Row class="hover:bg-muted/40 group">
-					<Table.Cell class="py-1.5">
-						<span
-							class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-						>
-							{TYPE_LABEL[req.type]}
-						</span>
-					</Table.Cell>
-					<Table.Cell class="py-1.5 font-medium">
-						{req.label}
-						<span class="text-muted-foreground ml-1 font-mono text-xs">[{req.banId}]</span>
-					</Table.Cell>
-					<Table.Cell class="py-1.5 text-sm whitespace-pre-wrap">{req.message}</Table.Cell>
-					<Table.Cell class="py-1.5 text-xs">{new Date(req.createdAt).toLocaleString()}</Table.Cell>
-					<Table.Cell class="py-1.5">
-						<div class="flex gap-1.5">
-							<Button.Root onclick={() => resolve(req.id, true)} size="sm" class="h-7 px-2 text-xs"
-								>Approve</Button.Root
-							>
-							<Button.Root
-								onclick={() => resolve(req.id, false)}
-								size="sm"
-								variant="outline"
-								class="h-7 px-2 text-xs">Deny</Button.Root
-							>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			{:else}
+	<div class="hidden md:block">
+		<Table.Root class="w-full table-fixed">
+			<Table.Header>
 				<Table.Row>
-					<Table.Cell colspan={5} class="text-muted-foreground py-4 text-center text-sm">
-						No open requests.
-					</Table.Cell>
+					<Table.Head class="w-28">System</Table.Head>
+					<Table.Head class="w-32">Subject</Table.Head>
+					<Table.Head>Message</Table.Head>
+					<Table.Head class="w-40">Submitted</Table.Head>
+					<Table.Head class="w-40"></Table.Head>
 				</Table.Row>
-			{/each}
-		</Table.Body>
-	</Table.Root>
+			</Table.Header>
+			<Table.Body>
+				{#each unbanRequests as req (req.id)}
+					<Table.Row class="hover:bg-muted/40 group">
+						<Table.Cell class="py-1.5">
+							<span
+								class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+							>
+								{TYPE_LABEL[req.type]}
+							</span>
+						</Table.Cell>
+						<Table.Cell class="py-1.5 font-medium">
+							{req.label}
+							<span class="text-muted-foreground ml-1 font-mono text-xs">[{req.banId}]</span>
+						</Table.Cell>
+						<Table.Cell class="py-1.5 text-sm whitespace-pre-wrap">{req.message}</Table.Cell>
+						<Table.Cell class="py-1.5 text-xs"
+							>{new Date(req.createdAt).toLocaleString()}</Table.Cell
+						>
+						<Table.Cell class="py-1.5">
+							<div class="flex gap-1.5">
+								<Button.Root
+									onclick={() => resolve(req.id, true)}
+									size="sm"
+									class="h-7 px-2 text-xs">Approve</Button.Root
+								>
+								<Button.Root
+									onclick={() => resolve(req.id, false)}
+									size="sm"
+									variant="outline"
+									class="h-7 px-2 text-xs">Deny</Button.Root
+								>
+							</div>
+						</Table.Cell>
+					</Table.Row>
+				{:else}
+					<Table.Row>
+						<Table.Cell colspan={5} class="text-muted-foreground py-4 text-center text-sm">
+							No open requests.
+						</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table.Root>
+	</div>
+	<div class="flex flex-col gap-2 md:hidden">
+		{#each unbanRequests as req (req.id)}
+			<div class="space-y-1.5 rounded-lg border p-2.5">
+				<div class="flex items-center justify-between gap-2">
+					<span
+						class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+					>
+						{TYPE_LABEL[req.type]}
+					</span>
+					<span class="text-muted-foreground text-xs"
+						>{new Date(req.createdAt).toLocaleString()}</span
+					>
+				</div>
+				<div class="font-medium">
+					{req.label}
+					<span class="text-muted-foreground ml-1 font-mono text-xs">[{req.banId}]</span>
+				</div>
+				<p class="text-sm whitespace-pre-wrap">{req.message}</p>
+				<div class="flex gap-1.5 pt-1">
+					<Button.Root
+						onclick={() => resolve(req.id, true)}
+						size="sm"
+						class="h-7 flex-1 px-2 text-xs">Approve</Button.Root
+					>
+					<Button.Root
+						onclick={() => resolve(req.id, false)}
+						size="sm"
+						variant="outline"
+						class="h-7 flex-1 px-2 text-xs">Deny</Button.Root
+					>
+				</div>
+			</div>
+		{:else}
+			<p class="text-muted-foreground py-4 text-center text-sm">No open requests.</p>
+		{/each}
+	</div>
 </div>

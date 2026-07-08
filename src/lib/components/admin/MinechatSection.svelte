@@ -6,6 +6,7 @@
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
 	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import AdminCard from '$lib/components/AdminCard.svelte';
 	import RowActions from '$lib/components/RowActions.svelte';
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
@@ -246,151 +247,247 @@
 
 	<!-- USERS -->
 	{#if currentTab === 'users'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head>MC Name</Table.Head>
-					<Table.Head>MC UUID</Table.Head>
-					<Table.Head>Discord User ID</Table.Head>
-					<Table.Head class="w-24">Token</Table.Head>
-					<Table.Head class="w-16"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each users as user (user.minecraftUuid)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="py-1.5 font-medium">{user.minecraftName}</Table.Cell>
-						<Table.Cell class="py-1.5">
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
+					<Table.Row>
+						<Table.Head>MC Name</Table.Head>
+						<Table.Head>MC UUID</Table.Head>
+						<Table.Head>Discord User ID</Table.Head>
+						<Table.Head class="w-24">Token</Table.Head>
+						<Table.Head class="w-16"></Table.Head>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{#each users as user (user.minecraftUuid)}
+						<Table.Row class="hover:bg-muted/40 group">
+							<Table.Cell class="py-1.5 font-medium">{user.minecraftName}</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<button
+									onclick={() => openUserEdit(user)}
+									class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
+								>
+									{user.minecraftUuid}
+								</button>
+							</Table.Cell>
+							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+								>{user.discordUserId}</Table.Cell
+							>
+							<Table.Cell class="py-1.5">
+								{#if user.token}
+									<span
+										class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+										>set</span
+									>
+								{:else}
+									<span class="text-muted-foreground/40 text-xs">-</span>
+								{/if}
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<RowActions
+									onEdit={() => openUserEdit(user)}
+									onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
+								/>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+					{#if users.length === 0}
+						<Table.Row>
+							<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
+								>No users</Table.Cell
+							>
+						</Table.Row>
+					{/if}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each users as user (user.minecraftUuid)}
+				<AdminCard>
+					<div class="flex items-start justify-between gap-2">
+						<div class="min-w-0">
+							<div class="font-medium">{user.minecraftName}</div>
 							<button
 								onclick={() => openUserEdit(user)}
-								class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
+								class="text-muted-foreground hover:text-foreground truncate font-mono text-xs hover:underline"
 							>
 								{user.minecraftUuid}
 							</button>
-						</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-							>{user.discordUserId}</Table.Cell
+						</div>
+						<RowActions
+							onEdit={() => openUserEdit(user)}
+							onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
+							alwaysVisible
+						/>
+					</div>
+					<div class="text-muted-foreground flex items-center gap-2 font-mono text-xs">
+						{user.discordUserId}
+					</div>
+					{#if user.token}
+						<span
+							class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+							>token set</span
 						>
-						<Table.Cell class="py-1.5">
-							{#if user.token}
-								<span
-									class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
-									>set</span
-								>
-							{:else}
-								<span class="text-muted-foreground/40 text-xs">-</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions
-								onEdit={() => openUserEdit(user)}
-								onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
-							/>
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-				{#if users.length === 0}
-					<Table.Row>
-						<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-							>No users</Table.Cell
-						>
-					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
+					{/if}
+				</AdminCard>
+			{/each}
+			{#if users.length === 0}
+				<p class="text-muted-foreground py-8 text-center text-sm">No users</p>
+			{/if}
+		</div>
 	{/if}
 
 	<!-- HOOKS -->
 	{#if currentTab === 'hooks'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head>Webhook ID</Table.Head>
-					<Table.Head>Channel ID</Table.Head>
-					<Table.Head>Server</Table.Head>
-					<Table.Head class="w-32">Prefix</Table.Head>
-					<Table.Head class="w-24">Token</Table.Head>
-					<Table.Head class="w-16"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each hooks as hook (hook.webhookId)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-							>{hook.webhookId}</Table.Cell
-						>
-						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-							>{hook.channelId}</Table.Cell
-						>
-						<Table.Cell class="py-1.5 text-sm"
-							>{hook.server?.ip ?? hook.minecraftServerId}</Table.Cell
-						>
-						<Table.Cell class="py-1.5 font-mono text-xs">{hook.prefix}</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs">
-							<span class="block max-w-[80px] truncate" title={hook.token}>{hook.token}</span>
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions
-								onEdit={() => openHookEdit(hook)}
-								onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
-							/>
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-				{#if hooks.length === 0}
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
 					<Table.Row>
-						<Table.Cell colspan={6} class="text-muted-foreground py-8 text-center text-sm"
-							>No hooks</Table.Cell
-						>
+						<Table.Head>Webhook ID</Table.Head>
+						<Table.Head>Channel ID</Table.Head>
+						<Table.Head>Server</Table.Head>
+						<Table.Head class="w-32">Prefix</Table.Head>
+						<Table.Head class="w-24">Token</Table.Head>
+						<Table.Head class="w-16"></Table.Head>
 					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
+				</Table.Header>
+				<Table.Body>
+					{#each hooks as hook (hook.webhookId)}
+						<Table.Row class="hover:bg-muted/40 group">
+							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+								>{hook.webhookId}</Table.Cell
+							>
+							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+								>{hook.channelId}</Table.Cell
+							>
+							<Table.Cell class="py-1.5 text-sm"
+								>{hook.server?.ip ?? hook.minecraftServerId}</Table.Cell
+							>
+							<Table.Cell class="py-1.5 font-mono text-xs">{hook.prefix}</Table.Cell>
+							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs">
+								<span class="block max-w-[80px] truncate" title={hook.token}>{hook.token}</span>
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<RowActions
+									onEdit={() => openHookEdit(hook)}
+									onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
+								/>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+					{#if hooks.length === 0}
+						<Table.Row>
+							<Table.Cell colspan={6} class="text-muted-foreground py-8 text-center text-sm"
+								>No hooks</Table.Cell
+							>
+						</Table.Row>
+					{/if}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each hooks as hook (hook.webhookId)}
+				<AdminCard>
+					<div class="flex items-start justify-between gap-2">
+						<div class="min-w-0">
+							<div class="truncate font-mono text-sm">{hook.webhookId}</div>
+							<div class="text-muted-foreground text-xs">
+								{hook.server?.ip ?? hook.minecraftServerId}
+							</div>
+						</div>
+						<RowActions
+							onEdit={() => openHookEdit(hook)}
+							onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
+							alwaysVisible
+						/>
+					</div>
+					<div
+						class="text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs"
+					>
+						<span>Ch: {hook.channelId}</span>
+						<span>{hook.prefix}</span>
+					</div>
+				</AdminCard>
+			{/each}
+			{#if hooks.length === 0}
+				<p class="text-muted-foreground py-8 text-center text-sm">No hooks</p>
+			{/if}
+		</div>
 	{/if}
 
 	<!-- SERVERS -->
 	{#if currentTab === 'servers'}
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head>Server ID</Table.Head>
-					<Table.Head>IP</Table.Head>
-					<Table.Head class="w-32">Hook</Table.Head>
-					<Table.Head class="w-16"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each servers as server (server.serverId)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="py-1.5 font-mono text-sm">{server.serverId}</Table.Cell>
-						<Table.Cell class="py-1.5 text-sm">{server.ip}</Table.Cell>
-						<Table.Cell class="py-1.5">
-							{#if server.hook}
-								<span
-									class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
-									>linked</span
-								>
-							{:else}
-								<span class="text-muted-foreground/40 text-xs">none</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions
-								onEdit={() => openServerEdit(server)}
-								onDelete={() => remove('serverDelete', { serverId: server.serverId })}
-							/>
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-				{#if servers.length === 0}
+		<div class="hidden md:block">
+			<Table.Root>
+				<Table.Header>
 					<Table.Row>
-						<Table.Cell colspan={4} class="text-muted-foreground py-8 text-center text-sm"
-							>No servers</Table.Cell
-						>
+						<Table.Head>Server ID</Table.Head>
+						<Table.Head>IP</Table.Head>
+						<Table.Head class="w-32">Hook</Table.Head>
+						<Table.Head class="w-16"></Table.Head>
 					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
+				</Table.Header>
+				<Table.Body>
+					{#each servers as server (server.serverId)}
+						<Table.Row class="hover:bg-muted/40 group">
+							<Table.Cell class="py-1.5 font-mono text-sm">{server.serverId}</Table.Cell>
+							<Table.Cell class="py-1.5 text-sm">{server.ip}</Table.Cell>
+							<Table.Cell class="py-1.5">
+								{#if server.hook}
+									<span
+										class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+										>linked</span
+									>
+								{:else}
+									<span class="text-muted-foreground/40 text-xs">none</span>
+								{/if}
+							</Table.Cell>
+							<Table.Cell class="py-1.5">
+								<RowActions
+									onEdit={() => openServerEdit(server)}
+									onDelete={() => remove('serverDelete', { serverId: server.serverId })}
+								/>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+					{#if servers.length === 0}
+						<Table.Row>
+							<Table.Cell colspan={4} class="text-muted-foreground py-8 text-center text-sm"
+								>No servers</Table.Cell
+							>
+						</Table.Row>
+					{/if}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex flex-col gap-2 md:hidden">
+			{#each servers as server (server.serverId)}
+				<AdminCard>
+					<div class="flex items-start justify-between gap-2">
+						<div class="min-w-0">
+							<div class="font-mono text-sm">{server.serverId}</div>
+							<div class="text-muted-foreground text-xs">{server.ip}</div>
+						</div>
+						<RowActions
+							onEdit={() => openServerEdit(server)}
+							onDelete={() => remove('serverDelete', { serverId: server.serverId })}
+							alwaysVisible
+						/>
+					</div>
+					{#if server.hook}
+						<span
+							class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+							>linked</span
+						>
+					{:else}
+						<span class="text-muted-foreground/40 text-xs">no hook</span>
+					{/if}
+				</AdminCard>
+			{/each}
+			{#if servers.length === 0}
+				<p class="text-muted-foreground py-8 text-center text-sm">No servers</p>
+			{/if}
+		</div>
 	{/if}
 </AdminPanel>
 

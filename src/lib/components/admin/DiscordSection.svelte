@@ -6,6 +6,7 @@
 	import * as Input from '$shadcn/input';
 	import Modal from '$lib/components/Modal.svelte';
 	import AdminPanel from '$lib/components/AdminPanel.svelte';
+	import AdminCard from '$lib/components/AdminCard.svelte';
 	import RowActions from '$lib/components/RowActions.svelte';
 	import UserViewModal from '$lib/components/UserViewModal.svelte';
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
@@ -134,60 +135,101 @@
 		</Button.Root>
 	{/snippet}
 
-	<Table.Root>
-		<Table.Header>
-			<Table.Row>
-				<Table.Head>Discord Name</Table.Head>
-				<Table.Head>Discord User ID</Table.Head>
-				<Table.Head>Account</Table.Head>
-				<Table.Head class="w-24">Status</Table.Head>
-				<Table.Head class="w-16"></Table.Head>
-			</Table.Row>
-		</Table.Header>
-		<Table.Body>
-			{#each dcUsers as dc (dc.discordUserId)}
-				<Table.Row class="hover:bg-muted/40 group">
-					<Table.Cell class="py-1.5 font-medium">{dc.name}</Table.Cell>
-					<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-						>{dc.discordUserId}</Table.Cell
-					>
-					<Table.Cell class="py-1.5">
-						{#if dc.user}
-							{@const u = dc.user}
-							<button
-								onclick={() => openViewUser(u)}
-								class="text-muted-foreground hover:text-foreground text-sm hover:underline"
-							>
-								{u.username}
-							</button>
-						{:else}
-							<span class="text-muted-foreground text-sm">-</span>
-						{/if}
-					</Table.Cell>
-					<Table.Cell class="py-1.5">
-						{#if dc.bannedUntil}
-							<span
-								class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
-								>banned</span
-							>
-						{:else}
-							<span class="text-muted-foreground text-xs">-</span>
-						{/if}
-					</Table.Cell>
-					<Table.Cell class="py-1.5">
-						<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
-					</Table.Cell>
-				</Table.Row>
-			{/each}
-			{#if dcUsers.length === 0}
+	<div class="hidden md:block">
+		<Table.Root>
+			<Table.Header>
 				<Table.Row>
-					<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-						>No Discord users linked</Table.Cell
-					>
+					<Table.Head>Discord Name</Table.Head>
+					<Table.Head>Discord User ID</Table.Head>
+					<Table.Head>Account</Table.Head>
+					<Table.Head class="w-24">Status</Table.Head>
+					<Table.Head class="w-16"></Table.Head>
 				</Table.Row>
-			{/if}
-		</Table.Body>
-	</Table.Root>
+			</Table.Header>
+			<Table.Body>
+				{#each dcUsers as dc (dc.discordUserId)}
+					<Table.Row class="hover:bg-muted/40 group">
+						<Table.Cell class="py-1.5 font-medium">{dc.name}</Table.Cell>
+						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+							>{dc.discordUserId}</Table.Cell
+						>
+						<Table.Cell class="py-1.5">
+							{#if dc.user}
+								{@const u = dc.user}
+								<button
+									onclick={() => openViewUser(u)}
+									class="text-muted-foreground hover:text-foreground text-sm hover:underline"
+								>
+									{u.username}
+								</button>
+							{:else}
+								<span class="text-muted-foreground text-sm">-</span>
+							{/if}
+						</Table.Cell>
+						<Table.Cell class="py-1.5">
+							{#if dc.bannedUntil}
+								<span
+									class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+									>banned</span
+								>
+							{:else}
+								<span class="text-muted-foreground text-xs">-</span>
+							{/if}
+						</Table.Cell>
+						<Table.Cell class="py-1.5">
+							<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
+						</Table.Cell>
+					</Table.Row>
+				{/each}
+				{#if dcUsers.length === 0}
+					<Table.Row>
+						<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
+							>No Discord users linked</Table.Cell
+						>
+					</Table.Row>
+				{/if}
+			</Table.Body>
+		</Table.Root>
+	</div>
+	<div class="flex flex-col gap-2 md:hidden">
+		{#each dcUsers as dc (dc.discordUserId)}
+			<AdminCard>
+				<div class="flex items-start justify-between gap-2">
+					<div class="min-w-0">
+						<div class="flex items-center gap-1.5 font-medium">
+							<span class="truncate">{dc.name}</span>
+							{#if dc.bannedUntil}
+								<span
+									class="shrink-0 rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+									>banned</span
+								>
+							{/if}
+						</div>
+						<div class="text-muted-foreground truncate font-mono text-xs">{dc.discordUserId}</div>
+					</div>
+					<RowActions
+						onEdit={() => openEdit(dc)}
+						onDelete={() => remove(dc.discordUserId)}
+						alwaysVisible
+					/>
+				</div>
+				{#if dc.user}
+					{@const u = dc.user}
+					<button
+						onclick={() => openViewUser(u)}
+						class="text-muted-foreground hover:text-foreground text-xs hover:underline"
+					>
+						{u.username}
+					</button>
+				{:else}
+					<span class="text-muted-foreground text-xs">-</span>
+				{/if}
+			</AdminCard>
+		{/each}
+		{#if dcUsers.length === 0}
+			<p class="text-muted-foreground py-8 text-center text-sm">No Discord users linked</p>
+		{/if}
+	</div>
 </AdminPanel>
 
 <!-- DC USER MODAL -->
@@ -266,7 +308,9 @@
 				>
 					<div>
 						<span class="font-medium text-red-700 dark:text-red-400">Until:</span>
-						<span class="ml-1 text-red-600">{new Date(editingDcUser.bannedUntil).toLocaleString()}</span>
+						<span class="ml-1 text-red-600"
+							>{new Date(editingDcUser.bannedUntil).toLocaleString()}</span
+						>
 						{#if editingDcUser.bannedReason}
 							<span class="ml-1 text-red-500">- {editingDcUser.bannedReason}</span>
 						{/if}
@@ -297,7 +341,8 @@
 					<label for="dc-ban-reason" class="text-muted-foreground mb-1 block text-xs">Reason</label>
 					<Input.Root id="dc-ban-reason" name="reason" placeholder="Optional" />
 				</div>
-				<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0">Ban</Button.Root>
+				<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0">Ban</Button.Root
+				>
 			</form>
 		</div>
 	{/if}

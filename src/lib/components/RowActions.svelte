@@ -1,10 +1,18 @@
 <script lang="ts">
 	import { Pencil, Trash2 } from '@lucide/svelte';
 
-	let { onEdit, onDelete }: { onEdit?: () => void; onDelete?: () => void } = $props();
+	let {
+		onEdit,
+		onDelete,
+		alwaysVisible = false
+	}: { onEdit?: () => void; onDelete?: () => void; alwaysVisible?: boolean } = $props();
 </script>
 
-<div class="flex items-center gap-1 opacity-0 transition-all group-hover:opacity-100">
+<div
+	class="flex shrink-0 items-center gap-1 {alwaysVisible
+		? ''
+		: 'opacity-0 transition-all group-hover:opacity-100'}"
+>
 	{#if onEdit}
 		<button
 			onclick={onEdit}
