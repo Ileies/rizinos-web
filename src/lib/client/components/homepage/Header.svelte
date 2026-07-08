@@ -72,6 +72,16 @@
 		window.addEventListener('scroll', handleScroll);
 	}
 
+	$effect(() => {
+		const value = isMenuOpen ? 'hidden' : '';
+		document.documentElement.style.overflow = value;
+		document.body.style.overflow = value;
+		return () => {
+			document.documentElement.style.overflow = '';
+			document.body.style.overflow = '';
+		};
+	});
+
 	function toggleDropdown(e: MouseEvent, label: string) {
 		e.stopPropagation();
 		activeDropdown = activeDropdown === label ? null : label;
