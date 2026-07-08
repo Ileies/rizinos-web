@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { ArrowRight } from '@lucide/svelte';
@@ -15,7 +16,8 @@
 	let error = $state('');
 	let submitting = $state(false);
 
-	const redirectTo = () => page.url.searchParams.get('redirect') || APP_URL;
+	const redirectTo = () =>
+		(browser ? page.url.searchParams.get('redirect') : null) || APP_URL;
 	const absoluteRedirectTo = () => {
 		const target = redirectTo();
 		return target.startsWith('/') ? `${page.url.origin}${target}` : target;

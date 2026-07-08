@@ -1,14 +1,19 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft, MailCheck } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import * as m from '$lib/messages.svelte';
 	import AuthCard from '$lib/components/AuthCard.svelte';
 	import { apiFetch } from '$lib/api';
 
-	let email = $state(page.url.searchParams.get('email') ?? '');
+	let email = $state('');
 	let submitting = $state(false);
 	let submitted = $state(false);
 	let error = $state('');
+
+	onMount(() => {
+		email = page.url.searchParams.get('email') ?? '';
+	});
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
