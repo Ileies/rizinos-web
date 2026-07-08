@@ -299,7 +299,15 @@
 				{#each pagedUsers as user (user.id)}
 					<Table.Row class="hover:bg-muted/40 group">
 						<Table.Cell class="py-1.5">
-							<div class="font-medium">{user.username}</div>
+							<div class="flex items-center gap-1.5 font-medium">
+								{user.username}
+								{#if user.bannedUntil}
+									<span
+										class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+										>banned</span
+									>
+								{/if}
+							</div>
 							<div class="text-muted-foreground text-xs">{user.firstName} {user.lastName}</div>
 						</Table.Cell>
 						<Table.Cell class="text-muted-foreground py-1.5 text-xs">{user.email}</Table.Cell>
@@ -558,6 +566,46 @@
 					<input type="hidden" name="userId" value={editingUser.id} />
 					<input type="hidden" name="roles" value={pendingRoles.join(',')} />
 					<Button.Root type="submit" size="sm">Save Roles</Button.Root>
+				</form>
+			</div>
+
+			<!-- Ban -->
+			<div class="space-y-2 border-t pt-4">
+				<p class="text-muted-foreground text-xs font-medium">Ban</p>
+				{#if editingUser.bannedUntil}
+					<div
+						class="flex items-center justify-between rounded border border-red-200 bg-red-50 px-3 py-2 text-xs dark:border-red-800 dark:bg-red-950/20"
+					>
+						<div>
+							<span class="font-medium text-red-700 dark:text-red-400">Until:</span>
+							<span class="ml-1 text-red-600">{new Date(editingUser.bannedUntil).toLocaleString()}</span>
+							{#if editingUser.bannedReason}
+								<span class="ml-1 text-red-500">- {editingUser.bannedReason}</span>
+							{/if}
+						</div>
+						<form onsubmit={(e) => submitForm(e, 'userUnban')} class="ml-3 shrink-0">
+							<input type="hidden" name="userId" value={editingUser.id} />
+							<Button.Root
+								type="submit"
+								size="sm"
+								variant="outline"
+								class="h-6 border-red-300 px-2 text-xs text-red-700 hover:bg-red-100 dark:border-red-700 dark:text-red-400"
+								>Lift</Button.Root
+							>
+						</form>
+					</div>
+				{/if}
+				<form onsubmit={(e) => submitForm(e, 'userBan')} class="flex items-end gap-2">
+					<input type="hidden" name="userId" value={editingUser.id} />
+					<div class="flex-1">
+						<label for="user-ban-until" class="text-muted-foreground mb-1 block text-xs">Until</label>
+						<Input.Root id="user-ban-until" type="datetime-local" name="until" required />
+					</div>
+					<div class="flex-1">
+						<label for="user-ban-reason" class="text-muted-foreground mb-1 block text-xs">Reason</label>
+						<Input.Root id="user-ban-reason" name="reason" placeholder="Optional" />
+					</div>
+					<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0">Ban</Button.Root>
 				</form>
 			</div>
 

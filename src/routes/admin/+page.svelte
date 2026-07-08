@@ -4,6 +4,7 @@
 	import MinecraftSection from '$lib/components/admin/MinecraftSection.svelte';
 	import MinechatSection from '$lib/components/admin/MinechatSection.svelte';
 	import DiscordSection from '$lib/components/admin/DiscordSection.svelte';
+	import ModerationSection from '$lib/components/admin/ModerationSection.svelte';
 
 	let area = $state('rizinos');
 </script>
@@ -18,4 +19,6 @@
 	<MinechatSection />
 {:else if area === 'discord'}
 	<DiscordSection />
+{:else if area === 'moderation'}
+	<ModerationSection />
 {/if}

@@ -16,6 +16,8 @@
 		name: string;
 		discordUserId: string;
 		userId: string;
+		bannedUntil: string | Date | null;
+		bannedReason: string | null;
 		user: UserData | null;
 	}
 
@@ -48,7 +50,9 @@
 	let dcName = $state('');
 	let dcDiscordId = $state('');
 	let dcUserId = $state('');
+	let editingDcUser = $state<DcUser | null>(null);
 	let submitting = $state(false);
+	let formSuccess = $state('');
 
 	// --- User view ---
 	let viewUserOpen = $state(false);
@@ -64,6 +68,7 @@
 		dcName = '';
 		dcDiscordId = '';
 		dcUserId = users[0]?.id ?? '';
+		editingDcUser = null;
 		formError = '';
 		modalOpen = true;
 	}
@@ -73,6 +78,7 @@
 		dcName = dc.name;
 		dcDiscordId = dc.discordUserId;
 		dcUserId = dc.userId;
+		editingDcUser = dc;
 		formError = '';
 		modalOpen = true;
 	}
@@ -101,6 +107,22 @@
 		if (res.ok) await load();
 		else loadError = res.error ?? 'Failed to delete';
 	}
+
+	async function submitBan(e: SubmitEvent) {
+		e.preventDefault();
+		const form = e.currentTarget as HTMLFormElement;
+		const body = Object.fromEntries(new FormData(form).entries());
+		formError = '';
+		formSuccess = '';
+		const res = await adminPost('/discord', { action: 'dcUserBan', ...body });
+		if (res.ok) {
+			formSuccess = 'Saved.';
+			await load();
+			editingDcUser = dcUsers.find((u) => u.discordUserId === editingDcUser?.discordUserId) ?? null;
+		} else {
+			formError = res.error ?? 'Failed';
+		}
+	}
 </script>
 
 <AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
@@ -117,6 +139,7 @@
 				<Table.Head>Discord Name</Table.Head>
 				<Table.Head>Discord User ID</Table.Head>
 				<Table.Head>Account</Table.Head>
+				<Table.Head class="w-24">Status</Table.Head>
 				<Table.Head class="w-16"></Table.Head>
 			</Table.Row>
 		</Table.Header>
@@ -141,13 +164,23 @@
 						{/if}
 					</Table.Cell>
 					<Table.Cell class="py-1.5">
+						{#if dc.bannedUntil}
+							<span
+								class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+								>banned</span
+							>
+						{:else}
+							<span class="text-muted-foreground text-xs">-</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
 						<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
 					</Table.Cell>
 				</Table.Row>
 			{/each}
 			{#if dcUsers.length === 0}
 				<Table.Row>
-					<Table.Cell colspan={4} class="text-muted-foreground py-8 text-center text-sm"
+					<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
 						>No Discord users linked</Table.Cell
 					>
 				</Table.Row>
@@ -215,6 +248,55 @@
 			>
 		</div>
 	</form>
+
+	{#if modalMode === 'edit' && editingDcUser}
+		<div class="space-y-2 border-t pt-4 mt-4">
+			<p class="text-muted-foreground text-xs font-medium">Ban</p>
+			{#if formSuccess}
+				<div
+					class="rounded bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400"
+				>
+					{formSuccess}
+				</div>
+			{/if}
+			{#if editingDcUser.bannedUntil}
+				<div
+					class="flex items-center justify-between rounded border border-red-200 bg-red-50 px-3 py-2 text-xs dark:border-red-800 dark:bg-red-950/20"
+				>
+					<div>
+						<span class="font-medium text-red-700 dark:text-red-400">Until:</span>
+						<span class="ml-1 text-red-600">{new Date(editingDcUser.bannedUntil).toLocaleString()}</span>
+						{#if editingDcUser.bannedReason}
+							<span class="ml-1 text-red-500">- {editingDcUser.bannedReason}</span>
+						{/if}
+					</div>
+					<form onsubmit={submitBan} class="ml-3 shrink-0">
+						<input type="hidden" name="discordUserId" value={editingDcUser.discordUserId} />
+						<input type="hidden" name="until" value="" />
+						<Button.Root
+							type="submit"
+							size="sm"
+							variant="outline"
+							class="h-6 border-red-300 px-2 text-xs text-red-700 hover:bg-red-100 dark:border-red-700 dark:text-red-400"
+							>Lift</Button.Root
+						>
+					</form>
+				</div>
+			{/if}
+			<form onsubmit={submitBan} class="flex items-end gap-2">
+				<input type="hidden" name="discordUserId" value={editingDcUser.discordUserId} />
+				<div class="flex-1">
+					<label for="dc-ban-until" class="text-muted-foreground mb-1 block text-xs">Until</label>
+					<Input.Root id="dc-ban-until" type="datetime-local" name="until" required />
+				</div>
+				<div class="flex-1">
+					<label for="dc-ban-reason" class="text-muted-foreground mb-1 block text-xs">Reason</label>
+					<Input.Root id="dc-ban-reason" name="reason" placeholder="Optional" />
+				</div>
+				<Button.Root type="submit" size="sm" variant="destructive" class="shrink-0">Ban</Button.Root>
+			</form>
+		</div>
+	{/if}
 </Modal>
 
 <!-- USER VIEW MODAL -->

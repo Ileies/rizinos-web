@@ -39,4 +39,6 @@ export interface UserData {
 	birthdate: string | Date;
 	lastOnline: string | Date;
 	isOnline?: boolean;
+	bannedUntil: string | Date | null;
+	bannedReason: string | null;
 }
