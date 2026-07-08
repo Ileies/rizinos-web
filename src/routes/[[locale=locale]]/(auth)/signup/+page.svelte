@@ -6,15 +6,13 @@
 	import AuthCard from '$lib/components/AuthCard.svelte';
 
 	let step = $state(1);
-	const TOTAL_STEPS = 4;
+	const TOTAL_STEPS = 3;
 
 	let firstInput: HTMLInputElement | undefined = $state();
 
 	const formData = $state({
 		gender: 'male' as 'male' | 'female',
 		birthdate: '',
-		firstName: '',
-		lastName: '',
 		username: '',
 		password: '',
 		email: ''
@@ -23,8 +21,6 @@
 	let confirmPassword = $state('');
 
 	const errors = $state({
-		firstName: '',
-		lastName: '',
 		birthdate: '',
 		email: '',
 		username: '',
@@ -42,12 +38,10 @@
 
 	const stepTitle = $derived(
 		step === 1
-			? m.signup_name_title()
+			? m.signup_birth_title()
 			: step === 2
-				? m.signup_birth_title()
-				: step === 3
-					? m.signup_account_title()
-					: m.signup_finish_title()
+				? m.signup_account_title()
+				: m.signup_finish_title()
 	);
 
 	const now = new Date();
@@ -59,32 +53,8 @@
 		.split('T')[0];
 	const todayStr = now.toISOString().split('T')[0];
 
-	const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ'.-]+(?: [A-Za-zÀ-ÖØ-öø-ÿ'.-]+)*$/;
-
 	function validateStep(s: number): boolean {
 		if (s === 1) {
-			errors.firstName = '';
-			errors.lastName = '';
-			let ok = true;
-			const first = formData.firstName.trim();
-			const last = formData.lastName.trim();
-			if (!first) {
-				errors.firstName = m.signup_first_name_required();
-				ok = false;
-			} else if (!nameRegex.test(first)) {
-				errors.firstName = m.signup_name_invalid();
-				ok = false;
-			}
-			if (!last) {
-				errors.lastName = m.signup_last_name_required();
-				ok = false;
-			} else if (!nameRegex.test(last)) {
-				errors.lastName = m.signup_name_invalid();
-				ok = false;
-			}
-			return ok;
-		}
-		if (s === 2) {
 			errors.birthdate = '';
 			if (!formData.birthdate) {
 				errors.birthdate = m.signup_birthdate_required();
@@ -105,7 +75,7 @@
 			}
 			return true;
 		}
-		if (s === 3) {
+		if (s === 2) {
 			errors.email = '';
 			errors.username = '';
 			let ok = true;
@@ -125,7 +95,7 @@
 			}
 			return ok;
 		}
-		if (s === 4) {
+		if (s === 3) {
 			errors.password = '';
 			errors.confirmPassword = '';
 			let ok = true;
@@ -171,7 +141,7 @@
 
 	async function submitForm(e: SubmitEvent) {
 		e.preventDefault();
-		if (!validateStep(4) || submitting) return;
+		if (!validateStep(3) || submitting) return;
 		submitting = true;
 		serverError = '';
 
@@ -231,54 +201,14 @@
 
 		<form class="mt-6" onsubmit={submitForm}>
 			<div class="space-y-4">
-				<!-- Step 1: Name -->
+				<!-- Step 1: Birthdate & Gender -->
 				<div class:hidden={step !== 1} class="space-y-4">
-					<div>
-						<label class="text-foreground mb-1.5 block text-sm font-medium" for="firstName">
-							{m.signup_first_name()}
-						</label>
-						<input
-							bind:this={firstInput}
-							bind:value={formData.firstName}
-							autocomplete="given-name"
-							class={ic(!!errors.firstName)}
-							id="firstName"
-							maxlength={50}
-							name="firstName"
-							placeholder={m.signup_first_name()}
-							type="text"
-						/>
-						{#if errors.firstName}
-							<p class="text-destructive mt-1 text-xs">{errors.firstName}</p>
-						{/if}
-					</div>
-					<div>
-						<label class="text-foreground mb-1.5 block text-sm font-medium" for="lastName">
-							{m.signup_last_name()}
-						</label>
-						<input
-							bind:value={formData.lastName}
-							autocomplete="family-name"
-							class={ic(!!errors.lastName)}
-							id="lastName"
-							maxlength={50}
-							name="lastName"
-							placeholder={m.signup_last_name()}
-							type="text"
-						/>
-						{#if errors.lastName}
-							<p class="text-destructive mt-1 text-xs">{errors.lastName}</p>
-						{/if}
-					</div>
-				</div>
-
-				<!-- Step 2: Birthdate & Gender -->
-				<div class:hidden={step !== 2} class="space-y-4">
 					<div>
 						<label class="text-foreground mb-1.5 block text-sm font-medium" for="birthdate">
 							{m.signup_birthdate_label()}
 						</label>
 						<input
+							bind:this={firstInput}
 							bind:value={formData.birthdate}
 							autocomplete="bday"
 							class={ic(!!errors.birthdate)}
@@ -321,8 +251,8 @@
 					</div>
 				</div>
 
-				<!-- Step 3: Account Details -->
-				<div class:hidden={step !== 3} class="space-y-4">
+				<!-- Step 2: Account Details -->
+				<div class:hidden={step !== 2} class="space-y-4">
 					<div>
 						<label class="text-foreground mb-1.5 block text-sm font-medium" for="email">
 							{m.signup_email_label()}
@@ -360,8 +290,8 @@
 					</div>
 				</div>
 
-				<!-- Step 4: Password -->
-				<div class:hidden={step !== 4} class="space-y-4">
+				<!-- Step 3: Password -->
+				<div class:hidden={step !== 3} class="space-y-4">
 					<div>
 						<label class="text-foreground mb-1.5 block text-sm font-medium" for="password">
 							{m.signup_password_label()}

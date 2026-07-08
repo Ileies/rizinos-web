@@ -141,24 +141,6 @@
 		"Дата рождения не может быть в будущем."
 	],
 
-	"signup_first_name_required": [
-		"Bitte gib deinen Vornamen ein.",
-		"Please enter your first name.",
-		"请输入你的名字。",
-		"Пожалуйста, введи имя."
-	],
-	"signup_last_name_required": [
-		"Bitte gib deinen Nachnamen ein.",
-		"Please enter your last name.",
-		"请输入你的姓氏。",
-		"Пожалуйста, введи фамилию."
-	],
-	"signup_name_invalid": [
-		"Enthält ungültige Zeichen.",
-		"Contains invalid characters.",
-		"包含无效字符。",
-		"Содержит недопустимые символы."
-	],
 	"signup_username_format": [
 		"Muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben und Zahlen enthalten.",
 		"Must start with a letter and contain only lowercase letters and numbers.",
@@ -215,8 +197,6 @@
 	],
 
 	"signup_step": ["Schritt {step}", "Step {step}", "步骤 {step}", "Шаг {step}"],
-	"signup_first_name": ["Vorname", "First Name", "名字", "Имя"],
-	"signup_last_name": ["Nachname", "Last Name", "姓氏", "Фамилия"],
 	"signup_birthdate_label": ["Geburtsdatum", "Birthdate", "出生日期", "Дата рождения"],
 	"signup_gender_male": ["Männlich", "Male", "男", "Мужской"],
 	"signup_gender_female": ["Weiblich", "Female", "女", "Женский"],
@@ -233,7 +213,6 @@
 	"signup_next": ["Weiter", "Next", "下一步", "Далее"],
 	"signup_submit": ["Absenden", "Submit", "提交", "Отправить"],
 	"signup_success": ["Erfolg!", "Success!", "成功！", "Успешно!"],
-	"signup_name_title": ["Dein Name", "Your name", "你的姓名", "Твоё имя"],
 	"signup_birth_title": ["Geburt & Geschlecht", "Birth & gender", "生日与性别", "Рождение и пол"],
 	"signup_account_title": ["Konto-Details", "Account details", "账户详情", "Данные аккаунта"],
 	"signup_have_account": [
