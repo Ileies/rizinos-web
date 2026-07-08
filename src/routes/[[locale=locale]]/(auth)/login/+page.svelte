@@ -15,10 +15,19 @@
 
 	const redirectTo = () => page.url.searchParams.get('redirect') || APP_URL;
 
+	function redirectAfterLogin() {
+		const target = redirectTo();
+		if (target.startsWith('/')) {
+			goto(target);
+		} else {
+			window.location.href = target;
+		}
+	}
+
 	onMount(async () => {
 		emailElement.focus();
 		await loadSession();
-		if (session.loggedIn) goto(redirectTo());
+		if (session.loggedIn) redirectAfterLogin();
 	});
 
 	async function handleSubmit(e: SubmitEvent) {
@@ -36,7 +45,7 @@
 
 		if (result.ok) {
 			await refreshSession();
-			goto(redirectTo());
+			redirectAfterLogin();
 			return;
 		}
 
