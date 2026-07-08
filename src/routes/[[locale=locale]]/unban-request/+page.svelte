@@ -5,34 +5,11 @@
 	import * as m from '$lib/messages.svelte';
 	import { apiPost } from '$lib/api';
 
-	type BanType = 'minecraft' | 'discord' | 'rizinos';
-
-	const VALID_TYPES: BanType[] = ['minecraft', 'discord', 'rizinos'];
-	const initialType = browser ? page.url.searchParams.get('type') : null;
-
-	let type = $state<BanType>(
-		initialType && VALID_TYPES.includes(initialType as BanType) ? (initialType as BanType) : 'minecraft'
-	);
-	let id = $state(browser ? (page.url.searchParams.get('id') ?? '') : '');
+	let banId = $state(browser ? (page.url.searchParams.get('id') ?? '') : '');
 	let message = $state('');
 	let submitting = $state(false);
 	let submitted = $state(false);
 	let error = $state('');
-
-	const idLabel = $derived(
-		type === 'minecraft'
-			? m.unban_id_label_minecraft()
-			: type === 'discord'
-				? m.unban_id_label_discord()
-				: m.unban_id_label_rizinos()
-	);
-	const idPlaceholder = $derived(
-		type === 'minecraft'
-			? '00000000-0000-0000-0000-000000000000'
-			: type === 'discord'
-				? '123456789012345678'
-				: 'max.mustermann'
-	);
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
@@ -40,7 +17,7 @@
 		submitting = true;
 		error = '';
 
-		const result = await apiPost('/unban-request', { type, id, message });
+		const result = await apiPost('/unban-request', { banId, message });
 
 		if (result.ok) {
 			submitted = true;
@@ -89,31 +66,15 @@
 
 			<form class="mt-6 space-y-4" onsubmit={handleSubmit}>
 				<div>
-					<label class="text-foreground mb-1.5 block text-sm font-medium" for="type">
-						{m.unban_type_label()}
-					</label>
-					<select
-						bind:value={type}
-						class="border-input bg-muted text-foreground focus:border-ring focus:bg-background focus:ring-ring/20 w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors outline-none focus:ring-2"
-						id="type"
-						name="type"
-					>
-						<option value="minecraft">{m.unban_type_minecraft()}</option>
-						<option value="discord">{m.unban_type_discord()}</option>
-						<option value="rizinos">{m.unban_type_rizinos()}</option>
-					</select>
-				</div>
-
-				<div>
-					<label class="text-foreground mb-1.5 block text-sm font-medium" for="id">
-						{idLabel}
+					<label class="text-foreground mb-1.5 block text-sm font-medium" for="banId">
+						{m.unban_id_label()}
 					</label>
 					<input
-						bind:value={id}
-						class="border-input bg-muted text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-background focus:ring-ring/20 w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors outline-none focus:ring-2"
-						id="id"
-						name="id"
-						placeholder={idPlaceholder}
+						bind:value={banId}
+						class="border-input bg-muted text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-background focus:ring-ring/20 w-full rounded-lg border px-3.5 py-2.5 text-sm tracking-widest uppercase transition-colors outline-none focus:ring-2"
+						id="banId"
+						name="banId"
+						placeholder="XXXXXXXX"
 						required
 						type="text"
 					/>

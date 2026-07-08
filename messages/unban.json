@@ -1,33 +1,12 @@
 {
 	"unban_title": ["Unban-Antrag", "Unban request", "解封申请", "Заявка на разбан"],
 	"unban_desc": [
-		"Du wurdest gebannt und möchtest eine Überprüfung beantragen? Erkläre uns kurz den Sachverhalt.",
-		"Were you banned and want to request a review? Briefly explain the situation.",
-		"你被封禁了，想申请复核吗？请简要说明情况。",
-		"Тебя забанили и хочешь подать заявку на пересмотр? Кратко опиши ситуацию."
+		"Du wurdest gebannt und hast dazu eine Nachricht mit einer Ban-ID erhalten? Gib sie hier ein und erkläre uns kurz den Sachverhalt.",
+		"Were you banned and received a message with a ban ID? Enter it here and briefly explain the situation.",
+		"你被封禁了，并收到了一条包含封禁 ID 的消息？请在此输入并简要说明情况。",
+		"Тебя забанили и ты получил сообщение с ID бана? Введи его здесь и кратко опиши ситуацию."
 	],
-	"unban_type_label": [
-		"Wo wurdest du gebannt?",
-		"Where were you banned?",
-		"你在哪里被封禁？",
-		"Где тебя забанили?"
-	],
-	"unban_type_minecraft": ["Minecraft", "Minecraft", "Minecraft", "Minecraft"],
-	"unban_type_discord": ["Discord", "Discord", "Discord", "Discord"],
-	"unban_type_rizinos": ["RizinOS-Account", "RizinOS account", "RizinOS 账户", "Аккаунт RizinOS"],
-	"unban_id_label_minecraft": ["Minecraft-UUID", "Minecraft UUID", "Minecraft UUID", "Minecraft UUID"],
-	"unban_id_label_discord": [
-		"Discord-User-ID",
-		"Discord user ID",
-		"Discord 用户 ID",
-		"ID пользователя Discord"
-	],
-	"unban_id_label_rizinos": [
-		"Benutzername oder E-Mail",
-		"Username or email",
-		"用户名或电子邮件",
-		"Имя пользователя или email"
-	],
+	"unban_id_label": ["Ban-ID", "Ban ID", "封禁 ID", "ID бана"],
 	"unban_message_label": ["Deine Erklärung", "Your explanation", "你的说明", "Твоё объяснение"],
 	"unban_message_placeholder": [
 		"Beschreibe, warum wir deinen Bann aufheben sollten...",
