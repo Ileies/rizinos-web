@@ -47,7 +47,8 @@
 			<Card.Content>
 				{#if invite && !inviteError}
 					<p class="text-muted-foreground text-sm">
-						<span class="text-foreground font-semibold">{invite.approximate_member_count}</span> members
+						<span class="text-foreground font-semibold">{invite.approximate_member_count}</span>
+						members
 						<span class="mx-1">·</span>
 						<span class="text-foreground font-semibold">{invite.approximate_presence_count}</span> online
 					</p>

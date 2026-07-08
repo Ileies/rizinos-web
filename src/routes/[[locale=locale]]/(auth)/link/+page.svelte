@@ -13,7 +13,7 @@
 	const errorMessage = $derived(
 		status === null || status === 0
 			? ''
-			: (
+			: ((
 					{
 						1: m.link_error_generic(),
 						2: m.link_error_no_token(),
@@ -21,7 +21,7 @@
 						4: m.link_error_user_already_linked(),
 						5: m.link_error_discord_already_linked()
 					} as Record<number, string>
-				)[status] ?? m.link_error_generic()
+				)[status] ?? m.link_error_generic())
 	);
 
 	onMount(async () => {

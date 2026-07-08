@@ -72,7 +72,12 @@
 		"Создание аккаунта..."
 	],
 	"signup_create_account": ["Konto erstellen", "Create account", "创建账户", "Создать аккаунт"],
-	"signup_thanks_title": ["Bestätige deine E-Mail", "Confirm your email", "确认你的邮箱", "Подтверди свою почту"],
+	"signup_thanks_title": [
+		"Bestätige deine E-Mail",
+		"Confirm your email",
+		"确认你的邮箱",
+		"Подтверди свою почту"
+	],
 	"signup_confirm_sent": [
 		"Wir haben einen Bestätigungslink gesendet an:",
 		"We've sent a confirmation link to:",

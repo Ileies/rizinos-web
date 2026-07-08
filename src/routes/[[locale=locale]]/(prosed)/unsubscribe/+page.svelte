@@ -39,16 +39,24 @@
 	<h2>{m.unsubscribe_success_title()}</h2>
 	<p>{m.unsubscribe_success_body()}</p>
 	<div class="flex gap-3">
-		<Button.Root variant="outline" onclick={() => goto('/')}>{m.unsubscribe_return_home()}</Button.Root>
+		<Button.Root variant="outline" onclick={() => goto('/')}
+			>{m.unsubscribe_return_home()}</Button.Root
+		>
 		<Button.Root onclick={() => goto('/app')}>{m.unsubscribe_account_settings()}</Button.Root>
 	</div>
 {:else if state === 'error_invalid'}
 	<p class="text-destructive">{m.unsubscribe_error_invalid()}</p>
-	<Button.Root variant="outline" onclick={() => goto('/')}>{m.unsubscribe_return_home()}</Button.Root>
+	<Button.Root variant="outline" onclick={() => goto('/')}
+		>{m.unsubscribe_return_home()}</Button.Root
+	>
 {:else if state === 'error_generic'}
 	<p class="text-destructive">{m.unsubscribe_error_generic()}</p>
-	<Button.Root variant="outline" onclick={() => goto('/')}>{m.unsubscribe_return_home()}</Button.Root>
+	<Button.Root variant="outline" onclick={() => goto('/')}
+		>{m.unsubscribe_return_home()}</Button.Root
+	>
 {:else if state === 'no_token'}
 	<p class="text-destructive">{m.unsubscribe_no_token()}</p>
-	<Button.Root variant="outline" onclick={() => goto('/')}>{m.unsubscribe_return_home()}</Button.Root>
+	<Button.Root variant="outline" onclick={() => goto('/')}
+		>{m.unsubscribe_return_home()}</Button.Root
+	>
 {/if}

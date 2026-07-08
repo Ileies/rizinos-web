@@ -14,7 +14,11 @@
 		// If cookie is non-English, redirect to the prefixed URL.
 		const m = document.cookie.match(/(?:^|;\s*)LOCALE=([^;]+)/);
 		const cookieLocale = m ? m[1] : null;
-		if (cookieLocale && (locales as readonly string[]).includes(cookieLocale) && cookieLocale !== 'en') {
+		if (
+			cookieLocale &&
+			(locales as readonly string[]).includes(cookieLocale) &&
+			cookieLocale !== 'en'
+		) {
 			goto(`/${cookieLocale}${page.url.pathname}`, { replaceState: true });
 		}
 	});
