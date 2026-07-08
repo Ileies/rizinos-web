@@ -1,0 +1,12 @@
+{
+	"link_title": ["Discord-Account verknüpfen", "Link Discord account", "关联 Discord 账户", "Привязать аккаунт Discord"],
+	"link_pending": ["Verknüpfung wird bestätigt...", "Confirming link...", "正在确认关联...", "Подтверждение привязки..."],
+	"link_success_title": ["Erfolgreich verknüpft", "Linked successfully", "关联成功", "Успешно привязано"],
+	"link_success_desc": ["Dein Discord-Account wurde erfolgreich mit deinem RizinOS-Konto verknüpft.", "Your Discord account has been linked to your RizinOS account.", "你的 Discord 账户已成功与 RizinOS 账户关联。", "Твой аккаунт Discord успешно привязан к аккаунту RizinOS."],
+	"link_error_no_token": ["Kein Verknüpfungs-Token angegeben. Nutze /link im Discord-Server.", "No link token provided. Use /link on the Discord server.", "未提供关联令牌。请在 Discord 服务器中使用 /link。", "Токен для привязки не указан. Используй /link на сервере Discord."],
+	"link_error_invalid": ["Dieser Link ist ungültig oder abgelaufen. Nutze /link im Discord-Server erneut.", "This link is invalid or has expired. Use /link on the Discord server again.", "此链接无效或已过期。请在 Discord 服务器中重新使用 /link。", "Эта ссылка недействительна или истекла. Снова используй /link на сервере Discord."],
+	"link_error_user_already_linked": ["Dein RizinOS-Konto ist bereits mit einem Discord-Account verknüpft.", "Your RizinOS account is already linked to a Discord account.", "你的 RizinOS 账户已关联了一个 Discord 账户。", "Твой аккаунт RizinOS уже привязан к аккаунту Discord."],
+	"link_error_discord_already_linked": ["Dieser Discord-Account ist bereits mit einem anderen RizinOS-Konto verknüpft.", "This Discord account is already linked to a different RizinOS account.", "此 Discord 账户已关联到另一个 RizinOS 账户。", "Этот аккаунт Discord уже привязан к другому аккаунту RizinOS."],
+	"link_error_generic": ["Etwas ist schiefgelaufen. Bitte versuche es erneut.", "Something went wrong. Please try again.", "出了点问题，请重试。", "Что-то пошло не так. Попробуй ещё раз."],
+	"link_return_home": ["Zurück zur Startseite", "Back to home", "返回首页", "На главную"]
+}
