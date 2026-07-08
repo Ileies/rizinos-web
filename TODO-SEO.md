@@ -135,5 +135,4 @@ Items already done are NOT listed here. This is the remaining backlog.
 - [ ] **`<link rel="prefetch">`** - Für wahrscheinlich nächste Seiten (Login → App-Shell)
 - [ ] **E-E-A-T stärken** - Autoren-Bio auf Blog-Posts, Team-Seite, Press-Erwähnungen sichtbar machen; Google bewertet Trustworthiness zunehmend
 - [ ] **`Speakable` Schema** - Für Voice-Search-Fragmentextraktion auf relevanten Seiten
-- [ ] **`security.txt` jährlich aktualisieren** - `Expires`-Datum in `static/.well-known/security.txt` vor dem 2027-06-30 erneuern
 - [x] **Sitemap dynamisch generieren** - `src/routes/sitemap.xml/+server.ts` statt statischer Datei, damit Blog-Posts und neue Seiten automatisch enthalten sind
