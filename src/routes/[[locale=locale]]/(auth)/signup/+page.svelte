@@ -4,6 +4,7 @@
 	import * as m from '$lib/messages.svelte';
 	import { apiPost } from '$lib/api';
 	import AuthCard from '$lib/components/AuthCard.svelte';
+	import OAuthButtons from '$lib/components/OAuthButtons.svelte';
 
 	let step = $state(1);
 	const TOTAL_STEPS = 3;
@@ -196,6 +197,12 @@
 				class="border-destructive/30 bg-destructive/10 text-destructive mt-4 rounded-lg border px-4 py-3 text-sm"
 			>
 				{serverError}
+			</div>
+		{/if}
+
+		{#if step === 1}
+			<div class="mt-6">
+				<OAuthButtons />
 			</div>
 		{/if}
 

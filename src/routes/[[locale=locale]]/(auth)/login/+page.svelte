@@ -8,6 +8,7 @@
 	import { apiPost } from '$lib/api';
 	import { APP_URL } from '$lib/config';
 	import AuthCard from '$lib/components/AuthCard.svelte';
+	import OAuthButtons from '$lib/components/OAuthButtons.svelte';
 
 	let emailElement: HTMLInputElement;
 	let email = $state('');
@@ -15,6 +16,10 @@
 	let submitting = $state(false);
 
 	const redirectTo = () => page.url.searchParams.get('redirect') || APP_URL;
+	const absoluteRedirectTo = () => {
+		const target = redirectTo();
+		return target.startsWith('/') ? `${page.url.origin}${target}` : target;
+	};
 
 	function redirectAfterLogin() {
 		const target = redirectTo();
@@ -67,7 +72,11 @@
 		</div>
 	{/if}
 
-	<form class="mt-6 space-y-4" onsubmit={handleSubmit}>
+	<div class="mt-6">
+		<OAuthButtons redirectTo={absoluteRedirectTo()} />
+	</div>
+
+	<form class="space-y-4" onsubmit={handleSubmit}>
 		<div>
 			<label class="text-foreground mb-1.5 block text-sm font-medium" for="email">
 				{m.login_email_label()}

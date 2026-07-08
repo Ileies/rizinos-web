@@ -1,0 +1,45 @@
+{
+	"oauth_continue_with_google": [
+		"Mit Google fortfahren",
+		"Continue with Google",
+		"使用 Google 继续",
+		"Продолжить с Google"
+	],
+	"oauth_continue_with_discord": [
+		"Mit Discord fortfahren",
+		"Continue with Discord",
+		"使用 Discord 继续",
+		"Продолжить с Discord"
+	],
+	"oauth_divider": ["oder", "or", "或", "или"],
+	"oauth_failed": [
+		"Anmeldung fehlgeschlagen. Bitte versuche es erneut.",
+		"Sign-in failed. Please try again.",
+		"登录失败，请重试。",
+		"Вход не удался. Попробуй ещё раз."
+	],
+	"oauth_complete_title": [
+		"Fast geschafft",
+		"Almost there",
+		"就快好了",
+		"Почти готово"
+	],
+	"oauth_complete_desc": [
+		"Vervollständige dein Konto, um fortzufahren.",
+		"Complete your account to continue.",
+		"完成你的账户设置以继续。",
+		"Заверши создание аккаунта, чтобы продолжить."
+	],
+	"oauth_complete_error_invalid_token": [
+		"Dieser Link ist ungültig oder abgelaufen. Bitte starte die Anmeldung erneut.",
+		"This link is invalid or expired. Please start the sign-in again.",
+		"此链接无效或已过期，请重新登录。",
+		"Эта ссылка недействительна или истекла. Пожалуйста, начни вход заново."
+	],
+	"oauth_complete_create_account": [
+		"Konto erstellen",
+		"Create account",
+		"创建账户",
+		"Создать аккаунт"
+	]
+}
