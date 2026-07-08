@@ -14,11 +14,11 @@
 	let { tabs, active = $bindable() }: { tabs: AdminTab[]; active: string } = $props();
 </script>
 
-<div class="mb-4 flex gap-1 border-b">
+<div class="mb-4 flex gap-1 overflow-x-auto border-b">
 	{#each tabs as tab (tab.id)}
 		{@const Icon = tab.icon}
 		<button
-			class="flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors {active ===
+			class="flex shrink-0 items-center gap-1.5 px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors {active ===
 			tab.id
 				? 'border-primary text-primary border-b-2'
 				: 'text-muted-foreground hover:text-foreground'}"

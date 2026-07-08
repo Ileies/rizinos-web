@@ -32,7 +32,7 @@
 </script>
 
 {#if allowed}
-	<div class="w-full">
+	<div class="w-full min-w-0">
 		{@render children()}
 	</div>
 {/if}

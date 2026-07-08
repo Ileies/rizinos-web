@@ -19,12 +19,12 @@
 				<h1 class="text-xl font-semibold leading-none">Datenbank-Verwaltung</h1>
 			</div>
 		</div>
-		<div class="flex">
+		<div class="flex overflow-x-auto">
 			{#each areas as area (area.id)}
 				{@const Icon = area.icon}
 				<button
 					onclick={() => (active = area.id)}
-					class="flex items-center gap-1.5 border-b-2 px-4 py-3 text-sm font-medium transition-colors {active ===
+					class="flex shrink-0 items-center gap-1.5 border-b-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors {active ===
 					area.id
 						? 'border-primary text-primary'
 						: 'text-muted-foreground hover:text-foreground border-transparent'}"
