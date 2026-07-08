@@ -41,4 +41,5 @@ export interface UserData {
 	isOnline?: boolean;
 	bannedUntil: string | Date | null;
 	bannedReason: string | null;
+	banId: string | null;
 }

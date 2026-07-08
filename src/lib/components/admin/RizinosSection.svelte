@@ -582,6 +582,9 @@
 							{#if editingUser.bannedReason}
 								<span class="ml-1 text-red-500">- {editingUser.bannedReason}</span>
 							{/if}
+							{#if editingUser.banId}
+								<span class="ml-1 font-mono text-red-500">[{editingUser.banId}]</span>
+							{/if}
 						</div>
 						<form onsubmit={(e) => submitForm(e, 'userUnban')} class="ml-3 shrink-0">
 							<input type="hidden" name="userId" value={editingUser.id} />

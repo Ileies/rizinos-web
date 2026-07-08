@@ -8,6 +8,7 @@
 		id: number;
 		type: 'minecraft' | 'discord' | 'rizinos';
 		subjectId: string;
+		banId: string;
 		label: string;
 		message: string;
 		status: string;
@@ -68,7 +69,10 @@
 							{TYPE_LABEL[req.type]}
 						</span>
 					</Table.Cell>
-					<Table.Cell class="py-1.5 font-medium">{req.label}</Table.Cell>
+					<Table.Cell class="py-1.5 font-medium">
+						{req.label}
+						<span class="text-muted-foreground ml-1 font-mono text-xs">[{req.banId}]</span>
+					</Table.Cell>
 					<Table.Cell class="py-1.5 text-sm whitespace-pre-wrap">{req.message}</Table.Cell>
 					<Table.Cell class="py-1.5 text-xs">{new Date(req.createdAt).toLocaleString()}</Table.Cell>
 					<Table.Cell class="py-1.5">

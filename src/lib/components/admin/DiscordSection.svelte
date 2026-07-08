@@ -18,6 +18,7 @@
 		userId: string;
 		bannedUntil: string | Date | null;
 		bannedReason: string | null;
+		banId: string | null;
 		user: UserData | null;
 	}
 
@@ -268,6 +269,9 @@
 						<span class="ml-1 text-red-600">{new Date(editingDcUser.bannedUntil).toLocaleString()}</span>
 						{#if editingDcUser.bannedReason}
 							<span class="ml-1 text-red-500">- {editingDcUser.bannedReason}</span>
+						{/if}
+						{#if editingDcUser.banId}
+							<span class="ml-1 font-mono text-red-500">[{editingDcUser.banId}]</span>
 						{/if}
 					</div>
 					<form onsubmit={submitBan} class="ml-3 shrink-0">

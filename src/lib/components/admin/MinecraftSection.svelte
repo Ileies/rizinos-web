@@ -41,6 +41,7 @@
 		welcomeMessage: string | null;
 		bannedUntil: string | Date | null;
 		bannedReason: string | null;
+		banId: string | null;
 		mutedUntil: string | Date | null;
 		user: UserData;
 	}
@@ -672,6 +673,9 @@
 							>
 							{#if editingPlayer.bannedReason}
 								<span class="ml-1 text-red-500">- {editingPlayer.bannedReason}</span>
+							{/if}
+							{#if editingPlayer.banId}
+								<span class="ml-1 font-mono text-red-500">[{editingPlayer.banId}]</span>
 							{/if}
 						</div>
 						<form onsubmit={(e) => submitForm(e, 'mcUserBan')} class="ml-3 shrink-0">
