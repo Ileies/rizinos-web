@@ -93,6 +93,11 @@
 		isLanguageDropdownOpen = false;
 	}
 
+	function closeMenu() {
+		isMenuOpen = false;
+		closeAll();
+	}
+
 	function selectLanguage(code: string) {
 		const targetPath = switchLocalePath(code, page.url.pathname);
 		setLocale(code);
@@ -101,6 +106,7 @@
 	}
 
 	async function handleLogout() {
+		closeMenu();
 		await logout();
 		goto('/');
 	}
@@ -267,8 +273,18 @@
 		<!-- Mobile Navigation -->
 		{#if isMobile && isMenuOpen}
 			<div
-				class="border-border bg-background absolute top-20 left-0 w-full border-t px-4 py-4 shadow-lg"
+				class="bg-background fixed inset-x-0 top-20 bottom-0 flex flex-col overflow-y-auto px-4 py-4"
 			>
+				{#if sessionLoaded && !loggedIn}
+					<a
+						href={localePath('/login')}
+						onclick={closeMenu}
+						class="bg-primary text-primary-foreground hover:bg-primary/90 mb-4 block w-full rounded-lg px-6 py-3.5 text-center text-base font-semibold shadow-md transition-colors"
+					>
+						{m.log_in()}
+					</a>
+				{/if}
+
 				{#each navItems as item (item.label)}
 					<div class="py-1">
 						<button
@@ -291,6 +307,7 @@
 								{#each item.dropdown as dropItem (dropItem.href)}
 									<a
 										href={dropItem.href}
+										onclick={closeMenu}
 										class="text-muted-foreground hover:text-foreground block py-2 transition-colors duration-200"
 									>
 										{dropItem.label}
@@ -337,6 +354,7 @@
 
 				<a
 					href={github}
+					onclick={closeMenu}
 					class="text-foreground/70 hover:text-foreground flex items-center space-x-2 py-2"
 					target="_blank"
 					rel="external noopener noreferrer"
@@ -346,39 +364,36 @@
 					<ExternalLink size={14} class="text-muted-foreground" />
 				</a>
 
-				{#if sessionLoaded}
-					{#if loggedIn}
+				{#if sessionLoaded && loggedIn}
+					<div class="bg-border my-4 h-px w-full"></div>
+
+					<a
+						href={APP_URL}
+						onclick={closeMenu}
+						class="bg-primary text-primary-foreground hover:bg-primary/90 block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-colors"
+					>
+						{m.open_your_os()}
+					</a>
+					{#if isAdmin}
 						<a
-							href={APP_URL}
-							class="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-colors"
+							href="/admin"
+							onclick={closeMenu}
+							class="text-muted-foreground hover:text-foreground mt-3 flex items-center space-x-2 py-2"
 						>
-							{m.open_your_os()}
-						</a>
-						{#if isAdmin}
-							<a
-								href="/admin"
-								class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
-								aria-label="Admin"
-							>
-								<LayoutDashboard size={20} />
-							</a>
-						{/if}
-						<button
-							onclick={handleLogout}
-							class="text-muted-foreground hover:text-foreground mt-3 flex w-full items-center justify-center p-2 transition-colors"
-							aria-label={m.log_out()}
-						>
-							<LogOut size={20} />
-						</button>
-					{:else}
-						<a
-							href={localePath('/login')}
-							class="border-border text-foreground/70 hover:bg-muted mt-4 block w-full rounded-lg border px-6 py-3 text-center text-sm font-semibold transition-colors"
-						>
-							{m.log_in()}
+							<LayoutDashboard size={18} />
+							<span>Admin</span>
 						</a>
 					{/if}
+					<button
+						onclick={handleLogout}
+						class="text-muted-foreground hover:text-foreground mt-3 flex items-center space-x-2 py-2"
+					>
+						<LogOut size={18} />
+						<span>{m.log_out()}</span>
+					</button>
 				{/if}
+
+				<div class="grow"></div>
 			</div>
 		{/if}
 	</div>
