@@ -3,6 +3,8 @@
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
 	import * as m from '$lib/messages.svelte';
 	import { apiPost } from '$lib/api';
+	import { session, loadSession } from '$lib/session.svelte';
+	import { APP_URL } from '$lib/config';
 	import AuthCard from '$lib/components/AuthCard.svelte';
 	import OAuthButtons from '$lib/components/OAuthButtons.svelte';
 
@@ -33,8 +35,10 @@
 	let success = $state(false);
 	let submitting = $state(false);
 
-	onMount(() => {
+	onMount(async () => {
 		firstInput?.focus();
+		await loadSession();
+		if (session.loggedIn) window.location.href = APP_URL;
 	});
 
 	const stepTitle = $derived(
