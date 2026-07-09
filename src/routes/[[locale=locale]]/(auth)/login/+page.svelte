@@ -16,8 +16,7 @@
 	let error = $state('');
 	let submitting = $state(false);
 
-	const redirectTo = () =>
-		(browser ? page.url.searchParams.get('redirect') : null) || APP_URL;
+	const redirectTo = () => (browser ? page.url.searchParams.get('redirect') : null) || APP_URL;
 	const absoluteRedirectTo = () => {
 		const target = redirectTo();
 		return target.startsWith('/') ? `${page.url.origin}${target}` : target;

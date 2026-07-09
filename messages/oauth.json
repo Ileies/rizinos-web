@@ -18,12 +18,7 @@
 		"登录失败，请重试。",
 		"Вход не удался. Попробуй ещё раз."
 	],
-	"oauth_complete_title": [
-		"Fast geschafft",
-		"Almost there",
-		"就快好了",
-		"Почти готово"
-	],
+	"oauth_complete_title": ["Fast geschafft", "Almost there", "就快好了", "Почти готово"],
 	"oauth_complete_desc": [
 		"Vervollständige dein Konto, um fortzufahren.",
 		"Complete your account to continue.",
