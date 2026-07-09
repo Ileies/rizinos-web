@@ -14,6 +14,7 @@
 	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
 	import { adminGet, adminPost } from '$lib/adminApi';
 	import Pagination from '$lib/components/Pagination.svelte';
+	import { highlightJson } from '$lib/jsonHighlight';
 
 	interface LogEntry {
 		id: string;
@@ -436,9 +437,9 @@
 							</Table.Cell>
 							<Table.Cell class="py-1.5">
 								{#if log.data}
-									<span class="text-muted-foreground block truncate font-mono text-xs">
-										{JSON.stringify(log.data)}
-									</span>
+									<span class="block truncate font-mono text-xs"
+										>{@html highlightJson(log.data, undefined)}</span
+									>
 								{:else}
 									<span class="text-muted-foreground/40 text-xs">-</span>
 								{/if}
@@ -467,8 +468,8 @@
 					</div>
 					<p class="truncate text-sm">{log.message}</p>
 					{#if log.data}
-						<p class="text-muted-foreground truncate font-mono text-xs">
-							{JSON.stringify(log.data)}
+						<p class="truncate font-mono text-xs">
+							{@html highlightJson(log.data, undefined)}
 						</p>
 					{/if}
 				</AdminCard>
@@ -809,10 +810,8 @@
 			{#if selectedLog.data}
 				<div>
 					<p class="text-muted-foreground mb-1 text-xs font-medium">Data</p>
-					<pre class="bg-muted overflow-auto rounded-md p-3 text-xs">{JSON.stringify(
-							selectedLog.data,
-							null,
-							2
+					<pre class="bg-muted overflow-auto rounded-md p-3 text-xs">{@html highlightJson(
+							selectedLog.data
 						)}</pre>
 				</div>
 			{/if}
