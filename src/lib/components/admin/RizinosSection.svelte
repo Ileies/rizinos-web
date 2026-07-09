@@ -13,7 +13,8 @@
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
 	import { adminGet, adminPost } from '$lib/adminApi';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import SortableTable from '$lib/components/SortableTable.svelte';
+	import type { SortableColumn, SortState } from '$lib/components/SortableTable.svelte';
 	import { highlightJson } from '$lib/jsonHighlight';
 
 	interface LogEntry {
@@ -33,6 +34,7 @@
 	}
 
 	let users = $state<UserData[]>([]);
+	let usersTotal = $state(0);
 	let logs = $state<LogEntry[]>([]);
 	let apps = $state<AppEntry[]>([]);
 	let loadError = $state('');
@@ -40,10 +42,26 @@
 	let formSuccess = $state('');
 	let submitting = $state(false);
 
+	const USER_PAGE_SIZE = 25;
+	let usersSort = $state<SortState>({ field: null, dir: 'asc' });
+	let usersPage = $state(1);
+
 	async function load() {
 		try {
-			const data = await adminGet<{ users: UserData[]; logs: LogEntry[]; apps: AppEntry[] }>('');
+			const data = await adminGet<{
+				users: UserData[];
+				usersTotal: number;
+				logs: LogEntry[];
+				apps: AppEntry[];
+			}>('', {
+				usersSort: usersSort.field ?? undefined,
+				usersDir: usersSort.field ? usersSort.dir : undefined,
+				usersPage,
+				usersPageSize: USER_PAGE_SIZE,
+				usersSearch: userSearch || undefined
+			});
 			users = data.users;
+			usersTotal = data.usersTotal;
 			logs = data.logs;
 			apps = data.apps;
 		} catch (e) {
@@ -51,7 +69,19 @@
 		}
 	}
 
-	onMount(load);
+	let didInitialLoad = false;
+	onMount(async () => {
+		await load();
+		didInitialLoad = true;
+	});
+
+	// Sort/page changes reload immediately; search reload is debounced further down.
+	$effect(() => {
+		void usersSort;
+		void usersPage;
+		if (!didInitialLoad) return;
+		load();
+	});
 
 	/** Submit a form's fields as an admin action; close + reload on success. */
 	async function submitForm(e: SubmitEvent, action: string, close?: () => void) {
@@ -107,41 +137,59 @@
 	let userSearch = $state('');
 	let logLevel = $state('all');
 
-	const USER_PAGE_SIZE = 25;
-	let usersPage = $state(1);
-
-	let filteredUsers = $derived(
-		userSearch.trim()
-			? users.filter((u) => {
-					const q = userSearch.toLowerCase();
-					return (
-						u.username.toLowerCase().includes(q) ||
-						u.email.toLowerCase().includes(q) ||
-						u.firstName.toLowerCase().includes(q) ||
-						u.lastName.toLowerCase().includes(q) ||
-						u.roles.some((r) => r.toLowerCase().includes(q))
-					);
-				})
-			: users
-	);
-
-	// Reset to page 1 when search changes
+	// Search is server-side (see load()): reset to page 1, then reload debounced.
 	$effect(() => {
 		void userSearch;
 		usersPage = 1;
+		if (!didInitialLoad) return;
+		const t = setTimeout(load, 250);
+		return () => clearTimeout(t);
 	});
-
-	let pagedUsers = $derived(
-		filteredUsers.slice((usersPage - 1) * USER_PAGE_SIZE, usersPage * USER_PAGE_SIZE)
-	);
 
 	let filteredLogs = $derived(logLevel === 'all' ? logs : logs.filter((l) => l.type === logLevel));
 
 	const innerTabs = $derived<AdminTab[]>([
-		{ id: 'users', label: 'Users', icon: Users, count: filteredUsers.length },
+		{ id: 'users', label: 'Users', icon: Users, count: usersTotal },
 		{ id: 'logs', label: 'Logs', icon: ScrollText, count: filteredLogs.length },
 		{ id: 'apps', label: 'Apps', icon: LayoutGrid, count: apps.length }
 	]);
+
+	const userColumns: SortableColumn<UserData>[] = [
+		{ key: 'username', label: 'Username', class: 'w-36', sortable: true },
+		{ key: 'email', label: 'Email', sortable: true },
+		{ key: 'roles', label: 'Roles' },
+		{ key: 'gender', label: 'G', class: 'w-8 text-center' },
+		{ key: 'credit', label: 'Credit', class: 'w-20 text-right', sortable: true },
+		{ key: 'lastOnline', label: 'Last Online', class: 'w-28', sortable: true },
+		{ key: 'actions', label: '', class: 'w-10' }
+	];
+
+	const logColumns: SortableColumn<LogEntry>[] = [
+		{ key: 'type', label: 'Level', class: 'w-20', sortable: true, accessor: (l) => l.type },
+		{ key: 'message', label: 'Message', class: 'w-80', sortable: true, accessor: (l) => l.message },
+		{
+			key: 'createdAt',
+			label: 'Timestamp',
+			class: 'w-36',
+			sortable: true,
+			accessor: (l) => new Date(l.createdAt)
+		},
+		{ key: 'data', label: 'Data' }
+	];
+
+	const appColumns: SortableColumn<AppEntry>[] = [
+		{ key: 'name', label: 'Name', class: 'w-48', sortable: true, accessor: (a) => a.name },
+		{ key: 'title', label: 'Title', sortable: true, accessor: (a) => a.title },
+		{
+			key: 'author',
+			label: 'Author',
+			class: 'w-28',
+			sortable: true,
+			accessor: (a) => a.user?.username ?? ''
+		},
+		{ key: 'restrict', label: 'Restrictions' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
 
 	// --- Users ---
 	let editingUserId = $state<string | null>(null);
@@ -285,72 +333,64 @@
 
 	<!-- USERS -->
 	{#if currentTab === 'users'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-36">Username</Table.Head>
-						<Table.Head>Email</Table.Head>
-						<Table.Head>Roles</Table.Head>
-						<Table.Head class="w-8 text-center" title="Gender">G</Table.Head>
-						<Table.Head class="w-20 text-right">Credit</Table.Head>
-						<Table.Head class="w-28">Last Online</Table.Head>
-						<Table.Head class="w-10"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each pagedUsers as user (user.id)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5">
-								<div class="flex items-center gap-1.5 font-medium">
-									{user.username}
-									{#if user.bannedUntil}
-										<span
-											class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
-											>banned</span
-										>
-									{/if}
-								</div>
-								<div class="text-muted-foreground text-xs">{user.firstName} {user.lastName}</div>
-							</Table.Cell>
-							<Table.Cell class="text-muted-foreground py-1.5 text-xs">{user.email}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<div class="flex flex-wrap gap-1">
-									{#each user.roles as role (role)}
-										<span
-											class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
-												CHIP_FALLBACK}">{role}</span
-										>
-									{/each}
-								</div>
-							</Table.Cell>
-							<Table.Cell class="py-1.5 text-center">
-								{#if user.gender && GENDER_ICON[user.gender]}
-									<span class="text-sm font-bold {GENDER_ICON[user.gender].cls}"
-										>{GENDER_ICON[user.gender].symbol}</span
-									>
-								{:else}
-									<span class="text-muted-foreground">-</span>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="py-1.5 text-right text-sm tabular-nums">{user.credit}</Table.Cell>
-							<Table.Cell class="text-muted-foreground py-1.5 text-xs">
-								{new Date(user.lastOnline).toLocaleDateString('en', {
-									month: 'short',
-									day: 'numeric',
-									year: '2-digit'
-								})}
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions onEdit={() => openUserEdit(user.id)} />
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each pagedUsers as user (user.id)}
+		<SortableTable
+			columns={userColumns}
+			rows={users}
+			rowKey={(u) => u.id}
+			pageSize={USER_PAGE_SIZE}
+			serverSide
+			bind:sort={usersSort}
+			bind:page={usersPage}
+			total={usersTotal}
+		>
+			{#snippet row(user)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5">
+						<div class="flex items-center gap-1.5 font-medium">
+							{user.username}
+							{#if user.bannedUntil}
+								<span
+									class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+									>banned</span
+								>
+							{/if}
+						</div>
+						<div class="text-muted-foreground text-xs">{user.firstName} {user.lastName}</div>
+					</Table.Cell>
+					<Table.Cell class="text-muted-foreground py-1.5 text-xs">{user.email}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<div class="flex flex-wrap gap-1">
+							{#each user.roles as role (role)}
+								<span
+									class="rounded px-1.5 py-0.5 text-xs font-medium {ROLE_CHIP[role] ??
+										CHIP_FALLBACK}">{role}</span
+								>
+							{/each}
+						</div>
+					</Table.Cell>
+					<Table.Cell class="py-1.5 text-center">
+						{#if user.gender && GENDER_ICON[user.gender]}
+							<span class="text-sm font-bold {GENDER_ICON[user.gender].cls}"
+								>{GENDER_ICON[user.gender].symbol}</span
+							>
+						{:else}
+							<span class="text-muted-foreground">-</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="py-1.5 text-right text-sm tabular-nums">{user.credit}</Table.Cell>
+					<Table.Cell class="text-muted-foreground py-1.5 text-xs">
+						{new Date(user.lastOnline).toLocaleDateString('en', {
+							month: 'short',
+							day: 'numeric',
+							year: '2-digit'
+						})}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions onEdit={() => openUserEdit(user.id)} />
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(user)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -394,63 +434,43 @@
 						>
 					</div>
 				</AdminCard>
-			{/each}
-		</div>
-		<Pagination
-			page={usersPage}
-			total={filteredUsers.length}
-			pageSize={USER_PAGE_SIZE}
-			onPageChange={(p) => (usersPage = p)}
-		/>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- LOGS -->
 	{#if currentTab === 'logs'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-20">Level</Table.Head>
-						<Table.Head class="w-80">Message</Table.Head>
-						<Table.Head class="w-36">Timestamp</Table.Head>
-						<Table.Head>Data</Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each filteredLogs as log (log.id)}
-						<Table.Row class="hover:bg-muted/40 cursor-pointer" onclick={() => openLog(log)}>
-							<Table.Cell class="py-1.5">
-								<span
-									class="rounded px-1.5 py-0.5 text-xs font-medium {LOG_CHIP[log.type] ??
-										CHIP_FALLBACK}">{log.type}</span
-								>
-							</Table.Cell>
-							<Table.Cell class="max-w-[20rem] truncate py-1.5 text-sm">{log.message}</Table.Cell>
-							<Table.Cell class="text-muted-foreground py-1.5 text-xs tabular-nums">
-								{new Date(log.createdAt).toLocaleString('en', {
-									month: 'short',
-									day: 'numeric',
-									hour: '2-digit',
-									minute: '2-digit',
-									second: '2-digit'
-								})}
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								{#if log.data}
-									<span class="block truncate font-mono text-xs"
-										>{@html highlightJson(log.data, undefined)}</span
-									>
-								{:else}
-									<span class="text-muted-foreground/40 text-xs">-</span>
-								{/if}
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each filteredLogs as log (log.id)}
+		<SortableTable columns={logColumns} rows={filteredLogs} rowKey={(l) => l.id}>
+			{#snippet row(log)}
+				<Table.Row class="hover:bg-muted/40 cursor-pointer" onclick={() => openLog(log)}>
+					<Table.Cell class="py-1.5">
+						<span
+							class="rounded px-1.5 py-0.5 text-xs font-medium {LOG_CHIP[log.type] ??
+								CHIP_FALLBACK}">{log.type}</span
+						>
+					</Table.Cell>
+					<Table.Cell class="max-w-[20rem] truncate py-1.5 text-sm">{log.message}</Table.Cell>
+					<Table.Cell class="text-muted-foreground py-1.5 text-xs tabular-nums">
+						{new Date(log.createdAt).toLocaleString('en', {
+							month: 'short',
+							day: 'numeric',
+							hour: '2-digit',
+							minute: '2-digit',
+							second: '2-digit'
+						})}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						{#if log.data}
+							<span class="block truncate font-mono text-xs"
+								>{@html highlightJson(log.data, undefined)}</span
+							>
+						{:else}
+							<span class="text-muted-foreground/40 text-xs">-</span>
+						{/if}
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(log)}
 				<AdminCard onclick={() => openLog(log)}>
 					<div class="flex items-center justify-between gap-2">
 						<span
@@ -473,8 +493,8 @@
 						</p>
 					{/if}
 				</AdminCard>
-			{/each}
-		</div>
+			{/snippet}
+		</SortableTable>
 		{#if logs.length === 500}
 			<p class="text-muted-foreground mt-2 text-xs">Showing 500 most recent entries.</p>
 		{/if}
@@ -482,62 +502,40 @@
 
 	<!-- APPS -->
 	{#if currentTab === 'apps'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-48">Name</Table.Head>
-						<Table.Head>Title</Table.Head>
-						<Table.Head class="w-28">Author</Table.Head>
-						<Table.Head>Restrictions</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each apps as app (app.id)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-mono text-sm">{app.name}</Table.Cell>
-							<Table.Cell class="py-1.5 font-medium">{app.title}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								{#if app.user}
-									<button
-										onclick={() => openUserEdit(app.authorId)}
-										class="text-muted-foreground hover:text-foreground text-sm hover:underline"
-									>
-										{app.user.username}
-									</button>
-								{:else}
-									<span class="text-muted-foreground text-sm">-</span>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="overflow-hidden py-1.5">
-								<RestrictEditor
-									value={app.restrict ?? []}
-									readonly
-									{users}
-									onUserClick={(id) => openUserEdit(id)}
-								/>
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openAppEdit(app)}
-									onDelete={() => openAppDeleteConfirm(app)}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-					{#if apps.length === 0}
-						<Table.Row>
-							<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-								>No apps</Table.Cell
+		<SortableTable columns={appColumns} rows={apps} rowKey={(a) => a.id} emptyMessage="No apps">
+			{#snippet row(app)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-mono text-sm">{app.name}</Table.Cell>
+					<Table.Cell class="py-1.5 font-medium">{app.title}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						{#if app.user}
+							<button
+								onclick={() => openUserEdit(app.authorId)}
+								class="text-muted-foreground hover:text-foreground text-sm hover:underline"
 							>
-						</Table.Row>
-					{/if}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each apps as app (app.id)}
+								{app.user.username}
+							</button>
+						{:else}
+							<span class="text-muted-foreground text-sm">-</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="overflow-hidden py-1.5">
+						<RestrictEditor
+							value={app.restrict ?? []}
+							readonly
+							{users}
+							onUserClick={(id) => openUserEdit(id)}
+						/>
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openAppEdit(app)}
+							onDelete={() => openAppDeleteConfirm(app)}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(app)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -567,11 +565,8 @@
 						onUserClick={(id) => openUserEdit(id)}
 					/>
 				</AdminCard>
-			{/each}
-			{#if apps.length === 0}
-				<p class="text-muted-foreground py-8 text-center text-sm">No apps</p>
-			{/if}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 </AdminPanel>
 

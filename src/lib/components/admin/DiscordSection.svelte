@@ -11,6 +11,8 @@
 	import UserViewModal from '$lib/components/UserViewModal.svelte';
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
+	import SortableTable from '$lib/components/SortableTable.svelte';
+	import type { SortableColumn } from '$lib/components/SortableTable.svelte';
 	import type { UserData } from '$lib/types';
 
 	interface DcUser {
@@ -125,6 +127,25 @@
 			formError = res.error ?? 'Failed';
 		}
 	}
+
+	const dcColumns: SortableColumn<DcUser>[] = [
+		{ key: 'name', label: 'Discord Name', sortable: true, accessor: (dc) => dc.name },
+		{
+			key: 'discordUserId',
+			label: 'Discord User ID',
+			sortable: true,
+			accessor: (dc) => dc.discordUserId
+		},
+		{ key: 'account', label: 'Account', sortable: true, accessor: (dc) => dc.user?.username ?? '' },
+		{
+			key: 'status',
+			label: 'Status',
+			class: 'w-24',
+			sortable: true,
+			accessor: (dc) => (dc.bannedUntil ? 1 : 0)
+		},
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
 </script>
 
 <AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
@@ -135,64 +156,47 @@
 		</Button.Root>
 	{/snippet}
 
-	<div class="hidden md:block">
-		<Table.Root>
-			<Table.Header>
-				<Table.Row>
-					<Table.Head>Discord Name</Table.Head>
-					<Table.Head>Discord User ID</Table.Head>
-					<Table.Head>Account</Table.Head>
-					<Table.Head class="w-24">Status</Table.Head>
-					<Table.Head class="w-16"></Table.Head>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{#each dcUsers as dc (dc.discordUserId)}
-					<Table.Row class="hover:bg-muted/40 group">
-						<Table.Cell class="py-1.5 font-medium">{dc.name}</Table.Cell>
-						<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-							>{dc.discordUserId}</Table.Cell
+	<SortableTable
+		columns={dcColumns}
+		rows={dcUsers}
+		rowKey={(dc) => dc.discordUserId}
+		emptyMessage="No Discord users linked"
+	>
+		{#snippet row(dc)}
+			<Table.Row class="hover:bg-muted/40 group">
+				<Table.Cell class="py-1.5 font-medium">{dc.name}</Table.Cell>
+				<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+					>{dc.discordUserId}</Table.Cell
+				>
+				<Table.Cell class="py-1.5">
+					{#if dc.user}
+						{@const u = dc.user}
+						<button
+							onclick={() => openViewUser(u)}
+							class="text-muted-foreground hover:text-foreground text-sm hover:underline"
 						>
-						<Table.Cell class="py-1.5">
-							{#if dc.user}
-								{@const u = dc.user}
-								<button
-									onclick={() => openViewUser(u)}
-									class="text-muted-foreground hover:text-foreground text-sm hover:underline"
-								>
-									{u.username}
-								</button>
-							{:else}
-								<span class="text-muted-foreground text-sm">-</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							{#if dc.bannedUntil}
-								<span
-									class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
-									>banned</span
-								>
-							{:else}
-								<span class="text-muted-foreground text-xs">-</span>
-							{/if}
-						</Table.Cell>
-						<Table.Cell class="py-1.5">
-							<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
-						</Table.Cell>
-					</Table.Row>
-				{/each}
-				{#if dcUsers.length === 0}
-					<Table.Row>
-						<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-							>No Discord users linked</Table.Cell
+							{u.username}
+						</button>
+					{:else}
+						<span class="text-muted-foreground text-sm">-</span>
+					{/if}
+				</Table.Cell>
+				<Table.Cell class="py-1.5">
+					{#if dc.bannedUntil}
+						<span
+							class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+							>banned</span
 						>
-					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
-	</div>
-	<div class="flex flex-col gap-2 md:hidden">
-		{#each dcUsers as dc (dc.discordUserId)}
+					{:else}
+						<span class="text-muted-foreground text-xs">-</span>
+					{/if}
+				</Table.Cell>
+				<Table.Cell class="py-1.5">
+					<RowActions onEdit={() => openEdit(dc)} onDelete={() => remove(dc.discordUserId)} />
+				</Table.Cell>
+			</Table.Row>
+		{/snippet}
+		{#snippet card(dc)}
 			<AdminCard>
 				<div class="flex items-start justify-between gap-2">
 					<div class="min-w-0">
@@ -225,11 +229,8 @@
 					<span class="text-muted-foreground text-xs">-</span>
 				{/if}
 			</AdminCard>
-		{/each}
-		{#if dcUsers.length === 0}
-			<p class="text-muted-foreground py-8 text-center text-sm">No Discord users linked</p>
-		{/if}
-	</div>
+		{/snippet}
+	</SortableTable>
 </AdminPanel>
 
 <!-- DC USER MODAL -->

@@ -10,6 +10,8 @@
 	import RowActions from '$lib/components/RowActions.svelte';
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
+	import SortableTable from '$lib/components/SortableTable.svelte';
+	import type { SortableColumn } from '$lib/components/SortableTable.svelte';
 
 	interface McUser {
 		minecraftUuid: string;
@@ -223,6 +225,40 @@
 			() => (serverModalOpen = false)
 		);
 	}
+
+	const userColumns: SortableColumn<McUser>[] = [
+		{ key: 'minecraftName', label: 'MC Name', sortable: true, accessor: (u) => u.minecraftName },
+		{ key: 'minecraftUuid', label: 'MC UUID', sortable: true, accessor: (u) => u.minecraftUuid },
+		{
+			key: 'discordUserId',
+			label: 'Discord User ID',
+			sortable: true,
+			accessor: (u) => u.discordUserId
+		},
+		{ key: 'token', label: 'Token', class: 'w-24' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
+
+	const hookColumns: SortableColumn<McHook>[] = [
+		{ key: 'webhookId', label: 'Webhook ID', sortable: true, accessor: (h) => h.webhookId },
+		{ key: 'channelId', label: 'Channel ID', sortable: true, accessor: (h) => h.channelId },
+		{
+			key: 'server',
+			label: 'Server',
+			sortable: true,
+			accessor: (h) => h.server?.ip ?? h.minecraftServerId
+		},
+		{ key: 'prefix', label: 'Prefix', class: 'w-32', sortable: true, accessor: (h) => h.prefix },
+		{ key: 'token', label: 'Token', class: 'w-24' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
+
+	const serverColumns: SortableColumn<McServer>[] = [
+		{ key: 'serverId', label: 'Server ID', sortable: true, accessor: (s) => s.serverId },
+		{ key: 'ip', label: 'IP', sortable: true, accessor: (s) => s.ip },
+		{ key: 'hook', label: 'Hook', class: 'w-32' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
 </script>
 
 <AdminPanel error={loadError} tabs={innerTabs} bind:active={currentTab}>
@@ -247,62 +283,45 @@
 
 	<!-- USERS -->
 	{#if currentTab === 'users'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head>MC Name</Table.Head>
-						<Table.Head>MC UUID</Table.Head>
-						<Table.Head>Discord User ID</Table.Head>
-						<Table.Head class="w-24">Token</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each users as user (user.minecraftUuid)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-medium">{user.minecraftName}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<button
-									onclick={() => openUserEdit(user)}
-									class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
-								>
-									{user.minecraftUuid}
-								</button>
-							</Table.Cell>
-							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-								>{user.discordUserId}</Table.Cell
+		<SortableTable
+			columns={userColumns}
+			rows={users}
+			rowKey={(u) => u.minecraftUuid}
+			emptyMessage="No users"
+		>
+			{#snippet row(user)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-medium">{user.minecraftName}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<button
+							onclick={() => openUserEdit(user)}
+							class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
+						>
+							{user.minecraftUuid}
+						</button>
+					</Table.Cell>
+					<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+						>{user.discordUserId}</Table.Cell
+					>
+					<Table.Cell class="py-1.5">
+						{#if user.token}
+							<span
+								class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+								>set</span
 							>
-							<Table.Cell class="py-1.5">
-								{#if user.token}
-									<span
-										class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
-										>set</span
-									>
-								{:else}
-									<span class="text-muted-foreground/40 text-xs">-</span>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openUserEdit(user)}
-									onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-					{#if users.length === 0}
-						<Table.Row>
-							<Table.Cell colspan={5} class="text-muted-foreground py-8 text-center text-sm"
-								>No users</Table.Cell
-							>
-						</Table.Row>
-					{/if}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each users as user (user.minecraftUuid)}
+						{:else}
+							<span class="text-muted-foreground/40 text-xs">-</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openUserEdit(user)}
+							onDelete={() => remove('userDelete', { minecraftUuid: user.minecraftUuid })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(user)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -330,63 +349,41 @@
 						>
 					{/if}
 				</AdminCard>
-			{/each}
-			{#if users.length === 0}
-				<p class="text-muted-foreground py-8 text-center text-sm">No users</p>
-			{/if}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- HOOKS -->
 	{#if currentTab === 'hooks'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head>Webhook ID</Table.Head>
-						<Table.Head>Channel ID</Table.Head>
-						<Table.Head>Server</Table.Head>
-						<Table.Head class="w-32">Prefix</Table.Head>
-						<Table.Head class="w-24">Token</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each hooks as hook (hook.webhookId)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-								>{hook.webhookId}</Table.Cell
-							>
-							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
-								>{hook.channelId}</Table.Cell
-							>
-							<Table.Cell class="py-1.5 text-sm"
-								>{hook.server?.ip ?? hook.minecraftServerId}</Table.Cell
-							>
-							<Table.Cell class="py-1.5 font-mono text-xs">{hook.prefix}</Table.Cell>
-							<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs">
-								<span class="block max-w-[80px] truncate" title={hook.token}>{hook.token}</span>
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openHookEdit(hook)}
-									onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-					{#if hooks.length === 0}
-						<Table.Row>
-							<Table.Cell colspan={6} class="text-muted-foreground py-8 text-center text-sm"
-								>No hooks</Table.Cell
-							>
-						</Table.Row>
-					{/if}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each hooks as hook (hook.webhookId)}
+		<SortableTable
+			columns={hookColumns}
+			rows={hooks}
+			rowKey={(h) => h.webhookId}
+			emptyMessage="No hooks"
+		>
+			{#snippet row(hook)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+						>{hook.webhookId}</Table.Cell
+					>
+					<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs"
+						>{hook.channelId}</Table.Cell
+					>
+					<Table.Cell class="py-1.5 text-sm">{hook.server?.ip ?? hook.minecraftServerId}</Table.Cell
+					>
+					<Table.Cell class="py-1.5 font-mono text-xs">{hook.prefix}</Table.Cell>
+					<Table.Cell class="text-muted-foreground py-1.5 font-mono text-xs">
+						<span class="block max-w-[80px] truncate" title={hook.token}>{hook.token}</span>
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openHookEdit(hook)}
+							onDelete={() => remove('hookDelete', { webhookId: hook.webhookId })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(hook)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -408,60 +405,41 @@
 						<span>{hook.prefix}</span>
 					</div>
 				</AdminCard>
-			{/each}
-			{#if hooks.length === 0}
-				<p class="text-muted-foreground py-8 text-center text-sm">No hooks</p>
-			{/if}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- SERVERS -->
 	{#if currentTab === 'servers'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head>Server ID</Table.Head>
-						<Table.Head>IP</Table.Head>
-						<Table.Head class="w-32">Hook</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each servers as server (server.serverId)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-mono text-sm">{server.serverId}</Table.Cell>
-							<Table.Cell class="py-1.5 text-sm">{server.ip}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								{#if server.hook}
-									<span
-										class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
-										>linked</span
-									>
-								{:else}
-									<span class="text-muted-foreground/40 text-xs">none</span>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openServerEdit(server)}
-									onDelete={() => remove('serverDelete', { serverId: server.serverId })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-					{#if servers.length === 0}
-						<Table.Row>
-							<Table.Cell colspan={4} class="text-muted-foreground py-8 text-center text-sm"
-								>No servers</Table.Cell
+		<SortableTable
+			columns={serverColumns}
+			rows={servers}
+			rowKey={(s) => s.serverId}
+			emptyMessage="No servers"
+		>
+			{#snippet row(server)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-mono text-sm">{server.serverId}</Table.Cell>
+					<Table.Cell class="py-1.5 text-sm">{server.ip}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						{#if server.hook}
+							<span
+								class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400"
+								>linked</span
 							>
-						</Table.Row>
-					{/if}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each servers as server (server.serverId)}
+						{:else}
+							<span class="text-muted-foreground/40 text-xs">none</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openServerEdit(server)}
+							onDelete={() => remove('serverDelete', { serverId: server.serverId })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(server)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -483,11 +461,8 @@
 						<span class="text-muted-foreground/40 text-xs">no hook</span>
 					{/if}
 				</AdminCard>
-			{/each}
-			{#if servers.length === 0}
-				<p class="text-muted-foreground py-8 text-center text-sm">No servers</p>
-			{/if}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 </AdminPanel>
 

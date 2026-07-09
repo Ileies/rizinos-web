@@ -16,7 +16,8 @@
 	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
 	import { Pickaxe, Wand2, Compass, Eye, Users, MapPin, Globe, Layers } from '@lucide/svelte';
 	import { adminGet, adminPost } from '$lib/adminApi';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import SortableTable from '$lib/components/SortableTable.svelte';
+	import type { SortableColumn, SortState } from '$lib/components/SortableTable.svelte';
 
 	interface Warp {
 		name: string;
@@ -52,29 +53,50 @@
 	}
 
 	let warps = $state<Warp[]>([]);
+	let warpsTotal = $state(0);
 	let worlds = $state<World[]>([]);
 	let groups = $state<Group[]>([]);
 	let mcUsers = $state<McUserRow[]>([]);
+	let mcUsersTotal = $state(0);
 	let users = $state<SimpleUser[]>([]);
 	let unassignedUsers = $state<SimpleUser[]>([]);
 	let loadError = $state('');
 	let formError = $state('');
 	let formSuccess = $state('');
 
+	const MC_PAGE_SIZE = 25;
+	let playersSort = $state<SortState>({ field: null, dir: 'asc' });
+	let playersPage = $state(1);
+	let warpsSort = $state<SortState>({ field: null, dir: 'asc' });
+	let warpsPage = $state(1);
+
 	async function load() {
 		try {
 			const data = await adminGet<{
 				warps: Warp[];
+				warpsTotal: number;
 				worlds: World[];
 				groups: Group[];
 				mcUsers: McUserRow[];
+				mcUsersTotal: number;
 				users: SimpleUser[];
 				unassignedUsers: SimpleUser[];
-			}>('/minecraft');
+			}>('/minecraft', {
+				playersSort: playersSort.field ?? undefined,
+				playersDir: playersSort.field ? playersSort.dir : undefined,
+				playersPage,
+				playersPageSize: MC_PAGE_SIZE,
+				warpsSort: warpsSort.field ?? undefined,
+				warpsDir: warpsSort.field ? warpsSort.dir : undefined,
+				warpsPage,
+				warpsPageSize: MC_PAGE_SIZE
+			});
 			warps = data.warps;
+			warpsTotal = data.warpsTotal;
 			worlds = data.worlds;
 			groups = data.groups;
 			mcUsers = data.mcUsers;
+			mcUsersTotal = data.mcUsersTotal;
 			users = data.users;
 			unassignedUsers = data.unassignedUsers;
 		} catch (e) {
@@ -82,7 +104,20 @@
 		}
 	}
 
-	onMount(load);
+	let didInitialLoad = false;
+	onMount(async () => {
+		await load();
+		didInitialLoad = true;
+	});
+
+	$effect(() => {
+		void playersSort;
+		void playersPage;
+		void warpsSort;
+		void warpsPage;
+		if (!didInitialLoad) return;
+		load();
+	});
 
 	/** Submit a form's fields as an action; close + reload on success. */
 	async function submitForm(e: SubmitEvent, action: string, close?: () => void) {
@@ -111,8 +146,8 @@
 	let worldNames = $derived(worlds.map((w) => w.name));
 
 	const mcTabs = $derived<AdminTab[]>([
-		{ id: 'players', label: 'Players', icon: Users, count: mcUsers.length },
-		{ id: 'warps', label: 'Warps', icon: MapPin, count: warps.length },
+		{ id: 'players', label: 'Players', icon: Users, count: mcUsersTotal },
+		{ id: 'warps', label: 'Warps', icon: MapPin, count: warpsTotal },
 		{ id: 'worlds', label: 'Worlds', icon: Globe, count: worlds.length },
 		{ id: 'groups', label: 'Groups', icon: Layers, count: groups.length }
 	]);
@@ -289,16 +324,6 @@
 		groupModalOpen = true;
 	}
 
-	// --- Pagination ---
-	const MC_PAGE_SIZE = 25;
-	let playersPage = $state(1);
-	let warpsPage = $state(1);
-
-	let pagedMcUsers = $derived(
-		mcUsers.slice((playersPage - 1) * MC_PAGE_SIZE, playersPage * MC_PAGE_SIZE)
-	);
-	let pagedWarps = $derived(warps.slice((warpsPage - 1) * MC_PAGE_SIZE, warpsPage * MC_PAGE_SIZE));
-
 	// --- User view ---
 	let viewUserOpen = $state(false);
 	let viewingUser = $state<UserData | null>(null);
@@ -331,6 +356,36 @@
 		const m = loc.match(/(?:^|,)world=([^,]+)/);
 		return m ? m[1] : null;
 	}
+
+	const playerColumns: SortableColumn<McUserRow>[] = [
+		{ key: 'name', label: 'MC Name', class: 'w-36', sortable: true },
+		{ key: 'account', label: 'Account', class: 'w-32' },
+		{ key: 'perms', label: 'Perms', class: 'w-20 text-center' },
+		{ key: 'home', label: 'Home', class: 'w-28' },
+		{ key: 'sanctions', label: 'Sanctions', class: 'w-32' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
+
+	const warpColumns: SortableColumn<Warp>[] = [
+		{ key: 'name', label: 'Name', class: 'w-32', sortable: true, accessor: (w) => w.name },
+		{ key: 'location', label: 'Location', class: 'w-52' },
+		{ key: 'restrict', label: 'Restrictions' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
+
+	const groupColumns: SortableColumn<Group>[] = [
+		{ key: 'name', label: 'Name', class: 'w-32', sortable: true, accessor: (g) => g.name },
+		{ key: 'mode', label: 'Mode', class: 'w-32', sortable: true, accessor: (g) => g.gameMode },
+		{ key: 'restrict', label: 'Restrictions' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
+
+	const worldColumns: SortableColumn<World>[] = [
+		{ key: 'name', label: 'Name', class: 'w-32', sortable: true, accessor: (w) => w.name },
+		{ key: 'group', label: 'Group', class: 'w-36', sortable: true, accessor: (w) => w.groupName },
+		{ key: 'restrict', label: 'Restrictions' },
+		{ key: 'actions', label: '', class: 'w-16' }
+	];
 </script>
 
 {#snippet gameModePicker(current: number, set: (v: number) => void, inputName: string)}
@@ -377,79 +432,72 @@
 
 	<!-- PLAYERS -->
 	{#if currentTab === 'players'}
-		<div class="hidden md:block">
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-36">MC Name</Table.Head>
-						<Table.Head class="w-32">Account</Table.Head>
-						<Table.Head class="w-20 text-center">Perms</Table.Head>
-						<Table.Head class="w-28">Home</Table.Head>
-						<Table.Head class="w-32">Sanctions</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each pagedMcUsers as mc (mc.uuid)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-medium">{mc.name}</Table.Cell>
-							<Table.Cell class="py-1.5 text-xs">
-								<button
-									onclick={() => openViewUser(mc.user)}
-									class="text-muted-foreground hover:text-foreground hover:underline"
+		<SortableTable
+			columns={playerColumns}
+			rows={mcUsers}
+			rowKey={(mc) => mc.uuid}
+			pageSize={MC_PAGE_SIZE}
+			serverSide
+			bind:sort={playersSort}
+			bind:page={playersPage}
+			total={mcUsersTotal}
+		>
+			{#snippet row(mc)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-medium">{mc.name}</Table.Cell>
+					<Table.Cell class="py-1.5 text-xs">
+						<button
+							onclick={() => openViewUser(mc.user)}
+							class="text-muted-foreground hover:text-foreground hover:underline"
+						>
+							{mc.user.username}
+						</button>
+					</Table.Cell>
+					<Table.Cell class="py-1.5 text-center text-sm">{mc.permissions.length}</Table.Cell>
+					<Table.Cell class="py-1.5 text-xs">
+						{@const hw = homeWorld(mc.homeLocation)}
+						{#if hw && worlds.some((w) => w.name === hw)}
+							<button
+								onclick={() => {
+									editingWorldName = hw;
+									worldModalOpen = true;
+								}}
+								class="text-muted-foreground hover:text-foreground hover:underline"
+							>
+								{hw}
+							</button>
+						{:else}
+							<span class="text-muted-foreground">{hw ?? '-'}</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<div class="flex gap-1">
+							{#if mc.bannedUntil}
+								<span
+									class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
+									>banned</span
 								>
-									{mc.user.username}
-								</button>
-							</Table.Cell>
-							<Table.Cell class="py-1.5 text-center text-sm">{mc.permissions.length}</Table.Cell>
-							<Table.Cell class="py-1.5 text-xs">
-								{@const hw = homeWorld(mc.homeLocation)}
-								{#if hw && worlds.some((w) => w.name === hw)}
-									<button
-										onclick={() => {
-											editingWorldName = hw;
-											worldModalOpen = true;
-										}}
-										class="text-muted-foreground hover:text-foreground hover:underline"
-									>
-										{hw}
-									</button>
-								{:else}
-									<span class="text-muted-foreground">{hw ?? '-'}</span>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<div class="flex gap-1">
-									{#if mc.bannedUntil}
-										<span
-											class="rounded bg-red-100 px-1.5 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400"
-											>banned</span
-										>
-									{/if}
-									{#if mc.mutedUntil}
-										<span
-											class="rounded bg-yellow-100 px-1.5 py-0.5 text-xs font-medium text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-500"
-											>muted</span
-										>
-									{/if}
-									{#if !mc.bannedUntil && !mc.mutedUntil}
-										<span class="text-muted-foreground text-xs">-</span>
-									{/if}
-								</div>
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openPlayerEdit(mc.uuid)}
-									onDelete={() => remove('mcUserDelete', { uuid: mc.uuid })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each pagedMcUsers as mc (mc.uuid)}
+							{/if}
+							{#if mc.mutedUntil}
+								<span
+									class="rounded bg-yellow-100 px-1.5 py-0.5 text-xs font-medium text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-500"
+									>muted</span
+								>
+							{/if}
+							{#if !mc.bannedUntil && !mc.mutedUntil}
+								<span class="text-muted-foreground text-xs">-</span>
+							{/if}
+						</div>
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openPlayerEdit(mc.uuid)}
+							onDelete={() => remove('mcUserDelete', { uuid: mc.uuid })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(mc)}
 				{@const hw = homeWorld(mc.homeLocation)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
@@ -497,70 +545,57 @@
 						{/if}
 					</div>
 				</AdminCard>
-			{/each}
-		</div>
-		<Pagination
-			page={playersPage}
-			total={mcUsers.length}
-			pageSize={MC_PAGE_SIZE}
-			onPageChange={(p) => (playersPage = p)}
-		/>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- WARPS -->
 	{#if currentTab === 'warps'}
-		<div class="hidden md:block">
-			<Table.Root class="w-full table-fixed">
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-32">Name</Table.Head>
-						<Table.Head class="w-52">Location</Table.Head>
-						<Table.Head>Restrictions</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each pagedWarps as warp (warp.name)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-medium">{warp.name}</Table.Cell>
-							<Table.Cell class="py-1.5" title={warp.location ?? ''}>
-								{@const ww = homeWorld(warp.location)}
-								{#if ww && worlds.some((w) => w.name === ww)}
-									<button
-										onclick={() => {
-											editingWorldName = ww;
-											worldModalOpen = true;
-										}}
-										class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
-									>
-										{fmtLoc(warp.location)}
-									</button>
-								{:else}
-									<span class="text-muted-foreground font-mono text-xs"
-										>{fmtLoc(warp.location)}</span
-									>
-								{/if}
-							</Table.Cell>
-							<Table.Cell class="overflow-hidden py-1.5">
-								<RestrictEditor value={warp.restrict ?? []} readonly {users} />
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => {
-										editingWarpName = warp.name;
-										formError = '';
-										warpModalOpen = true;
-									}}
-									onDelete={() => remove('warpDelete', { name: warp.name })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each pagedWarps as warp (warp.name)}
+		<SortableTable
+			columns={warpColumns}
+			rows={warps}
+			rowKey={(w) => w.name}
+			pageSize={MC_PAGE_SIZE}
+			serverSide
+			bind:sort={warpsSort}
+			bind:page={warpsPage}
+			total={warpsTotal}
+		>
+			{#snippet row(warp)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-medium">{warp.name}</Table.Cell>
+					<Table.Cell class="py-1.5" title={warp.location ?? ''}>
+						{@const ww = homeWorld(warp.location)}
+						{#if ww && worlds.some((w) => w.name === ww)}
+							<button
+								onclick={() => {
+									editingWorldName = ww;
+									worldModalOpen = true;
+								}}
+								class="text-muted-foreground hover:text-foreground font-mono text-xs hover:underline"
+							>
+								{fmtLoc(warp.location)}
+							</button>
+						{:else}
+							<span class="text-muted-foreground font-mono text-xs">{fmtLoc(warp.location)}</span>
+						{/if}
+					</Table.Cell>
+					<Table.Cell class="overflow-hidden py-1.5">
+						<RestrictEditor value={warp.restrict ?? []} readonly {users} />
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => {
+								editingWarpName = warp.name;
+								formError = '';
+								warpModalOpen = true;
+							}}
+							onDelete={() => remove('warpDelete', { name: warp.name })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(warp)}
 				{@const ww = homeWorld(warp.location)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
@@ -592,60 +627,40 @@
 					</div>
 					<RestrictEditor value={warp.restrict ?? []} readonly {users} />
 				</AdminCard>
-			{/each}
-		</div>
-		<Pagination
-			page={warpsPage}
-			total={warps.length}
-			pageSize={MC_PAGE_SIZE}
-			onPageChange={(p) => (warpsPage = p)}
-		/>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- WORLDS -->
 	{#if currentTab === 'worlds'}
-		<div class="hidden md:block">
-			<Table.Root class="w-full table-fixed">
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-32">Name</Table.Head>
-						<Table.Head class="w-36">Group</Table.Head>
-						<Table.Head>Restrictions</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each worlds as world (world.name)}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-medium">{world.name}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<button
-									onclick={() => openGroupEdit(world.groupName)}
-									class="text-muted-foreground hover:text-foreground text-sm hover:underline"
-								>
-									{world.groupName}
-								</button>
-							</Table.Cell>
-							<Table.Cell class="overflow-hidden py-1.5">
-								<RestrictEditor value={world.restrict ?? []} readonly {users} />
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => {
-										editingWorldName = world.name;
-										formError = '';
-										worldModalOpen = true;
-									}}
-									onDelete={() => remove('worldDelete', { name: world.name })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each worlds as world (world.name)}
+		<SortableTable columns={worldColumns} rows={worlds} rowKey={(w) => w.name}>
+			{#snippet row(world)}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-medium">{world.name}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<button
+							onclick={() => openGroupEdit(world.groupName)}
+							class="text-muted-foreground hover:text-foreground text-sm hover:underline"
+						>
+							{world.groupName}
+						</button>
+					</Table.Cell>
+					<Table.Cell class="overflow-hidden py-1.5">
+						<RestrictEditor value={world.restrict ?? []} readonly {users} />
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => {
+								editingWorldName = world.name;
+								formError = '';
+								worldModalOpen = true;
+							}}
+							onDelete={() => remove('worldDelete', { name: world.name })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(world)}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
 						<div class="min-w-0">
@@ -669,49 +684,35 @@
 					</div>
 					<RestrictEditor value={world.restrict ?? []} readonly {users} />
 				</AdminCard>
-			{/each}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 
 	<!-- GROUPS -->
 	{#if currentTab === 'groups'}
-		<div class="hidden md:block">
-			<Table.Root class="w-full table-fixed">
-				<Table.Header>
-					<Table.Row>
-						<Table.Head class="w-32">Name</Table.Head>
-						<Table.Head class="w-32">Mode</Table.Head>
-						<Table.Head>Restrictions</Table.Head>
-						<Table.Head class="w-16"></Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					{#each groups as group (group.name)}
-						{@const GmIcon = GM_ICON[group.gameMode as keyof typeof GM_ICON] ?? Pickaxe}
-						<Table.Row class="hover:bg-muted/40 group">
-							<Table.Cell class="py-1.5 font-medium">{group.name}</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<span class="text-muted-foreground flex items-center gap-1.5 text-sm">
-									<GmIcon size={13} />
-									{GM_LABEL[group.gameMode as keyof typeof GM_LABEL] ?? group.gameMode}
-								</span>
-							</Table.Cell>
-							<Table.Cell class="overflow-hidden py-1.5">
-								<RestrictEditor value={group.restrict ?? []} readonly {users} />
-							</Table.Cell>
-							<Table.Cell class="py-1.5">
-								<RowActions
-									onEdit={() => openGroupEdit(group.name)}
-									onDelete={() => remove('groupDelete', { name: group.name })}
-								/>
-							</Table.Cell>
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-		<div class="flex flex-col gap-2 md:hidden">
-			{#each groups as group (group.name)}
+		<SortableTable columns={groupColumns} rows={groups} rowKey={(g) => g.name}>
+			{#snippet row(group)}
+				{@const GmIcon = GM_ICON[group.gameMode as keyof typeof GM_ICON] ?? Pickaxe}
+				<Table.Row class="hover:bg-muted/40 group">
+					<Table.Cell class="py-1.5 font-medium">{group.name}</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<span class="text-muted-foreground flex items-center gap-1.5 text-sm">
+							<GmIcon size={13} />
+							{GM_LABEL[group.gameMode as keyof typeof GM_LABEL] ?? group.gameMode}
+						</span>
+					</Table.Cell>
+					<Table.Cell class="overflow-hidden py-1.5">
+						<RestrictEditor value={group.restrict ?? []} readonly {users} />
+					</Table.Cell>
+					<Table.Cell class="py-1.5">
+						<RowActions
+							onEdit={() => openGroupEdit(group.name)}
+							onDelete={() => remove('groupDelete', { name: group.name })}
+						/>
+					</Table.Cell>
+				</Table.Row>
+			{/snippet}
+			{#snippet card(group)}
 				{@const GmIcon = GM_ICON[group.gameMode as keyof typeof GM_ICON] ?? Pickaxe}
 				<AdminCard>
 					<div class="flex items-start justify-between gap-2">
@@ -730,8 +731,8 @@
 					</div>
 					<RestrictEditor value={group.restrict ?? []} readonly {users} />
 				</AdminCard>
-			{/each}
-		</div>
+			{/snippet}
+		</SortableTable>
 	{/if}
 </AdminPanel>
 
