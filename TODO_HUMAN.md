@@ -10,7 +10,7 @@ Codes aus dem jeweiligen Account holen und mir geben - ich trage sie dann ein.
 
 - [ ] **Baidu Webmaster Tools** - Verifikationscode (fur `baidu-site-verification` Meta-Tag)
 - [ ] **Yandex Webmaster Tools** - Verifikationscode (fur `yandex-verification` Meta-Tag)
-- [ ] **Google Search Console** - Domain verifizieren (DNS-Eintrag oder HTML-Tag), Sitemap einreichen
+- [x] **Google Search Console** - Domain verifizieren (DNS-Eintrag oder HTML-Tag), Sitemap einreichen
 - [ ] **Bing Webmaster Tools** - `msvalidate.01`-Code
 
 ---
