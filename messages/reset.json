@@ -49,6 +49,12 @@
 		"此重置链接无效或已过期。请申请新链接。",
 		"Эта ссылка для сброса недействительна или истекла. Запроси новую."
 	],
+	"reset_token_missing": [
+		"Für einen Passwort-Reset benötigst du den Link aus deiner E-Mail. Fordere hier einen neuen an.",
+		"To reset your password, use the link from your email. Request a new one here.",
+		"要重置密码，请使用邮件中的链接。在此申请新链接。",
+		"Чтобы сбросить пароль, используй ссылку из письма. Запроси новую здесь."
+	],
 	"reset_passwords_no_match": [
 		"Die Passwörter stimmen nicht überein.",
 		"Passwords do not match.",

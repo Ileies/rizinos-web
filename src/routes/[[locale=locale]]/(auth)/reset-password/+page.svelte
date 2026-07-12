@@ -41,7 +41,7 @@
 <AuthCard>
 	{#if !token}
 		<h2 class="text-card-foreground text-xl font-bold tracking-tight">
-			{m.reset_token_invalid()}
+			{m.reset_token_missing()}
 		</h2>
 		<a
 			class="text-primary hover:text-primary/80 mt-4 block text-sm font-medium transition-colors"
@@ -79,6 +79,14 @@
 		{/if}
 
 		<form class="mt-6 space-y-4" onsubmit={handleSubmit}>
+			<!--
+				This form has no server-side fallback: if it's ever natively submitted before
+				hydration attaches `handleSubmit` (e.g. a password manager auto-submitting), the
+				browser GET-navigates to this same page with the form fields as the query string,
+				which would otherwise drop the reset token and show "invalid or expired". This
+				hidden field keeps the token in the URL if that happens.
+			-->
+			<input name="token" type="hidden" value={token} />
 			<div>
 				<label class="text-foreground mb-1.5 block text-sm font-medium" for="password">
 					{m.reset_password_label()}
