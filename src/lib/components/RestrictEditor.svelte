@@ -27,6 +27,11 @@
 
 	let items = $state(untrack(() => [...value]));
 
+	// Re-sync when `value` changes (e.g. a readonly row's data is reloaded after a save).
+	$effect(() => {
+		items = [...value];
+	});
+
 	let addOpen = $state(false);
 	let addDeny = $state(false);
 	let addType = $state<'role' | 'user'>('role');
