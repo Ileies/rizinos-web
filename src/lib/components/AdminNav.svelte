@@ -16,7 +16,7 @@
 	<div class="mx-auto max-w-7xl px-6">
 		<div class="flex items-end justify-between pt-5 pb-0">
 			<div class="pb-3">
-				<h1 class="text-xl font-semibold leading-none">Datenbank-Verwaltung</h1>
+				<h1 class="text-xl font-semibold leading-none">Database Administration</h1>
 			</div>
 		</div>
 		<div class="flex overflow-x-auto">
