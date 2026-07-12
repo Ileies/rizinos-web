@@ -66,9 +66,13 @@
 		return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' });
 	}
 
+	// Falls back to the first sortable column when the user hasn't picked one yet, so the row
+	// order stays stable across reloads instead of following the server's unspecified order.
 	let sorted = $derived.by(() => {
-		if (serverSide || !sort.field) return rows;
-		const col = columns.find((c) => c.key === sort.field);
+		if (serverSide) return rows;
+		const col = sort.field
+			? columns.find((c) => c.key === sort.field)
+			: columns.find((c) => c.sortable && c.accessor);
 		if (!col?.accessor) return rows;
 		const copy = [...rows].sort((a, b) => compareValues(col.accessor!(a), col.accessor!(b)));
 		if (sort.dir === 'desc') copy.reverse();
