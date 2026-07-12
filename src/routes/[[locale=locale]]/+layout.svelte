@@ -19,7 +19,7 @@
 			(locales as readonly string[]).includes(cookieLocale) &&
 			cookieLocale !== 'en'
 		) {
-			goto(`/${cookieLocale}${page.url.pathname}`, { replaceState: true });
+			goto(`/${cookieLocale}${page.url.pathname}${page.url.search}`, { replaceState: true });
 		}
 	});
 </script>
