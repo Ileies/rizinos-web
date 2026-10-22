@@ -37,7 +37,7 @@ Same origin means cookies work without CORS or `SameSite=None`.
 
 | Layer           | Technology                                           |
 | --------------- | ---------------------------------------------------- |
-| Framework       | SvelteKit 2 + Svelte 5 (runes only)                  |
+| Framework       | SvelteKit 3 + Svelte 5 (runes only)                  |
 | Adapter         | `adapter-static` - fully prerendered, CDN-deployable |
 | Styling         | Tailwind CSS v4 + shadcn-svelte + bits-ui            |
 | Icons           | `@lucide/svelte`                                     |
@@ -53,7 +53,12 @@ Same origin means cookies work without CORS or `SameSite=None`.
 ### Prerequisites
 
 - [Bun](https://bun.sh) >= 1.0
+- Node.js >= 22.17 for SvelteKit tooling
 - The `rizinos` backend running on port 3001 (for `/api/*` and `/ws` proxying in dev)
+
+SvelteKit configuration lives in `vite.config.ts`; environment variables are declared in
+`src/env.ts` and locale matching in `src/params.ts`. The `#lib` imports are configured
+through `package.json`; custom aliases remain in `vite.config.ts`.
 
 ### Install
 
@@ -139,7 +144,7 @@ static/                          # robots.txt, favicon, public assets
 
 | Alias     | Points to                   |
 | --------- | --------------------------- |
-| `$lib`    | `src/lib`                   |
+| `#lib`    | `src/lib`                   |
 | `$ui`     | `src/lib/client/components` |
 | `$shadcn` | `src/lib/components/ui`     |
 
@@ -163,7 +168,7 @@ Translation strings live in `messages/*.json`. Each key maps to an array `[de, e
 The Vite plugin compiles all topic files into `src/lib/messages.svelte.ts` at dev/build time. Import functions directly:
 
 ```ts
-import { hero_title, login_sign_in_button } from '$lib/messages.svelte';
+import { hero_title, login_sign_in_button } from '#lib/messages.svelte.js';
 ```
 
 The static site uses **client-side** locale detection by reading the `LOCALE` cookie (default: `en`).
@@ -175,7 +180,7 @@ The static site uses **client-side** locale detection by reading the `LOCALE` co
 The admin dashboard is a static SPA. All data and mutations go through the `rizinos` backend at `/api/admin/*`. Use the typed wrappers:
 
 ```ts
-import { adminGet, adminPost } from '$lib/adminApi';
+import { adminGet, adminPost } from '#lib/adminApi.js';
 
 const users = await adminGet<User[]>('/');
 await adminPost('/minecraft', { action: 'start', worldId: 1 });

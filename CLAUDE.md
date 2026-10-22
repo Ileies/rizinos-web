@@ -94,7 +94,7 @@ static/                       # robots.txt, favicon, public assets
 
 | Alias     | Points to                   |
 | --------- | --------------------------- |
-| `$lib`    | `src/lib`                   |
+| `#lib`    | `src/lib`                   |
 | `$ui`     | `src/lib/client/components` |
 | `$shadcn` | `src/lib/components/ui`     |
 
@@ -116,11 +116,11 @@ static/                       # robots.txt, favicon, public assets
 ## Key Conventions
 
 - **Svelte 5 runes throughout** - no legacy stores, no `$:` reactive declarations, no `on:` event directives
-- **`$lib/` imports only** - never relative paths from `src/`
+- **`#lib/` imports only** - never relative paths from `src/`
 - **shadcn-svelte** imported as `$shadcn/<component>` (tsconfig alias)
 - **Homepage components** imported as `$ui/<component>` (tsconfig alias)
 - **No em dashes** - use a regular dash, colon, or newline instead
-- **No server-only code** - this is a static site; never import anything from a `server` module or `$lib/server/` (that lives in `rizinos`)
+- **No server-only code** - this is a static site; never import anything from a `server` module or `#lib/server/` (that lives in `rizinos`)
 - **All admin API calls via `adminApi.ts`** - never write raw fetch calls to admin endpoints inline in components
 - **Auth enforcement is the backend's job** - the static site only reacts to 401/403 responses; never trust client-side role checks as the sole gate
 - **Admin UI is English-only by design** - the admin dashboard uses hardcoded English strings and is not part of the i18n system
@@ -145,7 +145,7 @@ Source files live in `messages/*.json`. Each key maps to an array `[de, en, cn, 
 The Vite plugin (`src/lib/i18n-plugin.ts`) compiles all topic files into `src/lib/messages.svelte.ts` (gitignored) at dev/build time. Import translation functions directly:
 
 ```ts
-import { hero_title, login_sign_in_button } from '$lib/messages.svelte';
+import { hero_title, login_sign_in_button } from '#lib/messages.svelte.js';
 
 // In component:
 <h1>{hero_title()}</h1>
@@ -169,7 +169,7 @@ import { hero_title, login_sign_in_button } from '$lib/messages.svelte';
 The admin dashboard is a pure client-side SPA. Server logic lives entirely in the `rizinos` backend at `https://api.rizinos.com/admin/*`. Use the typed wrappers - never write raw fetch calls to admin endpoints:
 
 ```ts
-import { adminGet, adminPost } from '$lib/adminApi';
+import { adminGet, adminPost } from '#lib/adminApi.js';
 
 // Typed GET request
 const users = await adminGet<User[]>('/');
@@ -190,7 +190,7 @@ if (!result.ok) {
 A `$state` object populated by `GET https://api.rizinos.com/auth/session` on mount. Use it to read the current user:
 
 ```ts
-import { session } from '$lib/session.svelte';
+import { session } from '#lib/session.svelte.js';
 
 // In a component:
 if (session.user?.role === 'admin') { ... }
