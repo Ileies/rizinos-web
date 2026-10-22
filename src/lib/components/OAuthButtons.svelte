@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SiDiscord, SiGoogle } from '@icons-pack/svelte-simple-icons';
-	import * as m from '$lib/messages.svelte';
-	import { API_BASE } from '$lib/config';
+	import * as m from '#lib/messages.svelte.js';
+	import { API_BASE } from '#lib/config.js';
 
 	let { redirectTo }: { redirectTo?: string } = $props();
 

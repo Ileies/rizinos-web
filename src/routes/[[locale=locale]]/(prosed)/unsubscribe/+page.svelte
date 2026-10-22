@@ -2,8 +2,9 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import * as Button from '$shadcn/button';
-	import * as m from '$lib/messages.svelte';
-	import { apiPost } from '$lib/api';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiPost } from '#lib/api.js';
+	import { APP_URL } from '#lib/config.js';
 
 	type State = 'idle' | 'loading' | 'success' | 'error_invalid' | 'error_generic' | 'no_token';
 
@@ -42,7 +43,9 @@
 		<Button.Root variant="outline" onclick={() => goto('/')}
 			>{m.unsubscribe_return_home()}</Button.Root
 		>
-		<Button.Root onclick={() => goto('/app')}>{m.unsubscribe_account_settings()}</Button.Root>
+		<Button.Root onclick={() => (window.location.href = APP_URL)}
+			>{m.unsubscribe_account_settings()}</Button.Root
+		>
 	</div>
 {:else if state === 'error_invalid'}
 	<p class="text-destructive">{m.unsubscribe_error_invalid()}</p>

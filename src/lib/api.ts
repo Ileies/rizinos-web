@@ -1,4 +1,4 @@
-import { API_BASE } from '$lib/config';
+import { API_BASE } from '#lib/config.js';
 
 export function apiFetch(path: string, init?: RequestInit): Promise<Response> {
 	return fetch(`${API_BASE}${path}`, {

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import AdminNav from '$lib/components/AdminNav.svelte';
-	import RizinosSection from '$lib/components/admin/RizinosSection.svelte';
-	import MinecraftSection from '$lib/components/admin/MinecraftSection.svelte';
-	import MinechatSection from '$lib/components/admin/MinechatSection.svelte';
-	import DiscordSection from '$lib/components/admin/DiscordSection.svelte';
-	import ModerationSection from '$lib/components/admin/ModerationSection.svelte';
+	import AdminNav from '#lib/components/AdminNav.svelte';
+	import RizinosSection from '#lib/components/admin/RizinosSection.svelte';
+	import MinecraftSection from '#lib/components/admin/MinecraftSection.svelte';
+	import MinechatSection from '#lib/components/admin/MinechatSection.svelte';
+	import DiscordSection from '#lib/components/admin/DiscordSection.svelte';
+	import ModerationSection from '#lib/components/admin/ModerationSection.svelte';
 
 	let area = $state('rizinos');
 </script>

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { ArrowRight, Eye, EyeOff, ExternalLink } from '@lucide/svelte';
 	import { fade } from 'svelte/transition';
-	import { browser } from '$app/environment';
-	import * as m from '$lib/messages.svelte';
-	import { apiPost } from '$lib/api';
-	import { APP_URL } from '$lib/config';
+	import { browser } from '$app/env';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiPost } from '#lib/api.js';
+	import { APP_URL } from '#lib/config.js';
 
 	let { loggedIn = false }: { loggedIn?: boolean } = $props();
 

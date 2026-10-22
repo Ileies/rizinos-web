@@ -1,5 +1,5 @@
-import { refreshSession } from '$lib/session.svelte';
-import { apiFetch } from '$lib/api';
+import { refreshSession } from '#lib/session.svelte.js';
+import { apiFetch } from '#lib/api.js';
 
 export interface AdminResult<T = never> {
 	ok: boolean;

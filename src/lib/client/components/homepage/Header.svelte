@@ -11,13 +11,13 @@
 		LayoutDashboard
 	} from '@lucide/svelte';
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
-	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import { browser } from '$app/environment';
-	import { github, APP_URL } from '$lib/config';
-	import { setLocale } from '$lib/messages.svelte';
-	import * as m from '$lib/messages.svelte';
-	import { localePath, switchLocalePath } from '$lib/i18n.svelte';
-	import { logout } from '$lib/session.svelte';
+	import { PUBLIC_APP_NAME } from '$app/env/public';
+	import { browser } from '$app/env';
+	import { github, APP_URL } from '#lib/config.js';
+	import { setLocale } from '#lib/messages.svelte.js';
+	import * as m from '#lib/messages.svelte.js';
+	import { localePath, switchLocalePath } from '#lib/i18n.svelte.js';
+	import { logout } from '#lib/session.svelte.js';
 
 	const languages = [
 		{ code: 'en', name: 'English', flag: '🇬🇧' },

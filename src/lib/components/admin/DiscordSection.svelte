@@ -4,16 +4,16 @@
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
-	import Modal from '$lib/components/Modal.svelte';
-	import AdminPanel from '$lib/components/AdminPanel.svelte';
-	import AdminCard from '$lib/components/AdminCard.svelte';
-	import RowActions from '$lib/components/RowActions.svelte';
-	import UserViewModal from '$lib/components/UserViewModal.svelte';
-	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
-	import { adminGet, adminPost } from '$lib/adminApi';
-	import SortableTable from '$lib/components/SortableTable.svelte';
-	import type { SortableColumn } from '$lib/components/SortableTable.svelte';
-	import type { UserData } from '$lib/types';
+	import Modal from '#lib/components/Modal.svelte';
+	import AdminPanel from '#lib/components/AdminPanel.svelte';
+	import AdminCard from '#lib/components/AdminCard.svelte';
+	import RowActions from '#lib/components/RowActions.svelte';
+	import UserViewModal from '#lib/components/UserViewModal.svelte';
+	import { type AdminTab } from '#lib/components/AdminTabs.svelte';
+	import { adminGet, adminPost } from '#lib/adminApi.js';
+	import SortableTable from '#lib/components/SortableTable.svelte';
+	import type { SortableColumn } from '#lib/components/SortableTable.svelte';
+	import type { UserData } from '#lib/types.js';
 
 	interface DcUser {
 		name: string;

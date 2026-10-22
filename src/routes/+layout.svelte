@@ -4,10 +4,10 @@
 	import { page } from '$app/state';
 	import Header from '$ui/homepage/Header.svelte';
 	import Footer from '$ui/homepage/Footer.svelte';
-	import CookieBanner from '$lib/components/CookieBanner.svelte';
-	import { session, loadSession } from '$lib/session.svelte';
-	import { getLocale, locales } from '$lib/messages.svelte';
-	import { PUBLIC_GOOGLE_ANALYTICS_ID, PUBLIC_ORIGIN } from '$env/static/public';
+	import CookieBanner from '#lib/components/CookieBanner.svelte';
+	import { session, loadSession } from '#lib/session.svelte.js';
+	import { getLocale, locales } from '#lib/messages.svelte.js';
+	import { PUBLIC_GOOGLE_ANALYTICS_ID, PUBLIC_ORIGIN } from '$app/env/public';
 
 	const LANG_TAG: Record<string, string> = { de: 'de', en: 'en', cn: 'zh-CN', ru: 'ru' };
 	const OG_LOCALE: Record<string, string> = { de: 'de_DE', en: 'en_US', cn: 'zh_CN', ru: 'ru_RU' };

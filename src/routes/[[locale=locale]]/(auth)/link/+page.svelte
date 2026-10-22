@@ -3,10 +3,10 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { CheckCircle, ArrowLeft } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
-	import { apiFetch } from '$lib/api';
-	import { session, loadSession } from '$lib/session.svelte';
-	import AuthCard from '$lib/components/AuthCard.svelte';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiFetch } from '#lib/api.js';
+	import { session, loadSession } from '#lib/session.svelte.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
 
 	let status = $state<number | null>(null);
 

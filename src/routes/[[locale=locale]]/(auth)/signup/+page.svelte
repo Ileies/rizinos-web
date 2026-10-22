@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
-	import { apiPost } from '$lib/api';
-	import { session, loadSession } from '$lib/session.svelte';
-	import { APP_URL } from '$lib/config';
-	import AuthCard from '$lib/components/AuthCard.svelte';
-	import OAuthButtons from '$lib/components/OAuthButtons.svelte';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiPost } from '#lib/api.js';
+	import { session, loadSession } from '#lib/session.svelte.js';
+	import { APP_URL } from '#lib/config.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
+	import OAuthButtons from '#lib/components/OAuthButtons.svelte';
 
 	let step = $state(1);
 	const TOTAL_STEPS = 3;

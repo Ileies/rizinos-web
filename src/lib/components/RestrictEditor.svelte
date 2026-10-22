@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Role } from '$lib/types';
+	import { Role } from '#lib/types.js';
 	import { untrack } from 'svelte';
 
 	const ROLES = Object.values(Role);

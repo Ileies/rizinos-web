@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { Role } from '$lib/types';
-	import { session, loadSession } from '$lib/session.svelte';
+	import { Role } from '#lib/types.js';
+	import { session, loadSession } from '#lib/session.svelte.js';
 
 	let { children } = $props();
 

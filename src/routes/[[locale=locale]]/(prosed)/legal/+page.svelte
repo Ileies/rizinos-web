@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { PUBLIC_ORIGIN } from '$env/static/public';
-	import * as m from '$lib/messages.svelte';
-	import * as config from '$lib/config';
+	import { PUBLIC_ORIGIN } from '$app/env/public';
+	import * as m from '#lib/messages.svelte.js';
+	import * as config from '#lib/config.js';
 
 	const email = `info@${PUBLIC_ORIGIN}`;
 	const liabilityEmail = `liability@${PUBLIC_ORIGIN}`;

@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { ArrowRight } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
-	import { apiGet, apiPost } from '$lib/api';
-	import { refreshSession } from '$lib/session.svelte';
-	import { APP_URL } from '$lib/config';
-	import AuthCard from '$lib/components/AuthCard.svelte';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiGet, apiPost } from '#lib/api.js';
+	import { refreshSession } from '#lib/session.svelte.js';
+	import { APP_URL } from '#lib/config.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
 
 	const token = $derived(page.url.searchParams.get('token') ?? '');
 

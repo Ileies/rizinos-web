@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { ArrowLeft, Home } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
+	import * as m from '#lib/messages.svelte.js';
 
 	let status = $derived(page.status);
 	let message = $derived(

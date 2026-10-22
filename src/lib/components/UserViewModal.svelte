@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { UserData } from '$lib/types';
-	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
-	import Modal from '$lib/components/Modal.svelte';
+	import type { UserData } from '#lib/types.js';
+	import { ROLE_CHIP, CHIP_FALLBACK } from '#lib/adminConstants.js';
+	import Modal from '#lib/components/Modal.svelte';
 
 	let { open = $bindable(false), user }: { open: boolean; user: UserData } = $props();
 </script>

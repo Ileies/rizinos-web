@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { SiGithub, SiX } from '@icons-pack/svelte-simple-icons';
-	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import * as m from '$lib/messages.svelte';
-	import { discord, github, x } from '$lib/config';
-	import { localePath } from '$lib/i18n.svelte';
+	import { PUBLIC_APP_NAME } from '$app/env/public';
+	import * as m from '#lib/messages.svelte.js';
+	import { discord, github, x } from '#lib/config.js';
+	import { localePath } from '#lib/i18n.svelte.js';
 
 	type LinkList = Record<string, string>;
 

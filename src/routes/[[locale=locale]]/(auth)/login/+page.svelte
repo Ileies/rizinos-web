@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { ArrowRight } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
-	import { session, loadSession, refreshSession } from '$lib/session.svelte';
-	import { apiPost } from '$lib/api';
-	import { APP_URL } from '$lib/config';
-	import AuthCard from '$lib/components/AuthCard.svelte';
-	import OAuthButtons from '$lib/components/OAuthButtons.svelte';
+	import * as m from '#lib/messages.svelte.js';
+	import { session, loadSession, refreshSession } from '#lib/session.svelte.js';
+	import { apiPost } from '#lib/api.js';
+	import { APP_URL } from '#lib/config.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
+	import OAuthButtons from '#lib/components/OAuthButtons.svelte';
 
 	let emailElement: HTMLInputElement;
 	let email = $state('');
@@ -25,7 +25,9 @@
 	function redirectAfterLogin() {
 		const target = redirectTo();
 		if (target.startsWith('/')) {
-			goto(target);
+			goto(target).catch(() => {
+				window.location.href = target;
+			});
 		} else {
 			window.location.href = target;
 		}

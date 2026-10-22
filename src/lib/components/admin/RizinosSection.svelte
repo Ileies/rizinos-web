@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Role, type UserData } from '$lib/types';
+	import { Role, type UserData } from '#lib/types.js';
 	import { Users, ScrollText, LayoutGrid, Trash2, Plus, Search, X } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
-	import Modal from '$lib/components/Modal.svelte';
-	import RestrictEditor from '$lib/components/RestrictEditor.svelte';
-	import AdminPanel from '$lib/components/AdminPanel.svelte';
-	import AdminCard from '$lib/components/AdminCard.svelte';
-	import RowActions from '$lib/components/RowActions.svelte';
-	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
-	import { ROLE_CHIP, CHIP_FALLBACK } from '$lib/adminConstants';
-	import { adminGet, adminPost } from '$lib/adminApi';
-	import SortableTable from '$lib/components/SortableTable.svelte';
-	import type { SortableColumn, SortState } from '$lib/components/SortableTable.svelte';
-	import { highlightJson } from '$lib/jsonHighlight';
+	import Modal from '#lib/components/Modal.svelte';
+	import RestrictEditor from '#lib/components/RestrictEditor.svelte';
+	import AdminPanel from '#lib/components/AdminPanel.svelte';
+	import AdminCard from '#lib/components/AdminCard.svelte';
+	import RowActions from '#lib/components/RowActions.svelte';
+	import { type AdminTab } from '#lib/components/AdminTabs.svelte';
+	import { ROLE_CHIP, CHIP_FALLBACK } from '#lib/adminConstants.js';
+	import { adminGet, adminPost } from '#lib/adminApi.js';
+	import SortableTable from '#lib/components/SortableTable.svelte';
+	import type { SortableColumn, SortState } from '#lib/components/SortableTable.svelte';
+	import { highlightJson } from '#lib/jsonHighlight.js';
 
 	interface LogEntry {
 		id: string;

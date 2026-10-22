@@ -1,6 +1,6 @@
-import { browser } from '$app/environment';
-import { Role } from '$lib/types';
-import { apiFetch } from '$lib/api';
+import { browser } from '$app/env';
+import { Role } from '#lib/types.js';
+import { apiFetch } from '#lib/api.js';
 
 // Client-side session state for the static frontend. There is no server load
 // here, so login status comes from the backend's `GET /api/auth/session`

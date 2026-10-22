@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
-	import { adminGet, adminPost } from '$lib/adminApi';
+	import { adminGet, adminPost } from '#lib/adminApi.js';
 
 	interface UnbanRequest {
 		id: number;

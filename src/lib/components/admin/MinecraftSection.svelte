@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { UserData } from '$lib/types';
+	import type { UserData } from '#lib/types.js';
 	import { Plus, CheckCircle2, XCircle, Loader2 } from '@lucide/svelte';
 	import * as Table from '$shadcn/table';
 	import * as Button from '$shadcn/button';
 	import * as Input from '$shadcn/input';
-	import Modal from '$lib/components/Modal.svelte';
-	import { apiFetch } from '$lib/api';
-	import RestrictEditor from '$lib/components/RestrictEditor.svelte';
-	import LocationEditor from '$lib/components/LocationEditor.svelte';
-	import AdminPanel from '$lib/components/AdminPanel.svelte';
-	import AdminCard from '$lib/components/AdminCard.svelte';
-	import RowActions from '$lib/components/RowActions.svelte';
-	import UserViewModal from '$lib/components/UserViewModal.svelte';
-	import { type AdminTab } from '$lib/components/AdminTabs.svelte';
+	import Modal from '#lib/components/Modal.svelte';
+	import { apiFetch } from '#lib/api.js';
+	import RestrictEditor from '#lib/components/RestrictEditor.svelte';
+	import LocationEditor from '#lib/components/LocationEditor.svelte';
+	import AdminPanel from '#lib/components/AdminPanel.svelte';
+	import AdminCard from '#lib/components/AdminCard.svelte';
+	import RowActions from '#lib/components/RowActions.svelte';
+	import UserViewModal from '#lib/components/UserViewModal.svelte';
+	import { type AdminTab } from '#lib/components/AdminTabs.svelte';
 	import { Pickaxe, Wand2, Compass, Eye, Users, MapPin, Globe, Layers } from '@lucide/svelte';
-	import { adminGet, adminPost } from '$lib/adminApi';
-	import SortableTable from '$lib/components/SortableTable.svelte';
-	import type { SortableColumn, SortState } from '$lib/components/SortableTable.svelte';
+	import { adminGet, adminPost } from '#lib/adminApi.js';
+	import SortableTable from '#lib/components/SortableTable.svelte';
+	import type { SortableColumn, SortState } from '#lib/components/SortableTable.svelte';
 
 	interface Warp {
 		name: string;

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { ArrowRight, CheckCircle } from '@lucide/svelte';
-	import * as m from '$lib/messages.svelte';
-	import { apiPost } from '$lib/api';
-	import AuthCard from '$lib/components/AuthCard.svelte';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiPost } from '#lib/api.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
 
 	let password = $state('');
 	let confirmPassword = $state('');

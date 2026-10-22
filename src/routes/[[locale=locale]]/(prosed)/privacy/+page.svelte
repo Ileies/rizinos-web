@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as m from '$lib/messages.svelte';
+	import * as m from '#lib/messages.svelte.js';
 </script>
 
 <div>

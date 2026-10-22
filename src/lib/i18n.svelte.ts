@@ -1,4 +1,4 @@
-import { getLocale, locales } from '$lib/messages.svelte';
+import { getLocale, locales } from '#lib/messages.svelte.js';
 
 export function localePath(path: string): string {
 	const locale = getLocale();

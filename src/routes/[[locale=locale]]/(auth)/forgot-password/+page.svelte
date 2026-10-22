@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 	import { ArrowRight, ArrowLeft, MailCheck } from '@lucide/svelte';
 	import { page } from '$app/state';
-	import * as m from '$lib/messages.svelte';
-	import AuthCard from '$lib/components/AuthCard.svelte';
-	import { apiFetch } from '$lib/api';
+	import * as m from '#lib/messages.svelte.js';
+	import AuthCard from '#lib/components/AuthCard.svelte';
+	import { apiFetch } from '#lib/api.js';
 
 	let email = $state('');
 	let submitting = $state(false);

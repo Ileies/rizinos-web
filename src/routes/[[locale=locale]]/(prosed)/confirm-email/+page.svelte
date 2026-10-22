@@ -3,8 +3,8 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as Button from '$shadcn/button';
-	import * as m from '$lib/messages.svelte';
-	import { apiFetch } from '$lib/api';
+	import * as m from '#lib/messages.svelte.js';
+	import { apiFetch } from '#lib/api.js';
 
 	let status = $state<number | null>(null);
 

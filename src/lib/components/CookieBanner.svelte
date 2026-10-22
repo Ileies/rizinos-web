@@ -5,7 +5,7 @@
 		cookie_accept,
 		cookie_decline,
 		cookie_privacy_link
-	} from '$lib/messages.svelte';
+	} from '#lib/messages.svelte.js';
 
 	let { onConsent }: { onConsent: (accepted: boolean) => void } = $props();
 

@@ -4,7 +4,7 @@
 declare global {
 	namespace App {
 		// Minimal session user as returned by the backend `GET /api/auth/session`.
-		type SessionUser = import('$lib/types').UserData;
+		type SessionUser = import('#lib/types.js').UserData;
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}

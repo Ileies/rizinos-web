@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as m from '$lib/messages.svelte';
-	import * as config from '$lib/config';
+	import * as m from '#lib/messages.svelte.js';
+	import * as config from '#lib/config.js';
 </script>
 
 <div>

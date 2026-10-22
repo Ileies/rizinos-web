@@ -3,7 +3,7 @@
 	import Container from '$ui/homepage/Container.svelte';
 	import * as Card from '$shadcn/card';
 	import { Button } from '$shadcn/button';
-	import { discord } from '$lib/config';
+	import { discord } from '#lib/config.js';
 
 	const discordInviteCode = discord.split('/').pop();
 

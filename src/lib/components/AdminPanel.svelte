@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import AdminTabs, { type AdminTab } from '$lib/components/AdminTabs.svelte';
+	import AdminTabs, { type AdminTab } from '#lib/components/AdminTabs.svelte';
 
 	let {
 		error = '',

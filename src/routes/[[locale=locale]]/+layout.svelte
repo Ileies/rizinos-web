@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { setLocale, locales } from '$lib/messages.svelte';
+	import { setLocale, locales } from '#lib/messages.svelte.js';
 
 	let { data, children } = $props();
 
@@ -19,7 +19,7 @@
 			(locales as readonly string[]).includes(cookieLocale) &&
 			cookieLocale !== 'en'
 		) {
-			goto(`/${cookieLocale}${page.url.pathname}${page.url.search}`, { replaceState: true });
+			goto(`/${cookieLocale}${page.url.pathname}${page.url.search}`, { replace: true });
 		}
 	});
 </script>
