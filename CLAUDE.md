@@ -47,6 +47,7 @@ src/
     signup/                   # Multi-step signup form
     about/                    # About page (static, no server load)
     contact/                  # Contact form + channel hub (see docs/contact-page.md)
+    status/                   # Live status page (see "Status page" below)
     (prosed)/                 # Shared prose layout for long-form pages
       confirm-email/          # Email verification handler
       legal/                  # Imprint (Impressum)
@@ -61,6 +62,7 @@ src/
     client/
       components/
         homepage/             # Hero, Header, Footer, SignupFlow, CopyText, Container
+        status/               # Status page parts + SiteStatusBanner (mounted in the root layout)
     components/
       ui/                     # shadcn-svelte primitives (auto-managed via CLI, don't hand-edit)
       admin/                  # One section component per area, all using AdminPanel
@@ -69,6 +71,7 @@ src/
         MinecraftSection.svelte # Players / Warps / Worlds / Groups
         MinechatSection.svelte  # Users / Hooks / Servers
         DiscordSection.svelte   # Users
+        StatusSection.svelte    # Status monitoring (tabs in admin/status/); also embedded on /status for admins
       AdminNav.svelte         # Top-level area tabs (bind:active), used by /admin
       AdminPanel.svelte       # Shared section shell: wrapper + error + sub-tabs + toolbar
       AdminTabs.svelte        # Shared sub-tab bar (icon + count)
@@ -86,6 +89,9 @@ src/
     i18n-plugin.ts            # Vite plugin: messages/*.json → messages.svelte.ts
     messages.svelte.ts        # AUTO-GENERATED - never edit by hand
     session.svelte.ts         # $state session (fetches GET /auth/session via apiFetch on mount)
+    status.ts                 # Status types (mirror the backend), formatters, state color maps
+    status.svelte.ts          # Polling store for /status (30 s, pauses when hidden, localStorage fallback)
+    statusLabels.ts           # Translated labels, component names looked up by slug
     types.ts                  # Shared TypeScript types
     utils.ts                  # cn() and other utilities
 messages/                     # i18n source files (one JSON per topic)
@@ -165,6 +171,19 @@ import { hero_title, login_sign_in_button } from '#lib/messages.svelte.js';
 - Locale is read from the `LOCALE` cookie client-side; default is `en` in the static site
 - 4 supported locales: `de`, `en`, `cn`, `ru`
 - `common.json` (if present) is for keys used across multiple pages; page-specific strings belong in topic files
+
+---
+
+## Status page
+
+`/status` is a client-rendered page fed by the backend (`GET /status`, `/status/banner`, admin: `/admin/status`). Probing and incident logic live in [`../rizinos-status`](../rizinos-status) and [`../rizinos/docs/status.md`](../rizinos/docs/status.md); read those for the data model and state rules.
+
+- **Data**: `statusStore` in `status.svelte.ts` polls every 30 s, pauses while the tab is hidden, backs off after errors and keeps the last good payload in `localStorage`. If the API is down the page says so and shows the cached data with its age instead of going blank. `status.ts` types mirror the backend's `src/lib/server/status/types.ts`: keep them in sync.
+- **Components** (`#ui/status/`): `OverallBanner`, `ComponentRow` + `UptimeBar` (90 day bar, one focusable group: pointer maps to a day, arrow keys step through days), `IncidentCard`, `MaintenanceCard`, `StatusTable` (accessible table view behind a toggle), `StatsStrip`, `SiteStatusBanner` (in the root layout; only major and critical incidents and nearby maintenance, hidden on `/status`).
+- **Colors**: state colors are reserved tokens in `app.css` (`--status-good`, `-warning`, `-serious`, `-critical`, `-maintenance`, `-idle`, utilities like `bg-status-good`). They are only used for marks, dots and tints. A state is never conveyed by color alone: every state has its own icon and a text label.
+- **i18n**: UI strings live in `messages/status.json`. Component names and descriptions come from `status_component_<slug>` and `status_component_<slug>_desc`, looked up by slug in `statusLabels.ts`, falling back to the English name from the API. **New component in the prober means new keys in all four locales.** Incident and maintenance text is English only (written by admins).
+- **Admin**: `StatusSection.svelte` (English only, like all admin UI) has Components, Incidents, Maintenance and System tabs. It is used in `/admin` and is lazily imported below the public page when `session.isAdmin`, so visitors never download it. The backend sends admin-only data from a separate endpoint, so the page never relies on a client-side role check for access.
+- **Public vs admin data**: the public payload has no latency, error text or player counts. Do not add them to public components.
 
 ---
 
