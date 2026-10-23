@@ -1,0 +1,561 @@
+{
+	"contact_eyebrow": ["Kontakt", "Contact", "联系我们", "Контакты"],
+	"contact_title": [
+		"Wie können wir helfen?",
+		"How can we help?",
+		"我们能帮上什么忙？",
+		"Чем мы можем помочь?"
+	],
+	"contact_lead": [
+		"Wähle ein Thema, damit deine Nachricht direkt im richtigen Postfach landet. Du bekommst sofort eine Bestätigung per E-Mail.",
+		"Pick a topic so your message lands in the right inbox. You get a confirmation by email right away.",
+		"选择一个主题，您的消息会直接送达对应的邮箱。您会立即收到一封确认邮件。",
+		"Выберите тему, и сообщение сразу попадёт в нужный ящик. Подтверждение придёт на почту."
+	],
+
+	"contact_status_checking": [
+		"Prüfe Verfügbarkeit...",
+		"Checking availability...",
+		"正在检查可用性...",
+		"Проверяем доступность..."
+	],
+	"contact_status_ok": [
+		"API erreichbar · {ms} ms",
+		"API online · {ms} ms",
+		"API 在线 · {ms} 毫秒",
+		"API доступен · {ms} мс"
+	],
+	"contact_status_slow": [
+		"API langsam · {ms} ms",
+		"API slow · {ms} ms",
+		"API 响应较慢 · {ms} 毫秒",
+		"API отвечает медленно · {ms} мс"
+	],
+	"contact_status_down": [
+		"API nicht erreichbar",
+		"API unreachable",
+		"无法连接 API",
+		"API недоступен"
+	],
+	"contact_status_link": ["Status ansehen", "View status", "查看状态", "Открыть статус"],
+
+	"contact_topic_heading": [
+		"Worum geht es?",
+		"What is this about?",
+		"您想咨询什么？",
+		"О чём ваше обращение?"
+	],
+
+	"contact_topic_general": ["Allgemeine Frage", "General question", "一般问题", "Общий вопрос"],
+	"contact_topic_general_hint": [
+		"Alles zu RizinOS, was in keine andere Kategorie passt",
+		"Anything about RizinOS that fits nowhere else",
+		"关于 RizinOS 的其他任何问题",
+		"Всё о RizinOS, что не подходит под другие темы"
+	],
+	"contact_topic_account": [
+		"Konto und Anmeldung",
+		"Account and login",
+		"账户与登录",
+		"Аккаунт и вход"
+	],
+	"contact_topic_account_hint": [
+		"Login, Passwort, E-Mail-Bestätigung, Konto löschen",
+		"Sign-in, password, email confirmation, account deletion",
+		"登录、密码、邮箱验证、删除账户",
+		"Вход, пароль, подтверждение почты, удаление аккаунта"
+	],
+	"contact_topic_bug": ["Fehler melden", "Report a bug", "报告错误", "Сообщить об ошибке"],
+	"contact_topic_bug_hint": [
+		"Etwas funktioniert nicht wie erwartet",
+		"Something does not work as expected",
+		"某些功能未按预期工作",
+		"Что-то работает не так, как ожидается"
+	],
+	"contact_topic_feedback": [
+		"Feedback und Ideen",
+		"Feedback and ideas",
+		"反馈与建议",
+		"Отзывы и идеи"
+	],
+	"contact_topic_feedback_hint": [
+		"Wünsche, Verbesserungen und Lob",
+		"Feature requests, improvements and praise",
+		"功能需求、改进建议与表扬",
+		"Пожелания, улучшения и благодарности"
+	],
+	"contact_topic_security": ["Sicherheitslücke", "Security issue", "安全漏洞", "Уязвимость"],
+	"contact_topic_security_hint": [
+		"Verantwortungsvolle Meldung einer Schwachstelle",
+		"Responsible disclosure of a vulnerability",
+		"负责任地披露安全漏洞",
+		"Ответственное сообщение об уязвимости"
+	],
+	"contact_topic_press": [
+		"Presse und Partnerschaft",
+		"Press and partnerships",
+		"媒体与合作",
+		"Пресса и партнёрство"
+	],
+	"contact_topic_press_hint": [
+		"Medienanfragen, Kooperationen, Geschäftliches",
+		"Media requests, collaborations, business",
+		"媒体咨询、合作与商务",
+		"Запросы СМИ, сотрудничество, бизнес"
+	],
+	"contact_topic_legal": [
+		"Recht und Datenschutz",
+		"Legal and privacy",
+		"法律与隐私",
+		"Право и конфиденциальность"
+	],
+	"contact_topic_legal_hint": [
+		"Missbrauch, DMCA, DSGVO-Anfragen",
+		"Abuse, DMCA and GDPR requests",
+		"滥用、DMCA 与 GDPR 请求",
+		"Нарушения, DMCA и запросы по GDPR"
+	],
+	"contact_topic_unban": ["Bann-Einspruch", "Ban appeal", "封禁申诉", "Обжалование бана"],
+	"contact_topic_unban_hint": [
+		"Gesperrt? Reiche einen Unban-Antrag ein",
+		"Were you banned? Submit an unban request",
+		"被封禁了？提交解封申请",
+		"Вас забанили? Подайте заявку на разбан"
+	],
+
+	"contact_details_heading": ["Deine Nachricht", "Your message", "您的消息", "Ваше сообщение"],
+	"contact_name": ["Name", "Name", "姓名", "Имя"],
+	"contact_email": ["E-Mail", "Email", "电子邮箱", "Электронная почта"],
+	"contact_email_locked": [
+		"Aus deinem Konto übernommen, Antworten gehen an diese Adresse.",
+		"Taken from your account. Replies go to this address.",
+		"来自您的账户，回复将发送到此邮箱。",
+		"Взято из вашего аккаунта. Ответ придёт на этот адрес."
+	],
+	"contact_signed_in": [
+		"Angemeldet als {username}",
+		"Signed in as {username}",
+		"已登录为 {username}",
+		"Вы вошли как {username}"
+	],
+	"contact_subject": ["Betreff", "Subject", "标题", "Тема"],
+	"contact_message": ["Nachricht", "Message", "消息内容", "Сообщение"],
+	"contact_message_placeholder": [
+		"Beschreibe dein Anliegen so konkret wie möglich...",
+		"Describe your request as specifically as you can...",
+		"请尽可能具体地描述您的问题...",
+		"Опишите ваш вопрос как можно конкретнее..."
+	],
+	"contact_counter": ["{count} / {max}", "{count} / {max}", "{count} / {max}", "{count} / {max}"],
+	"contact_optional": ["optional", "optional", "可选", "необязательно"],
+	"contact_select_placeholder": ["Bitte wählen", "Please choose", "请选择", "Выберите"],
+
+	"contact_security_hint": [
+		"Bitte sende keine Zugangsdaten und keinen ausführbaren Exploit-Code. Beschreibe das Problem, wir melden uns für weitere Details.",
+		"Please do not send credentials or working exploit code. Describe the problem and we will follow up for details.",
+		"请不要发送账号凭据或可直接利用的漏洞代码。请描述问题，我们会联系您了解更多细节。",
+		"Пожалуйста, не отправляйте учётные данные и рабочий код эксплойта. Опишите проблему, за подробностями мы свяжемся с вами."
+	],
+	"contact_legal_hint": [
+		"Für Datenschutzanfragen kann es nötig sein, dass wir deine Identität prüfen. Sende bitte keine Ausweiskopien in diesem Formular.",
+		"For privacy requests we may need to verify your identity. Please do not send copies of ID documents through this form.",
+		"处理隐私请求时，我们可能需要核实您的身份。请不要通过此表单发送证件复印件。",
+		"Для запросов по конфиденциальности нам может потребоваться подтвердить вашу личность. Не отправляйте копии документов через эту форму."
+	],
+
+	"contact_attach_heading": ["Screenshots", "Screenshots", "截图", "Скриншоты"],
+	"contact_attach_drop": [
+		"Bilder hierher ziehen oder auswählen",
+		"Drop images here or browse",
+		"将图片拖到此处或点击选择",
+		"Перетащите изображения сюда или выберите файлы"
+	],
+	"contact_attach_hint": [
+		"Bis zu {max} Bilder, je höchstens {mb} MB (PNG, JPG, WebP, GIF). Mit Strg+V kannst du auch einfügen.",
+		"Up to {max} images, {mb} MB each (PNG, JPG, WebP, GIF). You can also paste with Ctrl+V.",
+		"最多 {max} 张图片，每张不超过 {mb} MB（PNG、JPG、WebP、GIF）。也可以用 Ctrl+V 粘贴。",
+		"До {max} изображений, не более {mb} МБ каждое (PNG, JPG, WebP, GIF). Можно вставить через Ctrl+V."
+	],
+	"contact_attach_remove": ["Bild entfernen", "Remove image", "移除图片", "Удалить изображение"],
+
+	"contact_env_label": [
+		"Technische Infos anhängen",
+		"Attach technical info",
+		"附加技术信息",
+		"Приложить технические данные"
+	],
+	"contact_env_hint": [
+		"Browser, Betriebssystem, Bildschirmgröße und Sprache helfen uns bei der Fehlersuche.",
+		"Browser, operating system, screen size and language help us track the problem down.",
+		"浏览器、操作系统、屏幕尺寸和语言有助于我们排查问题。",
+		"Браузер, операционная система, размер экрана и язык помогают нам найти причину."
+	],
+
+	"contact_privacy_note": [
+		"Wir speichern deine Nachricht {months} Monate, nutzen sie nur zur Bearbeitung deiner Anfrage und antworten per E-Mail. Details in der",
+		"We keep your message for {months} months, use it only to handle your request and reply by email. Details in the",
+		"我们会保存您的消息 {months} 个月，仅用于处理您的请求，并通过电子邮件回复。详情请见",
+		"Мы храним ваше сообщение {months} мес., используем его только для обработки обращения и отвечаем по электронной почте. Подробности в"
+	],
+	"contact_privacy_link": [
+		"Datenschutzerklärung",
+		"privacy policy",
+		"隐私政策",
+		"политике конфиденциальности"
+	],
+
+	"contact_submit": ["Nachricht senden", "Send message", "发送消息", "Отправить сообщение"],
+	"contact_sending": ["Wird gesendet...", "Sending...", "发送中...", "Отправляем..."],
+	"contact_shortcut": [
+		"Strg+Enter zum Senden",
+		"Ctrl+Enter to send",
+		"按 Ctrl+Enter 发送",
+		"Ctrl+Enter для отправки"
+	],
+
+	"contact_err_fix": [
+		"Bitte korrigiere die markierten Felder.",
+		"Please fix the highlighted fields.",
+		"请修正标记的字段。",
+		"Пожалуйста, исправьте выделенные поля."
+	],
+	"contact_err_required": [
+		"Dieses Feld ist erforderlich.",
+		"This field is required.",
+		"此项为必填。",
+		"Это поле обязательно."
+	],
+	"contact_err_too_short": [
+		"Bitte schreibe mindestens {min} Zeichen.",
+		"Please write at least {min} characters.",
+		"请至少输入 {min} 个字符。",
+		"Введите не менее {min} символов."
+	],
+	"contact_err_too_long": [
+		"Maximal {max} Zeichen erlaubt.",
+		"At most {max} characters allowed.",
+		"最多允许 {max} 个字符。",
+		"Допустимо не более {max} символов."
+	],
+	"contact_err_invalid_email": [
+		"Bitte gib eine gültige E-Mail-Adresse ein.",
+		"Please enter a valid email address.",
+		"请输入有效的电子邮箱地址。",
+		"Введите корректный адрес электронной почты."
+	],
+	"contact_err_invalid_option": [
+		"Bitte wähle einen gültigen Wert.",
+		"Please choose a valid value.",
+		"请选择有效的选项。",
+		"Выберите допустимое значение."
+	],
+	"contact_err_generic": [
+		"Die Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.",
+		"Your message could not be sent. Please try again.",
+		"消息发送失败，请重试。",
+		"Не удалось отправить сообщение. Попробуйте ещё раз."
+	],
+	"contact_err_network": [
+		"Keine Verbindung zum Server. Prüfe deine Internetverbindung und versuche es erneut.",
+		"Could not reach the server. Check your connection and try again.",
+		"无法连接到服务器，请检查网络后重试。",
+		"Нет связи с сервером. Проверьте подключение и попробуйте снова."
+	],
+	"contact_err_rate": [
+		"Zu viele Nachrichten in kurzer Zeit. Bitte versuche es in etwa {minutes} Min. erneut.",
+		"Too many messages in a short time. Please try again in about {minutes} min.",
+		"短时间内发送的消息过多，请在约 {minutes} 分钟后重试。",
+		"Слишком много сообщений за короткое время. Повторите попытку примерно через {minutes} мин."
+	],
+	"contact_err_att_too_many": [
+		"Maximal {max} Bilder erlaubt.",
+		"At most {max} images allowed.",
+		"最多允许 {max} 张图片。",
+		"Допустимо не более {max} изображений."
+	],
+	"contact_err_att_too_large": [
+		"Ein Bild ist größer als {mb} MB.",
+		"An image is larger than {mb} MB.",
+		"有图片超过了 {mb} MB。",
+		"Одно из изображений больше {mb} МБ."
+	],
+	"contact_err_att_type": [
+		"Nur PNG-, JPG-, WebP- und GIF-Bilder sind erlaubt.",
+		"Only PNG, JPG, WebP and GIF images are allowed.",
+		"仅支持 PNG、JPG、WebP 和 GIF 图片。",
+		"Допустимы только изображения PNG, JPG, WebP и GIF."
+	],
+	"contact_err_challenge": [
+		"Die Sicherheitsprüfung ist fehlgeschlagen. Bitte lade die Seite neu und versuche es erneut.",
+		"The security check failed. Please reload the page and try again.",
+		"安全检查失败，请刷新页面后重试。",
+		"Проверка безопасности не пройдена. Обновите страницу и попробуйте снова."
+	],
+
+	"contact_success_title": [
+		"Nachricht gesendet",
+		"Message sent",
+		"消息已发送",
+		"Сообщение отправлено"
+	],
+	"contact_success_desc": [
+		"Danke, dass du dich gemeldet hast. Wir haben dir eine Bestätigung per E-Mail geschickt.",
+		"Thanks for getting in touch. We sent you a confirmation by email.",
+		"感谢您的来信。我们已向您发送确认邮件。",
+		"Спасибо за обращение. Мы отправили вам подтверждение по электронной почте."
+	],
+	"contact_success_ref": ["Referenz", "Reference", "参考编号", "Номер обращения"],
+	"contact_copy": ["Kopieren", "Copy", "复制", "Копировать"],
+	"contact_copied": ["Kopiert", "Copied", "已复制", "Скопировано"],
+	"contact_next_heading": ["Wie es weitergeht", "What happens next", "接下来会怎样", "Что дальше"],
+	"contact_next_1": [
+		"Die Bestätigung ist unterwegs. Prüfe auch den Spam-Ordner.",
+		"A confirmation is on its way. Check your spam folder too.",
+		"确认邮件正在发送，请同时检查垃圾邮件文件夹。",
+		"Подтверждение уже в пути. Загляните также в папку со спамом."
+	],
+	"contact_next_2": [
+		"Wir lesen deine Nachricht und antworten per E-Mail.",
+		"We read your message and reply by email.",
+		"我们会阅读您的消息并通过电子邮件回复。",
+		"Мы прочитаем сообщение и ответим по электронной почте."
+	],
+	"contact_next_3": [
+		"Antworte einfach auf diese E-Mail, wenn du etwas ergänzen möchtest.",
+		"Just reply to that email if you want to add something.",
+		"如需补充内容，直接回复该邮件即可。",
+		"Если хотите что-то добавить, просто ответьте на это письмо."
+	],
+	"contact_send_another": [
+		"Weitere Nachricht senden",
+		"Send another message",
+		"发送另一条消息",
+		"Отправить ещё одно сообщение"
+	],
+	"contact_back_home": ["Zur Startseite", "Back to home", "返回首页", "На главную"],
+
+	"contact_channels_heading": [
+		"Weitere Wege zu uns",
+		"Other ways to reach us",
+		"其他联系方式",
+		"Другие способы связаться"
+	],
+	"contact_ch_discord_desc": [
+		"Schnelle Antworten von der Community und direkt vom Team.",
+		"Quick answers from the community and straight from the team.",
+		"来自社区和团队的快速回复。",
+		"Быстрые ответы от сообщества и самой команды."
+	],
+	"contact_discord_members": ["Mitglieder", "members", "成员", "участников"],
+	"contact_discord_online": ["online", "online", "在线", "онлайн"],
+	"contact_discord_join": [
+		"Discord beitreten",
+		"Join Discord",
+		"加入 Discord",
+		"Присоединиться к Discord"
+	],
+	"contact_discord_fallback": [
+		"Tritt unserer Community auf Discord bei.",
+		"Join our community on Discord.",
+		"加入我们的 Discord 社区。",
+		"Присоединяйтесь к нашему сообществу в Discord."
+	],
+	"contact_ch_email_heading": [
+		"Direkt per E-Mail",
+		"Email directly",
+		"直接发送邮件",
+		"Написать на почту"
+	],
+	"contact_mail_support": [
+		"Fragen und Hilfe",
+		"Questions and help",
+		"问题与帮助",
+		"Вопросы и помощь"
+	],
+	"contact_mail_security": [
+		"Sicherheitslücken",
+		"Security vulnerabilities",
+		"安全漏洞",
+		"Уязвимости"
+	],
+	"contact_mail_press": [
+		"Presse und Partner",
+		"Press and partners",
+		"媒体与合作伙伴",
+		"Пресса и партнёры"
+	],
+	"contact_mail_privacy": [
+		"Datenschutz und Recht",
+		"Privacy and legal",
+		"隐私与法律",
+		"Конфиденциальность и право"
+	],
+	"contact_ch_github_desc": [
+		"Quellcode, offene Probleme und technische Diskussionen.",
+		"Source code, open issues and technical discussion.",
+		"源代码、未解决的问题与技术讨论。",
+		"Исходный код, открытые задачи и технические обсуждения."
+	],
+	"contact_ch_github_cta": [
+		"Auf GitHub öffnen",
+		"Open on GitHub",
+		"在 GitHub 上打开",
+		"Открыть на GitHub"
+	],
+	"contact_ch_x_desc": [
+		"Neuigkeiten und kurze Updates.",
+		"News and short updates.",
+		"新闻与简短动态。",
+		"Новости и короткие обновления."
+	],
+	"contact_ch_x_cta": ["Auf X folgen", "Follow on X", "在 X 上关注", "Подписаться в X"],
+
+	"contact_f_account_problem": [
+		"Worum geht es?",
+		"What is the problem?",
+		"遇到了什么问题？",
+		"В чём проблема?"
+	],
+	"contact_o_account_problem_login": [
+		"Ich kann mich nicht anmelden",
+		"I cannot sign in",
+		"无法登录",
+		"Не могу войти"
+	],
+	"contact_o_account_problem_password_reset": [
+		"Passwort zurücksetzen",
+		"Password reset",
+		"重置密码",
+		"Сброс пароля"
+	],
+	"contact_o_account_problem_email_confirm": [
+		"E-Mail-Bestätigung",
+		"Email confirmation",
+		"邮箱验证",
+		"Подтверждение почты"
+	],
+	"contact_o_account_problem_delete_account": [
+		"Konto löschen",
+		"Delete my account",
+		"删除我的账户",
+		"Удалить аккаунт"
+	],
+	"contact_o_account_problem_other": ["Etwas anderes", "Something else", "其他", "Другое"],
+	"contact_f_account_username": [
+		"Benutzername (falls bekannt)",
+		"Username (if you know it)",
+		"用户名（如果知道）",
+		"Имя пользователя (если помните)"
+	],
+
+	"contact_f_bug_area": [
+		"Betroffener Bereich",
+		"Affected area",
+		"受影响的区域",
+		"Затронутая область"
+	],
+	"contact_o_bug_area_desktop": ["Desktop", "Desktop", "桌面", "Рабочий стол"],
+	"contact_o_bug_area_apps": ["Apps", "Apps", "应用", "Приложения"],
+	"contact_o_bug_area_files": ["Dateien", "Files", "文件", "Файлы"],
+	"contact_o_bug_area_terminal": ["Terminal", "Terminal", "终端", "Терминал"],
+	"contact_o_bug_area_account": ["Konto", "Account", "账户", "Аккаунт"],
+	"contact_o_bug_area_website": ["Webseite", "Website", "网站", "Сайт"],
+	"contact_o_bug_area_minecraft": ["Minecraft", "Minecraft", "Minecraft", "Minecraft"],
+	"contact_o_bug_area_discord": ["Discord", "Discord", "Discord", "Discord"],
+	"contact_o_bug_area_other": ["Anderes", "Other", "其他", "Другое"],
+	"contact_f_bug_steps": [
+		"Schritte zur Reproduktion",
+		"Steps to reproduce",
+		"复现步骤",
+		"Шаги для воспроизведения"
+	],
+	"contact_p_bug_steps": [
+		"1. Ich öffne...\n2. Dann klicke ich...\n3. Es passiert...",
+		"1. I open...\n2. Then I click...\n3. What happens is...",
+		"1. 我打开...\n2. 然后点击...\n3. 结果是...",
+		"1. Я открываю...\n2. Затем нажимаю...\n3. Происходит..."
+	],
+	"contact_f_bug_expected": [
+		"Erwartetes Verhalten",
+		"What you expected",
+		"预期结果",
+		"Ожидаемое поведение"
+	],
+	"contact_p_bug_expected": [
+		"Was hätte stattdessen passieren sollen?",
+		"What should have happened instead?",
+		"本来应该发生什么？",
+		"Что должно было произойти?"
+	],
+
+	"contact_f_feedback_kind": ["Art des Feedbacks", "Kind of feedback", "反馈类型", "Тип отзыва"],
+	"contact_o_feedback_kind_feature": ["Neues Feature", "New feature", "新功能", "Новая функция"],
+	"contact_o_feedback_kind_improvement": ["Verbesserung", "Improvement", "改进", "Улучшение"],
+	"contact_o_feedback_kind_praise": ["Lob", "Praise", "表扬", "Благодарность"],
+	"contact_o_feedback_kind_other": ["Anderes", "Other", "其他", "Другое"],
+
+	"contact_f_security_severity": [
+		"Geschätzte Schwere",
+		"Estimated severity",
+		"预估严重程度",
+		"Оценка серьёзности"
+	],
+	"contact_o_security_severity_unknown": ["Unbekannt", "Unknown", "未知", "Неизвестно"],
+	"contact_o_security_severity_low": ["Niedrig", "Low", "低", "Низкая"],
+	"contact_o_security_severity_medium": ["Mittel", "Medium", "中", "Средняя"],
+	"contact_o_security_severity_high": ["Hoch", "High", "高", "Высокая"],
+	"contact_o_security_severity_critical": ["Kritisch", "Critical", "严重", "Критическая"],
+	"contact_f_security_affected": [
+		"Betroffene Komponente oder URL",
+		"Affected component or URL",
+		"受影响的组件或 URL",
+		"Затронутый компонент или URL"
+	],
+	"contact_p_security_affected": [
+		"z. B. https://rizinos.com/login",
+		"e.g. https://rizinos.com/login",
+		"例如 https://rizinos.com/login",
+		"например, https://rizinos.com/login"
+	],
+
+	"contact_f_press_outlet": [
+		"Medium oder Organisation",
+		"Outlet or organisation",
+		"媒体或机构",
+		"Издание или организация"
+	],
+	"contact_f_press_deadline": [
+		"Frist (falls vorhanden)",
+		"Deadline (if any)",
+		"截止日期（如有）",
+		"Срок (если есть)"
+	],
+
+	"contact_f_legal_kind": ["Art der Anfrage", "Type of request", "请求类型", "Тип запроса"],
+	"contact_o_legal_kind_privacy_request": [
+		"Datenschutzanfrage (Auskunft, Löschung, Export)",
+		"Privacy request (access, deletion, export)",
+		"隐私请求（访问、删除、导出）",
+		"Запрос по конфиденциальности (доступ, удаление, экспорт)"
+	],
+	"contact_o_legal_kind_dmca": [
+		"Urheberrechtsverletzung (DMCA)",
+		"Copyright notice (DMCA)",
+		"版权通知（DMCA）",
+		"Нарушение авторских прав (DMCA)"
+	],
+	"contact_o_legal_kind_abuse": [
+		"Missbrauch melden",
+		"Report abuse",
+		"举报滥用",
+		"Сообщить о нарушении"
+	],
+	"contact_o_legal_kind_other": ["Anderes", "Other", "其他", "Другое"],
+	"contact_f_legal_reference": [
+		"Link oder Verweis auf den Inhalt",
+		"Link or reference to the content",
+		"相关内容的链接或引用",
+		"Ссылка или указание на материал"
+	],
+	"contact_p_legal_reference": ["https://...", "https://...", "https://...", "https://..."]
+}
