@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowLeft, MailCheck, MailOpen, Reply } from '@lucide/svelte';
-	import CopyButton from '$ui/contact/CopyButton.svelte';
+	import CopyButton from '#ui/contact/CopyButton.svelte';
 	import { localePath } from '#lib/i18n.svelte.js';
 	import * as m from '#lib/messages.svelte.js';
 

@@ -17,7 +17,7 @@
 <script lang="ts" generics="T">
 	import type { Snippet } from 'svelte';
 	import { ChevronUp, ChevronDown, ChevronsUpDown } from '@lucide/svelte';
-	import * as Table from '$shadcn/table';
+	import * as Table from '#shadcn/table';
 	import Pagination from '#lib/components/Pagination.svelte';
 
 	interface Props {

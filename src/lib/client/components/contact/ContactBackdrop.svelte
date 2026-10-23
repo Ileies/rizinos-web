@@ -48,7 +48,7 @@
 		observer.observe(host);
 
 		// Three.js is only fetched on devices that will actually show it.
-		Promise.all([import('@threlte/core'), import('$ui/contact/BackdropScene.svelte')])
+		Promise.all([import('@threlte/core'), import('#ui/contact/BackdropScene.svelte')])
 			.then(([core, scene]) => {
 				if (cancelled) return;
 				color = resolveColor();

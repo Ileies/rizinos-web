@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 	import { Role, type UserData } from '#lib/types.js';
 	import { Users, ScrollText, LayoutGrid, Trash2, Plus, Search, X } from '@lucide/svelte';
-	import * as Table from '$shadcn/table';
-	import * as Button from '$shadcn/button';
-	import * as Input from '$shadcn/input';
+	import * as Table from '#shadcn/table';
+	import * as Button from '#shadcn/button';
+	import * as Input from '#shadcn/input';
 	import Modal from '#lib/components/Modal.svelte';
 	import RestrictEditor from '#lib/components/RestrictEditor.svelte';
 	import AdminPanel from '#lib/components/AdminPanel.svelte';

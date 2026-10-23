@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Container from '$ui/homepage/Container.svelte';
-	import ChannelCards from '$ui/contact/ChannelCards.svelte';
-	import ContactBackdrop from '$ui/contact/ContactBackdrop.svelte';
-	import ContactForm from '$ui/contact/ContactForm.svelte';
-	import StatusChip from '$ui/contact/StatusChip.svelte';
+	import Container from '#ui/homepage/Container.svelte';
+	import ChannelCards from '#ui/contact/ChannelCards.svelte';
+	import ContactBackdrop from '#ui/contact/ContactBackdrop.svelte';
+	import ContactForm from '#ui/contact/ContactForm.svelte';
+	import StatusChip from '#ui/contact/StatusChip.svelte';
 	import * as m from '#lib/messages.svelte.js';
 </script>
 

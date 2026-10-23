@@ -74,10 +74,6 @@ export default defineConfig({
 							] satisfies `/${string}`[]
 					)
 				]
-			},
-			alias: {
-				$ui: './src/lib/client/components',
-				$shadcn: './src/lib/components/ui'
 			}
 		}),
 		devtoolsJson(),

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { Check, X } from '@lucide/svelte';
-	import * as Button from '$shadcn/button';
-	import * as Input from '$shadcn/input';
+	import * as Button from '#shadcn/button';
+	import * as Input from '#shadcn/input';
 
 	interface Props {
 		location: string | null;

@@ -13,7 +13,7 @@
 		Globe,
 		Wifi
 	} from '@lucide/svelte';
-	import SignupFlow from '$ui/homepage/SignupFlow.svelte';
+	import SignupFlow from '#ui/homepage/SignupFlow.svelte';
 	import * as m from '#lib/messages.svelte.js';
 
 	let { loggedIn = false }: { loggedIn?: boolean } = $props();

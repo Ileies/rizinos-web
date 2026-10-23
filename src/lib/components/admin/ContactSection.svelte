@@ -3,7 +3,7 @@
 	import AdminPanel from '#lib/components/AdminPanel.svelte';
 	import Pagination from '#lib/components/Pagination.svelte';
 	import Modal from '#lib/components/Modal.svelte';
-	import * as Button from '$shadcn/button';
+	import * as Button from '#shadcn/button';
 	import { type AdminTab } from '#lib/components/AdminTabs.svelte';
 	import { adminGet, adminPost } from '#lib/adminApi.js';
 	import { apiFetch } from '#lib/api.js';

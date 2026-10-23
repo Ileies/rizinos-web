@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 	import type { UserData } from '#lib/types.js';
 	import { Plus, CheckCircle2, XCircle, Loader2 } from '@lucide/svelte';
-	import * as Table from '$shadcn/table';
-	import * as Button from '$shadcn/button';
-	import * as Input from '$shadcn/input';
+	import * as Table from '#shadcn/table';
+	import * as Button from '#shadcn/button';
+	import * as Input from '#shadcn/input';
 	import Modal from '#lib/components/Modal.svelte';
 	import { apiFetch } from '#lib/api.js';
 	import RestrictEditor from '#lib/components/RestrictEditor.svelte';

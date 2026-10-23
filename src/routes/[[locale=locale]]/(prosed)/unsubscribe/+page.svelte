@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
-	import * as Button from '$shadcn/button';
+	import * as Button from '#shadcn/button';
 	import * as m from '#lib/messages.svelte.js';
 	import { apiPost } from '#lib/api.js';
 	import { APP_URL } from '#lib/config.js';

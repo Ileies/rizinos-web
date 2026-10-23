@@ -56,6 +56,8 @@
 		"zod": "^4.4.3"
 	},
 	"imports": {
-		"#lib/*": "./src/lib/*"
+		"#lib/*": "./src/lib/*",
+		"#ui/*": "./src/lib/client/components/*",
+		"#shadcn/*": "./src/lib/components/ui/*/index.ts"
 	}
 }

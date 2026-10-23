@@ -3,9 +3,9 @@
 	import { ArrowRight, Info, LoaderCircle, Lock } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import { browser } from '$app/env';
-	import AttachmentPicker from '$ui/contact/AttachmentPicker.svelte';
-	import ContactSuccess from '$ui/contact/ContactSuccess.svelte';
-	import TopicPicker from '$ui/contact/TopicPicker.svelte';
+	import AttachmentPicker from '#ui/contact/AttachmentPicker.svelte';
+	import ContactSuccess from '#ui/contact/ContactSuccess.svelte';
+	import TopicPicker from '#ui/contact/TopicPicker.svelte';
 	import {
 		LIMITS,
 		RETENTION_MONTHS,

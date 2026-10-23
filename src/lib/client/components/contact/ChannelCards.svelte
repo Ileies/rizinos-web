@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { ArrowUpRight, Mail } from '@lucide/svelte';
 	import { SiDiscord, SiGithub, SiX } from '@icons-pack/svelte-simple-icons';
-	import CopyButton from '$ui/contact/CopyButton.svelte';
+	import CopyButton from '#ui/contact/CopyButton.svelte';
 	import { MAILBOXES, mailboxAddress, t } from '#lib/contact.js';
 	import { discord, github, x } from '#lib/config.js';
 	import * as m from '#lib/messages.svelte.js';
