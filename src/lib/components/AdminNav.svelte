@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { LayoutDashboard, Pickaxe, MessageSquare, Bot, ShieldAlert, Inbox } from '@lucide/svelte';
+	import {
+		LayoutDashboard,
+		Pickaxe,
+		MessageSquare,
+		Bot,
+		ShieldAlert,
+		Inbox,
+		Activity
+	} from '@lucide/svelte';
 
 	let { active = $bindable() }: { active: string } = $props();
 
@@ -9,7 +17,8 @@
 		{ id: 'minechat', label: 'Minechat', icon: MessageSquare },
 		{ id: 'discord', label: 'Discord', icon: Bot },
 		{ id: 'moderation', label: 'Moderation', icon: ShieldAlert },
-		{ id: 'contact', label: 'Contact', icon: Inbox }
+		{ id: 'contact', label: 'Contact', icon: Inbox },
+		{ id: 'status', label: 'Status', icon: Activity }
 	];
 </script>
 

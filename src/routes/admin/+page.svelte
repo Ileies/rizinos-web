@@ -6,6 +6,7 @@
 	import DiscordSection from '#lib/components/admin/DiscordSection.svelte';
 	import ModerationSection from '#lib/components/admin/ModerationSection.svelte';
 	import ContactSection from '#lib/components/admin/ContactSection.svelte';
+	import StatusSection from '#lib/components/admin/StatusSection.svelte';
 
 	let area = $state('rizinos');
 </script>
@@ -24,4 +25,6 @@
 	<ModerationSection />
 {:else if area === 'contact'}
 	<ContactSection />
+{:else if area === 'status'}
+	<StatusSection />
 {/if}
