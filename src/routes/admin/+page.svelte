@@ -5,6 +5,7 @@
 	import MinechatSection from '#lib/components/admin/MinechatSection.svelte';
 	import DiscordSection from '#lib/components/admin/DiscordSection.svelte';
 	import ModerationSection from '#lib/components/admin/ModerationSection.svelte';
+	import ContactSection from '#lib/components/admin/ContactSection.svelte';
 
 	let area = $state('rizinos');
 </script>
@@ -21,4 +22,6 @@
 	<DiscordSection />
 {:else if area === 'moderation'}
 	<ModerationSection />
+{:else if area === 'contact'}
+	<ContactSection />
 {/if}
