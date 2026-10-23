@@ -50,7 +50,7 @@
 					items: {
 						[localePath('/about')]: m.about_us(),
 						[localePath('/careers')]: m.careers(),
-						[localePath('/about') + '#contact']: m.contact()
+						[localePath('/contact')]: m.contact()
 					}
 				},
 				{
