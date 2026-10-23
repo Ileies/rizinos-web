@@ -5,7 +5,10 @@ export function apiFetch(path: string, init?: RequestInit): Promise<Response> {
 		credentials: 'include',
 		...init,
 		headers: {
-			...(init?.body !== undefined ? { 'content-type': 'application/json' } : {}),
+			// FormData needs the browser to set the multipart boundary itself.
+			...(init?.body !== undefined && !(init.body instanceof FormData)
+				? { 'content-type': 'application/json' }
+				: {}),
 			...init?.headers
 		}
 	});
