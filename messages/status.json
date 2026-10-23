@@ -1,0 +1,303 @@
+{
+	"status_title": ["Systemstatus.", "System status.", "系统状态。", "Статус системы."],
+	"status_lead": [
+		"Der Zustand aller RizinOS-Dienste, jede Minute geprüft. Störungen und geplante Wartungen erscheinen zuerst hier.",
+		"The health of every RizinOS service, checked every minute. Incidents and planned maintenance are posted here first.",
+		"所有 RizinOS 服务的运行状况，每分钟检测一次。故障和计划维护会首先在此发布。",
+		"Состояние всех сервисов RizinOS, проверка каждую минуту. Сбои и плановые работы публикуются здесь в первую очередь."
+	],
+
+	"status_overall_operational": [
+		"Alle Systeme laufen normal",
+		"All systems operational",
+		"所有系统运行正常",
+		"Все системы работают нормально"
+	],
+	"status_overall_degraded": [
+		"Einige Systeme sind langsamer als üblich",
+		"Some systems are slower than usual",
+		"部分系统比平时慢",
+		"Некоторые системы работают медленнее обычного"
+	],
+	"status_overall_partial_outage": [
+		"Einige Systeme sind ausgefallen",
+		"Some systems are down",
+		"部分系统已中断",
+		"Некоторые системы недоступны"
+	],
+	"status_overall_major_outage": ["Größere Störung", "Major outage", "重大故障", "Серьёзный сбой"],
+	"status_overall_maintenance": [
+		"Geplante Wartung läuft",
+		"Scheduled maintenance in progress",
+		"正在进行计划维护",
+		"Идут плановые работы"
+	],
+	"status_overall_unknown": [
+		"Status derzeit nicht verfügbar",
+		"Status currently unavailable",
+		"状态暂时不可用",
+		"Статус временно недоступен"
+	],
+	"status_overall_sub_ok": [
+		"Wir prüfen jede Minute. Zuletzt aktualisiert {time}.",
+		"We check every minute. Last updated {time}.",
+		"我们每分钟检测一次。最后更新：{time}。",
+		"Мы проверяем каждую минуту. Обновлено {time}."
+	],
+
+	"status_state_operational": ["Läuft", "Operational", "正常", "Работает"],
+	"status_state_degraded": ["Eingeschränkt", "Degraded", "性能下降", "Снижена скорость"],
+	"status_state_down": ["Ausgefallen", "Down", "中断", "Недоступно"],
+	"status_state_maintenance": ["Wartung", "Maintenance", "维护中", "Обслуживание"],
+	"status_state_unknown": ["Nicht überwacht", "Not monitored", "未监控", "Не отслеживается"],
+
+	"status_group_platform": ["Plattform", "Platform", "平台", "Платформа"],
+	"status_group_game": ["Spiel", "Game", "游戏", "Игра"],
+	"status_group_community": ["Community", "Community", "社区", "Сообщество"],
+
+	"status_component_website": ["Website", "Website", "网站", "Сайт"],
+	"status_component_website_desc": [
+		"Die Seite rizinos.com",
+		"The rizinos.com website",
+		"rizinos.com 网站",
+		"Сайт rizinos.com"
+	],
+	"status_component_app": ["Desktop", "OS desktop", "系统桌面", "Рабочий стол ОС"],
+	"status_component_app_desc": [
+		"Das RizinOS-Desktop im Browser",
+		"The RizinOS desktop in your browser",
+		"浏览器中的 RizinOS 桌面",
+		"Рабочий стол RizinOS в браузере"
+	],
+	"status_component_auth": ["Anmeldung", "Sign-in", "登录", "Вход"],
+	"status_component_auth_desc": [
+		"Login und Konto-Sitzungen",
+		"Login and account sessions",
+		"登录与账户会话",
+		"Вход и сессии аккаунта"
+	],
+	"status_component_api": ["API", "API", "API", "API"],
+	"status_component_api_desc": [
+		"Schnittstelle für Website und Apps",
+		"The interface behind the website and apps",
+		"网站和应用背后的接口",
+		"Интерфейс сайта и приложений"
+	],
+	"status_component_websocket": [
+		"Echtzeitverbindung",
+		"Realtime connection",
+		"实时连接",
+		"Соединение в реальном времени"
+	],
+	"status_component_websocket_desc": [
+		"Live-Status und sofortige Updates",
+		"Live presence and instant updates",
+		"在线状态与即时更新",
+		"Статус онлайн и мгновенные обновления"
+	],
+	"status_component_database": ["Datenbank", "Database", "数据库", "База данных"],
+	"status_component_database_desc": [
+		"Konten und Datenspeicherung",
+		"Accounts and data storage",
+		"账户与数据存储",
+		"Аккаунты и хранение данных"
+	],
+	"status_component_email": ["E-Mail-Versand", "Email delivery", "邮件发送", "Отправка почты"],
+	"status_component_email_desc": [
+		"Bestätigungs- und Benachrichtigungs-E-Mails",
+		"Confirmation and notification emails",
+		"确认邮件与通知邮件",
+		"Письма подтверждения и уведомления"
+	],
+	"status_component_minecraft": [
+		"Minecraft-Server",
+		"Minecraft server",
+		"Minecraft 服务器",
+		"Сервер Minecraft"
+	],
+	"status_component_minecraft_desc": [
+		"Die RizinOS-Minecraft-Welt",
+		"The RizinOS Minecraft world",
+		"RizinOS Minecraft 世界",
+		"Мир RizinOS в Minecraft"
+	],
+	"status_component_minechat": ["Minechat", "Minechat", "Minechat", "Minechat"],
+	"status_component_minechat_desc": [
+		"Chat-Brücke zwischen Minecraft und Discord",
+		"Chat bridge between Minecraft and Discord",
+		"Minecraft 与 Discord 之间的聊天桥",
+		"Мост чата между Minecraft и Discord"
+	],
+	"status_component_discord": ["Discord-Bot", "Discord bot", "Discord 机器人", "Бот Discord"],
+	"status_component_discord_desc": [
+		"Konto-Verknüpfung, Support-Assistent und Moderation",
+		"Account linking, support assistant and moderation",
+		"账户绑定、支持助手与管理",
+		"Привязка аккаунта, помощник поддержки и модерация"
+	],
+
+	"status_uptime_value": [
+		"{value} Verfügbarkeit",
+		"{value} uptime",
+		"可用率 {value}",
+		"Доступность {value}"
+	],
+	"status_uptime_range": ["Letzte 90 Tage", "Last 90 days", "最近 90 天", "Последние 90 дней"],
+	"status_days_ago": ["vor 90 Tagen", "90 days ago", "90 天前", "90 дней назад"],
+	"status_today": ["Heute", "Today", "今天", "Сегодня"],
+	"status_since": ["seit {time}", "since {time}", "自 {time}", "с {time}"],
+	"status_day_nodata": ["Keine Daten", "No data", "无数据", "Нет данных"],
+	"status_day_ok": ["Keine Ausfälle", "No downtime", "无中断", "Без перебоев"],
+	"status_day_down": [
+		"{duration} ausgefallen",
+		"{duration} down",
+		"中断 {duration}",
+		"Недоступно {duration}"
+	],
+	"status_day_degraded": [
+		"{duration} eingeschränkt",
+		"{duration} degraded",
+		"性能下降 {duration}",
+		"Снижена скорость {duration}"
+	],
+	"status_day_maintenance": ["Wartung", "Maintenance", "维护", "Обслуживание"],
+
+	"status_table_show": ["Als Tabelle anzeigen", "Show as table", "以表格显示", "Показать таблицей"],
+	"status_table_hide": ["Tabelle ausblenden", "Hide table", "隐藏表格", "Скрыть таблицу"],
+	"status_table_component": ["Komponente", "Component", "组件", "Компонент"],
+	"status_table_status": ["Status", "Status", "状态", "Статус"],
+	"status_table_uptime": [
+		"Verfügbarkeit (90 Tage)",
+		"Uptime (90 days)",
+		"可用率（90 天）",
+		"Доступность (90 дней)"
+	],
+
+	"status_incidents_active": ["Aktuelle Störungen", "Active incidents", "当前故障", "Текущие сбои"],
+	"status_incidents_none": [
+		"Keine aktuellen Störungen.",
+		"No active incidents.",
+		"当前没有故障。",
+		"Активных сбоев нет."
+	],
+	"status_history": ["Frühere Störungen", "Past incidents", "历史故障", "Прошлые сбои"],
+	"status_history_none": [
+		"In den letzten 90 Tagen gab es keine gemeldeten Störungen.",
+		"No incidents were reported in the last 90 days.",
+		"最近 90 天没有报告过故障。",
+		"За последние 90 дней сбоев не зафиксировано."
+	],
+	"status_incident_investigating": ["Wird untersucht", "Investigating", "调查中", "Выясняем"],
+	"status_incident_identified": ["Ursache gefunden", "Identified", "已定位", "Причина найдена"],
+	"status_incident_monitoring": ["Wird beobachtet", "Monitoring", "观察中", "Наблюдаем"],
+	"status_incident_resolved": ["Behoben", "Resolved", "已解决", "Устранено"],
+	"status_impact_minor": ["Geringe Auswirkung", "Minor impact", "影响较小", "Небольшое влияние"],
+	"status_impact_major": ["Große Auswirkung", "Major impact", "影响较大", "Значительное влияние"],
+	"status_impact_critical": [
+		"Kritische Auswirkung",
+		"Critical impact",
+		"影响严重",
+		"Критическое влияние"
+	],
+	"status_affects": [
+		"Betrifft: {components}",
+		"Affects: {components}",
+		"影响：{components}",
+		"Затронуто: {components}"
+	],
+	"status_started": ["Beginn {time}", "Started {time}", "开始于 {time}", "Начало {time}"],
+	"status_resolved_after": [
+		"Behoben nach {duration}",
+		"Resolved after {duration}",
+		"{duration} 后解决",
+		"Устранено через {duration}"
+	],
+	"status_updates_show": ["Verlauf anzeigen", "Show updates", "显示更新", "Показать обновления"],
+	"status_updates_hide": ["Verlauf ausblenden", "Hide updates", "隐藏更新", "Скрыть обновления"],
+
+	"status_maintenance_heading": [
+		"Geplante Wartung",
+		"Scheduled maintenance",
+		"计划维护",
+		"Плановые работы"
+	],
+	"status_maintenance_scheduled": ["Geplant", "Scheduled", "已计划", "Запланировано"],
+	"status_maintenance_in_progress": ["Läuft gerade", "In progress", "进行中", "Идёт сейчас"],
+	"status_maintenance_completed": ["Abgeschlossen", "Completed", "已完成", "Завершено"],
+	"status_maintenance_window": [
+		"{start} bis {end}",
+		"{start} to {end}",
+		"{start} 至 {end}",
+		"{start} - {end}"
+	],
+
+	"status_stat_online": ["Nutzer online", "Users online", "在线用户", "Пользователей онлайн"],
+	"status_stat_version": ["Version", "Version", "版本", "Версия"],
+	"status_stat_running": ["Läuft seit", "Running since", "运行自", "Работает с"],
+
+	"status_error_title": [
+		"Live-Status nicht erreichbar",
+		"Live status is unavailable",
+		"无法获取实时状态",
+		"Статус в реальном времени недоступен"
+	],
+	"status_error_cached": [
+		"Der Status-Dienst antwortet nicht, vermutlich liegt eine Störung bei uns. Angezeigt werden die zuletzt bekannten Daten von {time}.",
+		"We could not reach the status service, which likely means an outage on our side. Showing the last known data from {time}.",
+		"无法连接状态服务，很可能是我们这边出现了故障。以下显示的是 {time} 的最后已知数据。",
+		"Не удалось связаться со службой статуса, вероятно, у нас сбой. Показаны последние известные данные от {time}."
+	],
+	"status_error_empty": [
+		"Der Status-Dienst antwortet nicht, vermutlich liegt eine Störung bei uns. Schau in einer Minute noch einmal vorbei oder folge uns auf Discord.",
+		"We could not reach the status service, which likely means an outage on our side. Check back in a minute or follow us on Discord.",
+		"无法连接状态服务，很可能是我们这边出现了故障。请一分钟后再试，或在 Discord 上关注我们。",
+		"Не удалось связаться со службой статуса, вероятно, у нас сбой. Загляните через минуту или следите за новостями в Discord."
+	],
+	"status_stale": [
+		"Die Überwachungsdaten sind verzögert. Die Angaben unten sind möglicherweise nicht aktuell.",
+		"Monitoring data is delayed. The statuses below may be out of date.",
+		"监控数据有延迟，以下状态可能已过时。",
+		"Данные мониторинга запаздывают. Статусы ниже могут быть устаревшими."
+	],
+	"status_retry": ["Erneut versuchen", "Retry", "重试", "Повторить"],
+	"status_loading": [
+		"Status wird geladen ...",
+		"Loading status ...",
+		"正在加载状态 ...",
+		"Загрузка статуса ..."
+	],
+
+	"status_help_discord": [
+		"Updates auf Discord",
+		"Updates on Discord",
+		"在 Discord 获取更新",
+		"Новости в Discord"
+	],
+	"status_help_contact": [
+		"Funktioniert bei dir etwas nicht? Schreib uns.",
+		"Something not working for you? Contact us.",
+		"遇到问题？联系我们。",
+		"Что-то не работает? Напишите нам."
+	],
+
+	"status_banner_incident": [
+		"Aktuelle Störung: {title}",
+		"Ongoing incident: {title}",
+		"正在发生的故障：{title}",
+		"Текущий сбой: {title}"
+	],
+	"status_banner_maint_now": [
+		"Wartung läuft: {title}",
+		"Maintenance in progress: {title}",
+		"正在维护：{title}",
+		"Идут работы: {title}"
+	],
+	"status_banner_maint_soon": [
+		"Geplante Wartung {time}: {title}",
+		"Upcoming maintenance {time}: {title}",
+		"即将维护 {time}：{title}",
+		"Плановые работы {time}: {title}"
+	],
+	"status_banner_details": ["Details", "Details", "详情", "Подробнее"],
+	"status_banner_dismiss": ["Ausblenden", "Dismiss", "关闭", "Скрыть"]
+}

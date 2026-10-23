@@ -80,14 +80,6 @@
 		"Полный обзор безопасности скоро появится."
 	],
 
-	"status_title": ["Systemstatus.", "System status.", "系统状态。", "Статус системы."],
-	"status_lead": [
-		"Die Live-Statusüberwachung folgt in Kürze.",
-		"Live status monitoring is coming soon.",
-		"实时状态监控即将上线。",
-		"Мониторинг статуса в реальном времени скоро появится."
-	],
-
 	"support_title": [
 		"Wir helfen dir gerne.",
 		"We're here to help.",
