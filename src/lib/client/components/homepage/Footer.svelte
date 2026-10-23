@@ -40,7 +40,7 @@
 					title: m.resources(),
 					items: {
 						[localePath('/docs')]: m.documentation(),
-						[localePath('/docs') + '#api']: m.api_reference(),
+						[localePath('/support')]: m.support(),
 						[localePath('/status')]: m.status(),
 						[localePath('/blog')]: m.blog()
 					}

@@ -26,30 +26,17 @@
 		{ code: 'cn', name: '简体中文', flag: '🇨🇳' }
 	];
 
-	let navItems = $derived(
+	type NavLink = { label: string; href: string };
+	type NavItem = NavLink & { dropdown?: NavLink[] };
+
+	let navItems: NavItem[] = $derived(
 		(() => {
 			return [
-				{
-					label: m.features(),
-					href: localePath('/features'),
-					dropdown: [
-						{ label: m.overview(), href: localePath('/features') },
-						{ label: m.performance(), href: localePath('/features/performance') },
-						{ label: m.security(), href: localePath('/features/security') },
-						{ label: m.integration(), href: localePath('/features/integration') }
-					]
-				},
-				{
-					label: m.documentation(),
-					href: localePath('/docs'),
-					dropdown: [
-						{ label: m.getting_started(), href: localePath('/docs') + '#getting-started' },
-						{ label: m.api_reference(), href: localePath('/docs') + '#api' },
-						{ label: m.tutorials(), href: localePath('/docs') + '#tutorials' }
-					]
-				},
+				{ label: m.features(), href: localePath('/features') },
+				{ label: m.documentation(), href: localePath('/docs') },
 				{ label: m.pricing(), href: localePath('/pricing') },
-				{ label: m.enterprise(), href: localePath('/enterprise') }
+				{ label: m.enterprise(), href: localePath('/enterprise') },
+				{ label: m.support(), href: localePath('/support') }
 			];
 		})()
 	);
