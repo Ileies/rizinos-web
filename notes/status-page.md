@@ -2,7 +2,7 @@ IDEAS
 
 Core service health
 
-- Web/SvelteKit app — uptime, current version (you already have /api/os/version), git commit/build hash, PM2 process state from pm2.config.cjs.
+- Web/SvelteKit app — uptime, current version (you already have /api/os/version), git commit/build hash, systemd unit state (rizinos.service).
 - WebSocket server — connection up/down, active socket count (the custom Bun /ws server), reconnect rate.
 - PostgreSQL/Drizzle — reachability ping, latency, pool usage, last successful query. A degraded-DB indicator is the single most valuable signal.
 

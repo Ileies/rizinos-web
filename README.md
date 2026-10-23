@@ -199,7 +199,7 @@ bun run deploy     # rsync build/ → ros:/var/www/rizinos-web
 
 `scripts/deploy.ts` SSHes into the server alias `ros` and rsyncs `build/` to `/var/www/rizinos-web`. nginx serves these files statically with a `200.html` fallback for client-routed paths such as `/admin`.
 
-The backend (`rizinos`) is deployed independently with PM2 on port 3001. See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md) for backend deployment.
+The backend (`rizinos`) is deployed independently as a systemd service on port 3001. See [`../rizinos/CLAUDE.md`](../rizinos/CLAUDE.md) for backend deployment.
 
 ---
 
