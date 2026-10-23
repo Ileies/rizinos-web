@@ -142,11 +142,11 @@ static/                          # robots.txt, favicon, public assets
 
 ### Path aliases
 
-| Alias     | Points to                   |
+| Import    | Points to                   |
 | --------- | --------------------------- |
 | `#lib`    | `src/lib`                   |
-| `$ui`     | `src/lib/client/components` |
-| `$shadcn` | `src/lib/components/ui`     |
+| `#ui`     | `src/lib/client/components` |
+| `#shadcn` | `src/lib/components/ui`     |
 
 ---
 

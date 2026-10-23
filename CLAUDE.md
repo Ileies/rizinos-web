@@ -96,11 +96,11 @@ static/                       # robots.txt, favicon, public assets
 
 ### Path aliases
 
-| Alias     | Points to                   |
+| Import    | Points to                   |
 | --------- | --------------------------- |
 | `#lib`    | `src/lib`                   |
-| `$ui`     | `src/lib/client/components` |
-| `$shadcn` | `src/lib/components/ui`     |
+| `#ui`     | `src/lib/client/components` |
+| `#shadcn` | `src/lib/components/ui`     |
 
 ---
 
@@ -121,8 +121,8 @@ static/                       # robots.txt, favicon, public assets
 
 - **Svelte 5 runes throughout** - no legacy stores, no `$:` reactive declarations, no `on:` event directives
 - **`#lib/` imports only** - never relative paths from `src/`
-- **shadcn-svelte** imported as `$shadcn/<component>` (tsconfig alias)
-- **Homepage components** imported as `$ui/<component>` (tsconfig alias)
+- **shadcn-svelte** imported as `#shadcn/<component>` (package.json subpath import)
+- **Homepage components** imported as `#ui/<component>` (package.json subpath import)
 - **No em dashes** - use a regular dash, colon, or newline instead
 - **No server-only code** - this is a static site; never import anything from a `server` module or `#lib/server/` (that lives in `rizinos`)
 - **All admin API calls via `adminApi.ts`** - never write raw fetch calls to admin endpoints inline in components
