@@ -1,0 +1,103 @@
+{
+	"blog_title": ["Das ist neu.", "What's new.", "最新动态。", "Что нового."],
+	"blog_lead": [
+		"Beiträge und Neuigkeiten folgen in Kürze.",
+		"Posts and updates are coming soon.",
+		"文章和更新即将发布。",
+		"Статьи и новости скоро появятся."
+	],
+
+	"careers_title": [
+		"Werde Teil des Teams.",
+		"Join the team.",
+		"加入我们的团队。",
+		"Присоединяйся к команде."
+	],
+	"careers_lead": [
+		"Offene Stellen werden hier aufgelistet, sobald es welche gibt.",
+		"Open positions will be listed here when available.",
+		"有空缺职位时将在此列出。",
+		"Открытые вакансии появятся здесь, когда они будут."
+	],
+
+	"docs_title": ["Lerne RizinOS kennen.", "Learn RizinOS.", "了解 RizinOS。", "Узнай RizinOS."],
+	"docs_lead": [
+		"Die Dokumentation wird gerade geschrieben. Schau bald wieder vorbei.",
+		"Documentation is being written. Check back soon.",
+		"文档正在编写中，请稍后再来查看。",
+		"Документация пишется. Загляни сюда чуть позже."
+	],
+
+	"enterprise_title": [
+		"Gemacht für Teams.",
+		"Built for teams.",
+		"为团队而生。",
+		"Создано для команд."
+	],
+	"enterprise_lead": [
+		"Enterprise-Funktionen und Preise folgen in Kürze. Kontaktiere uns, um deine Anforderungen zu besprechen.",
+		"Enterprise features and pricing are coming soon. Contact us to discuss your needs.",
+		"企业版功能和价格即将推出。欢迎联系我们，聊聊你的需求。",
+		"Корпоративные функции и цены скоро появятся. Свяжись с нами, чтобы обсудить твои задачи."
+	],
+
+	"features_title": [
+		"Alles, was du brauchst.",
+		"Everything you need.",
+		"你需要的一切。",
+		"Всё, что тебе нужно."
+	],
+	"features_lead": [
+		"Eine vollständige Funktionsübersicht folgt in Kürze.",
+		"A full feature overview is coming soon.",
+		"完整的功能概览即将推出。",
+		"Полный обзор функций скоро появится."
+	],
+
+	"pricing_title": [
+		"Einfache, faire Preise.",
+		"Simple, honest pricing.",
+		"简单、透明的价格。",
+		"Простые и честные цены."
+	],
+	"pricing_lead": [
+		"Preisdetails folgen in Kürze.",
+		"Pricing details are coming soon.",
+		"价格详情即将公布。",
+		"Подробности о ценах скоро появятся."
+	],
+
+	"security_title": [
+		"Sicherheit zuerst.",
+		"Security first.",
+		"安全第一。",
+		"Безопасность прежде всего."
+	],
+	"security_lead": [
+		"Eine vollständige Sicherheitsübersicht folgt in Kürze.",
+		"A full security overview is coming soon.",
+		"完整的安全概览即将推出。",
+		"Полный обзор безопасности скоро появится."
+	],
+
+	"status_title": ["Systemstatus.", "System status.", "系统状态。", "Статус системы."],
+	"status_lead": [
+		"Die Live-Statusüberwachung folgt in Kürze.",
+		"Live status monitoring is coming soon.",
+		"实时状态监控即将上线。",
+		"Мониторинг статуса в реальном времени скоро появится."
+	],
+
+	"support_title": [
+		"Wir helfen dir gerne.",
+		"We're here to help.",
+		"我们随时为你提供帮助。",
+		"Мы готовы помочь."
+	],
+	"support_lead": [
+		"Support-Ressourcen folgen in Kürze. Melde dich in der Zwischenzeit direkt bei uns.",
+		"Support resources are coming soon. In the meantime, reach out directly.",
+		"支持资源即将推出。在此期间，请直接联系我们。",
+		"Материалы поддержки скоро появятся. А пока свяжись с нами напрямую."
+	]
+}

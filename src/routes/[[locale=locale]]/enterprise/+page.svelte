@@ -1,15 +1,16 @@
 <script lang="ts">
 	import Container from '#ui/homepage/Container.svelte';
+	import * as m from '#lib/messages.svelte.js';
 </script>
 
 <Container>
 	<div class="py-24 sm:py-32">
-		<p class="text-primary mb-4 text-sm font-semibold tracking-widest uppercase">Enterprise</p>
-		<h1 class="text-foreground mb-6 text-4xl font-black tracking-tight sm:text-5xl">
-			Built for teams.
-		</h1>
-		<p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-			Enterprise features and pricing are coming soon. Contact us to discuss your needs.
+		<p class="text-primary mb-4 text-sm font-semibold tracking-widest uppercase">
+			{m.enterprise()}
 		</p>
+		<h1 class="text-foreground mb-6 text-4xl font-black tracking-tight sm:text-5xl">
+			{m.enterprise_title()}
+		</h1>
+		<p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">{m.enterprise_lead()}</p>
 	</div>
 </Container>
