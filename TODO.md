@@ -10,4 +10,3 @@
 - `/about`
 - `/careers`
 - `/blog`
-- `/contact`

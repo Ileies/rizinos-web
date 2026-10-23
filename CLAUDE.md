@@ -46,6 +46,7 @@ src/
     login/                    # Login form (email + password, Google OAuth button)
     signup/                   # Multi-step signup form
     about/                    # About page (static, no server load)
+    contact/                  # Contact form + channel hub (see docs/contact-page.md)
     (prosed)/                 # Shared prose layout for long-form pages
       confirm-email/          # Email verification handler
       legal/                  # Imprint (Impressum)
@@ -63,6 +64,7 @@ src/
     components/
       ui/                     # shadcn-svelte primitives (auto-managed via CLI, don't hand-edit)
       admin/                  # One section component per area, all using AdminPanel
+        ContactSection.svelte # Contact inbox: list, detail, reply, status, delete
         RizinosSection.svelte # Users / Logs / Apps
         MinecraftSection.svelte # Players / Warps / Worlds / Groups
         MinechatSection.svelte  # Users / Hooks / Servers
@@ -77,6 +79,8 @@ src/
       LocationInput.svelte
       Modal.svelte
       RestrictEditor.svelte
+    contact.ts                # Contact topics/limits/validation (mirrors the backend, keep in sync)
+    contactApi.ts             # Contact submit + time-trap challenge client
     config.ts                 # API_BASE (https://api.rizinos.com), social links + operator info for legal pages
     formValidation.ts         # Zod validators (username, email, password, birthdate)
     i18n-plugin.ts            # Vite plugin: messages/*.json → messages.svelte.ts
