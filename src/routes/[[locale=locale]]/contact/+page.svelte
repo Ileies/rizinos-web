@@ -1,66 +1,34 @@
 <script lang="ts">
-	import { SiDiscord } from '@icons-pack/svelte-simple-icons';
 	import Container from '$ui/homepage/Container.svelte';
-	import * as Card from '$shadcn/card';
-	import { Button } from '$shadcn/button';
-	import { discord } from '#lib/config.js';
-
-	const discordInviteCode = discord.split('/').pop();
-
-	interface DiscordInvite {
-		guild?: { description: string | null };
-		approximate_member_count: number;
-		approximate_presence_count: number;
-	}
-
-	let invite = $state<DiscordInvite | null>(null);
-	let inviteError = $state(false);
-
-	$effect(() => {
-		fetch(`https://discord.com/api/v10/invites/${discordInviteCode}?with_counts=true`)
-			.then((r) => (r.ok ? r.json() : Promise.reject()))
-			.then((d) => (invite = d))
-			.catch(() => (inviteError = true));
-	});
+	import ChannelCards from '$ui/contact/ChannelCards.svelte';
+	import ContactBackdrop from '$ui/contact/ContactBackdrop.svelte';
+	import ContactForm from '$ui/contact/ContactForm.svelte';
+	import StatusChip from '$ui/contact/StatusChip.svelte';
+	import * as m from '#lib/messages.svelte.js';
 </script>
 
 <Container>
-	<div class="py-24 sm:py-32">
-		<p class="text-primary mb-4 text-sm font-semibold tracking-widest uppercase">Contact</p>
-		<h1 class="text-foreground mb-6 text-4xl font-black tracking-tight sm:text-5xl">
-			Get in touch.
-		</h1>
-		<p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-			Contact details are coming soon.
-		</p>
+	<div class="relative py-20 sm:py-28">
+		<ContactBackdrop />
 
-		<Card.Root class="mt-12 max-w-md">
-			<Card.Header>
-				<Card.Title class="flex items-center gap-2">
-					<SiDiscord class="size-5" />
-					Discord
-				</Card.Title>
-				{#if invite?.guild?.description}
-					<Card.Description>{invite.guild.description}</Card.Description>
-				{/if}
-			</Card.Header>
-			<Card.Content>
-				{#if invite && !inviteError}
-					<p class="text-muted-foreground text-sm">
-						<span class="text-foreground font-semibold">{invite.approximate_member_count}</span>
-						members
-						<span class="mx-1">·</span>
-						<span class="text-foreground font-semibold">{invite.approximate_presence_count}</span> online
-					</p>
-				{:else if inviteError}
-					<p class="text-muted-foreground text-sm">Join our community on Discord.</p>
-				{/if}
-			</Card.Content>
-			<Card.Footer>
-				<Button href={discord} target="_blank" rel="external noopener noreferrer">
-					Join Discord
-				</Button>
-			</Card.Footer>
-		</Card.Root>
+		<header class="max-w-2xl">
+			<p class="text-primary mb-4 text-sm font-semibold tracking-widest uppercase">
+				{m.contact_eyebrow()}
+			</p>
+			<h1 class="text-foreground mb-5 text-4xl font-black tracking-tight sm:text-5xl">
+				{m.contact_title()}
+			</h1>
+			<p class="text-muted-foreground mb-7 text-lg leading-relaxed">{m.contact_lead()}</p>
+			<StatusChip />
+		</header>
+
+		<div
+			class="mt-12 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_21rem] xl:grid-cols-[minmax(0,1fr)_23rem]"
+		>
+			<ContactForm />
+			<aside aria-label={m.contact_channels_heading()} class="lg:sticky lg:top-8">
+				<ChannelCards />
+			</aside>
+		</div>
 	</div>
 </Container>
