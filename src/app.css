@@ -26,6 +26,14 @@
 	--input: 88 18% 87%;
 	--ring: 88 48% 38%;
 	--radius: 0.5rem;
+
+	/* Status page. Reserved state colors, never reused for anything else. Always shown with an icon and a label. */
+	--status-good: #0ca30c;
+	--status-warning: #fab219;
+	--status-serious: #ec835a;
+	--status-critical: #d03b3b;
+	--status-maintenance: #2f7de1;
+	--status-idle: #9aa39a;
 }
 
 .dark {
@@ -48,6 +56,8 @@
 	--border: 100 6% 14%;
 	--input: 100 6% 14%;
 	--ring: 84 41% 52%;
+
+	--status-idle: #5d655d;
 }
 /*---break---*/
 @theme inline {
@@ -71,6 +81,12 @@
 	--color-card: hsl(var(--card));
 	--color-foreground: hsl(var(--foreground));
 	--color-background: hsl(var(--background));
+	--color-status-good: var(--status-good);
+	--color-status-warning: var(--status-warning);
+	--color-status-serious: var(--status-serious);
+	--color-status-critical: var(--status-critical);
+	--color-status-maintenance: var(--status-maintenance);
+	--color-status-idle: var(--status-idle);
 	--radius-sm: 0.25rem;
 	--radius-md: 0.375rem;
 	--radius-lg: 0.5rem;
